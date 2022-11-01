@@ -12,7 +12,7 @@ class HomeController extends Controller
         $user = auth()->user();
 
         if ($user) {
-            return route('panel.home');
+            return redirect()->route('panel.home');
         }
 
         return redirect()->route('login');

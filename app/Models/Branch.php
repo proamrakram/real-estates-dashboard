@@ -27,4 +27,14 @@ class Branch extends Model
             return $this->city->name;
         }
     }
+
+    public function scopeData($query)
+    {
+        return $query->select([
+            'id',
+            'name',
+            'code',
+            'city_id'
+        ]);
+    }
 }

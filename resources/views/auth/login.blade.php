@@ -82,8 +82,9 @@
 
                                     <div class="mb-1">
                                         <label class="form-label" for="login-phone">رقم الجوال او الايميل</label>
-                                        <input class="form-control" id="login-phone" type="text" name="login_phone_email"
-                                            placeholder="example@gmail.com or 0599916672" autofocus="" tabindex="1" />
+                                        <input class="form-control" dir="ltr" id="login-phone" type="text"
+                                            name="login_phone_email" placeholder="example@gmail.com or 0599916672"
+                                            autofocus="" tabindex="1" />
                                         @error('login_phone_email')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror

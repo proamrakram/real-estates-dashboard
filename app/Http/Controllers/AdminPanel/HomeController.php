@@ -4,13 +4,19 @@ namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
 use App\Models\Branch;
+use App\Models\City;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function home()
     {
-        return view('admin-panel.home');
+        return view('admin-panel.statistics');
+    }
+
+    public function newUser()
+    {
+        return view('admin-panel.new-user');
     }
 
     public function users()
@@ -45,8 +51,10 @@ class HomeController extends Controller
 
     public function branchs()
     {
-        $branches = Branch::all();
-        return view('admin-panel.branchs', compact(['branches']));
+        $branches = Branch::data()->get();
+        $cities = City::data()->get();
+
+        return view('admin-panel.branchs', compact(['branches', 'cities']));
     }
 
     public function mediators()

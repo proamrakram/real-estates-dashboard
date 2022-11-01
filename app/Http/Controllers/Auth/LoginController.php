@@ -52,7 +52,7 @@ class LoginController extends Controller
 
                 $request->session()->regenerate();
                 Auth::login($user);
-                return redirect()->intended('admin/home');
+                return redirect()->intended('panel/home');
             }
         } elseif ($this->method == 'email') {
             $user = User::where('email', $credentials['login_phone_email'])->first();
@@ -61,7 +61,7 @@ class LoginController extends Controller
 
                 $request->session()->regenerate();
                 Auth::login($user);
-                return redirect()->intended('admin/home');
+                return redirect()->intended('panel/home');
             }
         } else {
             return back()->withErrors([

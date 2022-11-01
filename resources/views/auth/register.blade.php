@@ -88,7 +88,7 @@
 
                                     <div class="mb-1">
                                         <label class="form-label" for="register-phone">رقم الجوال</label>
-                                        <input class="form-control" id="register-phone" type="text" name="register_phone"
+                                        <input class="form-control" dir="ltr" id="register-phone" type="text" name="register_phone"
                                             placeholder="0591234567" aria-describedby="register-phone" tabindex="2" />
                                         @error('register_phone')
                                             <small class="text-danger">{{ $message }}</small>
@@ -97,7 +97,7 @@
 
                                     <div class="mb-1">
                                         <label class="form-label" for="register-email">الإيميل</label>
-                                        <input class="form-control" id="register-email" type="text"
+                                        <input class="form-control"  dir="ltr" id="register-email" type="text"
                                             name="register_email" placeholder="example@gmail.com"
                                             aria-describedby="register-email" tabindex="3" />
                                         @error('register_email')

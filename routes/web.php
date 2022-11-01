@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminPanel\BranchController;
 use App\Http\Controllers\AdminPanel\HomeController as AdminPanelHomeController;
 use App\Http\Controllers\AdminPanel\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Livewire\Branches;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,19 +23,20 @@ Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::controller(AdminPanelHomeController::class)->prefix('admin')->middleware('auth')->group(function () {
+Route::controller(AdminPanelHomeController::class)->prefix('panel')->middleware(['auth', 'new'])->group(function () {
 
     Route::as('panel.')->group(function () {
         Route::get('/home', 'home')->name('home');
         Route::get('/users', 'users')->name('users');
         Route::get('/offers', 'offers')->name('offers');
-        Route::get('/reservations', 'reservations')->name('reservations');
         Route::get('/orders', 'orders')->name('orders');
         Route::get('/clients', 'clients')->name('clients');
         Route::get('/selles', 'selles')->name('selles');
         Route::get('/branchs', 'branchs')->name('branchs');
         Route::get('/mediators', 'mediators')->name('mediators');
         Route::get('/sendSMS', 'sendSMS')->name('sendSMS');
+        Route::get('/reservations', 'reservations')->name('reservations');
+        Route::get('/new-user', 'newUser')->withoutMiddleware('new')->name('new.user');
 
         #Creating Methods
         Route::get('/create-user-info', 'createUserInfo')->name('create.user.info');
@@ -49,7 +51,7 @@ Route::controller(AdminPanelHomeController::class)->prefix('admin')->middleware(
         Route::get('/edit-offer', 'editOffer')->name('edit.offer');
     });
 
-    Route::as('admin.')->group(function () {
+    Route::as('admin.')->prefix('admin')->group(function () {
 
         Route::controller(UserController::class)->group(function () {
             #User
@@ -61,8 +63,8 @@ Route::controller(AdminPanelHomeController::class)->prefix('admin')->middleware(
 
         Route::controller(BranchController::class)->group(function () {
             #Branches
-            Route::post('/store-branch', 'storeBranch')->name('store.branch');
-            Route::post('/store-branch/{id}', 'editBranch')->name('edit.branch');
+            Route::post('/store-branch', 'store')->name('store.branch');
+            Route::post('/store-branch/{id}', 'edit')->name('edit.branch');
         });
     });
 

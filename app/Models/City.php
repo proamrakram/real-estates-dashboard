@@ -14,5 +14,12 @@ class City extends Model
         'code'
     ];
 
-
+    public function scopeData($query)
+    {
+        return $query->select([
+            'id',
+            'name',
+            'code'
+        ]);
+    }
 }
