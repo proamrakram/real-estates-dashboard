@@ -22,23 +22,16 @@ class User extends Authenticatable
         'phone',
         'email',
         'password',
-        // 'user_type',
-
-        'is_admin',
-        'is_office',
-        'is_monitor',
-
         'user_status',
-        'can_add',
-        'can_edit',
-        'can_cancel',
-        'can_show_all',
-        'can_booking',
-        'can_send_sms',
-        'branch_ids',
-        'hash_login',
-        'hash_expire',
-        'email_verified_at',
+        // 'email_verified_at',
+        'user_type',
+        // 'is_admin',
+        // 'is_office',
+        // 'is_finance',
+        // 'is_employee',
+        // 'is_monitor',
+        'branches_ids',
+        'advertiser_number'
     ];
 
     /**
@@ -58,5 +51,45 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'branches_ids' => 'array',
     ];
+
+    public function permissions()
+    {
+        return $this->hasOne(Permission::class, 'user_id', 'id');
+    }
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class, 'user_id', 'id');
+    }
+
+    public function mediators()
+    {
+        return $this->hasMany(Mediator::class, 'user_id', 'id');
+    }
+
+    public function customers()
+    {
+        return $this->hasMany(Customer::class, 'user_id', 'id');
+    }
+
+    public function scopeData($query)
+    {
+        return $query->select([
+            'id',
+            'name',
+            'phone',
+            'email',
+            'user_status',
+            'user_type',
+            // 'is_admin',
+            // 'is_office',
+            // 'is_finance',
+            // 'is_employee',
+            // 'is_monitor',
+            'branches_ids',
+            'advertiser_number'
+        ]);
+    }
 }

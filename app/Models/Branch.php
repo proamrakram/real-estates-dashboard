@@ -12,12 +12,23 @@ class Branch extends Model
     protected $fillable = [
         'name',
         'code',
+        'status',
         'city_id'
     ];
 
     public function city()
     {
-        return $this->hasOne(City::class, 'id');
+        return $this->belongsTo(City::class, 'city_id', 'id');
+    }
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class, 'branch_id', 'id');
+    }
+
+    public function order()
+    {
+        return $this->hasMany(Order::class, 'branch_id', 'id');
     }
 
     public function getCityNameAttribute()
@@ -34,6 +45,7 @@ class Branch extends Model
             'id',
             'name',
             'code',
+            'status',
             'city_id'
         ]);
     }

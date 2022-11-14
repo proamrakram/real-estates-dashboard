@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -48,20 +49,22 @@ class LoginController extends Controller
         if ($this->method == 'phone') {
             $user = User::where('phone', $credentials['login_phone_email'])->first();
 
-            if ($user) {
-
+            if ($user && Hash::check($request->login_password, $user->password)) {
                 $request->session()->regenerate();
                 Auth::login($user);
                 return redirect()->intended('panel/home');
+            } else {
+                return redirect()->back()->with('password', 'بيانات الاعتماد غير متطابقة');
             }
         } elseif ($this->method == 'email') {
             $user = User::where('email', $credentials['login_phone_email'])->first();
 
-            if ($user) {
-
+            if ($user && Hash::check($request->login_password, $user->password)) {
                 $request->session()->regenerate();
                 Auth::login($user);
                 return redirect()->intended('panel/home');
+            } else {
+                return redirect()->back()->with('password', 'بيانات الاعتماد غير متطابقة');
             }
         } else {
             return back()->withErrors([

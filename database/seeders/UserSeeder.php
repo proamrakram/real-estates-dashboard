@@ -17,27 +17,71 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        $branches_ids = getBranches()->pluck('id')->toArray();
+
+        #Admin
         DB::table('users')->insert([
             'name' => 'proamrakram',
-            'phone' =>  '+972599916672',
+            'phone' =>  '0599916672',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('123456789'),
-            // 'user_type' => 'admin',
-            'is_admin' => true,
-            'is_office' => true,
-            'is_monitor' => true,
             'user_status' => 'active',
-            'can_add' => 1,
-            'can_edit' => 1,
-            'can_cancel' => 1,
-            'can_show_all' => 1,
-            'can_booking' => 1,
-            'can_send_sms' => 1,
-            // 'branch_ids',
-            // 'hash_login',
-            // 'hash_expire',
+            'branches_ids' => json_encode([1, 2, 3]),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
+            'user_type' => 'admin'
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'proamrakram',
+            'phone' =>  '0569916672',
+            'email' => 'office@gmail.com',
+            'password' => Hash::make('123456789'),
+            'user_status' => 'active',
+            'branches_ids' => json_encode([1, 2, 3]),
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+            'user_type' => 'office'
+        ]);
+
+
+        DB::table('users')->insert([
+            'name' => 'proamrakram',
+            'phone' =>  '0569062255',
+            'email' => 'marketer@gmail.com',
+            'password' => Hash::make('123456789'),
+            'user_status' => 'active',
+            'branches_ids' => json_encode([1, 2, 3]),
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+            'user_type' => 'marketer'
+        ]);
+
+
+        $users_types = [
+            1 => 'admin',
+            2 => 'marketer',
+            3 => 'office'
+        ];
+
+        $count = 0;
+
+        while ($count < 100) {
+            $user_type = $users_types[random_int(1, 3)];
+
+            $count = $count + 1;
+
+            DB::table('users')->insert([
+                'name' => Str::random(7),
+                'phone' =>  '059' . random_int(1111111, 9999999),
+                'email' => $user_type . $count . '@gmail.com',
+                'password' => Hash::make('123456789'),
+                'user_status' => 'active',
+                'branches_ids' => json_encode([1, 2, 3]),
+                'email_verified_at' => now(),
+                'remember_token' => Str::random(10),
+                'user_type' => $user_type
+            ]);
+        }
     }
 }

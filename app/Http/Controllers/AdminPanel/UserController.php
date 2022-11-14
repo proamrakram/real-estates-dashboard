@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
+use App\Models\Permission;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -33,49 +34,228 @@ class UserController extends Controller
     public function storeUserPermissions(Request $request)
     {
         $request->validate([
-            'is_admin' => ['required', 'string', 'in:on,off'],
-            'is_office' => ['required', 'string', 'in:on,off'],
-            'advertiser_number' => ['required', 'string'],
-            'is_monitor' => ['required', 'string', 'in:on,off'],
-            'can_show' => ['required', 'string', 'in:on,off'],
-            'can_add' => ['required', 'string', 'in:on,off'],
-            'can_edit' => ['required', 'string', 'in:on,off'],
-            'can_cancel' => ['required', 'string'], 'in:on,off',
-            'can_booking' => ['required', 'string', 'in:on,off'],
-            'userstatus' => ['required', 'string', 'in:on,off'],
+            'email' => ['required', 'email',],
+            // 'is_admin' => ['string', 'in:on,off',],
+            // 'is_office' => ['string', 'in:on,off'],
+            // 'is_finance' => ['string', 'in:on,off'],
+            // 'is_monitor' => ['string', 'in:on,off'],
+            // 'is_employee' => ['string', 'in:on,off'],
+            'user_type' => ['required', 'in:admin,office,finance'],
+
+            'can_add_offers' => ['string', 'in:on,off'],
+            'can_edit_offers' => ['string', 'in:on,off'],
+            'can_show_offers' => ['string', 'in:on,off'],
+            // 'can_delete_offers' => ['string', 'in:on,off'],
+            'can_cancel_offers' => ['string', 'in:on,off'],
+
+            'can_add_orders' => ['string', 'in:on,off'],
+            'can_edit_orders' => ['string', 'in:on,off'],
+            'can_show_orders' => ['string', 'in:on,off'],
+            // 'can_delete_orders' => ['string', 'in:on,off'],
+            'can_cancel_orders' => ['string', 'in:on,off'],
+
+            'can_add_vouchers' => ['string', 'in:on,off'],
+            'can_edit_vouchers' => ['string', 'in:on,off'],
+            'can_show_vouchers' => ['string', 'in:on,off'],
+            // 'can_delete_vouchers' => ['string', 'in:on,off'],
+            'can_cancel_vouchers' => ['string', 'in:on,off'],
+
+            'can_add_sells' => ['string', 'in:on,off'],
+            'can_edit_sells' => ['string', 'in:on,off'],
+            'can_show_sells' => ['string', 'in:on,off'],
+            // 'can_delete_sells' => ['string', 'in:on,off'],
+            'can_cancel_sells' => ['string', 'in:on,off'],
+
+            'can_booking' => ['string', 'in:on,off'],
+            'can_send_sms' => ['string', 'in:on,off'],
+
+            'user_status' => ['string', 'in:on,off'],
+
+            'branches_ids' => ['array'],
+            'advertiser_number' => ['nullable', 'string'],
+
         ]);
 
         $user = User::where('email', $request->email)->first();
 
-        dd($request->all(), $user);
-
         if ($user) {
             $user->update([
-                'is_admin' => $request->is_admin == 'on' ? 1 : 0,
-                'is_office' => $request->is_office == 'on' ? 1 : 0,
-                'is_monitor' => $request->is_monitor == 'on' ? 1 : 0,
-                'user_status' => $request->userstatus == 'on' ? 'active' : 'inactive',
-                'can_add' => $request->can_add == 'on' ? 1 : 0,
-                'can_edit' => $request->can_edit == 'on' ? 1 : 0,
-                'can_cancel' => $request->can_cancel == 'on' ? 1 : 0,
-                'can_show_all' => $request->can_show == 'on' ? 1 : 0,
-                'can_booking' => $request->can_booking == 'on' ? 1 : 0,
-                // 'can_send_sms' => $request->can_send_sms,
-                'branch_ids' => [],
+                // 'is_admin' => $request->is_admin ? 1 : 2,
+                // 'is_office' => $request->is_office ? 1 : 2,
+                // 'is_finance' => $request->is_monitor ? 1 : 2,
+                // 'is_monitor' => $request->is_monitor ? 1 : 2,
+                // 'is_employee' => $request->is_monitor ? 1 : 2,
+                'user_type' => $request->user_type,
+                'branches_ids' => $request->branches_ids ?? [],
+                'advertiser_number' => $request->advertiser_number,
+                'user_status' => $request->user_status ? 'active' : 'inactive', #user status
+
+            ]);
+
+            Permission::create([
+                'user_id' => $user->id, #user id
+                #Offers
+                'can_add_offers' => $request->can_add_offers ? 1 : 2,
+                'can_edit_offers' => $request->can_edit_offers ? 1 : 2,
+                'can_show_offers' => $request->can_show_offers ? 1 : 2,
+                'can_delete_offers' => $request->can_delete_offers ? 1 : 2,
+                'can_cancel_offers' => $request->can_cancel_offers ? 1 : 2,
+
+                #Orders
+                'can_add_orders' => $request->can_add_orders ? 1 : 2,
+                'can_edit_orders' => $request->can_edit_orders ? 1 : 2,
+                'can_show_orders' => $request->can_show_orders ? 1 : 2,
+                'can_delete_orders' => $request->can_delete_orders ? 1 : 2,
+                'can_cancel_orders' => $request->can_cancel_orders ? 1 : 2,
+
+                #Vouchers
+                'can_add_vouchers' => $request->can_add_vouchers ? 1 : 2,
+                'can_edit_vouchers' => $request->can_edit_vouchers ? 1 : 2,
+                'can_show_vouchers' => $request->can_show_vouchers ? 1 : 2,
+                'can_delete_vouchers' => $request->can_delete_vouchers ? 1 : 2,
+                'can_cancel_vouchers' => $request->can_cancel_vouchers ? 1 : 2,
+
+                #Sells
+                'can_add_sells' => $request->can_add_sells ? 1 : 2,
+                'can_edit_sells' => $request->can_edit_sells ? 1 : 2,
+                'can_show_sells' => $request->can_show_sells ? 1 : 2,
+                'can_delete_sells' => $request->can_delete_sells ? 1 : 2,
+                'can_cancel_sells' => $request->can_cancel_sells ? 1 : 2,
+
+                'can_booking' => $request->can_booking ? 1 : 2,
+                'can_send_sms' => $request->can_send_sms ? 1 : 2,
             ]);
         }
 
         return redirect()->route('panel.users');
     }
 
-
-    public function update(Request $request)
+    public function updateInfo(Request $request, User $user)
     {
-        dd('update');
+        $request->validate([
+            'username' => ['required', 'string'],
+            'email' => ['required', 'string', 'email', 'unique:users,email,' . $user->id],
+            'phone' => ['required', 'string', 'unique:users,phone,' . $user->id],
+            // 'password' => ['required', 'string'],
+        ]);
+
+        $user->update([
+            'name' => $request->username,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            // 'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('panel.edit.user.permissions', $user->id);
     }
 
-    public function delete(Request $request)
+
+    public function updateUserPermissions(Request $request, User $user)
     {
-        dd('delete');
+        $request->validate([
+            // 'is_admin' => ['string', 'in:on,off',],
+            // 'is_office' => ['string', 'in:on,off'],
+            // 'is_finance' => ['string', 'in:on,off'],
+            // 'is_monitor' => ['string', 'in:on,off'],
+            // 'is_employee' => ['string', 'in:on,off'],
+            'user_type' => ['required', 'in:admin,office,finance'],
+
+            'can_add_offers' => ['string', 'in:on,off'],
+            'can_edit_offers' => ['string', 'in:on,off'],
+            'can_show_offers' => ['string', 'in:on,off'],
+            // 'can_delete_offers' => ['string', 'in:on,off'],
+            'can_cancel_offers' => ['string', 'in:on,off'],
+
+            'can_add_orders' => ['string', 'in:on,off'],
+            'can_edit_orders' => ['string', 'in:on,off'],
+            'can_show_orders' => ['string', 'in:on,off'],
+            // 'can_delete_orders' => ['string', 'in:on,off'],
+            'can_cancel_orders' => ['string', 'in:on,off'],
+
+            'can_add_vouchers' => ['string', 'in:on,off'],
+            'can_edit_vouchers' => ['string', 'in:on,off'],
+            'can_show_vouchers' => ['string', 'in:on,off'],
+            // 'can_delete_vouchers' => ['string', 'in:on,off'],
+            'can_cancel_vouchers' => ['string', 'in:on,off'],
+
+            'can_add_sells' => ['string', 'in:on,off'],
+            'can_edit_sells' => ['string', 'in:on,off'],
+            'can_show_sells' => ['string', 'in:on,off'],
+            // 'can_delete_sells' => ['string', 'in:on,off'],
+            'can_cancel_sells' => ['string', 'in:on,off'],
+
+            'can_booking' => ['string', 'in:on,off'],
+            'can_send_sms' => ['string', 'in:on,off'],
+
+            'user_status' => ['string', 'in:on,off'],
+
+            'branches_ids' => ['array'],
+            'advertiser_number' => ['nullable', 'string'],
+
+        ]);
+
+
+        if ($user) {
+            $user->update([
+                'is_admin' => $request->is_admin ? 1 : 2,
+                'is_office' => $request->is_office ? 1 : 2,
+                'is_finance' => $request->is_finance  ? 1 : 2,
+                'is_monitor' => $request->is_monitor  ? 1 : 2,
+                'is_employee' => $request->is_employee  ? 1 : 2,
+                'user_status' => $request->user_status  ? 'active' : 'inactive',
+                'branches_ids' => $request->branches_ids ?? [],
+                'user_type' => $request->user_type,
+                'advertiser_number' => $request->advertiser_number,
+
+            ]);
+
+            $permissions = $user->permissions;
+
+            $permissions->update([
+                #Offers
+                'can_add_offers' => $request->can_add_offers ? 1 : 2,
+                'can_edit_offers' => $request->can_edit_offers ? 1 : 2,
+                'can_show_offers' => $request->can_show_offers ? 1 : 2,
+                'can_delete_offers' => $request->can_delete_offers ? 1 : 2,
+                'can_cancel_offers' => $request->can_cancel_offers ? 1 : 2,
+
+                #Orders
+                'can_add_orders' => $request->can_add_orders ? 1 : 2,
+                'can_edit_orders' => $request->can_edit_orders ? 1 : 2,
+                'can_show_orders' => $request->can_show_orders ? 1 : 2,
+                'can_delete_orders' => $request->can_delete_orders ? 1 : 2,
+                'can_cancel_orders' => $request->can_cancel_orders ? 1 : 2,
+
+                #Vouchers
+                'can_add_vouchers' => $request->can_add_vouchers ? 1 : 2,
+                'can_edit_vouchers' => $request->can_edit_vouchers ? 1 : 2,
+                'can_show_vouchers' => $request->can_show_vouchers ? 1 : 2,
+                'can_delete_vouchers' => $request->can_delete_vouchers ? 1 : 2,
+                'can_cancel_vouchers' => $request->can_cancel_vouchers ? 1 : 2,
+
+                #Sells
+                'can_add_sells' => $request->can_add_sells ? 1 : 2,
+                'can_edit_sells' => $request->can_edit_sells ? 1 : 2,
+                'can_show_sells' => $request->can_show_sells ? 1 : 2,
+                'can_delete_sells' => $request->can_delete_sells ? 1 : 2,
+                'can_cancel_sells' => $request->can_cancel_sells ? 1 : 2,
+
+                'can_booking' => $request->can_booking ? 1 : 2,
+                'can_send_sms' => $request->can_send_sms ? 1 : 2,
+            ]);
+        }
+
+        return redirect()->route('panel.users');
+    }
+
+    public function changeUserStatus(User $user)
+    {
+        if ($user->user_status == 'active') {
+            $user->update(['user_status' => 'inactive']);
+        } elseif ($user->user_status == 'inactive') {
+            $user->update(['user_status' => 'active']);
+        }
+
+        return redirect()->route('panel.users')->with('message',  '👍 تم تحديث حالة المستخدم بنجاح',);
     }
 }

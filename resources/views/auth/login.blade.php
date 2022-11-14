@@ -88,6 +88,10 @@
                                         @error('login_phone_email')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
+                                        @if (session()->has('password'))
+                                            <small class="text-danger">{{ session()->get('password') }}</small>
+                                        @endif
+
                                     </div>
 
                                     <div class="mb-1">
@@ -108,6 +112,9 @@
                                         @error('login_password')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
+                                        @if (session()->has('password'))
+                                            <small class="text-danger">{{ session()->get('password') }}</small>
+                                        @endif
                                     </div>
 
                                     <div class="mb-1">

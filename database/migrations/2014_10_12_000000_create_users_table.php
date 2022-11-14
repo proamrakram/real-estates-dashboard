@@ -19,28 +19,17 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->string('email')->unique();
             $table->string('password');
-
-            #info
-            // $table->enum('user_type', ['admin', 'officer', 'finance', 'employee', 'monitored']);
-            $table->boolean('is_admin')->default(true);
-            $table->boolean('is_office')->default(false);
-            $table->boolean('is_monitor')->default(false);
             $table->enum('user_status', ['active', 'inactive', 'blocked']);
-
-            #permissions
-            $table->boolean('can_add')->default(1);
-            $table->boolean('can_edit')->default(1);
-            $table->boolean('can_cancel')->default(1);
-            $table->boolean('can_show_all')->default(1);
-            $table->boolean('can_booking')->default(1);
-            $table->boolean('can_send_sms')->default(1);
+            $table->enum('user_type', ['admin', 'office', 'marketer']);
+            $table->timestamp('email_verified_at')->nullable();
 
             #branches ids
-            $table->json('branch_ids')->nullable();
+            $table->json('branches_ids')->nullable();
+            $table->string('advertiser_number')->nullable();
 
-            $table->text('hash_login')->nullable();
-            $table->text('hash_expire')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
+
+
+
             $table->rememberToken();
             $table->timestamps();
         });

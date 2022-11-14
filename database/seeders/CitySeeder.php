@@ -17,7 +17,13 @@ class CitySeeder extends Seeder
         $cities = [
             'RYD' => 'الرياض',
             'QTF' =>  'القطيف',
-            'TRT' =>  'جزيرة تاروت'
+            'TRT' =>  'جزيرة تاروت',
+            'SYHT' => 'سيهات',
+            'ANK' => 'عنك',
+            'SFWA' => 'صفوى',
+            'BMM' => 'الدمام',
+            'KHBR' => 'الخبر',
+            'DHRN' => 'الظهران',
         ];
 
         foreach ($cities as $code => $city) {

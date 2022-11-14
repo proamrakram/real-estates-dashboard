@@ -14,6 +14,26 @@ class City extends Model
         'code'
     ];
 
+    public function branches()
+    {
+        return $this->hasMany(Branch::class, 'city_id', 'id');
+    }
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class, 'city_id', 'id');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'city_id', 'id');
+    }
+
+    public function customers()
+    {
+        return $this->hasMany(Customer::class, 'city_id', 'id');
+    }
+
     public function scopeData($query)
     {
         return $query->select([

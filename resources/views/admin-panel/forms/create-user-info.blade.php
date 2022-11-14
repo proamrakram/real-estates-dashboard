@@ -1,4 +1,5 @@
 @extends('partials.admin-panel.actions')
+@section('title', 'إنشاء مستخدم جديد')
 @section('content')
     <!-- BEGIN: Content-->
     <div class="app-content content ">

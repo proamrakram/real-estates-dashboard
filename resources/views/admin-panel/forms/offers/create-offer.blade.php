@@ -1,4 +1,5 @@
 @extends('partials.admin-panel.actions')
+@section('title', 'إنشاء عرض جديد')
 @section('content')
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -11,7 +12,7 @@
                 <div class="auth-wrapper auth-cover">
                     <div class="auth-inner row m-0">
                         <!-- Brand logo-->
-                        <a class="brand-logo" href="{{ route('panel.home') }}">
+                        <a class="brand-logo" href="#">
                             <svg viewBox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" height="28">
                                 <defs>
@@ -54,17 +55,21 @@
                         <!-- Left Text-->
                         <div class="col-lg-3 d-none d-lg-flex align-items-center p-0">
                             <div class="w-100 d-lg-flex align-items-center justify-content-center">
-                                <img class="img-fluid w-100" src="app-assets/images/illustration/create-account.svg"
+                                <img class="img-fluid w-100"
+                                    src="{{ asset('app-assets/images/illustration/create-account.svg') }} "
                                     alt="multi-steps" />
                             </div>
                         </div>
                         <!-- /Left Text-->
 
                         <!-- Register-->
+
+
                         <div class="col-lg-9 d-flex align-items-center auth-bg px-2 px-sm-3 px-lg-5 pt-3">
                             <div class="width-700 mx-auto">
                                 <div class="bs-stepper register-multi-steps-wizard shadow-none">
                                     <div class="bs-stepper-header px-0" role="tablist">
+
                                         <div class="step" data-target="#account-details" role="tab"
                                             id="account-details-trigger">
                                             <button type="button" class="step-trigger">
@@ -76,9 +81,11 @@
                                                 </span>
                                             </button>
                                         </div>
+
                                         <div class="line">
                                             <i data-feather="chevron-right" class="font-medium-2"></i>
                                         </div>
+
                                         <div class="step" data-target="#personal-info" role="tab"
                                             id="personal-info-trigger">
                                             <button type="button" class="step-trigger">
@@ -90,6 +97,7 @@
                                                 </span>
                                             </button>
                                         </div>
+
                                         <div class="line">
                                             <i data-feather="chevron-right" class="font-medium-2"></i>
                                         </div>
@@ -107,64 +115,84 @@
                                         </div>
 
                                     </div>
+
                                     <div class="bs-stepper-content px-0 mt-4">
+
+
+
                                         <div id="account-details" class="content" role="tabpanel"
                                             aria-labelledby="account-details-trigger">
                                             <div class="content-header mb-2">
                                                 <h2 class="fw-bolder mb-75">الخطوة الاولى</h2>
                                             </div>
+
                                             <form>
                                                 <div class="row">
                                                     <div class="col-md-6 mb-1">
                                                         <label class="form-label" for="location">المنطقة</label>
-                                                        <select class="form-select" id="location">
-                                                            <option>الرياض</option>
-                                                            <option>الدمام</option>
+                                                        <select class="form-select" name="city_id" id="city_id">
+                                                            @foreach ($cities as $city)
+                                                                <option value="{{ $city->id }}">{{ $city->name }}
+                                                                </option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                     <div class="col-md-6 mb-1">
                                                         <label class="form-label" for="hay">الحى</label>
-                                                        <select class="form-select" id="hay">
-                                                            <option>الخزامى</option>
-                                                            <option>الدرعية</option>
+                                                        <select class="form-select" name="neighborhood_id"
+                                                            id="neighborhood_id">
+                                                            @foreach ($neighborhoods as $neighborhood)
+                                                                <option value="{{ $neighborhood->id }}">
+                                                                    {{ $neighborhood->name }}</option>
+                                                            @endforeach
+
                                                         </select>
                                                     </div>
                                                 </div>
+
+
                                                 <div class="row">
                                                     <div class="col-md-6 mb-1">
                                                         <label class="form-label" for="type">نوع العقار</label>
-                                                        <select class="form-select" id="type">
-                                                            <option>ارض</option>
-                                                            <option>فيلا</option>
+                                                        <select class="form-select" name="property_type"
+                                                            id="property_type">
+                                                            @foreach ($property_types as $property_type)
+                                                                <option value="{{ $property_type->id }}">
+                                                                    {{ $property_type->name }}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                     <div class="col-md-6 mb-1">
                                                         <label class="form-label" for="space">المساحة</label>
                                                         <div class="input-group input-group-merge">
-                                                            <input type="text" id="space" class="form-control"
-                                                                placeholder="المساحة">
+                                                            <input type="text" id="space" name="space"
+                                                                class="form-control" placeholder="المساحة">
                                                             <span class="input-group-text">متر</span>
                                                         </div>
                                                     </div>
                                                 </div>
+
+
                                                 <div class="row">
                                                     <div class="col-md-6 mb-1">
                                                         <label class="form-label" for="price">السعر بالمتر</label>
                                                         <div class="input-group input-group-merge">
-                                                            <input type="text" id="price" class="form-control"
-                                                                placeholder="السعر بالمتر">
+                                                            <input type="text" id="price" name="price"
+                                                                class="form-control" placeholder="السعر بالمتر">
                                                             <span class="input-group-text">ريال</span>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 mb-1">
                                                         <label class="form-label" for="price">السعر بالكامل</label>
                                                         <div class="input-group input-group-merge">
-                                                            <input type="text" id="price" class="form-control"
-                                                                placeholder="السعر" value="1,550,000" disabled>
+                                                            <input type="text" id="whole_price" name="whole_price"
+                                                                class="form-control" placeholder="السعر"
+                                                                value="1,550,000" disabled>
                                                             <span class="input-group-text">ريال</span>
                                                         </div>
                                                     </div>
                                                 </div>
+
                                             </form>
 
                                             <div class="d-flex justify-content-between mt-2">
@@ -178,80 +206,106 @@
                                                         class="align-middle ms-sm-25 ms-0"></i>
                                                 </button>
                                             </div>
+
                                         </div>
+
+
                                         <div id="personal-info" class="content" role="tabpanel"
                                             aria-labelledby="personal-info-trigger">
+
+
                                             <div class="content-header mb-2">
                                                 <h2 class="fw-bolder mb-75">الخطوة الثانية</h2>
                                             </div>
+
                                             <form>
+
                                                 <div class="row">
                                                     <div class="col-md-6 mb-1">
                                                         <label class="form-label" for="vendor">رقم الأرض</label>
-                                                        <input type="text" class="form-control"
+                                                        <input type="text" class="form-control" name="land_number"
                                                             placeholder="رقم الأرض">
                                                     </div>
                                                     <div class="col-md-6 mb-1">
                                                         <label class="form-label" for="vendor">رقم البلوك</label>
-                                                        <input type="text" class="form-control"
+                                                        <input type="text" class="form-control" name="block_number"
                                                             placeholder="رقم البلوك">
                                                     </div>
                                                 </div>
+
+
                                                 <div class="row">
                                                     <div class="col-md-6 mb-1">
-                                                        <label class="form-label" for="direction">اتجاه الارض</label>
-                                                        <select class="form-select" id="direction">
-                                                            <option>شمال</option>
-                                                            <option>شرق</option>
-                                                            <option>جنوب</option>
-                                                            <option>غرب</option>
+                                                        <label class="form-label" for="direction_land">اتجاه الارض</label>
+                                                        <select class="form-select" name="direction_land"
+                                                            id="direction_land">
+                                                            @foreach ($directions as $direction)
+                                                                <option value="{{ $direction->id }}">{{ $direction->name }}
+                                                                </option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
+
                                                     <div class="col-md-6 mb-1">
-                                                        <label class="form-label" for="land">نوع الارض</label>
-                                                        <select class="form-select" id="land">
-                                                            <option>زاوية</option>
-                                                            <option>بطن</option>
+                                                        <label class="form-label" for="land_type">نوع الارض</label>
+                                                        <select class="form-select" name="land_type" id="land_type">
+                                                            @foreach ($land_types as $land_type)
+                                                                <option value="{{ $land_type->id }}">
+                                                                    {{ $land_type->name }}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
+
+
+
                                                 <div class="row">
                                                     <div class="col-md-6 mb-1">
-                                                        <label class="form-label" for="leci">الترخيص</label>
-                                                        <select class="form-select" id="leci">
-                                                            <option>سكني</option>
-                                                            <option>سكني استثماري</option>
-                                                            <option>تجاري استثماري</option>
-                                                            <option>تجاري </option>
-
-
+                                                        <label class="form-label" for="license">الترخيص</label>
+                                                        <select class="form-select" name="license" id="license">
+                                                            @foreach ($licenseds as $licensed)
+                                                                <option value="{{ $licensed->id }}">{{ $licensed->name }}
+                                                                </option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
+
+
                                                     <div class="col-md-6 mb-1">
-                                                        <label class="form-label" for="strt1">رقم الشارع</label>
-                                                        <select class="form-select" id="strt1">
-                                                            <option>15</option>
-                                                            <option>30</option>
-                                                            <option>45</option>
-                                                            <option>9</option>
+                                                        <label class="form-label" for="street_number">رقم الشارع</label>
+                                                        <select class="form-select" name="street_number"
+                                                            id="street_number">
+                                                            @foreach ($streets as $street)
+                                                                <option value="{{ $street->street_number }}">
+                                                                    {{ $street->street_number }}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
+
+
                                                 <div class="row">
                                                     <div class="col-md-6 mb-1">
                                                         <label class="form-label" for="notes">ملاحظات</label>
-                                                        <textarea class="form-control" id="notes" rows="3" placeholder="ملاحظات"></textarea>
+                                                        <textarea class="form-control" name="notes" id="notes" rows="3" placeholder="ملاحظات"></textarea>
                                                     </div>
+
                                                     <div class="col-md-6 mb-1">
-                                                        <label class="form-label" for="brch">الفرع</label>
-                                                        <select class="form-select" id="brch">
-                                                            <option>القطيف</option>
-                                                            <option>الخبر</option>
+                                                        <label class="form-label" for="branch_id">الفرع</label>
+                                                        <select class="form-select" name="branch_id" id="branch_id">
+                                                            @foreach ($branches as $branch)
+                                                                <option value="{{ $branch->id }}">{{ $branch->name }}
+                                                                </option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
+
                                                 </div>
 
                                             </form>
+
+
+
                                             <div class="d-flex justify-content-between mt-2">
                                                 <button class="btn btn-outline-secondary btn-prev">
                                                     <i data-feather="chevron-left" class="align-middle me-sm-25 me-0"></i>
@@ -263,7 +317,10 @@
                                                         class="align-middle ms-sm-25 ms-0"></i>
                                                 </button>
                                             </div>
+
                                         </div>
+
+
                                         <div id="waseet-info" class="content" role="tabpanel"
                                             aria-labelledby="waseet-info-trigger">
                                             <div class="content-header mb-2">
@@ -273,76 +330,66 @@
 
                                             <form>
                                                 <div class="row">
-
                                                     <div class="col-md-6 mb-1">
                                                         <label class="form-label">هل العرض مباشر</label>
                                                     </div>
+
                                                     <div class="col-md-6 mb-1">
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio"
-                                                                name="inlineRadioOptions" id="inlineRadio1"
-                                                                value="option1" checked="">
-                                                            <label class="form-check-label" for="inlineRadio1">
-                                                                نعم</label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio"
-                                                                name="inlineRadioOptions" id="inlineRadio2"
-                                                                value="option2">
-                                                            <label class="form-check-label" for="inlineRadio2">لا</label>
+
+                                                        <div class="form-check form-check-primary form-switch">
+                                                            <input type="checkbox" class="form-check-input"
+                                                                id="is_direct" name="is_direct" required="">
                                                         </div>
 
                                                     </div>
+
                                                 </div>
+
                                                 <div class="row">
 
                                                     <div class="col-md-6 mb-1">
                                                         <label class="form-label">الوسطاء</label>
                                                     </div>
+
                                                     <div class="col-md-6 mb-1">
                                                         <div class="position-relative" data-select2-id="168">
                                                             <select class="select2 form-select select2-hidden-accessible"
-                                                                id="select2-multiple" multiple=""
+                                                                id="select2-multiple" multiple="" name="midators"
                                                                 data-select2-id="select2-multiple" tabindex="-1"
                                                                 aria-hidden="true">
                                                                 <optgroup label="الوسطاء" data-select2-id="170">
-                                                                    <option value="AK" data-select2-id="171">شركة
-                                                                        الميثاق الذهبي</option>
-                                                                    <option value="HI" data-select2-id="172">شركة
-                                                                        الوسام</option>
-                                                                    <option value="HO" data-select2-id="173">شركة علوش
-                                                                        كوم</option>
-
+                                                                    @foreach ($mediators as $mediator)
+                                                                        <option value="{{ $mediator->id }}">
+                                                                            {{ $mediator->name }}</option>
+                                                                    @endforeach
                                                                 </optgroup>
-
                                                             </select>
                                                             </span><span class="dropdown-wrapper"
                                                                 aria-hidden="true"></span></span>
                                                         </div>
-
                                                     </div>
                                                 </div>
-
-
-
-
                                             </form>
+
 
                                             <div class="d-flex justify-content-between mt-1">
                                                 <button class="btn btn-primary btn-prev">
                                                     <i data-feather="chevron-left" class="align-middle me-sm-25 me-0"></i>
                                                     <span class="align-middle d-sm-inline-block d-none">السابق</span>
                                                 </button>
-                                                <button class="btn btn-success btn-submit" id="type-success">
+                                                <button class="btn btn-success btn-submit" id="save-offer">
                                                     <i data-feather="check" class="align-middle me-sm-25 me-0"></i>
                                                     <span class="align-middle d-sm-inline-block d-none">حفظ</span>
                                                 </button>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
 
@@ -350,4 +397,85 @@
         </div>
     </div>
     <!-- END: Content-->
+
+    @push('create-offer-script')
+
+        <script>
+            var space = $('#space');
+            var price = $('#price');
+
+            space.on('change', function() {
+                var whole_price = $('#whole_price');
+                whole_price.val(price.val() * space.val());
+            });
+
+            price.on('change', function() {
+                var whole_price = $('#whole_price');
+                whole_price.val(price.val() * space.val());
+            });
+
+            $('#save-offer').on('click', function() {
+
+                console.log('Hello Amr Akram');
+
+                var city_id = $('#city_id');
+                var neighborhood_id = $('#neighborhood_id');
+                var property_type = $('#property_type');
+                var land_number = $('#land_number');
+                var block_number = $('#block_number');
+                var direction_land = $('#direction_land');
+                var land_type = $('#land_type');
+                var license = $('#license');
+                var street_number = $('#street_number');
+                var notes = $('#notes');
+                var branch_id = $('#branch_id');
+                var is_direct = $('#is_direct');
+                var midators = $('#midators');
+                var whole_price = $('#whole_price');
+                var space = $('#space');
+                var price = $('#price');
+
+                whole_price.val(space.val() * price.val());
+
+                $.ajax({
+                    url: "{{ route('admin.store.offer') }}",
+                    type: "POST",
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        city_id: city_id.val(),
+                        neighborhood_id: neighborhood_id.val(),
+                        property_type: property_type.val(),
+                        space: space.val(),
+                        price: price.val(),
+                        whole_price: space.val() * price.val(),
+                        land_number: land_number.val(),
+                        block_number: block_number.val(),
+                        direction_land: direction_land.val(),
+                        land_type: land_type.val(),
+                        license: license.val(),
+                        street_number: street_number.val(),
+                        notes: notes.val(),
+                        branch_id: branch_id.val(),
+                        is_direct: is_direct.val(),
+                        midators: midators.val(),
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(result) {
+                        if (result.success) {
+                            console.log(result);
+                        }
+                    },
+                    error: function(result) {
+                        console.log(result.error);
+                    }
+                });
+            });
+        </script>
+    @endpush
+
+
+
+
 @endsection

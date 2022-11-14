@@ -1,5 +1,5 @@
 @extends('partials.admin-panel.layout')
-
+@section('title', 'انتظار تفعيل الحساب')
 @section('content')
     <!-- BEGIN: Content-->
     <div class="app-content content ">

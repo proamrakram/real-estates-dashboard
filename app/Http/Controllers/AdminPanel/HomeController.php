@@ -5,7 +5,16 @@ namespace App\Http\Controllers\AdminPanel;
 use App\Http\Controllers\Controller;
 use App\Models\Branch;
 use App\Models\City;
-use Illuminate\Http\Request;
+use App\Models\Customer;
+use App\Models\Direction;
+use App\Models\LandType;
+use App\Models\Licensed;
+use App\Models\Mediator;
+use App\Models\Neighborhood;
+use App\Models\Order;
+use App\Models\PropertyType;
+use App\Models\Street;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -21,7 +30,8 @@ class HomeController extends Controller
 
     public function users()
     {
-        return view('admin-panel.users');
+        $users = User::data()->paginate(10);
+        return view('admin-panel.users', compact(['users']));
     }
 
     public function offers()
@@ -39,9 +49,15 @@ class HomeController extends Controller
         return view('admin-panel.orders');
     }
 
-    public function clients()
+    public function order(Order $order)
     {
-        return view('admin-panel.clients');
+        return view('admin-panel.order-view', compact(['order']));
+    }
+
+    public function customers()
+    {
+        $customers = Customer::data()->paginate(10);
+        return view('admin-panel.customers', compact(['customers']));
     }
 
     public function selles()
@@ -51,7 +67,7 @@ class HomeController extends Controller
 
     public function branchs()
     {
-        $branches = Branch::data()->get();
+        $branches = Branch::data()->paginate(10);
         $cities = City::data()->get();
 
         return view('admin-panel.branchs', compact(['branches', 'cities']));
@@ -86,22 +102,57 @@ class HomeController extends Controller
 
     public function createOffer()
     {
-        return view('admin-panel.create-offer');
+        $cities = City::data()->get();
+        $neighborhoods = Neighborhood::data()->get();
+        $property_types = PropertyType::data()->get();
+        $directions = Direction::data()->get();
+        $land_types = LandType::data()->get();
+        $licenseds = Licensed::data()->get();
+        $streets = Street::data()->get();
+        $branches = Branch::data()->get();
+        $mediators = Mediator::data()->get();
+        return view('admin-panel.forms.offers.create-offer', compact([
+            'cities',
+            'neighborhoods',
+            'property_types',
+            'directions',
+            'land_types',
+            'licenseds',
+            'streets',
+            'branches',
+            'mediators',
+        ]));
     }
 
-    public function editUser()
+    public function realEstatesDetails()
     {
-        dd('ok');
-        // return view('');
+        return view('admin-panel.real-estates-details');
     }
 
-    public function editSell()
+    public function editBranch(Branch $branch)
     {
-        // return view('');
+        $cities = City::data()->get();
+        return view('admin-panel.forms.branches.edit-branch', compact(['branch', 'cities']));
     }
 
-    public function editOffer()
+
+
+
+
+
+
+
+
+
+
+
+    public function editUserInfo(User $user)
     {
-        // return view('');
+        return view('admin-panel.forms.edit-user-info', compact(['user']));
+    }
+
+    public function editUserPermissions(User $user)
+    {
+        return view('admin-panel.forms.edit-user-permissions', compact(['user']));
     }
 }

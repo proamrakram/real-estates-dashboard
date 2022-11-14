@@ -1,4 +1,5 @@
 @extends('partials.admin-panel.layout')
+@section('title', 'العروض')
 @section('content')
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -23,10 +24,10 @@
                 </div>
                 <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
                     <div class="mb-1 breadcrumb-right">
-                        <a href="create-offer.html" class="btn btn-primary"><span><svg xmlns="http://www.w3.org/2000/svg"
-                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                    class="feather feather-plus me-50 font-small-4">
+                        <a href="{{ route('panel.create.offer') }}" class="btn btn-primary"><span><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-plus me-50 font-small-4">
                                     <line x1="12" y1="5" x2="12" y2="19"></line>
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                 </svg>انشاء عرض جديد</span></a>

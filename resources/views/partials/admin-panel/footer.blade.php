@@ -1,5 +1,6 @@
 <div class="sidenav-overlay"></div>
 <div class="drag-target"></div>
+<x-modals.real-estates-details></x-modals.real-estates-details>
 
 <!-- BEGIN: Footer-->
 <footer class="footer footer-static footer-light">
@@ -44,8 +45,41 @@
 
 <!-- BEGIN: Page JS-->
 <script src="{{ asset('app-assets/js/scripts/pages/app-user-list.js') }}"></script>
+<script src="{{ asset('app-assets/vendors/js/extensions/toastr.min.js') }}"></script>
+<script src="{{ asset('app-assets/js/scripts/extensions/ext-component-toastr.js') }}"></script>
+
 <!-- END: Page JS-->
+
+{{-- Custom Pages --}}
+
+
+<script src="{{ asset('app-assets/js/scripts/pages/modal-add-new-cc.js') }}"></script>
+<script src="{{ asset('app-assets/js/scripts/pages/page-pricing.js') }}"></script>
+<script src="{{ asset('app-assets/js/scripts/pages/modal-add-new-address.js') }}"></script>
+<script src="{{ asset('app-assets/js/scripts/pages/modal-create-app.js') }}"></script>
+<script src="{{ asset('app-assets/js/scripts/pages/modal-two-factor-auth.js') }}"></script>
+<script src="{{ asset('app-assets/js/scripts/pages/modal-edit-user.js') }}"></script>
+<script src="{{ asset('app-assets/js/scripts/pages/modal-share-project.js') }}"></script>
+
+<!-- BEGIN: Page Vendor JS-->
+<script src="{{ asset('app-assets/vendors/js/forms/wizard/bs-stepper.min.js') }}"></script>
+<!-- END: Page Vendor JS-->
+
+
+{{-- @stack('users-scripts') --}}
+@stack('orders-scripts')
+@stack('customers-scripts')
+
+
 <script>
+    @if (Session::has('message'))
+        toastr.success("{{ Session::get('message') }}", 'تمت المهمة!', {
+            closeButton: true,
+            tapToDismiss: false,
+            progressBar: true,
+            rtl: true
+        });
+    @endif
     $(window).on('load', function() {
         if (feather) {
             feather.replace({
@@ -55,6 +89,7 @@
         }
     })
 </script>
+
 <script>
     $(function() {
         'use strict';
@@ -122,7 +157,11 @@
 </script>
 
 
+
+@stack('real-estates-scripts')
+@stack('branch-scripts')
+
+
 </body>
-<!-- END: Body-->
 
 </html>

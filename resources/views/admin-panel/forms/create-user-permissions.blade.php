@@ -1,4 +1,5 @@
 @extends('partials.admin-panel.actions')
+@section('title', 'إنشاء صلاحيات المستخدم')
 @section('content')
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -9,6 +10,7 @@
             </div>
             <div class="content-body">
                 <div class="auth-wrapper auth-cover">
+
                     <div class="auth-inner row m-0">
                         <!-- Brand logo-->
                         <a class="brand-logo" href="{{ route('panel.home') }}">
@@ -66,6 +68,16 @@
                         <div class="col-lg-9 d-flex align-items-center auth-bg px-2 px-sm-3 px-lg-5 pt-3">
                             <div class="width-700 mx-auto">
                                 <div class="bs-stepper register-multi-steps-wizard shadow-none">
+
+                                    @foreach ($errors->all() as $error)
+                                        <div class="alert alert-warning alert-dismissible fade show p-1" role="alert">
+                                            <strong>تنبيه</strong>{{ $error }}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Close"></button>
+                                        </div>
+                                    @endforeach
+
+
                                     <div class="bs-stepper-header px-0" role="tablist">
 
 
@@ -123,85 +135,76 @@
                                                     <div class="table-responsive">
                                                         <table class="table table-flush-spacing">
                                                             <tbody>
+
+
                                                                 <tr>
-                                                                    <td class="text-nowrap fw-bolder">مدير ؟</td>
-                                                                    <td>
-                                                                        <div class="d-flex">
-                                                                            <div
-                                                                                class="form-check form-check-primary form-switch">
-                                                                                <input type="checkbox"
-                                                                                    class="form-check-input"
-                                                                                    id="isAdmin" name="is_admin"
-                                                                                    required>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
+
+                                                                    <div class="col-md-6">
+                                                                        <label class="form-label"
+                                                                            for="select2-multiple">اختيار
+                                                                            الفروع</label>
+                                                                        <select class="select2 form-select"
+                                                                            name="branches_ids[]" multiple>
+                                                                            @foreach (getBranches() as $branch)
+                                                                                <option value="{{ $branch->id }}">
+                                                                                    {{ $branch->name }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
                                                                 </tr>
+
+
                                                                 <tr>
-                                                                    <td class="text-nowrap fw-bolder">مكتب ؟</td>
-                                                                    <td>
-                                                                        <div class="d-flex">
+                                                                    <div class="col-md-6 mt-1">
+                                                                        <label class="form-label"
+                                                                            for="select2-multiple">اختيار نوع
+                                                                            المستخدم</label>
+                                                                        <select class="select2 form-select"
+                                                                            id="user-type-id" name="user_type">
+                                                                            <option value="admin">مدير</option>
+                                                                            <option value="office">مكتب</option>
+                                                                            <option value="finance">مسوق</option>
+                                                                        </select>
+                                                                    </div>
 
-                                                                            <div
-                                                                                class="form-check form-check-primary form-switch">
-                                                                                <input type="checkbox"
-                                                                                    class="form-check-input"
-                                                                                    name="is_office" id="isOffice">
-                                                                            </div>
-
-                                                                            <div
-                                                                                class="form-input form-input-primary form-input">
-                                                                                <input type="number" class="form-control"
-                                                                                    placeholder="رقم المعلن"
-                                                                                    id="advertiserNumber"
-                                                                                    name="advertiser_number" required>
-                                                                            </div>
-
-                                                                        </div>
+                                                                    <div class="form-input form-input-primary form-input col-md-6 mt-1"
+                                                                        id="adv-div">
+                                                                        <input type="number" class="form-control"
+                                                                            placeholder="رقم المعلن" id="advertiserNumber"
+                                                                            name="advertiser_number" required>
                                                                         @error('advertiser_number')
                                                                             <small
                                                                                 class="text-danger">{{ $message }}</small>
                                                                         @enderror
-                                                                    </td>
+
+                                                                    </div>
 
                                                                 </tr>
+
                                                                 <tr>
-                                                                    <td class="text-nowrap fw-bolder">عضو مراقب ؟</td>
-                                                                    <td>
-                                                                        <div class="d-flex">
-                                                                            <div
-                                                                                class="form-check form-check-primary form-switch">
-                                                                                <input type="checkbox"
-                                                                                    class="form-check-input"
-                                                                                    id="isMonitor" name="is_monitor">
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="text-nowrap fw-bolder">العقارات</td>
+                                                                    <td class="text-nowrap fw-bolder">الطلبات</td>
                                                                     <td>
                                                                         <div class="d-flex">
                                                                             <div class="form-check me-3 me-lg-5">
                                                                                 <input class="form-check-input"
-                                                                                    type="checkbox" id="canShow"
-                                                                                    name="can_show">
+                                                                                    type="checkbox" id="can_show_sells"
+                                                                                    name="can_show_sells">
                                                                                 <label class="form-check-label"
                                                                                     for="canShow"> رؤية </label>
                                                                             </div>
 
                                                                             <div class="form-check me-3 me-lg-5">
                                                                                 <input class="form-check-input"
-                                                                                    type="checkbox" id="canAdd"
-                                                                                    name="can_add">
+                                                                                    type="checkbox" id="can_add_sells"
+                                                                                    name="can_add_sells">
                                                                                 <label class="form-check-label"
                                                                                     for="canAdd"> اضافة </label>
                                                                             </div>
 
-                                                                            <div class="form-check">
+                                                                            <div class="form-check me-3 me-lg-5">
                                                                                 <input class="form-check-input"
-                                                                                    type="checkbox" id="canEdit"
-                                                                                    name="can_edit">
+                                                                                    type="checkbox" id="can_edit_sells"
+                                                                                    name="can_edit_sells">
                                                                                 <label class="form-check-label"
                                                                                     for="canEdit"> تعديل
                                                                                 </label>
@@ -209,8 +212,8 @@
 
                                                                             <div class="form-check me-3 me-lg-5">
                                                                                 <input class="form-check-input"
-                                                                                    type="checkbox" id="canCancel"
-                                                                                    name="can_cancel">
+                                                                                    type="checkbox" id="can_cancel_sells"
+                                                                                    name="can_cancel_sells">
                                                                                 <label class="form-check-label"
                                                                                     for="canCancel">إلغاء</label>
                                                                             </div>
@@ -218,6 +221,134 @@
                                                                         </div>
                                                                     </td>
                                                                 </tr>
+
+                                                                {{--
+                                                                <tr>
+                                                                    <td class="text-nowrap fw-bolder">العروض</td>
+                                                                    <td>
+                                                                        <div class="d-flex">
+                                                                            <div class="form-check me-3 me-lg-5">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="can_show_offers"
+                                                                                    name="can_show_offers">
+                                                                                <label class="form-check-label"
+                                                                                    for="canShow"> رؤية </label>
+                                                                            </div>
+
+                                                                            <div class="form-check me-3 me-lg-5">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="can_add_offers"
+                                                                                    name="can_add_offers">
+                                                                                <label class="form-check-label"
+                                                                                    for="canAdd"> اضافة </label>
+                                                                            </div>
+
+                                                                            <div class="form-check me-3 me-lg-5">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="can_edit_offers"
+                                                                                    name="can_edit_offers">
+                                                                                <label class="form-check-label"
+                                                                                    for="canEdit"> تعديل
+                                                                                </label>
+                                                                            </div>
+
+                                                                            <div class="form-check me-3 me-lg-5">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="can_cancel_offers"
+                                                                                    name="can_cancel_offers">
+                                                                                <label class="form-check-label"
+                                                                                    for="canCancel">إلغاء</label>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+
+
+                                                                <tr>
+                                                                    <td class="text-nowrap fw-bolder">الطلبات</td>
+                                                                    <td>
+                                                                        <div class="d-flex">
+                                                                            <div class="form-check me-3 me-lg-5">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="can_show_orders"
+                                                                                    name="can_show_orders">
+                                                                                <label class="form-check-label"
+                                                                                    for="canShow"> رؤية </label>
+                                                                            </div>
+
+                                                                            <div class="form-check me-3 me-lg-5">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="can_add_orders"
+                                                                                    name="can_add_orders">
+                                                                                <label class="form-check-label"
+                                                                                    for="canAdd"> اضافة </label>
+                                                                            </div>
+
+                                                                            <div class="form-check me-3 me-lg-5">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="can_edit_orders"
+                                                                                    name="can_edit_orders">
+                                                                                <label class="form-check-label"
+                                                                                    for="canEdit"> تعديل
+                                                                                </label>
+                                                                            </div>
+
+                                                                            <div class="form-check me-3 me-lg-5">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="can_cancel_orders"
+                                                                                    name="can_cancel_orders">
+                                                                                <label class="form-check-label"
+                                                                                    for="canCancel">إلغاء</label>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+
+
+                                                                <tr>
+                                                                    <td class="text-nowrap fw-bolder">القسائم</td>
+                                                                    <td>
+                                                                        <div class="d-flex">
+                                                                            <div class="form-check me-3 me-lg-5">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="can_show_vouchers"
+                                                                                    name="can_show_vouchers">
+                                                                                <label class="form-check-label"
+                                                                                    for="canShow"> رؤية </label>
+                                                                            </div>
+
+                                                                            <div class="form-check me-3 me-lg-5">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="can_add_vouchers"
+                                                                                    name="can_add_vouchers">
+                                                                                <label class="form-check-label"
+                                                                                    for="canAdd"> اضافة </label>
+                                                                            </div>
+
+                                                                            <div class="form-check me-3 me-lg-5">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="can_edit_vouchers"
+                                                                                    name="can_edit_vouchers">
+                                                                                <label class="form-check-label"
+                                                                                    for="canEdit"> تعديل
+                                                                                </label>
+                                                                            </div>
+
+                                                                            <div class="form-check me-3 me-lg-5">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox"
+                                                                                    id="can_cancel_vouchers"
+                                                                                    name="can_cancel_vouchers">
+                                                                                <label class="form-check-label"
+                                                                                    for="canCancel">إلغاء</label>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+ --}}
 
                                                                 <tr>
                                                                     <td class="text-nowrap fw-bolder">يستطيع اضافة حجز
@@ -233,6 +364,23 @@
                                                                         </div>
                                                                     </td>
                                                                 </tr>
+
+                                                                <tr>
+                                                                    <td class="text-nowrap fw-bolder">يستطيع إرسال SMS
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="d-flex">
+                                                                            <div
+                                                                                class="form-check form-check-primary form-switch">
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    id="can_send_sms" name="can_send_sms">
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+
+
                                                                 <tr>
                                                                     <td class="text-nowrap fw-bolder">الحالة</td>
                                                                     <td>
@@ -241,29 +389,18 @@
                                                                                 class="form-check form-check-primary form-switch">
                                                                                 <input type="checkbox"
                                                                                     class="form-check-input"
-                                                                                    id="userstatus" name="userstatus">
+                                                                                    id="user_status" name="user_status">
                                                                             </div>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
-                                                                    <td class="text-nowrap fw-bolder">الفروع</td>
-                                                                    <td>
-                                                                        <div class="d-flex">
 
-                                                                            <select class="form-select" id="branch"
-                                                                                name="branches_ids">
-                                                                                <option>الخبر</option>
-                                                                                <option>القطيف</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
 
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                 </div>
+
 
                                                 <div class="d-flex justify-content-between mt-1">
                                                     <button class="btn btn-primary btn-prev">
@@ -293,4 +430,24 @@
         </div>
     </div>
     <!-- END: Content-->
+
+
+    @push('create-user-permissions-scripts')
+        <script>
+            var user_type_id = $("#user-type-id");
+            var advertiserNumber = $("#adv-div");
+            advertiserNumber.hide();
+            user_type_id.on('change', function() {
+
+                if (user_type_id.val() == "office") {
+                    advertiserNumber.show();
+                } else {
+                    advertiserNumber.hide();
+                }
+            });
+        </script>
+        <!-- BEGIN: Page JS-->
+        <script src="{{ asset('app-assets/js/scripts/forms/form-select2.js') }}"></script>
+        <!-- END: Page JS-->
+    @endpush
 @endsection

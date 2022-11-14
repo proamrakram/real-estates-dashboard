@@ -1,5 +1,5 @@
 @extends('partials.admin-panel.layout')
-
+@section('title', 'الرسائل')
 @section('content')
     <!-- BEGIN: Content-->
     <div class="app-content content ">

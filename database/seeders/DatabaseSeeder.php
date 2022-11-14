@@ -25,8 +25,28 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call([
             UserSeeder::class,
+            PermissionSeeder::class,
+            CitySeeder::class,
+            NeighborhoodSeeder::class,
+            PropertyTypeSeeder::class,
+            OfferTypeSeeder::class,
+            PropertyStatusSeeder::class,
+            PriceTypeSeeder::class,
+            StreetSeeder::class,
+            DirectionSeeder::class,
+            LicensedSeeder::class,
+            LandSeeder::class,
+            LandTypeSeeder::class,
             BranchSeeder::class,
-            CitySeeder::class
+            MediatorSeeder::class,
+            DesireToBuySeeder::class,
+            PurchaseMethodSeeder::class,
+            CustomerSeeder::class,
+            OrderStatusSeeder::class,
+            OrderSeeder::class,
+            OrderNoteSeeder::class,
+            OrderNoteStatuseSeeder::class
+
         ]);
     }
 }
