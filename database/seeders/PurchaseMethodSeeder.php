@@ -24,7 +24,8 @@ class PurchaseMethodSeeder extends Seeder
 
         foreach ($purchase_methods as $purchase_method) {
             DB::table('purchase_methods')->insert([
-                'name' => $purchase_method
+                'name' => $purchase_method,
+                'created_at' => now(),
             ]);
         }
     }

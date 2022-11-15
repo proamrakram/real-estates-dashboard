@@ -24,7 +24,8 @@ class OrderNoteStatuseSeeder extends Seeder
 
         foreach ($order_note_statuses as $order_note_statuse) {
             DB::table('order_note_statuses')->insert([
-                'name' => $order_note_statuse
+                'name' => $order_note_statuse,
+                'created_at' => now(),
             ]);
         }
     }

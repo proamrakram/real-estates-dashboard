@@ -25,7 +25,8 @@ class PropertyTypeSeeder extends Seeder
 
         foreach ($property_types as $property_type) {
             DB::table('property_types')->insert([
-                'name' => $property_type
+                'name' => $property_type,
+                'created_at' => now(),
             ]);
         }
     }

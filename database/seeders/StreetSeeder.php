@@ -24,7 +24,8 @@ class StreetSeeder extends Seeder
         foreach ($streets as $index => $street) {
             DB::table('streets')->insert([
                 'name' => $street,
-                'street_number' => $index
+                'street_number' => $index,
+                'created_at' => now(),
             ]);
         }
     }

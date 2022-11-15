@@ -23,7 +23,8 @@ class PropertyStatusSeeder extends Seeder
 
         foreach ($property_statuses as $property_status) {
             DB::table('property_statuses')->insert([
-                'name' => $property_status
+                'name' => $property_status,
+                'created_at' => now(),
             ]);
         }
     }

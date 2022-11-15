@@ -15,33 +15,26 @@ class BranchSeeder extends Seeder
      */
     public function run()
     {
-        // $branches = [
-        //     'RYD' => 'فرع الرياض',
-        //     'QTF' => 'فرع القطيف',
-        //     'TRT' => 'فرع تاروت'
-        // ];
+        $branches = [
+            'RYD' => 'فرع الرياض',
+            'QTF' => 'فرع القطيف',
+            'TRT' => 'فرع تاروت',
+            'NBB' => 'بنك البحرين الوطني',
+            'NBK' => 'بنك الكويت الوطني',
+            'NBS' => 'البنك الوطني الباكستاني',
+            'SBI' => 'بنك الدولة الهندي',
+            'QNB' => 'بنك قطر الوطني',
+            'FAB' => 'بنك ابو ظبي',
+            'ABN' => 'البنك العربي',
+        ];
 
-        $x = 1;
-
-        while ($x < 100) {
+        foreach ($branches as $code => $branch) {
             DB::table('branches')->insert([
                 'name' => Str::random(6),
-                'code' => Str::random(5),
-                'city_id' => random_int(1, 6)
+                'code' => ucwords($code),
+                'city_id' => random_int(1, 6),
+                'created_at' => now(),
             ]);
-
-            $x = $x + 1;
         }
-
-        // foreach ($branches as $code => $branch) {
-
-        //     DB::table('branches')->insert([
-        //         'name' => $branch,
-        //         'code' => $code,
-        //         'city_id' => $x
-        //     ]);
-
-        //     $x = $x + 1;
-        // }
     }
 }

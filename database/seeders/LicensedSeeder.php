@@ -24,7 +24,8 @@ class LicensedSeeder extends Seeder
 
         foreach ($licenseds as $licensed) {
             DB::table('licenseds')->insert([
-                'name' => $licensed
+                'name' => $licensed,
+                'created_at' => now(),
             ]);
         }
     }

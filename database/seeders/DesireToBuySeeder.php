@@ -24,7 +24,8 @@ class DesireToBuySeeder extends Seeder
 
         foreach ($desire_to_buys as $desire_to_buy) {
             DB::table('desire_to_buys')->insert([
-                'name' => $desire_to_buy
+                'name' => $desire_to_buy,
+                'created_at' => now(),
             ]);
         }
     }

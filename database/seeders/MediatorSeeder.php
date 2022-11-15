@@ -28,6 +28,7 @@ class MediatorSeeder extends Seeder
                 'phone_number' => '059' . random_int(1111111, 9999999),
                 'is_direct' => random_int(1, 2),
                 'status' => random_int(1, 2),
+                'created_at' => now(),
             ]);
         }
     }

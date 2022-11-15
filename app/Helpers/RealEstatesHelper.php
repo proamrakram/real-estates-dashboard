@@ -21,14 +21,15 @@ use App\Models\User;
 if (!function_exists('getCities')) {
     function getCities()
     {
-        return City::data()->get();
+        return City::data()->where('status', 1)->get();
     }
 }
+
 
 if (!function_exists('getUserMarketers')) {
     function getUserMarketers()
     {
-        return User::data()->where('user_type', 'marketer')->get();
+        return User::data()->where('user_type', 'marketer')->where('user_status', 'active')->get();
     }
 }
 
@@ -49,7 +50,7 @@ if (!function_exists('getOrderStatuses')) {
 if (!function_exists('getBranches')) {
     function getBranches()
     {
-        return Branch::all();
+        return Branch::where('status', 1)->get();
     }
 }
 
@@ -216,6 +217,18 @@ if (!function_exists('getDesireToBuyName')) {
             return $desire_to_buy->name;
         } else {
             return 'غير موجود';
+        }
+    }
+}
+
+if (!function_exists('getUserName')) {
+    function getUserName($user_id)
+    {
+        $user = User::find($user_id);
+        if ($user) {
+            return $user->name;
+        } else {
+            return null;
         }
     }
 }

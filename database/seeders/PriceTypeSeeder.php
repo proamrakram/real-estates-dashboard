@@ -22,7 +22,8 @@ class PriceTypeSeeder extends Seeder
 
         foreach ($price_types as $price_type) {
             DB::table('price_types')->insert([
-                'name' => $price_type
+                'name' => $price_type,
+                'created_at' => now(),
             ]);
         }
     }

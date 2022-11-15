@@ -23,7 +23,8 @@ class OfferTypeSeeder extends Seeder
 
         foreach ($offer_types as $offer_type) {
             DB::table('offer_types')->insert([
-                'name' => $offer_type
+                'name' => $offer_type,
+                'created_at' => now(),
             ]);
         }
     }

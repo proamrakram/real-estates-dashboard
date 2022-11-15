@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -47,6 +46,8 @@ class NeighborhoodSeeder extends Seeder
             DB::table('neighborhoods')->insert([
                 'city_id' => 2,
                 'name' => $nehood,
+                'status' => 1,
+                'created_at' => now(),
             ]);
         }
     }

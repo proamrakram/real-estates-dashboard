@@ -84,7 +84,7 @@ class CreateOrder extends Component
             'customer_phone' => ['required', 'min:10', 'max:10'],
             'employer_name' => ['required'],
             'employee_type' => ['required'],
-            'order_status_id' => ['required'],
+            // 'order_status_id' => ['required'],
             'support_eskan' => ['required'],
 
             #Form Two
@@ -113,7 +113,7 @@ class CreateOrder extends Component
             'customer_phone.required' => 'هذا الحقل مطلوب',
             'employer_name.required' => 'هذا الحقل مطلوب',
             'employee_type.required' => 'هذا الحقل مطلوب',
-            'order_status_id.required' => 'هذا الحقل مطلوب',
+            // 'order_status_id.required' => 'هذا الحقل مطلوب',
             'support_eskan.required' => 'هذا الحقل مطلوب',
 
             'customer_phone.min' => 'يجب ان يكون رقم الجوال 10 ارقام',

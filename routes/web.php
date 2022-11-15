@@ -42,6 +42,10 @@ Route::controller(AdminPanelHomeController::class)->prefix('panel')->middleware(
         Route::get('/new-user', 'newUser')->withoutMiddleware('new')->name('new.user');
         Route::get('/real-estates-details', 'realEstatesDetails')->name('real.estates.details');
 
+        Route::get('/cities', 'cities')->name('cities');
+        Route::get('/neighborhoods', 'neighborhoods')->name('neighborhoods');
+
+
 
         #Creating User Page
         Route::get('/create-user-info', 'createUserInfo')->name('create.user.info');

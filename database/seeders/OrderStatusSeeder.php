@@ -25,7 +25,8 @@ class OrderStatusSeeder extends Seeder
 
         foreach ($order_statues as $order_statue) {
             DB::table('order_statuses')->insert([
-                'name' => $order_statue
+                'name' => $order_statue,
+                'created_at' => now(),
             ]);
         }
     }

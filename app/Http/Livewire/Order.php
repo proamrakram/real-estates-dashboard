@@ -61,8 +61,7 @@ class Order extends Component
     public function render()
     {
         $main_orders = $this->getMainOrders();
-
-
+        $this->resetPage();
         return view('livewire.order', [
             'main_orders' => $main_orders,
         ]);

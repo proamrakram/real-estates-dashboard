@@ -223,7 +223,7 @@
                                 </div>
 
 
-                                <div class="row mb-1">
+                                {{-- <div class="row mb-1">
 
                                     <div class="col-12 col-md-6">
                                         <label class="form-label">حالة الطلب</label>
@@ -240,7 +240,7 @@
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="row mb-1">
                                     <div class="col-12 col-md-9">

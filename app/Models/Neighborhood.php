@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,11 +13,17 @@ class Neighborhood extends Model
     protected $fillable = [
         'city_id',
         'name',
+        'status',
     ];
 
     public function offers()
     {
         return $this->hasMany(Offer::class, 'neighborhood_id', 'id');
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id', 'id');
     }
 
     public function scopeData($query)
@@ -25,6 +32,29 @@ class Neighborhood extends Model
             'id',
             'city_id',
             'name',
+            'status',
         ]);
+    }
+
+    public function scopeFilters(Builder $builder, array $filters = [])
+    {
+        $filters = array_merge([
+            'search' => '',
+            'status' => null,
+        ], $filters);
+
+        $builder->when($filters['search'] != '', function ($query) use ($filters) {
+            $query->where('status', $filters['status'])
+                ->orWhere('name', 'like', '%' . $filters['search'] . '%');
+        });
+
+        $builder->when($filters['search'] != '' && $filters['status'] != null, function ($query) use ($filters) {
+            $query->where('name', 'like', '%' . $filters['search'] . '%')
+                ->where('status', $filters['status']);
+        });
+
+        $builder->when($filters['search'] == '' && $filters['status'] != null, function ($query) use ($filters) {
+            $query->where('status', $filters['status']);
+        });
     }
 }

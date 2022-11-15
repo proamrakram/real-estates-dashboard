@@ -23,6 +23,7 @@ class OrderNoteSeeder extends Seeder
                 'note' => Str::random(10),
                 'status' => 1,
                 'order_id' => $order->id,
+                'created_at' => now(),
             ]);
         }
     }

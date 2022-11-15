@@ -1,4 +1,3 @@
-<!-- create app modal -->
 <div class="modal fade" id="createAppModal" tabindex="-1" aria-labelledby="createAppModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
@@ -123,13 +122,13 @@
 
                                 <input type="text" id="city-name" class="form-control city"
                                     placeholder="ادخل اسم المنطقة" aria-label="اسم المنطقة"
-                                    aria-describedby="city-name" ="">
+                                    aria-describedby="city-name">
 
                                 <label class="col-form-label" for="city-code">كود المنطقة</label>
 
                                 <input type="text" id="city-code" class="form-control city" name="city_code"
                                     placeholder="كود المنطقة مثل QTF" aria-label="كود المنطقة"
-                                    aria-describedby="city-code" ="">
+                                    aria-describedby="city-code">
 
                                 <div class="d-flex justify-content-between mt-2">
                                     <button type="reset" id="city-submit"
@@ -151,7 +150,7 @@
                                 <label class="col-form-label" for="neighborhood-name">اسم الحي</label>
 
                                 <input type="text" id="neighborhood-name" class="form-control city"
-                                    name="neighborhood_name" placeholder="ادخل اسم الحي" ="">
+                                    name="neighborhood_name" placeholder="ادخل اسم الحي"="">
 
                                 <div class="d-flex justify-content-between mt-2">
                                     <button type="reset" id="neighborhood-submit"
@@ -192,7 +191,7 @@
                                 <label class="col-form-label" for="property-type-name">اسم نوع العقار الجديد</label>
 
                                 <input type="text" id="property-type-name" class="form-control city"
-                                    name="property_type_name" placeholder="ادخل اسم نوع العقار الجديد" >
+                                    name="property_type_name" placeholder="ادخل اسم نوع العقار الجديد">
 
                                 <div class="d-flex justify-content-between mt-2">
                                     <button type="reset" id="property-type-submit"

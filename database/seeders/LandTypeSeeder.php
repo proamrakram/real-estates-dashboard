@@ -24,7 +24,8 @@ class LandTypeSeeder extends Seeder
 
         foreach ($land_types as $land_type) {
             DB::table('land_types')->insert([
-                'name' => $land_type
+                'name' => $land_type,
+                'created_at' => now(),
             ]);
         }
     }

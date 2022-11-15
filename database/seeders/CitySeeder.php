@@ -30,7 +30,9 @@ class CitySeeder extends Seeder
 
             DB::table('cities')->insert([
                 'name' => $city,
-                'code' => $code
+                'code' => $code,
+                'status' => 1,
+                'created_at' => now(),
             ]);
         }
     }

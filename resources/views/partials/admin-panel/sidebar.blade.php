@@ -55,7 +55,7 @@
                         الرئيسية</span></a>
             </li>
 
-            {{-- <li class="nav-item has-sub">
+            <li class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#">
                     <i data-feather="box"></i>
                     <span class="menu-title text-truncate" data-i18n="Extensions">تفاصيل العقارات</span>
@@ -63,30 +63,20 @@
 
                 <ul class="menu-content">
                     <li>
-                        <a class="d-flex align-items-center" href="ext-component-sweet-alerts.html"><svg
-                                xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-circle">
-                                <circle cx="12" cy="12" r="10"></circle>
-                            </svg><span class="menu-item text-truncate" data-i18n="Sweet Alert">Sweet
-                                Alert</span></a>
+                        <a class="d-flex align-items-center" href="{{ route('panel.cities') }}">
+                            <i data-feather='circle'></i>
+                            <span class="menu-item text-truncate" data-i18n="Sweet Alert">المدن</span></a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="ext-component-blockui.html"><svg
-                                xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-circle">
-                                <circle cx="12" cy="12" r="10"></circle>
-                            </svg><span class="menu-item text-truncate" data-i18n="Block UI">BlockUI</span></a>
+
+                    <li>
+                        <a class="d-flex align-items-center" href="{{ route('panel.neighborhoods') }}">
+                            <i data-feather='circle'></i>
+                            <span class="menu-item text-truncate" data-i18n="Sweet Alert">الأحياء</span>
+                        </a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="ext-component-toastr.html"><svg
-                                xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-circle">
-                                <circle cx="12" cy="12" r="10"></circle>
-                            </svg><span class="menu-item text-truncate" data-i18n="Toastr">Toastr</span></a>
-                    </li>
+
                 </ul>
-            </li> --}}
+            </li>
 
             <li class=" nav-item">
                 <a class="d-flex align-items-center" href="{{ route('panel.users') }}">

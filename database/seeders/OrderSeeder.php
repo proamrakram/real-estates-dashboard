@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Branch;
 use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -28,8 +29,16 @@ class OrderSeeder extends Seeder
             $count = $count + 1;
             $customer = Customer::find(random_int(1, 100));
             $user = User::find(random_int(1, 100));
+            $branch_id = random_int(1, 10);
+            $branch = Branch::find($branch_id);
+
+            if ($user && $branch) {
+                $order_code = ucwords($branch->code) . '-' . $count . '-' . 'USR' . $user->id;
+            }
+
 
             DB::table('orders')->insert([
+                'order_code' => $order_code,
                 'order_status_id' => random_int(1, 5),
                 'customer_id' => $customer->id,
                 'user_id' => $user->id,
@@ -48,10 +57,12 @@ class OrderSeeder extends Seeder
                 'purch_method_id' => random_int(1, 4),
                 'desire_to_buy_id' => random_int(1, 3),
                 // 'assign_to' =>
-                'branch_id'  => random_int(1, 20),
+                'branch_id'  => $branch_id,
                 'notes' => Str::random(16),
-                // 'closed_date',
                 'who_create' => 1,
+                'created_at' => now(),
+                // 'closed_date',
+                // 'assign_to_date'
                 // 'who_edit',
                 // 'who_cancel',
             ]);

@@ -69,6 +69,8 @@
 {{-- @stack('users-scripts') --}}
 @stack('orders-scripts')
 @stack('customers-scripts')
+@stack('cities-scripts')
+@stack('neighborhoods-scripts')
 
 
 <script>

@@ -72,6 +72,8 @@
     <!-- END: Vendor CSS-->
 
     @stack('livewire-styles')
+    @stack('cities-styles')
+    @stack('neighborhoods-styles')
 
 </head>
 <!-- END: Head-->

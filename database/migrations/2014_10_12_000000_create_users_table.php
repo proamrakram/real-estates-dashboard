@@ -20,15 +20,12 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->enum('user_status', ['active', 'inactive', 'blocked']);
-            $table->enum('user_type', ['admin', 'office', 'marketer']);
+            $table->enum('user_type', ['superadmin', 'admin', 'office', 'marketer']);
             $table->timestamp('email_verified_at')->nullable();
 
             #branches ids
             $table->json('branches_ids')->nullable();
             $table->string('advertiser_number')->nullable();
-
-
-
 
             $table->rememberToken();
             $table->timestamps();

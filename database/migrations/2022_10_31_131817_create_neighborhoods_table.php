@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('city_id')->constrained('cities')->cascadeOnDelete();
             $table->string('name');
+            $table->enum('status', [1, 2])->default(1);
             $table->timestamps();
         });
     }

@@ -120,7 +120,7 @@
                                             <tr role="row">
                                                 <th class="sorting {{ $oo_style_sort_direction }}"
                                                     wire:click="oo_sortBy('id')" tabindex="0"
-                                                    rowspan="1"colspan="1">رقم الطلب </th>
+                                                    rowspan="1"colspan="1">كود الطلب </th>
                                                 <th class="sorting" tabindex="0" rowspan="1" colspan="1">
                                                     التاريخ
                                                 </th>
@@ -138,9 +138,15 @@
                                                 <th class="sorting" tabindex="0" rowspan="1" colspan="1">
                                                     الحالة
                                                 </th>
+
+                                                <th class="sorting" tabindex="0" rowspan="1" colspan="1">الطلب
+                                                    مسند ل
+                                                </th>
+
                                                 <th class="sorting {{ $oo_style_sort_direction }}"
                                                     wire:click="oo_sortBy('branch_id')" tabindex="0" rowspan="1"
-                                                    colspan="1">الفرع</th>
+                                                    colspan="1">الفرع
+                                                </th>
                                                 <th class="sorting" tabindex="0" rowspan="1" colspan="1">
                                                     تحكم
                                                 </th>
@@ -152,8 +158,8 @@
                                             @foreach ($main_orders as $main_order)
                                                 <tr class="odd">
 
-                                                    <td class="sorting_1">{{ $main_order->id }}</td>
-                                                    <td> {{ $main_order->created_at }} </td>
+                                                    <td class="sorting_1">{{ $main_order->order_code }}</td>
+                                                    <td> {{ $main_order->created_at->format('Y-m-d') }} </td>
 
                                                     <td>
                                                         @if ($main_order->property_type_id == 1)
@@ -231,6 +237,18 @@
                                                             </span>
                                                         @endif
                                                     </td>
+
+                                                    @if (getUserName($main_order->assign_to))
+                                                        <td>
+                                                            الطلب مسند ل {{ getUserName($main_order->assign_to) }}
+                                                        </td>
+                                                    @else
+                                                        <td>
+                                                            <span class="badge bg-danger">
+                                                                الطلب غير مسند لاحد
+                                                            </span>
+                                                        </td>
+                                                    @endif
 
                                                     <td>
                                                         <span class="badge bg-primary">

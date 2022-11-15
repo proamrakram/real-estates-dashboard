@@ -23,7 +23,8 @@ class DirectionSeeder extends Seeder
 
         foreach ($directions as $direction) {
             DB::table('directions')->insert([
-                'name' => $direction
+                'name' => $direction,
+                'created_at' => now(),
             ]);
         }
     }

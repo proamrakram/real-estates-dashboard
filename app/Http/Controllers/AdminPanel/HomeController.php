@@ -135,6 +135,18 @@ class HomeController extends Controller
         return view('admin-panel.forms.branches.edit-branch', compact(['branch', 'cities']));
     }
 
+    public function cities()
+    {
+        return view('admin-panel.cities');
+    }
+
+    public function neighborhoods()
+    {
+        return view('admin-panel.neighborhoods');
+    }
+
+
+
 
 
 

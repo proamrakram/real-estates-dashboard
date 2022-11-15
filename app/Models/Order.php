@@ -11,6 +11,7 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
+        'order_code',
         'order_status_id',
         'customer_id',
         'user_id',
@@ -34,12 +35,15 @@ class Order extends Model
         'closed_date',
         'who_edit',
         'who_cancel',
+        'who_create',
+        'assign_to_date'
     ];
 
     public function scopeData($query)
     {
         return $query->select([
             'id',
+            'order_code',
             'order_status_id',
             'customer_id',
             'user_id',
@@ -64,6 +68,8 @@ class Order extends Model
             'who_edit',
             'created_at',
             'who_cancel',
+            'who_create',
+            'assign_to_date'
         ]);
     }
 
@@ -105,7 +111,7 @@ class Order extends Model
         $builder->when($filters['search'] != '', function ($query) use ($filters) {
             $query->where('customer_name', 'like', '%' . $filters['search'] . '%')
                 ->orWhere('customer_phone', 'like', '%' . $filters['search'] . '%')
-                ->orWhere('id', 'like', '%' . $filters['search'] . '%');
+                ->orWhere('order_code', 'like', '%' . $filters['search'] . '%');
         });
 
         $builder->when($filters['search'] == '' && $filters['branch_type_id'], function ($query) use ($filters) {
