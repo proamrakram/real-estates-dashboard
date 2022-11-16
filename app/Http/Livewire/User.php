@@ -32,10 +32,25 @@ class User extends Component
         return ModelsUser::data()->whereNot('user_type', 'superadmin')->filters($this->filters)->paginate($this->rows_number);
     }
 
+    public function changeUserStatus($user_id)
+    {
+        $user = ModelsUser::find($user_id);
+        if ($user) {
+            if ($user->user_status == 'active') {
+                $user->update(['user_status' => 'inactive']);
+            } else {
+                $user->update(['user_status' => 'active']);
+            }
+        }
+    }
+
+
     public function render()
     {
         $users = $this->getUsers();
-        $this->resetPage();
+        if ($users->count() < 9) {
+            $this->resetPage();
+        }
         return view('livewire.user', [
             'users' => $users
         ]);

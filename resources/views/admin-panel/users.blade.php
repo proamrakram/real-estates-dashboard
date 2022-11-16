@@ -67,7 +67,7 @@
                             <div class="card">
                                 <div class="card-body d-flex align-items-center justify-content-between">
                                     <div>
-                                        <h3 class="fw-bolder mb-75">{{ $users->where('user_type', 'finance')->count() }}
+                                        <h3 class="fw-bolder mb-75">{{ $users->where('user_type', 'marketer')->count() }}
                                         </h3>
                                         <span>عدد المسوقين</span>
                                     </div>

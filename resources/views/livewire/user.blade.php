@@ -166,8 +166,7 @@
                                         </a>
 
 
-                                        <a class="btn item-edit"
-                                            href="{{ route('admin.change.user.status', $user->id) }}"
+                                        <a class="btn item-edit" wire:click='changeUserStatus({{ $user->id }})'
                                             style="padding:0;color:#EA5455 ">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>

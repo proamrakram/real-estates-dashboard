@@ -30,7 +30,7 @@ class HomeController extends Controller
 
     public function users()
     {
-        $users = User::data()->paginate(10);
+        $users = User::all();
         return view('admin-panel.users', compact(['users']));
     }
 
