@@ -32,6 +32,7 @@
                         @livewire('neighborhood')
                     </section>
                 </section>
+                @livewire('edit-neighborhood')
             </div>
         </div>
     </div>

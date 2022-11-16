@@ -147,7 +147,7 @@
                                                                             name="branches_ids[]" multiple>
                                                                             @foreach (getBranches() as $branch)
                                                                                 <option value="{{ $branch->id }}"
-                                                                                    @if (in_array($branch->id, $user->branches_ids)) selected @endif>
+                                                                                    @if (in_array($branch->id, $user->branches->pluck('id')->toArray())) selected @endif>
                                                                                     {{ $branch->name }}</option>
                                                                             @endforeach
 
@@ -170,7 +170,7 @@
                                                                                 @if ($user->user_type == 'office') selected @endif>
                                                                                 مكتب</option>
                                                                             <option value="finance"
-                                                                                @if ($user->user_type == 'finance') selected @endif>
+                                                                                @if ($user->user_type == 'marketer') selected @endif>
                                                                                 مسوق</option>
                                                                         </select>
                                                                     </div>
@@ -186,7 +186,7 @@
                                                                         @enderror
                                                                     </div>
                                                                 </tr>
-
+{{--
                                                                 <tr>
                                                                     <td class="text-nowrap fw-bolder">العقارات</td>
                                                                     <td>
@@ -230,7 +230,75 @@
 
                                                                         </div>
                                                                     </td>
+                                                                </tr> --}}
+
+
+
+                                                                <tr>
+                                                                    <td class="text-nowrap fw-bolder">الطلبات</td>
+                                                                    <td>
+                                                                        <div class="d-flex">
+                                                                            <div class="form-check me-3 me-lg-5">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="can_show_orders"
+                                                                                    name="can_show_orders"
+                                                                                    @if ($user->permissions->can_show_orders == 1) checked @endif>
+                                                                                <label class="form-check-label"
+                                                                                    for="canShow"> رؤية </label>
+                                                                            </div>
+
+                                                                            <div class="form-check me-3 me-lg-5">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="can_add_orders"
+                                                                                    name="can_add_orders"
+                                                                                    @if ($user->permissions->can_add_orders == 1) checked @endif>
+                                                                                <label class="form-check-label"
+                                                                                    for="canAdd"> اضافة </label>
+                                                                            </div>
+
+                                                                            <div class="form-check me-3 me-lg-5">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="can_edit_orders"
+                                                                                    name="can_edit_orders"
+                                                                                    @if ($user->permissions->can_edit_orders == 1) checked @endif>
+                                                                                <label class="form-check-label"
+                                                                                    for="canEdit"> تعديل
+                                                                                </label>
+                                                                            </div>
+
+                                                                            <div class="form-check me-3 me-lg-5">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="can_cancel_orders"
+                                                                                    name="can_cancel_orders"
+                                                                                    @if ($user->permissions->can_cancel_orders == 1) checked @endif>
+                                                                                <label class="form-check-label"
+                                                                                    for="canCancel">إلغاء</label>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </td>
                                                                 </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                                                                 {{-- <tr>
@@ -372,7 +440,7 @@
                                                                 </tr> --}}
 
 
-                                                                <tr>
+                                                                {{-- <tr>
                                                                     <td class="text-nowrap fw-bolder">يستطيع اضافة حجز
                                                                     </td>
                                                                     <td>
@@ -402,7 +470,7 @@
                                                                             </div>
                                                                         </div>
                                                                     </td>
-                                                                </tr>
+                                                                </tr> --}}
 
 
                                                                 <tr>

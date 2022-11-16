@@ -148,11 +148,10 @@
                                         </thead>
                                         <tbody>
 
-
                                             @foreach ($market_orders as $main_order)
                                                 <tr class="odd">
 
-                                                    <td class="sorting_1">{{ $main_order->id }}</td>
+                                                    <td class="sorting_1">{{ $main_order->order_code }}</td>
                                                     <td> {{ $main_order->created_at }} </td>
 
                                                     <td>

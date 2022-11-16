@@ -105,6 +105,12 @@ class User extends Authenticatable
         $builder->when($filters['search'] == '' && $filters['user_status'] != null, function ($query) use ($filters) {
             $query->where('user_status', $filters['user_status']);
         });
+
+        $builder->when($filters['search'] == '' && $filters['branch_id'] != null, function ($query) use ($filters) {
+            $query->whereHas('branches', function ($query) use ($filters) {
+                $query->where('id', $filters['branch_id']);
+            });
+        });
     }
 
 

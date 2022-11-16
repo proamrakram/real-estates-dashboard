@@ -35,11 +35,11 @@
                                 <div class="card-body">
                                     <div class="avatar bg-light-info p-50 mb-1">
                                         <div class="avatar-content">
-                                            <i data-feather="eye" class="font-medium-5"></i>
+                                            <i data-feather='users' class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">10</h2>
-                                    <p class="card-text">عدد الإدارة</p>
+                                    <h2 class="fw-bolder">{{ getUsersCount() }}</h2>
+                                    <p class="card-text">عدد المستخدمين</p>
                                 </div>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                                             <i data-feather="globe" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">4</h2>
+                                    <h2 class="fw-bolder">{{ getBranchesCount() }}</h2>
                                     <p class="card-text">عدد الفروع</p>
                                 </div>
                             </div>
@@ -69,8 +69,8 @@
                                             <i data-feather="globe" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">4</h2>
-                                    <p class="card-text">عدد الفروع</p>
+                                    <h2 class="fw-bolder">{{ getOrdersCount() }}</h2>
+                                    <p class="card-text">عدد الطلبات</p>
                                 </div>
                             </div>
                         </div>
@@ -84,25 +84,40 @@
                                             <i data-feather="globe" class="font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="fw-bolder">4</h2>
-                                    <p class="card-text">عدد الفروع</p>
+                                    <h2 class="fw-bolder">{{ getCustomersCount() }}</h2>
+                                    <p class="card-text">عدد العملاء</p>
                                 </div>
                             </div>
                         </div>
 
 
+                        <div class="col-lg-2 col-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <div class="avatar bg-light-info p-50 mb-1">
+                                        <div class="avatar-content">
+                                            <i data-feather="globe" class="font-medium-5"></i>
+                                        </div>
+                                    </div>
+                                    <h2 class="fw-bolder">{{ getCitiesCount() }}</h2>
+                                    <p class="card-text">عدد المدن</p>
+                                </div>
+                            </div>
+                        </div>
 
-
-
-
-
-
-
-
-
-
-
-
+                        <div class="col-lg-2 col-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <div class="avatar bg-light-info p-50 mb-1">
+                                        <div class="avatar-content">
+                                            <i data-feather="globe" class="font-medium-5"></i>
+                                        </div>
+                                    </div>
+                                    <h2 class="fw-bolder">{{ getNeighborhoodsCount() }}</h2>
+                                    <p class="card-text">عدد الاحياء</p>
+                                </div>
+                            </div>
+                        </div>
 
 
 

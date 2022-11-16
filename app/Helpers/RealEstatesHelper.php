@@ -7,6 +7,7 @@ use App\Models\DesireToBuy;
 use App\Models\Direction;
 use App\Models\LandType;
 use App\Models\Licensed;
+use App\Models\Neighborhood;
 use App\Models\OfferType;
 use App\Models\Order;
 use App\Models\OrderNoteStatuse;
@@ -46,6 +47,50 @@ if (!function_exists('getOrderStatuses')) {
         return OrderStatus::all();
     }
 }
+
+if (!function_exists('getUsersCount')) {
+    function getUsersCount()
+    {
+        return User::count();
+    }
+}
+
+if (!function_exists('getBranchesCount')) {
+    function getBranchesCount()
+    {
+        return Branch::count();
+    }
+}
+
+if (!function_exists('getOrdersCount')) {
+    function getOrdersCount()
+    {
+        return Order::count();
+    }
+}
+
+if (!function_exists('getCustomersCount')) {
+    function getCustomersCount()
+    {
+        return Customer::count();
+    }
+}
+
+if (!function_exists('getCitiesCount')) {
+    function getCitiesCount()
+    {
+        return City::count();
+    }
+}
+
+if (!function_exists('getNeighborhoodsCount')) {
+    function getNeighborhoodsCount()
+    {
+        return Neighborhood::count();
+    }
+}
+
+
 
 if (!function_exists('getBranches')) {
     function getBranches()

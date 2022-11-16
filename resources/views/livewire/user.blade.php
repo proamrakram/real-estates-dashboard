@@ -53,7 +53,7 @@
                     <div class="col-sm-12 col-md-9">
                         <div id="DataTables_Table_0_filter" class="dataTables_filter">
 
-                            {{-- <label> الفرع:
+                            <label> الفرع:
                                 <select wire:model='branch_id'>
                                     <option value="all" selected>الكل</option>
 
@@ -61,7 +61,7 @@
                                         <option value="{{ $branch->id }}">{{ $branch->name }}</option>
                                     @endforeach
                                 </select>
-                            </label> --}}
+                            </label>
 
                             <label>حالة المستخدم:
                                 <select wire:model='user_status'>
@@ -141,7 +141,7 @@
 
                                 <td>
                                     <select>
-                                        @foreach (getUserBranches($user->branches_ids) as $branch)
+                                        @foreach ($user->branches as $branch)
                                             <option>{{ $branch->name }}</option>
                                         @endforeach
                                     </select>

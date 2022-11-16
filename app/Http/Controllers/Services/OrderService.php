@@ -73,6 +73,12 @@ class OrderService extends Controller
             $order->update(['order_code' => $order_code]);
         }
 
+        $user = auth()->user();
+        if ($user) {
+            if ($user->user_type == 'marketer') {
+                return redirect()->route('panel.orders.marketer')->with('message',  '👍 تم تحديث الطلبات بنجاح',);
+            }
+        }
         return redirect()->route('panel.orders')->with('message',  '👍 تم تحديث الطلبات بنجاح',);
     }
 

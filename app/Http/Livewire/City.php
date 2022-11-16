@@ -23,10 +23,16 @@ class City extends Component
         $this->filters['search'] = $this->search;
 
         $cities = ModelsCity::data()->filters($this->filters)->paginate($this->rows_number);
-        $this->resetPage();
-
+        if ($cities->count() < 9) {
+            $this->resetPage();
+        }
 
         return view('livewire.city', ['cities' => $cities]);
+    }
+
+    public function callCityModal($city_id)
+    {
+        $this->emit('cityModal', $city_id);
     }
 
     public function updateStatus($city_id)

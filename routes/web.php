@@ -27,13 +27,17 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::controller(AdminPanelHomeController::class)->prefix('panel')->middleware(['auth', 'new'])->group(function () {
 
-    Route::as('panel.')->group(function () {
-        Route::get('/home', 'home')->name('home');
+    Route::get('/home', 'home')->name('panel.home');
+    Route::get('/order/{order}', 'order')->name('panel.order');
+
+    Route::as('panel.')->middleware('marketer')->group(function () {
+        Route::get('/orders-marketer', 'ordersMarketer')->name('orders.marketer');
+    });
+
+    Route::as('panel.')->middleware('admin')->group(function () {
         Route::get('/users', 'users')->name('users');
         Route::get('/offers', 'offers')->name('offers');
         Route::get('/orders', 'orders')->name('orders');
-        Route::get('/orders-marketer', 'ordersMarketer')->name('orders.marketer');
-        Route::get('/order/{order}', 'order')->name('order');
         Route::get('/customers', 'customers')->name('customers');
         Route::get('/selles', 'selles')->name('selles');
         Route::get('/branchs', 'branchs')->name('branchs');
@@ -45,8 +49,6 @@ Route::controller(AdminPanelHomeController::class)->prefix('panel')->middleware(
 
         Route::get('/cities', 'cities')->name('cities');
         Route::get('/neighborhoods', 'neighborhoods')->name('neighborhoods');
-
-
 
         #Creating User Page
         Route::get('/create-user-info', 'createUserInfo')->name('create.user.info');
@@ -60,6 +62,16 @@ Route::controller(AdminPanelHomeController::class)->prefix('panel')->middleware(
         #Branch
         Route::get('/edit-branch/{branch}', 'editBranch')->name('edit.branch');
     });
+
+
+
+
+
+
+
+
+
+
 
     Route::as('admin.')->prefix('admin')->group(function () {
 

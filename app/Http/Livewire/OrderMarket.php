@@ -115,4 +115,9 @@ class OrderMarket extends Component
             'market_orders' => $market_orders
         ]);
     }
+
+    public function callOrderModal($order_id)
+    {
+        $this->emit('openOrderModal', $order_id);
+    }
 }

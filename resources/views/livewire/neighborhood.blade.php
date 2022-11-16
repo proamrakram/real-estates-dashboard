@@ -51,7 +51,7 @@
                                     <option value="2" selected>غير نشط</option>
                                 </select>
                             </label>
-                            <label>ابحث:<input type="search" wire:model='search' placeholder=""></label>
+                            <label>ابحث:<input type="search" wire:model='search' placeholder="الاسم"></label>
                         </div>
                     </div>
                 </div>
@@ -97,9 +97,12 @@
 
                                 <td>
                                     <div class="d-inline-flex">
-                                        <a href="#" class="item-edit text-primary">
+                                        <a class="item-edit" data-bs-target="#editNeighborhood"
+                                            wire:click='callNeighborhoodModal({{ $neighborhood->id }})'
+                                            data-bs-toggle="modal">
                                             <i class="fas fa-edit"></i>
                                         </a>
+
                                         <a class="btn item-edit" wire:click='updateStatus({{ $neighborhood->id }})'
                                             style="padding:0;color:#EA5455 ">
                                             <i class="fas fa-trash-alt"></i>

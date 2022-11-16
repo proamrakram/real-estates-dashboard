@@ -23,12 +23,19 @@ class Neighborhood extends Component
         $this->filters['search'] = $this->search;
 
         $neighborhoods = ModelsNeighborhood::data()->filters($this->filters)->paginate($this->rows_number);
-        $this->resetPage();
 
+        if ($neighborhoods->count() < 9) {
+            $this->resetPage();
+        }
 
         return view('livewire.neighborhood', [
             'neighborhoods' => $neighborhoods
         ]);
+    }
+
+    public function callNeighborhoodModal($neighborhood_id)
+    {
+        $this->emit('neighborhoodModal', $neighborhood_id);
     }
 
     public function updateStatus($neighborhood_id)
@@ -41,3 +48,4 @@ class Neighborhood extends Component
         }
     }
 }
+

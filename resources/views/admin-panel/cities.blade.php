@@ -43,6 +43,7 @@
                         @livewire('city')
                     </section>
                 </section>
+                @livewire('edit-city')
             </div>
         </div>
     </div>
