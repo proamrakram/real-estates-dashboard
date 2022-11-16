@@ -32,6 +32,7 @@ Route::controller(AdminPanelHomeController::class)->prefix('panel')->middleware(
         Route::get('/users', 'users')->name('users');
         Route::get('/offers', 'offers')->name('offers');
         Route::get('/orders', 'orders')->name('orders');
+        Route::get('/orders-marketer', 'ordersMarketer')->name('orders.marketer');
         Route::get('/order/{order}', 'order')->name('order');
         Route::get('/customers', 'customers')->name('customers');
         Route::get('/selles', 'selles')->name('selles');

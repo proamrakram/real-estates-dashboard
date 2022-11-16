@@ -48,15 +48,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
-
-
-
-
-
-                                    <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
-
-
-
+                                    <div class="dataTables_wrapper dt-bootstrap5 no-footer">
                                         <div class="card-header border-bottom p-1">
                                             <div class="head-label"></div>
                                             <div class="dt-action-buttons text-end">
@@ -86,7 +78,7 @@
                                         </div>
 
 
-                                        <div class="d-flex justify-content-between align-items-center mx-0 row">
+                                        {{-- <div class="d-flex justify-content-between align-items-center mx-0 row">
 
 
                                             <div class="col-sm-12 col-md-6">
@@ -112,8 +104,9 @@
                                                 </div>
                                             </div>
 
-                                        </div>
+                                        </div> --}}
 
+                                        <div class="mb-2"></div>
 
                                         <table class="table dataTable no-footer text-center" role="grid"
                                             aria-describedby="DataTables_Table_0_info">

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -42,6 +43,23 @@ class Customer extends Model
         return $this->belongsTo(City::class, 'city_id', 'id');
     }
 
+    public function scopeFilters(Builder $builder, array $filters = [])
+    {
+        $filters = array_merge([
+            'search' => '',
+            'customer_status' => null,
+        ], $filters);
+
+        $builder->when($filters['search'] != '', function ($query) use ($filters) {
+            $query
+                ->where('name', 'like', '%' . $filters['search'] . '%')
+                ->orWhere('phone', 'like', '%' . $filters['search'] . '%');
+        });
+
+        $builder->when($filters['search'] == '' && $filters['customer_status'] != null, function ($query) use ($filters) {
+            $query->where('status', $filters['customer_status']);
+        });
+    }
 
     public function scopeData($query)
     {

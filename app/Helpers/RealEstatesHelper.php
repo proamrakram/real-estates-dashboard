@@ -50,7 +50,7 @@ if (!function_exists('getOrderStatuses')) {
 if (!function_exists('getBranches')) {
     function getBranches()
     {
-        return Branch::where('status', 1)->get();
+        return Branch::data()->where('status', 1)->get();
     }
 }
 

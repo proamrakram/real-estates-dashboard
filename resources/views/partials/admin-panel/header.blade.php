@@ -74,7 +74,11 @@
     @stack('livewire-styles')
     @stack('cities-styles')
     @stack('neighborhoods-styles')
+    @stack('user-styles')
 
+
+
+    @livewireStyles()
 </head>
 <!-- END: Head-->
 

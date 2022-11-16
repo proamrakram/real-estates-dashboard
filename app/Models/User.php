@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -74,6 +76,34 @@ class User extends Authenticatable
         return $this->hasMany(Customer::class, 'user_id', 'id');
     }
 
+
+    public function scopeFilters(Builder $builder, array $filters = [])
+    {
+        $filters = array_merge([
+            'search' => '',
+            'user_status' => null,
+            'user_type' => null,
+            'branch_id' => null
+        ], $filters);
+
+
+        $builder->when($filters['search'] != '', function ($query) use ($filters) {
+            $query
+                ->where('name', 'like', '%' . $filters['search'] . '%')
+                ->orWhere('phone', 'like', '%' . $filters['search'] . '%');
+        });
+
+        $builder->when($filters['search'] == '' && $filters['user_type'] != null, function ($query) use ($filters) {
+            $query->where('user_type', $filters['user_type']);
+        });
+
+        $builder->when($filters['search'] == '' && $filters['user_status'] != null, function ($query) use ($filters) {
+            $query->where('user_status', $filters['user_status']);
+        });
+    }
+
+
+
     public function scopeData($query)
     {
         return $query->select([
@@ -89,7 +119,7 @@ class User extends Authenticatable
             // 'is_employee',
             // 'is_monitor',
             'branches_ids',
-            'advertiser_number'
+            'advertiser_number',
         ]);
     }
 }

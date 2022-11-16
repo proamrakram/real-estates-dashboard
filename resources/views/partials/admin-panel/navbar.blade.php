@@ -7,7 +7,7 @@
             <ul class="nav navbar-nav align-items-center ms-auto">
 
                 <li class="nav-item d-none d-lg-block">
-                    <a type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#createAppModal">
+                    <a type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#box">
                         <i class="ficon" data-feather="box"></i>
                     </a>
                 </li>

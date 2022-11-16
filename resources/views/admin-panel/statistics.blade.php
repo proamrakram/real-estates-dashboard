@@ -59,8 +59,56 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Line Chart - Profit -->
+                        <div class="col-lg-2 col-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <div class="avatar bg-light-info p-50 mb-1">
+                                        <div class="avatar-content">
+                                            <i data-feather="globe" class="font-medium-5"></i>
+                                        </div>
+                                    </div>
+                                    <h2 class="fw-bolder">4</h2>
+                                    <p class="card-text">عدد الفروع</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Line Chart - Profit -->
+                        <div class="col-lg-2 col-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <div class="avatar bg-light-info p-50 mb-1">
+                                        <div class="avatar-content">
+                                            <i data-feather="globe" class="font-medium-5"></i>
+                                        </div>
+                                    </div>
+                                    <h2 class="fw-bolder">4</h2>
+                                    <p class="card-text">عدد الفروع</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <!--/ Line Chart -->
-                        <div class="col-lg-8 col-12">
+                        {{-- <div class="col-lg-8 col-12">
                             <div class="card card-statistics">
                                 <div class="card-header">
                                     <h4 class="card-title">الاحصائيات</h4>
@@ -68,6 +116,8 @@
                                         <p class="card-text me-25 mb-0">تم تحديثها قبل ١ شهر </p>
                                     </div>
                                 </div>
+
+
                                 <div class="card-body statistics-body">
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-12 mb-2 mb-md-0">
@@ -101,12 +151,12 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <!--/ Miscellaneous Charts -->
 
                     <!-- Stats Vertical Card -->
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-xl-2 col-md-4 col-sm-4">
                             <div class="card text-center">
                                 <div class="card-body">
@@ -177,7 +227,7 @@
 
 
 
-                    </div>
+                    </div> --}}
 
                     <!--/ Stats Vertical Card -->
 
@@ -185,7 +235,7 @@
                     <!--/ Stats Horizontal Card -->
 
                     <!-- Line Area Chart Card -->
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-lg-4 col-sm-6 col-12">
                             <div class="card">
                                 <div class="card-header flex-column align-items-start pb-0">
@@ -228,11 +278,12 @@
                                 <div id="line-area-chart-3"></div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
+
                     <!--/ Line Area Chart Card -->
 
                     <!-- Line Chart Card -->
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-lg-6 col-sm-6 col-12">
                             <div class="card">
                                 <div class="card-header align-items-start pb-0">
@@ -328,7 +379,7 @@
                             </div>
                         </div>
 
-                    </div>
+                    </div> --}}
                     <!--/ Line Chart Card -->
                 </section>
                 <!--/ Statistics Card section-->

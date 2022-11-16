@@ -1,3 +1,6 @@
+ @livewireScripts()
+ {{--
+@livewire('real-estates-helper-box') --}}
 <div class="sidenav-overlay"></div>
 <div class="drag-target"></div>
 <x-modals.real-estates-details></x-modals.real-estates-details>
@@ -71,6 +74,8 @@
 @stack('customers-scripts')
 @stack('cities-scripts')
 @stack('neighborhoods-scripts')
+@stack('user-scripts')
+
 
 
 <script>

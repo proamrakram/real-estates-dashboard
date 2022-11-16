@@ -1,11 +1,11 @@
-<div class="modal fade" id="createAppModal" tabindex="-1" aria-labelledby="createAppModal" aria-hidden="true">
+<div class="modal fade" id="box" tabindex="-1" aria-labelledby="box" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-transparent">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body pb-3 px-sm-3">
-                <h1 class="text-center mb-1" id="createAppModal">تحديث تفاصيل العقارات</h1>
+                <h1 class="text-center mb-1" id="box">تحديث تفاصيل العقارات</h1>
                 <p class="text-center mb-2">إضافة احدث انواع العقارات</p>
 
                 <div class="bs-stepper vertical wizard-modern create-app-wizard">

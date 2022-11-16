@@ -55,34 +55,78 @@
                         الرئيسية</span></a>
             </li>
 
-            <li class="nav-item has-sub">
-                <a class="d-flex align-items-center" href="#">
-                    <i data-feather="box"></i>
-                    <span class="menu-title text-truncate" data-i18n="Extensions">تفاصيل العقارات</span>
-                </a>
+            @auth
+                @if (auth()->user()->user_type == 'admin' || auth()->user()->user_type == 'superadmin')
+                    <li class="nav-item has-sub">
+                        <a class="d-flex align-items-center" href="#">
+                            <i data-feather="box"></i>
+                            <span class="menu-title text-truncate" data-i18n="Extensions">تفاصيل العقارات</span>
+                        </a>
 
-                <ul class="menu-content">
-                    <li>
-                        <a class="d-flex align-items-center" href="{{ route('panel.cities') }}">
-                            <i data-feather='circle'></i>
-                            <span class="menu-item text-truncate" data-i18n="Sweet Alert">المدن</span></a>
+                        <ul class="menu-content">
+                            <li>
+                                <a class="d-flex align-items-center" href="{{ route('panel.cities') }}">
+                                    <i data-feather='circle'></i>
+                                    <span class="menu-item text-truncate" data-i18n="Sweet Alert">المدن</span></a>
+                            </li>
+
+                            <li>
+                                <a class="d-flex align-items-center" href="{{ route('panel.neighborhoods') }}">
+                                    <i data-feather='circle'></i>
+                                    <span class="menu-item text-truncate" data-i18n="Sweet Alert">الأحياء</span>
+                                </a>
+                            </li>
+
+                        </ul>
                     </li>
 
-                    <li>
-                        <a class="d-flex align-items-center" href="{{ route('panel.neighborhoods') }}">
-                            <i data-feather='circle'></i>
-                            <span class="menu-item text-truncate" data-i18n="Sweet Alert">الأحياء</span>
+                    <li class=" nav-item">
+                        <a class="d-flex align-items-center" href="{{ route('panel.users') }}">
+                            <i data-feather="users"></i>
+                            <span class="menu-title text-truncate" data-i18n="Email">المستخدمين
+                            </span>
+                        </a>
+                    </li>
+                    <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('panel.orders') }}">
+                            <i data-feather="shopping-cart"></i>
+                            <span class="menu-title text-truncate" data-i18n="Calendar">الطلبات
+                            </span>
                         </a>
                     </li>
 
-                </ul>
-            </li>
 
-            <li class=" nav-item">
-                <a class="d-flex align-items-center" href="{{ route('panel.users') }}">
-                    <i data-feather="users"></i><span class="menu-title text-truncate"
-                        data-i18n="Email">المستخدمين</span></a>
-            </li>
+                    <li class=" nav-item">
+                        <a class="d-flex align-items-center" href="{{ route('panel.customers') }}">
+                            <i data-feather="users"></i>
+                            <span class="menu-title text-truncate" data-i18n="Kanban">العملاء
+                            </span>
+                        </a>
+                    </li>
+                    <li class=" nav-item">
+                        <a class="d-flex align-items-center" href="{{ route('panel.branchs') }}">
+                            <i data-feather="globe"></i>
+                            <span class="menu-title text-truncate" data-i18n="branchs">الفروع
+                            </span>
+                        </a>
+                    </li>
+                @endif
+            @endauth
+
+
+
+            @auth
+                @if (auth()->user()->user_type == 'marketer')
+                    <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('panel.orders.marketer') }}">
+                            <i data-feather="shopping-cart"></i>
+                            <span class="menu-title text-truncate" data-i18n="Calendar">الطلبات
+                            </span>
+                        </a>
+                    </li>
+                @endif
+            @endauth
+
+
+
             {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('panel.offers') }}"><i
                         data-feather="star"></i><span class="menu-title text-truncate"
                         data-i18n="Chat">العروض</span></a>
@@ -91,22 +135,13 @@
                         data-feather="phone"></i><span class="menu-title text-truncate"
                         data-i18n="Todo">الحجوزات</span></a>
             </li> --}}
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('panel.orders') }}"><i
-                        data-feather="shopping-cart"></i><span class="menu-title text-truncate"
-                        data-i18n="Calendar">الطلبات</span></a>
-            </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('panel.customers') }}"><i
-                        data-feather="users"></i><span class="menu-title text-truncate"
-                        data-i18n="Kanban">العملاء</span></a>
-            </li>
+
+
             {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('panel.selles') }}"><i
                         data-feather="dollar-sign"></i><span class="menu-title text-truncate"
                         data-i18n="Kanban">المبيعات</span></a>
             </li> --}}
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('panel.branchs') }}"><i
-                        data-feather="globe"></i><span class="menu-title text-truncate"
-                        data-i18n="branchs">الفروع</span></a>
-            </li>
+
             {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('panel.mediators') }}">
                     <i data-feather="briefcase"></i>
                     <span class="menu-title text-truncate" data-i18n="mediators">الوسطاء</span>

@@ -49,6 +49,12 @@ class HomeController extends Controller
         return view('admin-panel.orders');
     }
 
+    public function ordersMarketer()
+    {
+        return view('admin-panel.orders-marketer');
+    }
+
+
     public function order(Order $order)
     {
         return view('admin-panel.order-view', compact(['order']));
