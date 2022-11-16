@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +16,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $branches_ids = getBranches()->pluck('id')->toArray();
+        // $branches_ids = getBranches()->pluck('id')->toArray();
 
         #Super Admin
         DB::table('users')->insert([
@@ -26,7 +25,7 @@ class UserSeeder extends Seeder
             'email' => 'superadmin@gmail.com',
             'password' => Hash::make('123456789'),
             'user_status' => 'active',
-            'branches_ids' => json_encode([1, 2, 3]),
+            // 'branches_ids' => json_encode([1, 2, 3]),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
             'user_type' => 'superadmin',
@@ -40,7 +39,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => Hash::make('123456789'),
             'user_status' => 'active',
-            'branches_ids' => json_encode([1, 2, 3]),
+            // 'branches_ids' => json_encode([1, 2, 3]),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
             'user_type' => 'admin',
@@ -53,7 +52,7 @@ class UserSeeder extends Seeder
             'email' => 'office@gmail.com',
             'password' => Hash::make('123456789'),
             'user_status' => 'active',
-            'branches_ids' => json_encode([1, 2, 3]),
+            // 'branches_ids' => json_encode([1, 2, 3]),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
             'user_type' => 'office',
@@ -67,7 +66,7 @@ class UserSeeder extends Seeder
             'email' => 'marketer@gmail.com',
             'password' => Hash::make('123456789'),
             'user_status' => 'active',
-            'branches_ids' => json_encode([1, 2, 3]),
+            // 'branches_ids' => json_encode([1, 2, 3]),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
             'user_type' => 'marketer',
@@ -94,7 +93,7 @@ class UserSeeder extends Seeder
                 'email' => $user_type . $count . '@gmail.com',
                 'password' => Hash::make('123456789'),
                 'user_status' => 'active',
-                'branches_ids' => json_encode([1, 2, 3]),
+                // 'branches_ids' => json_encode([1, 2, 3]),
                 'email_verified_at' => now(),
                 'remember_token' => Str::random(10),
                 'user_type' => $user_type,

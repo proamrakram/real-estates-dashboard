@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -35,6 +36,12 @@ class BranchSeeder extends Seeder
                 'city_id' => random_int(1, 6),
                 'created_at' => now(),
             ]);
+        }
+
+        $users = User::all();
+
+        foreach ($users as $user) {
+            $user->branches()->sync([1, 2, 3]);
         }
     }
 }

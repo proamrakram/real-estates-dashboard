@@ -32,7 +32,7 @@ class User extends Authenticatable
         // 'is_finance',
         // 'is_employee',
         // 'is_monitor',
-        'branches_ids',
+        // 'branches_ids',
         'advertiser_number'
     ];
 
@@ -64,6 +64,11 @@ class User extends Authenticatable
     public function offers()
     {
         return $this->hasMany(Offer::class, 'user_id', 'id');
+    }
+
+    public function branches()
+    {
+        return $this->belongsToMany(Branch::class, 'users_branches', 'user_id', 'branch_id', 'id', 'id');
     }
 
     public function mediators()
@@ -118,7 +123,7 @@ class User extends Authenticatable
             // 'is_finance',
             // 'is_employee',
             // 'is_monitor',
-            'branches_ids',
+            // 'branches_ids',
             'advertiser_number',
         ]);
     }

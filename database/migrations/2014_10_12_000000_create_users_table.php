@@ -24,7 +24,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
 
             #branches ids
-            $table->json('branches_ids')->nullable();
+            // $table->json('branches_ids')->nullable();
             $table->string('advertiser_number')->nullable();
 
             $table->rememberToken();

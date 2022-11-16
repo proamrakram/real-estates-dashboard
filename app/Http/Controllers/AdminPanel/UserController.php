@@ -86,11 +86,16 @@ class UserController extends Controller
                 // 'is_monitor' => $request->is_monitor ? 1 : 2,
                 // 'is_employee' => $request->is_monitor ? 1 : 2,
                 'user_type' => $request->user_type,
-                'branches_ids' => $request->branches_ids ?? [],
+                // 'branches_ids' => $request->branches_ids ?? [],
                 'advertiser_number' => $request->advertiser_number,
                 'user_status' => $request->user_status ? 'active' : 'inactive', #user status
-
             ]);
+
+            foreach ($request->branches_ids ?? [] as $branch_id) {
+                if (!$user->branches->contains($branch_id)) {
+                    $user->branches()->attach($branch_id);
+                }
+            }
 
             Permission::create([
                 'user_id' => $user->id, #user id

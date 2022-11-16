@@ -6,8 +6,13 @@ use Livewire\Component;
 
 class EditCity extends Component
 {
+
+
+
     public function render()
     {
         return view('livewire.edit-city');
     }
+
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,8 +14,13 @@ class Branch extends Model
         'name',
         'code',
         'status',
-        'city_id'
+        'city_id',
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'users_branches', 'branch_id', 'user_id', 'id', 'id');
+    }
 
     public function city()
     {
@@ -39,6 +45,30 @@ class Branch extends Model
         }
     }
 
+    public function scopeFilters(Builder $builder, array $filters = [])
+    {
+        $filters = array_merge([
+            'search' => '',
+            'status' => null,
+        ], $filters);
+
+        $builder->when($filters['search'] != '', function ($query) use ($filters) {
+            $query->where('status', $filters['status'])
+                ->orWhere('name', 'like', '%' . $filters['search'] . '%')
+                ->orWhere('code', 'like', '%' . $filters['search'] . '%');
+        });
+
+        $builder->when($filters['search'] != '' && $filters['status'] != null, function ($query) use ($filters) {
+            $query->where('status', $filters['status'])
+                ->orWhere('name', 'like', '%' . $filters['search'] . '%')
+                ->orWhere('code', 'like', '%' . $filters['search'] . '%');
+        });
+
+        $builder->when($filters['search'] == '' && $filters['status'] != null, function ($query) use ($filters) {
+            $query->where('status', $filters['status']);
+        });
+    }
+
     public function scopeData($query)
     {
         return $query->select([
@@ -46,7 +76,7 @@ class Branch extends Model
             'name',
             'code',
             'status',
-            'city_id'
+            'city_id',
         ]);
     }
 }

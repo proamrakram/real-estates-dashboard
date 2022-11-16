@@ -55,6 +55,19 @@ class BranchService extends Controller
         return redirect()->route('panel.branchs')->with('message',  '👍 تم تحديث الفرع بنجاح');
     }
 
+    public function update($branch, $validatedData)
+    {
+        $branch->update([
+            'name' => $validatedData['branch_name'],
+            'code' => $validatedData['branch_code'],
+            'city_id' => $validatedData['city_id'],
+        ]);
+
+        return true;
+    }
+
+
+
     public function changeBranchStatus($branch_id)
     {
         $branch = Branch::find($branch_id);

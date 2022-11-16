@@ -75,7 +75,7 @@
     @stack('cities-styles')
     @stack('neighborhoods-styles')
     @stack('user-styles')
-
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 
     @livewireStyles()

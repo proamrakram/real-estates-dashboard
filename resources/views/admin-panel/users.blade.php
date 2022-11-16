@@ -116,7 +116,6 @@
                         </div>
                     </div>
 
-
                     <section id="basic-datatable">
                         @livewire('user')
                     </section>
