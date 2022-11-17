@@ -14,14 +14,39 @@ class Customer extends Component
     public $rows_number = 10;
     public $search;
     public $customer_status = null;
+    public $customer_city_id;
+    public $customer_sector;
     public $filters = [];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function getCustomers()
     {
         $this->customer_status == 'all' ? $this->customer_status = null : null;
+        $this->customer_sector == 'all' ? $this->customer_sector = null : null;
+        $this->customer_city_id == 'all' ? $this->customer_city_id = null : null;
 
         $this->filters['search'] = $this->search;
         $this->filters['customer_status'] = $this->customer_status;
+        $this->filters['city_id'] = $this->customer_city_id;
+        $this->filters['employee_type'] = $this->customer_sector;
 
         return ModelsCustomer::data()->filters($this->filters)->paginate($this->rows_number);
     }
@@ -36,6 +61,11 @@ class Customer extends Component
                 $customer->update(['status' => 1]);
             }
         }
+    }
+
+    public function callCustomerModal($customer_id)
+    {
+        return $this->emit('customerModal', $customer_id);
     }
 
     public function render()

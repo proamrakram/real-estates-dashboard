@@ -8,25 +8,15 @@
                 <div class="card-header border-bottom p-1">
                     <div class="head-label"></div>
                     <div class="dt-action-buttons text-end">
-                        <div class="dt-buttons">
+                        {{-- <div class="dt-buttons">
                             <button class="dt-button buttons-collection btn btn-outline-secondary dropdown-toggle me-2"
                                 tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="true"
                                 aria-expanded="false">
                                 <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        class="feather feather-share font-small-4 me-50">
-
-                                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8">
-                                        </path>
-                                        <polyline points="16 6 12 2 8 6"></polyline>
-                                        <line x1="12" y1="2" x2="12" y2="15"></line>
-                                    </svg>
                                     تصدير
                                 </span>
                             </button>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
@@ -159,6 +149,10 @@
 
                                 <td>
                                     <div class="d-inline-flex">
+
+                                        <a href="{{ route('panel.user', $user->id) }}" class="item-view">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
 
                                         <a href="{{ route('panel.edit.user.info', $user->id) }}"
                                             class="item-edit text-primary">

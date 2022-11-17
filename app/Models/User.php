@@ -66,6 +66,16 @@ class User extends Authenticatable
         return $this->hasMany(Offer::class, 'user_id', 'id');
     }
 
+    public function orderEdits()
+    {
+        return $this->hasMany(OrderEditor::class, 'user_id', 'id');
+    }
+
+    public function orderNotes()
+    {
+        return $this->hasMany(Order::class, 'user_id', 'id');
+    }
+
     public function branches()
     {
         return $this->belongsToMany(Branch::class, 'users_branches', 'user_id', 'branch_id', 'id', 'id');
@@ -80,7 +90,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(Customer::class, 'user_id', 'id');
     }
-
 
     public function scopeFilters(Builder $builder, array $filters = [])
     {
@@ -131,6 +140,8 @@ class User extends Authenticatable
             // 'is_monitor',
             // 'branches_ids',
             'advertiser_number',
+            'updated_at',
+            'created_at',
         ]);
     }
 }

@@ -34,6 +34,12 @@ class HomeController extends Controller
         return view('admin-panel.users', compact(['users']));
     }
 
+    public function user(User $user)
+    {
+        return view('admin-panel.user-view', ['user' => $user]);
+    }
+
+
     public function offers()
     {
         return view('admin-panel.offers');

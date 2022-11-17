@@ -137,7 +137,7 @@
                                                     <div class="col-md-6 mb-1">
                                                         <label class="form-label" for="phone">رقم الجوال</label>
                                                         <input type="text" class="form-control"
-                                                            placeholder="رقم الجوال" id="phone" name="phone"
+                                                            placeholder="رقم الجوال" maxlength="10" id="phone" name="phone"
                                                             required />
                                                         @error('phone')
                                                             <small class="text-danger">{{ $message }}</small>

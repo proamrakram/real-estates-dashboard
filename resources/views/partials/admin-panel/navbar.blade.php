@@ -22,7 +22,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item dropdown dropdown-notification me-25">
+                {{-- <li class="nav-item dropdown dropdown-notification me-25">
                     <a class="nav-link" href="#" data-bs-toggle="dropdown">
                         <i class="ficon" data-feather="bell"></i>
                         <span class="badge rounded-pill bg-danger badge-up">4</span>
@@ -113,7 +113,7 @@
                         </li>
 
                     </ul>
-                </li>
+                </li> --}}
 
                 <li class="nav-item dropdown dropdown-user">
 
@@ -122,7 +122,8 @@
                         <div class="user-nav d-sm-flex d-none">
                             <span
                                 class="user-name fw-bolder">{{ auth()->user() ? auth()->user()->name : 'سجل الدخول ' }}</span>
-                            <span
+
+                                <span
                                 class="user-status">{{ auth()->user() ? auth()->user()->user_type : 'اهلا بك' }}</span>
                         </div>
                         <span class="avatar">

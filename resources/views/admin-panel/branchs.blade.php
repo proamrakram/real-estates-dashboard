@@ -51,7 +51,7 @@
                         @livewire('edit-branch')
 
 
-                        {{-- <div class="modal fade" id="addNewBranch" tabindex="-1" aria-labelledby="addNewAddressTitle"
+                        <div class="modal fade" id="addNewBranch" tabindex="-1" aria-labelledby="addNewAddressTitle"
                             aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-lg">
                                 <div class="modal-content">
@@ -102,7 +102,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
 
                     </section>
 
@@ -116,7 +116,7 @@
         @livewireScripts()
 
 
-        {{-- <script>
+    <script>
             $(document).ready(function() {
 
                 // Branch
@@ -178,6 +178,6 @@
             });
         </script>
 
-     --}}
+
     @endpush
 @endsection

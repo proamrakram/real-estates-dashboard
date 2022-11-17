@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Branch;
 use App\Models\Customer;
 use App\Models\Order;
+use App\Models\OrderEditor;
 
 class OrderService extends Controller
 {
@@ -74,12 +75,20 @@ class OrderService extends Controller
         }
 
         $user = auth()->user();
+
+        OrderEditor::create([
+            'order_id' => $order->id,
+            'user_id' =>  $user->id,
+            'action' => 'add',
+        ]);
+
         if ($user) {
+
             if ($user->user_type == 'marketer') {
                 return redirect()->route('panel.orders.marketer')->with('message',  '👍 تم تحديث الطلبات بنجاح',);
             }
         }
-        return redirect()->route('panel.orders')->with('message',  '👍 تم تحديث الطلبات بنجاح',);
+        return redirect()->route('panel.orders')->with('message',  '👍 تم تحديث الطلبات بنجاح');
     }
 
     public function update($order, $data)
@@ -117,5 +126,22 @@ class OrderService extends Controller
                 'assign_to_date' => now(),
             ]);
         }
+
+        $user = auth()->user();
+
+
+        OrderEditor::create([
+            'order_id' => $order->id,
+            'user_id' =>  $user->id,
+            'action' => 'edit',
+        ]);
+
+        if ($user) {
+
+            if ($user->user_type == 'marketer') {
+                return redirect()->route('panel.orders.marketer')->with('message',  '👍 تم تحديث الطلبات بنجاح',);
+            }
+        }
+        return redirect()->route('panel.orders')->with('message',  '👍 تم تحديث الطلبات بنجاح',);
     }
 }

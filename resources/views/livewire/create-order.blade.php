@@ -129,6 +129,7 @@
 
                         <!-- content -->
                         <div class="bs-stepper-content shadow-none" wire:ignore.self>
+
                             <div id="create-app-details" class="content" role="tabpanel"
                                 aria-labelledby="create-app-details-trigger" wire:ignore.self>
                                 <div class="row mb-1">
@@ -222,26 +223,6 @@
                                     </div>
                                 </div>
 
-
-                                {{-- <div class="row mb-1">
-
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label">حالة الطلب</label>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <select class="form-control" wire:model='order_status_id'>
-                                            @foreach (getOrderStatuses() as $order_status)
-                                                <option value="{{ $order_status->id }}">{{ $order_status->name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        @error('order_status_id')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-                                </div> --}}
-
                                 <div class="row mb-1">
                                     <div class="col-12 col-md-9">
                                         <label class="form-label">هل أنت مؤهل للحصول على دعم وزارة الاسكان
@@ -260,7 +241,7 @@
                                 </div>
 
                                 <div class="d-flex justify-content-between mt-2">
-                                    <button class="btn btn-outline-secondary btn-prev" disabled>
+                                    <button class="btn btn-outline-secondary btn-prev">
                                         <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                         <span class="align-middle d-sm-inline-block d-none">السابق</span>
                                     </button>
@@ -306,7 +287,7 @@
                                 <div class="col-12 mb-1">
                                     <label class="form-label">الفرع</label>
                                     <select wire:model='branch_id' class="select2 form-select">
-                                        @foreach (getBranches() as $branch)
+                                        @foreach (getBranchesUser() as $branch)
                                             <option value="{{ $branch->id }}">{{ $branch->name }}</option>
                                         @endforeach
                                     </select>
@@ -385,7 +366,7 @@
                                 </div>
 
                                 <div class="d-flex justify-content-between mt-2">
-                                    <button class="btn btn-outline-secondary btn-prev" disabled>
+                                    <button class="btn btn-primary btn-prev">
                                         <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                         <span class="align-middle d-sm-inline-block d-none">السابق</span>
                                     </button>
@@ -408,19 +389,27 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-12 mb-1">
+                                @auth
+                                    @if (auth()->user()->user_type == 'superadmin' || auth()->user()->user_type == 'admin')
+                                        <div class="col-12 mb-1">
+                                            <input type="checkbox" wire:model='is_assignable'>
+                                            <label class="form-label"> توجيه الطلب إلى :</label>
+                                            @if ($is_assignable)
+                                                <select class="select2 form-select" wire:model='assign_to'>
+                                                    @foreach (getUserMarketers() as $user_marketer)
+                                                        <option value="{{ $user_marketer->id }}">
+                                                            {{ $user_marketer->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('assign_to')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                            @endif
+                                        </div>
+                                    @endif
+                                @endauth
 
-                                    <label class="form-label"> توجيه الطلب إلى :</label>
-                                    <select class="select2 form-select" wire:model='assign_to'>
-                                        @foreach (getUserMarketers() as $user_marketer)
-                                            <option value="{{ $user_marketer->id }}">{{ $user_marketer->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('assign_to')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div>
 
                                 <div class="d-flex justify-content-between mt-2">
                                     <button class="btn btn-primary btn-prev">

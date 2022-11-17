@@ -36,6 +36,7 @@ Route::controller(AdminPanelHomeController::class)->prefix('panel')->middleware(
 
     Route::as('panel.')->middleware('admin')->group(function () {
         Route::get('/users', 'users')->name('users');
+        Route::get('/user/{user}', 'user')->name('user');
         Route::get('/offers', 'offers')->name('offers');
         Route::get('/orders', 'orders')->name('orders');
         Route::get('/customers', 'customers')->name('customers');

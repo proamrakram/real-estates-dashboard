@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('order_notes', function (Blueprint $table) {
+        Schema::create('order_editors', function (Blueprint $table) {
             $table->id();
-            $table->text('note');
-            $table->integer('status');
             $table->foreignId('order_id')->constrained('orders')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->enum('action', ['edit', 'cancel', 'add']);
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_notes');
+        Schema::dropIfExists('order_editors');
     }
 };

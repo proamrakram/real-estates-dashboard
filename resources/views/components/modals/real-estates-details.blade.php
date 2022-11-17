@@ -26,7 +26,7 @@
                             </button>
                         </div>
 
-                        <div class="step" data-target="#create-property-statuses-types" role="tab"
+                        {{-- <div class="step" data-target="#create-property-statuses-types" role="tab"
                             id="create-property-statuses-types-trigger">
                             <button type="button" class="step-trigger py-75">
                                 <span class="bs-stepper-box">
@@ -37,7 +37,7 @@
                                     <span class="bs-stepper-subtitle">إضافة نوع عقار او حالة عقار جديد</span>
                                 </span>
                             </button>
-                        </div>
+                        </div> --}}
 
                         {{-- <div class="step" data-target="#create-offer-price-types" role="tab"
                             id="create-offer-price-types-trigger">
@@ -132,7 +132,7 @@
 
                                 <div class="d-flex justify-content-between mt-2">
                                     <button type="reset" id="city-submit"
-                                        class="btn btn-success btn-sm me-1 waves-effect waves-float waves-light">تحديث</button>
+                                        class="btn btn-success btn-sm me-1 waves-effect waves-float waves-light">إضافة</button>
                                 </div>
                             </form>
 
@@ -154,7 +154,7 @@
 
                                 <div class="d-flex justify-content-between mt-2">
                                     <button type="reset" id="neighborhood-submit"
-                                        class="btn btn-success btn-sm me-1 waves-effect waves-float waves-light">تحديث</button>
+                                        class="btn btn-success btn-sm me-1 waves-effect waves-float waves-light">إضافة</button>
                                 </div>
                             </form>
 
@@ -171,7 +171,7 @@
                         </div>
 
                         {{-- Property Statues Types --}}
-                        <div id="create-property-statuses-types" class="content" role="tabpanel"
+                        {{-- <div id="create-property-statuses-types" class="content" role="tabpanel"
                             aria-labelledby="create-property-statuses-types-trigger">
 
                             <h5>إضافة نوع عقار جديد</h5>
@@ -229,12 +229,9 @@
                                     <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                     <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                 </button>
-                                {{-- <button class="btn btn-primary btn-next">
-                                    <span class="align-middle d-sm-inline-block d-none">Next</span>
-                                    <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
-                                </button> --}}
+
                             </div>
-                        </div>
+                        </div> --}}
 
                         {{-- Offer Price Types --}}
                         {{-- <div id="create-offer-price-types" class="content" role="tabpanel"

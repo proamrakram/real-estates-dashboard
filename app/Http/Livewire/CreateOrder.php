@@ -28,10 +28,10 @@ class CreateOrder extends Component
     public $avaliable_amount = '';
 
     #Form Three
-    public $assign_to = 1;
+    public $assign_to = null;
     public $notes = '';
 
-
+    public $is_assignable = false;
 
     public $customer_id;
     public $user_id;

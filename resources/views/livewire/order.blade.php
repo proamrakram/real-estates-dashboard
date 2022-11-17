@@ -35,14 +35,14 @@
                                     <div class="card-header border-bottom p-1">
                                         <div class="head-label"></div>
                                         <div class="dt-action-buttons text-end">
-                                            <div class="dt-buttons">
+                                            {{-- <div class="dt-buttons">
                                                 <button
                                                     class="dt-button buttons-collection btn btn-outline-secondary dropdown-toggle me-2"
                                                     tabindex="0" aria-controls="DataTables_Table_0" type="button"
                                                     aria-haspopup="true" aria-expanded="false">
                                                     <span><i data-feather='share'></i>تصدير </span>
                                                 </button>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                     {{-- Export Section --}}
@@ -54,7 +54,7 @@
                                             <div class="col-sm-12 col-md-6">
                                                 <div class="dataTables_length">
                                                     <label>أظهر
-                                                        <select wire:model='oo_rows_number' class="form-select">
+                                                        <select wire:model='rows_number' class="form-select">
                                                             <option value="10">10</option>
                                                             <option value="25">25</option>
                                                             <option value="50">50</option>
@@ -69,7 +69,7 @@
                                         <div class="col-sm-12 col-md-9">
                                             <div class="dataTables_filter">
                                                 <label>حالة الطلب:
-                                                    <select wire:model='oo_order_status_id'>
+                                                    <select wire:model='order_status_id'>
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getOrderStatuses() as $order_status)
                                                             <option value="{{ $order_status->id }}">
@@ -79,7 +79,7 @@
                                                 </label>
 
                                                 <label>نوع العقار:
-                                                    <select wire:model='oo_property_type_id'>
+                                                    <select wire:model='property_type_id'>
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getPropertyTypes() as $property_type)
                                                             <option value="{{ $property_type->id }}">
@@ -88,7 +88,7 @@
                                                     </select>
                                                 </label>
                                                 <label>الفرع:
-                                                    <select wire:model='oo_branch_type_id'>
+                                                    <select wire:model='branch_type_id'>
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getBranches() as $branch)
                                                             <option value="{{ $branch->id }}">{{ $branch->name }}
@@ -98,7 +98,7 @@
                                                 </label>
 
                                                 <label>المنطقة:
-                                                    <select wire:model='oo_city_id'>
+                                                    <select wire:model='city_id'>
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getCities() as $city)
                                                             <option value="{{ $city->id }}">{{ $city->name }}
@@ -107,7 +107,7 @@
                                                     </select>
                                                 </label>
 
-                                                <label>ابحث:<input type="search" wire:model='oo_search'
+                                                <label>ابحث:<input type="search" wire:model='search'
                                                         placeholder="رقم الجوال/ رقم الطلب"></label>
                                             </div>
 
@@ -118,20 +118,20 @@
                                     <table class="table dataTable no-footer text-center" role="grid">
                                         <thead>
                                             <tr role="row">
-                                                <th class="sorting {{ $oo_style_sort_direction }}"
-                                                    wire:click="oo_sortBy('id')" tabindex="0"
+                                                <th class="sorting {{ $style_sort_direction }}"
+                                                    wire:click="sortBy('id')" tabindex="0"
                                                     rowspan="1"colspan="1">كود الطلب </th>
                                                 <th class="sorting" tabindex="0" rowspan="1" colspan="1">
                                                     التاريخ
                                                 </th>
-                                                <th class="sorting {{ $oo_style_sort_direction }}"
-                                                    wire:click="oo_sortBy('property_type_id')" tabindex="0"
+                                                <th class="sorting {{ $style_sort_direction }}"
+                                                    wire:click="sortBy('property_type_id')" tabindex="0"
                                                     rowspan="1" colspan="1">نوع العقار</th>
-                                                <th class="sorting {{ $oo_style_sort_direction }}"
-                                                    wire:click="oo_sortBy('city_id')" tabindex="0" rowspan="1"
+                                                <th class="sorting {{ $style_sort_direction }}"
+                                                    wire:click="sortBy('city_id')" tabindex="0" rowspan="1"
                                                     colspan="1">المنطقة </th>
-                                                <th class="sorting {{ $oo_style_sort_direction }}"
-                                                    wire:click="oo_sortBy('customer_id')" tabindex="0" rowspan="1"
+                                                <th class="sorting {{ $style_sort_direction }}"
+                                                    wire:click="sortBy('customer_id')" tabindex="0" rowspan="1"
                                                     colspan="1">اسم العميل</th>
                                                 <th class="sorting" tabindex="0" rowspan="1" colspan="1">
                                                     الميزانية</th>
@@ -143,8 +143,8 @@
                                                     مسند ل
                                                 </th>
 
-                                                <th class="sorting {{ $oo_style_sort_direction }}"
-                                                    wire:click="oo_sortBy('branch_id')" tabindex="0" rowspan="1"
+                                                <th class="sorting {{ $style_sort_direction }}"
+                                                    wire:click="sortBy('branch_id')" tabindex="0" rowspan="1"
                                                     colspan="1">الفرع
                                                 </th>
                                                 <th class="sorting" tabindex="0" rowspan="1" colspan="1">
@@ -155,92 +155,92 @@
                                         <tbody>
 
 
-                                            @foreach ($main_orders as $main_order)
+                                            @foreach ($orders as $order)
                                                 <tr class="odd">
 
-                                                    <td class="sorting_1">{{ $main_order->order_code }}</td>
-                                                    <td> {{ $main_order->created_at->format('Y-m-d') }} </td>
+                                                    <td class="sorting_1">{{ $order->order_code }}</td>
+                                                    <td> {{ $order->created_at->format('Y-m-d') }} </td>
 
                                                     <td>
-                                                        @if ($main_order->property_type_id == 1)
+                                                        @if ($order->property_type_id == 1)
                                                             <span class="badge bg-primary">
-                                                                {{ getPropertyTypeName($main_order->property_type_id) }}
+                                                                {{ getPropertyTypeName($order->property_type_id) }}
                                                             </span>
                                                         @endif
 
-                                                        @if ($main_order->property_type_id == 2)
+                                                        @if ($order->property_type_id == 2)
                                                             <span class="badge bg-warning">
-                                                                {{ getPropertyTypeName($main_order->property_type_id) }}
+                                                                {{ getPropertyTypeName($order->property_type_id) }}
                                                             </span>
                                                         @endif
 
-                                                        @if ($main_order->property_type_id == 3)
+                                                        @if ($order->property_type_id == 3)
                                                             <span class="badge bg-danger">
-                                                                {{ getPropertyTypeName($main_order->property_type_id) }}
+                                                                {{ getPropertyTypeName($order->property_type_id) }}
                                                             </span>
                                                         @endif
 
 
-                                                        @if ($main_order->property_type_id == 4)
+                                                        @if ($order->property_type_id == 4)
                                                             <span class="badge bg-dark">
-                                                                {{ getPropertyTypeName($main_order->property_type_id) }}
+                                                                {{ getPropertyTypeName($order->property_type_id) }}
                                                             </span>
                                                         @endif
 
-                                                        @if ($main_order->property_type_id == 5)
+                                                        @if ($order->property_type_id == 5)
                                                             <span class="badge bg-success">
-                                                                {{ getPropertyTypeName($main_order->property_type_id) }}
+                                                                {{ getPropertyTypeName($order->property_type_id) }}
                                                             </span>
                                                         @endif
                                                     </td>
 
                                                     <td>
                                                         <span class="badge bg-dark">
-                                                            {{ getCityName($main_order->city_id) }}
+                                                            {{ getCityName($order->city_id) }}
                                                         </span>
                                                     </td>
 
-                                                    <td>{{ getCustomerName($main_order->customer_id) }}</td>
-                                                    <td>{{ $main_order->price_from }} - {{ $main_order->price_to }}
+                                                    <td>{{ getCustomerName($order->customer_id) }}</td>
+                                                    <td>{{ $order->price_from }} - {{ $order->price_to }}
                                                     </td>
 
 
                                                     <td>
-                                                        @if ($main_order->order_status_id == 1)
+                                                        @if ($order->order_status_id == 1)
                                                             <span class="badge bg-warning">
-                                                                {{ getOrderStatusName($main_order->order_status_id) }}
+                                                                {{ getOrderStatusName($order->order_status_id) }}
                                                             </span>
                                                         @endif
 
-                                                        @if ($main_order->order_status_id == 2)
+                                                        @if ($order->order_status_id == 2)
                                                             <span class="badge bg-success">
-                                                                {{ getOrderStatusName($main_order->order_status_id) }}
+                                                                {{ getOrderStatusName($order->order_status_id) }}
                                                             </span>
                                                         @endif
 
-                                                        @if ($main_order->order_status_id == 3)
+                                                        @if ($order->order_status_id == 3)
                                                             <span class="badge bg-danger">
-                                                                {{ getOrderStatusName($main_order->order_status_id) }}
+                                                                {{ getOrderStatusName($order->order_status_id) }}
                                                             </span>
                                                         @endif
 
 
-                                                        @if ($main_order->order_status_id == 4)
+                                                        @if ($order->order_status_id == 4)
                                                             <span class="badge bg-dark">
-                                                                {{ getOrderStatusName($main_order->order_status_id) }}
+                                                                {{ getOrderStatusName($order->order_status_id) }}
                                                             </span>
                                                         @endif
 
-                                                        @if ($main_order->order_status_id == 5)
+                                                        @if ($order->order_status_id == 5)
                                                             <span class="badge bg-warning">
-                                                                {{ getOrderStatusName($main_order->order_status_id) }}
+                                                                {{ getOrderStatusName($order->order_status_id) }}
                                                             </span>
                                                         @endif
                                                     </td>
 
-                                                    @if (getUserName($main_order->assign_to))
+                                                    @if (getUserName($order->assign_to))
                                                         <td>
-                                                            الطلب مسند ل {{ getUserName($main_order->assign_to) }}
+                                                            الطلب مسند ل {{ getUserName($order->assign_to) }}
                                                         </td>
                                                     @else
                                                         <td>
@@ -252,14 +252,14 @@
 
                                                     <td>
                                                         <span class="badge bg-primary">
-                                                            {{ getBranchName($main_order->branch_id) }}
+                                                            {{ getBranchName($order->branch_id) }}
                                                         </span>
                                                     </td>
 
                                                     <td>
                                                         <div class="d-inline-flex">
 
-                                                            <a href="{{ route('panel.order', $main_order->id) }}"
+                                                            <a href="{{ route('panel.order', $order->id) }}"
                                                                 class="item-view">
                                                                 <i class="fas fa-eye"></i>
                                                             </a>
@@ -267,15 +267,15 @@
                                                             <a href="javascript:;" class="item-edit"
                                                                 data-bs-target="#createAppModal"
                                                                 data-bs-toggle="modal"
-                                                                wire:click='callOrderModal({{ $main_order->id }})'>
+                                                                wire:click='callOrderModal({{ $order->id }})'>
                                                                 <i class="fas fa-edit"></i>
                                                             </a>
 
-                                                            {{-- <button
-                                                                class="btn item-edit waves-effect waves-float waves-light"
+                                                            <a class="btn item-edit"
+                                                                wire:click='closeOrder({{ $order->id }})'
                                                                 style="padding:0;color:#EA5455 ">
                                                                 <i class="fas fa-trash-alt"></i>
-                                                            </button> --}}
+                                                            </a>
 
                                                         </div>
                                                     </td>
@@ -288,7 +288,7 @@
                                     <div class="d-flex justify-content-between mx-0 row">
                                         <div class="col-sm-12 col-md-6">
                                             <div class="dataTables_info" role="status" aria-live="polite"> إظهار
-                                                {{ $main_orders->perPage() }} من اصل {{ $main_orders->total() }}
+                                                {{ $orders->perPage() }} من اصل {{ $orders->total() }}
                                             </div>
                                         </div>
 
@@ -296,7 +296,7 @@
                                             <div class="dataTables_paginate paging_simple_numbers"
                                                 id="DataTables_Table_0_paginate">
                                                 <ul class="pagination">
-                                                    {{ $main_orders->withQueryString()->onEachSide(0)->links() }}
+                                                    {{ $orders->withQueryString()->onEachSide(0)->links() }}
                                                 </ul>
                                             </div>
                                         </div>

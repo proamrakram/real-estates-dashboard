@@ -24,11 +24,11 @@ class OrderSeeder extends Seeder
         $employer_types = [1 => 'public', 2 => 'private'];
 
 
-        while ($count < 100) {
+        while ($count < 10) {
 
             $count = $count + 1;
             $customer = Customer::find(random_int(1, 100));
-            $user = User::find(random_int(1, 100));
+            $user = User::find(random_int(1, 10));
             $branch_id = random_int(1, 10);
             $branch = Branch::find($branch_id);
 

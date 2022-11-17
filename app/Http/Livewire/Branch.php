@@ -15,7 +15,6 @@ class Branch extends Component
     public $search = '';
     public $status = null;
     public $filters = [];
-    public $message = null;
 
 
 
@@ -49,10 +48,8 @@ class Branch extends Component
     {
         $branch = ModelsBranch::find($branch_id);
         if ($branch->status == 1) {
-            $this->message = '👍 تم إلغاء تنشيط الفرع بنجاح';
             $branch->update(['status' => 2]);
         } else {
-            $this->message = '👍 تم تنشيط الفرع بنجاح';
             $branch->update(['status' => 1]);
         }
     }

@@ -78,6 +78,16 @@ class Order extends Model
         return $this->belongsTo(PropertyType::class, 'property_type_id', 'id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function orderEdits()
+    {
+        return $this->hasMany(OrderEditor::class, 'order_id', 'id');
+    }
+
     public function orderNotes()
     {
         return $this->hasMany(OrderNote::class, 'order_id', 'id');

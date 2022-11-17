@@ -82,7 +82,7 @@ class UserSeeder extends Seeder
 
         $count = 0;
 
-        while ($count < 100) {
+        while ($count < 10) {
             $user_type = $users_types[random_int(1, 3)];
 
             $count = $count + 1;

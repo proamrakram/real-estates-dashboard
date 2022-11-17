@@ -163,7 +163,7 @@
                                                                             id="user-type-id" name="user_type">
                                                                             <option value="admin">مدير</option>
                                                                             <option value="office">مكتب</option>
-                                                                            <option value="finance">مسوق</option>
+                                                                            <option value="marketer">مسوق</option>
                                                                         </select>
                                                                     </div>
 
@@ -171,7 +171,7 @@
                                                                         id="adv-div">
                                                                         <input type="number" class="form-control"
                                                                             placeholder="رقم المعلن" id="advertiserNumber"
-                                                                            name="advertiser_number" required>
+                                                                            name="advertiser_number">
                                                                         @error('advertiser_number')
                                                                             <small
                                                                                 class="text-danger">{{ $message }}</small>
@@ -348,7 +348,7 @@
                                                                         </div>
                                                                     </td>
                                                                 </tr>
- --}}
+
 
                                                                 <tr>
                                                                     <td class="text-nowrap fw-bolder">يستطيع اضافة حجز
@@ -380,6 +380,8 @@
                                                                     </td>
                                                                 </tr>
 
+--}}
+
 
                                                                 <tr>
                                                                     <td class="text-nowrap fw-bolder">الحالة</td>
@@ -393,6 +395,28 @@
                                                                             </div>
                                                                         </div>
                                                                     </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
                                                                 </tr>
 
 
@@ -410,7 +434,6 @@
                                                     </button>
 
                                                     <button class="btn btn-success btn-submit" type="submit">
-                                                        <!-- id="type-success" -->
                                                         <i data-feather="check" class="align-middle me-sm-25 me-0"></i>
                                                         <span class="align-middle d-sm-inline-block d-none">حفظ</span>
                                                     </button>

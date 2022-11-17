@@ -40,7 +40,7 @@ class UserController extends Controller
             // 'is_finance' => ['string', 'in:on,off'],
             // 'is_monitor' => ['string', 'in:on,off'],
             // 'is_employee' => ['string', 'in:on,off'],
-            'user_type' => ['required', 'in:admin,office,finance'],
+            'user_type' => ['required', 'in:admin,office,marketer'],
 
             'can_add_offers' => ['string', 'in:on,off'],
             'can_edit_offers' => ['string', 'in:on,off'],
@@ -163,7 +163,7 @@ class UserController extends Controller
             // 'is_finance' => ['string', 'in:on,off'],
             // 'is_monitor' => ['string', 'in:on,off'],
             // 'is_employee' => ['string', 'in:on,off'],
-            'user_type' => ['required', 'in:admin,office,finance'],
+            'user_type' => ['required', 'in:admin,office,marketer'],
 
             'can_add_offers' => ['string', 'in:on,off'],
             'can_edit_offers' => ['string', 'in:on,off'],
@@ -202,11 +202,11 @@ class UserController extends Controller
 
         if ($user) {
             $user->update([
-                'is_admin' => $request->is_admin ? 1 : 2,
-                'is_office' => $request->is_office ? 1 : 2,
-                'is_finance' => $request->is_finance  ? 1 : 2,
-                'is_monitor' => $request->is_monitor  ? 1 : 2,
-                'is_employee' => $request->is_employee  ? 1 : 2,
+                // 'is_admin' => $request->is_admin ? 1 : 2,
+                // 'is_office' => $request->is_office ? 1 : 2,
+                // 'is_finance' => $request->is_finance  ? 1 : 2,
+                // 'is_monitor' => $request->is_monitor  ? 1 : 2,
+                // 'is_employee' => $request->is_employee  ? 1 : 2,
                 'user_status' => $request->user_status  ? 'active' : 'inactive',
                 'branches_ids' => $request->branches_ids ?? [],
                 'user_type' => $request->user_type,
@@ -215,6 +215,13 @@ class UserController extends Controller
             ]);
 
             $permissions = $user->permissions;
+
+
+            foreach ($request->branches_ids ?? [] as $branch_id) {
+                if (!$user->branches->contains($branch_id)) {
+                    $user->branches()->attach($branch_id);
+                }
+            }
 
             $permissions->update([
                 #Offers

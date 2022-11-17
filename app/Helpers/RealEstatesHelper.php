@@ -18,6 +18,7 @@ use App\Models\PropertyType;
 use App\Models\PurchaseMethod;
 use App\Models\Street;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 if (!function_exists('getCities')) {
     function getCities()
@@ -40,6 +41,52 @@ if (!function_exists('getUsersCount')) {
         return User::all()->count();
     }
 }
+
+
+if (!function_exists('getUsersOfficersCount')) {
+    function getUsersOfficersCount()
+    {
+        return User::where('user_type', 'office')->count();
+    }
+}
+
+
+if (!function_exists('getUsersAdminsCount')) {
+    function getUsersAdminsCount()
+    {
+        return User::where('user_type', 'admin')->count();
+    }
+}
+
+if (!function_exists('getUsersMarketersCount')) {
+    function getUsersMarketersCount()
+    {
+        return User::where('user_type', 'marketer')->count();
+    }
+}
+
+
+if (!function_exists('getOpenOrdersCount')) {
+    function getOpenOrdersCount()
+    {
+        return Order::whereIn('order_status_id', [1, 4])->count();
+    }
+}
+
+if (!function_exists('getClosedOrdersCount')) {
+    function getClosedOrdersCount()
+    {
+        return Order::whereIn('order_status_id', [3, 5])->count();
+    }
+}
+
+if (!function_exists('getCompleteOrdersCount')) {
+    function getCompleteOrdersCount()
+    {
+        return Order::where('order_status_id', 2)->count();
+    }
+}
+
 
 if (!function_exists('getOrderStatuses')) {
     function getOrderStatuses()
@@ -65,7 +112,13 @@ if (!function_exists('getBranchesCount')) {
 if (!function_exists('getOrdersCount')) {
     function getOrdersCount()
     {
-        return Order::count();
+        $user = auth()->user();
+
+        if ($user->user_type == 'superadmin' || $user->user_type == 'admin') {
+            return Order::count();
+        }
+
+        return Order::where('user_id', $user->id)->count();
     }
 }
 
@@ -274,6 +327,25 @@ if (!function_exists('getUserName')) {
             return $user->name;
         } else {
             return null;
+        }
+    }
+}
+
+if (!function_exists('getUsersMarketersBranch')) {
+    function getUsersMarketersBranch($branch_id)
+    {
+        return DB::table('users_branches')->where('branch_id', $branch_id)->count();
+    }
+}
+
+
+
+if (!function_exists('getBranchesUser')) {
+    function getBranchesUser()
+    {
+        $user = auth()->user();
+        if ($user) {
+            return $user->branches;
         }
     }
 }

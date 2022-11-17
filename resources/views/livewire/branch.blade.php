@@ -2,10 +2,13 @@
     <div class="col-12">
         <div class="card">
             <div class="dataTables_wrapper dt-bootstrap5 no-footer">
+
+
+
                 <div class="card-header border-bottom p-1">
                     <div class="head-label"></div>
                     <div class="dt-action-buttons text-end">
-                        <div class="dt-buttons">
+                        {{-- <div class="dt-buttons">
                             <button class="dt-button buttons-collection btn btn-outline-secondary dropdown-toggle me-2"
                                 tabindex="0" type="button" aria-haspopup="true" aria-expanded="false">
                                 <span>
@@ -13,7 +16,7 @@
                                     تصدير
                                 </span>
                             </button>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
@@ -82,7 +85,7 @@
                                     @endif
                                 </td>
 
-                                <td>33  </td>
+                                <td>{{ getUsersMarketersBranch($branch->id) }} </td>
                                 <td>
 
                                     <a class="item-edit active" data-bs-target="#editBranch" data-bs-toggle="modal"
@@ -122,22 +125,4 @@
             </div>
         </div>
     </div>
-
-
-    @push('livewire-alert-scripts')
-        <script>
-            $(document).ready(function() {
-                $("#active-alert").button().click(function() {
-                    alert("button");
-                    toastr.success("{{ $message }}", 'تمت المهمة!', {
-                        closeButton: true,
-                        tapToDismiss: false,
-                        progressBar: true,
-                        rtl: true
-                    });
-                });
-            });
-        </script>
-    @endpush
-
 </div>

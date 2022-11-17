@@ -169,7 +169,7 @@
                                                                             <option value="office"
                                                                                 @if ($user->user_type == 'office') selected @endif>
                                                                                 مكتب</option>
-                                                                            <option value="finance"
+                                                                            <option value="marketer"
                                                                                 @if ($user->user_type == 'marketer') selected @endif>
                                                                                 مسوق</option>
                                                                         </select>
@@ -186,7 +186,7 @@
                                                                         @enderror
                                                                     </div>
                                                                 </tr>
-{{--
+                                                                {{--
                                                                 <tr>
                                                                     <td class="text-nowrap fw-bolder">العقارات</td>
                                                                     <td>
@@ -487,7 +487,27 @@
                                                                         </div>
                                                                     </td>
                                                                 </tr>
-
+                                                                <tr>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>

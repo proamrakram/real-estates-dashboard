@@ -8,25 +8,16 @@
                 <div class="card-header border-bottom p-1">
                     <div class="head-label"></div>
                     <div class="dt-action-buttons text-end">
-                        <div class="dt-buttons">
+                        {{-- <div class="dt-buttons">
                             <button class="dt-button buttons-collection btn btn-outline-secondary dropdown-toggle me-2"
                                 tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="true"
                                 aria-expanded="false">
                                 <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        class="feather feather-share font-small-4 me-50">
 
-                                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8">
-                                        </path>
-                                        <polyline points="16 6 12 2 8 6"></polyline>
-                                        <line x1="12" y1="2" x2="12" y2="15"></line>
-                                    </svg>
                                     تصدير
                                 </span>
                             </button>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
@@ -51,6 +42,25 @@
 
                     <div class="col-sm-12 col-md-9">
                         <div class="dataTables_filter">
+
+
+
+                            <label>المناطق:
+                                <select wire:model='customer_city_id'>
+                                    <option value="all" selected>الكل</option>
+                                    @foreach (getCities() as $city)
+                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                    @endforeach
+                                </select>
+                            </label>
+
+                            <label>القطاع:
+                                <select wire:model='customer_sector'>
+                                    <option value="all" selected>الكل</option>
+                                    <option value="public" selected>عام</option>
+                                    <option value="private" selected>خاص</option>
+                                </select>
+                            </label>
 
                             <label>حالة العميل:
                                 <select wire:model='customer_status'>
@@ -106,7 +116,7 @@
                                     @if ($customer->employee_type == 'public')
                                         <span class="badge bg-success">عام</span>
                                     @else
-                                        <span class="badge bg-dark">عام</span>
+                                        <span class="badge bg-dark">خاص</span>
                                     @endif
                                 </td>
 
@@ -121,10 +131,12 @@
                                 <td>
                                     <div class="d-inline-flex">
 
-                                        <a href="{{ route('panel.edit.user.info', $customer->id) }}"
-                                            class="item-edit text-primary">
+                                        <a class="item-edit" data-bs-target="#editCustomerForms"
+                                            wire:click='callCustomerModal({{ $customer->id }})'
+                                            data-bs-toggle="modal">
                                             <i class="fas fa-edit"></i>
                                         </a>
+
 
                                         <a class="btn item-edit" wire:click='changeCustomerStatus({{ $customer->id }})'
                                             style="padding:0;color:#EA5455 ">
