@@ -30,7 +30,7 @@
         },
 
         "files": [
-            "app/Helpers/branch.php",
+            "app/Helpers/Branch.php",
             "app/Helpers/RealEstatesHelper.php"
         ]
     },
