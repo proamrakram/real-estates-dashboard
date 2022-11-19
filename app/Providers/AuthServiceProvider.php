@@ -8,7 +8,8 @@ use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
+
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -29,26 +30,27 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+        if (!Schema::hasTable('permissions')) {
+            $columns = DB::getSchemaBuilder()->getColumnListing('permissions');
+            $permissions = 0;
+            foreach ($columns as $column) {
 
-        $columns = DB::getSchemaBuilder()->getColumnListing('permissions');
-        $permissions = 0;
-        foreach ($columns as $column) {
+                Gate::define($column, function (User $user) use ($column, $permissions) {
 
-            Gate::define($column, function (User $user) use ($column, $permissions) {
-
-                if (!$permissions) {
-                    $permissions =  $user->permissions->getPermissions()->first()->toArray();
-                }
-
-                foreach ($permissions as $name => $value) {
-                    if ($name == $column) {
-                        if ($value != 2) {
-                            return true;
-                        }
-                        return false;
+                    if (!$permissions) {
+                        $permissions =  $user->permissions->getPermissions()->first()->toArray();
                     }
-                }
-            });
+
+                    foreach ($permissions as $name => $value) {
+                        if ($name == $column) {
+                            if ($value != 2) {
+                                return true;
+                            }
+                            return false;
+                        }
+                    }
+                });
+            }
         }
     }
 }
