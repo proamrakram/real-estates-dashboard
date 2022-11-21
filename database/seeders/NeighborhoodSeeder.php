@@ -261,11 +261,11 @@ class NeighborhoodSeeder extends Seeder
         ];
 
 
-        foreach ($neighborhoods as $city_id => $nehood) {
+        foreach ($neighborhoods as $nehood => $city_id) {
 
             DB::table('neighborhoods')->insert([
-                'city_id' => $city_id,
-                'name' => $nehood,
+                'city_id' => $nehood,
+                'name' => $city_id,
                 'status' => 1,
                 'created_at' => now(),
             ]);
