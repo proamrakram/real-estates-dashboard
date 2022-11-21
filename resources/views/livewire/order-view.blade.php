@@ -18,13 +18,17 @@
                                             <a href="#">{{ $order->order_code }}</a>
                                         </h3>
                                         {{-- <button type="button" class="btn btn-primary waves-effect waves-float waves-light">View Sales</button> --}}
-                                        <a class="btn bg-light-success waves-effect waves-float waves-light"
-                                            data-bs-target="#connectToOffer" data-bs-toggle="modal" wire:ignore.self>
-                                            <span wire:ignore>
-                                                <i data-feather='plus-square'></i>
-                                                ربط بالعرض
-                                            </span>
-                                        </a>
+
+                                        @if (!($order->order_status_id == 3))
+                                            <a class="btn bg-light-success waves-effect waves-float waves-light"
+                                                data-bs-target="#connectToOffer" data-bs-toggle="modal"
+                                                wire:ignore.self>
+                                                <span wire:ignore>
+                                                    <i data-feather='plus-square'></i>
+                                                    ربط بالعرض
+                                                </span>
+                                            </a>
+                                        @endif
                                         <img src="{{ asset('app-assets/images/illustration/badge.svg') }}"
                                             class="congratulation-medal" alt="Medal Pic">
                                     </div>
@@ -89,18 +93,19 @@
                                         </div>
 
                                     </div>
+                                    @if (!($order->order_status_id == 3))
+                                        <div class="col-md-12" wire:ignore.self>
+                                            <div class="mb-1 text-center" wire:ignore.self>
+                                                <a href="javascript:;" class="btn bg-light-warning"
+                                                    data-bs-target="#addNote" data-bs-toggle="modal">
 
-                                    <div class="col-md-12" wire:ignore.self>
-                                        <div class="mb-1 text-center" wire:ignore.self>
-                                            <a href="javascript:;" class="btn bg-light-warning"
-                                                data-bs-target="#addNote" data-bs-toggle="modal">
-
-                                                <span wire:ignore>
-                                                    <i data-feather='plus-square'></i> إضافة ملاحظة
-                                                </span>
-                                            </a>
+                                                    <span wire:ignore>
+                                                        <i data-feather='plus-square'></i> إضافة ملاحظة
+                                                    </span>
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endif
                                 </div>
                             </div>
                             <!--/ Statistics Card -->
@@ -320,7 +325,6 @@
                                                                 </div>
                                                             </li>
                                                         @endif
-
                                                     @endforeach
                                                 </ul>
                                             </div>
