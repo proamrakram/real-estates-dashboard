@@ -141,9 +141,11 @@
                                                 <th class="sorting {{ $oo_style_sort_direction }}"
                                                     wire:click="oo_sortBy('branch_id')" tabindex="0" rowspan="1"
                                                     colspan="1">الفرع</th>
-                                                <th class="sorting" tabindex="0" rowspan="1" colspan="1">
-                                                    تحكم
-                                                </th>
+                                                @if (auth()->user()->permissions->can_show_orders == 1 || auth()->user()->permissions->can_edit_orders == 1)
+                                                    <th class="sorting" tabindex="0" rowspan="1" colspan="1">
+                                                        تحكم
+                                                    </th>
+                                                @endif
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -240,17 +242,21 @@
                                                     <td>
                                                         <div class="d-inline-flex">
 
-                                                            <a href="{{ route('panel.order', $main_order->id) }}"
-                                                                class="item-view">
-                                                                <i class="fas fa-eye"></i>
-                                                            </a>
+                                                            @if (auth()->user()->permissions->can_show_orders == 1)
+                                                                <a href="{{ route('panel.order', $main_order->id) }}"
+                                                                    class="item-view">
+                                                                    <i class="fas fa-eye"></i>
+                                                                </a>
+                                                            @endif
 
-                                                            <a href="javascript:;" class="item-edit"
-                                                                data-bs-target="#createAppModal"
-                                                                data-bs-toggle="modal"
-                                                                wire:click='callOrderModal({{ $main_order->id }})'>
-                                                                <i class="fas fa-edit"></i>
-                                                            </a>
+                                                            @if (auth()->user()->permissions->can_edit_orders == 1)
+                                                                <a href="javascript:;" class="item-edit"
+                                                                    data-bs-target="#createAppModal"
+                                                                    data-bs-toggle="modal"
+                                                                    wire:click='callOrderModal({{ $main_order->id }})'>
+                                                                    <i class="fas fa-edit"></i>
+                                                                </a>
+                                                            @endif
 
                                                             {{-- <button
                                                                 class="btn item-edit waves-effect waves-float waves-light"
@@ -404,9 +410,13 @@
                                                 <th class="sorting {{ $os_style_sort_direction }}"
                                                     wire:click="os_sortBy('branch_id')" tabindex="0" rowspan="1"
                                                     colspan="1">الفرع</th>
-                                                <th class="sorting" tabindex="0" rowspan="1" colspan="1">
-                                                    تحكم
-                                                </th>
+
+                                                @if (auth()->user()->permissions->can_show_orders == 1 || auth()->user()->permissions->can_edit_orders == 1)
+                                                    <th class="sorting" tabindex="0" rowspan="1"
+                                                        colspan="1">
+                                                        تحكم
+                                                    </th>
+                                                @endif
                                             </tr>
                                         </thead>
 
@@ -512,8 +522,7 @@
                                                             @endif
 
                                                             @if (auth()->user()->permissions->can_edit_orders == 1)
-                                                                <a class="item-edit"
-                                                                    data-bs-target="#createAppModal"
+                                                                <a class="item-edit" data-bs-target="#createAppModal"
                                                                     data-bs-toggle="modal"
                                                                     wire:click='callOrderModal({{ $market_order->id }})'>
                                                                     <i class="fas fa-edit"></i>
