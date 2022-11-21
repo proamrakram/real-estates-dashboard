@@ -3,10 +3,12 @@
 namespace App\Http\Livewire;
 
 use App\Http\Controllers\Services\CustomerService;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
 class CreateCustomer extends Component
 {
+    use LivewireAlert;
     public $customer;
     public $name = '';
     public $phone = '';

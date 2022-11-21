@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
             MediatorSeeder::class,
             DesireToBuySeeder::class,
             PurchaseMethodSeeder::class,
-            // CustomerSeeder::class,
+            CustomerSeeder::class,
             OrderStatusSeeder::class,
             // OrderSeeder::class,
             // OrderNoteSeeder::class,
