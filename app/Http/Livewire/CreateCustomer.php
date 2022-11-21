@@ -15,7 +15,7 @@ class CreateCustomer extends Component
     public $email = null;
     public $identification_number = null;
     public $employer_name = null;
-    public $employee_type = null;
+    public $employee_type = 'public';
     public $is_support = null;
     public $city_id = null;
     public $building_number = null;
