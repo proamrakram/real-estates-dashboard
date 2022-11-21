@@ -33,7 +33,7 @@ class UserController extends Controller
 
     public function storeUserPermissions(Request $request)
     {
-        dd($request->all());
+
         $request->validate([
             'email' => ['required', 'email',],
             // 'is_admin' => ['string', 'in:on,off',],
