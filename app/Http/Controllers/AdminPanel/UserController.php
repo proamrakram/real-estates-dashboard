@@ -157,6 +157,7 @@ class UserController extends Controller
 
     public function updateUserPermissions(Request $request, User $user)
     {
+
         $request->validate([
             // 'is_admin' => ['string', 'in:on,off',],
             // 'is_office' => ['string', 'in:on,off'],
@@ -270,4 +271,5 @@ class UserController extends Controller
 
         return redirect()->route('panel.users')->with('message',  '👍 تم تحديث حالة المستخدم بنجاح',);
     }
+
 }

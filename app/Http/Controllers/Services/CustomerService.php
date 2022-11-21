@@ -65,7 +65,7 @@ class CustomerService extends Controller
             'status' => $data['status']
         ]);
 
-        return redirect()->with('message',  '👍 تم تحديث العملاء بنجاح',);
+        return true;
     }
 
     public function changeCustomerStatus($customer_id)

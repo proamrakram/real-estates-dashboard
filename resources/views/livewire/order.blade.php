@@ -115,7 +115,7 @@
 
                                     </div>
 
-                                    <table class="table dataTable no-footer text-center" role="grid">
+                                    <table class="table dataTable no-footer center text-center" role="grid">
                                         <thead>
                                             <tr role="row">
                                                 <th class="sorting {{ $style_sort_direction }}"
@@ -147,9 +147,15 @@
                                                     wire:click="sortBy('branch_id')" tabindex="0" rowspan="1"
                                                     colspan="1">الفرع
                                                 </th>
-                                                <th class="sorting" tabindex="0" rowspan="1" colspan="1">
-                                                    تحكم
-                                                </th>
+                                                @auth
+                                                    @if (auth()->user()->permissions->can_show_orders == 1 ||
+                                                        auth()->user()->permissions->can_edit_orders == 1 ||
+                                                        auth()->user()->permissions->can_cancel_orders == 1)
+                                                        <th class="sorting" tabindex="0" rowspan="1" colspan="1">
+                                                            تحكم
+                                                        </th>
+                                                    @endif
+                                                @endauth
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -240,12 +246,12 @@
 
                                                     @if (getUserName($order->assign_to))
                                                         <td>
-                                                            الطلب مسند ل {{ getUserName($order->assign_to) }}
+                                                            USR{{ $order->assign_to }}
                                                         </td>
                                                     @else
                                                         <td>
                                                             <span class="badge bg-danger">
-                                                                الطلب غير مسند لاحد
+                                                                غير مسند
                                                             </span>
                                                         </td>
                                                     @endif
@@ -259,23 +265,32 @@
                                                     <td>
                                                         <div class="d-inline-flex">
 
-                                                            <a href="{{ route('panel.order', $order->id) }}"
-                                                                class="item-view">
-                                                                <i class="fas fa-eye"></i>
-                                                            </a>
 
-                                                            <a href="javascript:;" class="item-edit"
-                                                                data-bs-target="#createAppModal"
-                                                                data-bs-toggle="modal"
-                                                                wire:click='callOrderModal({{ $order->id }})'>
-                                                                <i class="fas fa-edit"></i>
-                                                            </a>
+                                                            @auth
+                                                                @if (auth()->user()->permissions->can_show_orders == 1)
+                                                                    <a href="{{ route('panel.order', $order->id) }}"
+                                                                        class="item-view">
+                                                                        <i class="fas fa-eye"></i>
+                                                                    </a>
+                                                                @endif
 
-                                                            <a class="btn item-edit"
-                                                                wire:click='closeOrder({{ $order->id }})'
-                                                                style="padding:0;color:#EA5455 ">
-                                                                <i class="fas fa-trash-alt"></i>
-                                                            </a>
+                                                                @if (auth()->user()->permissions->can_edit_orders == 1)
+                                                                    <a class="item-edit" data-bs-target="#createAppModal"
+                                                                        data-bs-toggle="modal"
+                                                                        wire:click='callOrderModal({{ $order->id }})'>
+                                                                        <i class="fas fa-edit"></i>
+                                                                    </a>
+                                                                @endif
+
+                                                                @if (auth()->user()->permissions->can_cancel_orders == 1)
+                                                                    <a class="btn item-edit"
+                                                                        wire:click='closeOrder({{ $order->id }})'
+                                                                        style="padding:0;color:#EA5455 ">
+                                                                        <i class="fas fa-trash-alt"></i>
+                                                                    </a>
+                                                                @endif
+
+                                                            @endauth
 
                                                         </div>
                                                     </td>

@@ -34,6 +34,15 @@
                     </div>
                     <div class="col-sm-12 col-md-6">
                         <div class="dataTables_filter">
+                            <label>المناطق:
+                                <select wire:model='city_id'>
+                                    <option value="all" selected>الكل</option>
+                                    @foreach (getCities() as $city)
+                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                    @endforeach
+                                </select>
+                            </label>
+
                             <label>حالة المدينة:
                                 <select wire:model='status'>
                                     <option value="all" selected>الكل</option>

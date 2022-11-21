@@ -260,7 +260,6 @@
                             @endif
                         @endauth
                     </div>
-
             </div>
             </section>
 

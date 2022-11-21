@@ -15,6 +15,7 @@ use App\Models\Order;
 use App\Models\PropertyType;
 use App\Models\Street;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller
 {
@@ -25,6 +26,12 @@ class HomeController extends Controller
 
     public function newUser()
     {
+        $user = auth()->user();
+        if ($user) {
+            if ($user->user_status == 'active') {
+                return redirect()->route('panel.home');
+            }
+        }
         return view('admin-panel.new-user');
     }
 
@@ -63,6 +70,18 @@ class HomeController extends Controller
 
     public function order(Order $order)
     {
+        $user = auth()->user();
+
+        if ($user->user_type != 'superadmin') {
+            $check = $user->orders->where('id', $order->id)->first();
+            if(!($order->assign_to == $user->id))
+            {
+                if (!Gate::allows('can_show_orders') || !$check) {
+                    return abort(403);
+                }
+            }
+        }
+
         return view('admin-panel.order-view', compact(['order']));
     }
 
@@ -156,6 +175,8 @@ class HomeController extends Controller
     {
         return view('admin-panel.neighborhoods');
     }
+
+
 
 
 

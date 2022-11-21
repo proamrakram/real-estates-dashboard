@@ -96,6 +96,14 @@ class CreateCustomer extends Component
     {
         $validatedData = $this->validate();
         $customerService->store($validatedData);
-        return redirect()->route('panel.customers')->with('message',  '👍 تم تحديث العملاء بنجاح',);
+        $this->alert('success', '', [
+            'toast' => true,
+            'position' => 'center',
+            'timer' => 3000,
+            'text' => '👍 تم تحديث العميل بنجاح',
+            'timerProgressBar' => true,
+        ]);
+
+        $this->emit('updateCustomers');
     }
 }

@@ -40,9 +40,9 @@ class Permission extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function scopeGetPermissions($query)
+    public function scopeGetPermissions($query, $user_id)
     {
-        $query->select([
+        $query->where('user_id', $user_id)->select([
             'can_add_offers',
             'can_edit_offers',
             'can_show_offers',

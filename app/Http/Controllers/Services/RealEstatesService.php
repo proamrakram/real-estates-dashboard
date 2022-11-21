@@ -25,17 +25,19 @@ class RealEstatesService extends Controller
         $this->request = $request;
     }
 
-    public function storeCity()
+    public function storeCity($data)
     {
-        $this->request->validate([
-            'city_name' => ['required', 'unique:cities,name'],
-            'city_code' => ['required', 'unique:cities,code']
-        ], [
-            'city_name.required' => 'هذا الحقل مطلوب',
-            'city_code.required' => 'هذا الحقل مطلوب',
-            'city_name.unique' => 'المنطقة موجودة مسبقا',
-            'city_code.unique' => 'رمز الكود مستخدم لمنطقة اخرى، يرجى إدخال رمز مختلف'
-        ]);
+        $this->request->city_name = $data['city_name'];
+        $this->request->city_code = $data['city_code'];
+        // $this->request->validate([
+        //     'city_name' => ['required', 'unique:cities,name'],
+        //     'city_code' => ['required', 'unique:cities,code']
+        // ], [
+        //     'city_name.required' => 'هذا الحقل مطلوب',
+        //     'city_code.required' => 'هذا الحقل مطلوب',
+        //     'city_name.unique' => 'المنطقة موجودة مسبقا',
+        //     'city_code.unique' => 'رمز الكود مستخدم لمنطقة اخرى، يرجى إدخال رمز مختلف'
+        // ]);
 
         $city = City::create([
             'name' => $this->request->city_name,
@@ -51,15 +53,17 @@ class RealEstatesService extends Controller
         ]);
     }
 
-    public function storeNeighborhood()
+    public function storeNeighborhood($data)
     {
-        $this->request->validate([
-            'city_id' => ['required', 'exists:cities,id'],
-            'neighborhood_name' => ['required', 'string']
-        ], [
-            'city_id.required' => 'هذا الحقل مطلوب',
-            'neighborhood_name.required' => 'هذا الحقل مطلوب',
-        ]);
+        $this->request->city_id = $data['city_id'];
+        $this->request->neighborhood_name = $data['neighborhood_name'];
+        // $this->request->validate([
+        //     'city_id' => ['required', 'exists:cities,id'],
+        //     'neighborhood_name' => ['required', 'string']
+        // ], [
+        //     'city_id.required' => 'هذا الحقل مطلوب',
+        //     'neighborhood_name.required' => 'هذا الحقل مطلوب',
+        // ]);
 
         $neighborhood = Neighborhood::create([
             'city_id' => $this->request->city_id,

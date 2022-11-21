@@ -11,6 +11,7 @@ class OrderMarket extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $os_rows_number = 10;
+    protected $listeners = ['updateOrderMarketer'];
 
     public $os_search = '';
     public $os_sort_field = 'id';
@@ -37,6 +38,12 @@ class OrderMarket extends Component
     public $oo_branch_type_id = null;
     public $oo_filters = [];
 
+
+    public function updateOrderMarketer()
+    {
+        $this->reset();
+        dd(333);
+    }
 
     public function getMarketOrders()
     {

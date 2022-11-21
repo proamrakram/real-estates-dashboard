@@ -4,10 +4,12 @@ namespace App\Http\Livewire;
 
 use App\Http\Controllers\Services\OrderService;
 use App\Models\Order;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
 class EditOrder extends Component
 {
+    use LivewireAlert;
     public $listeners = ["openOrderModal"];
 
     public $order;
@@ -80,7 +82,10 @@ class EditOrder extends Component
         $this->avaliable_amount = $order->avaliable_amount;
 
         #Form Three
-        $this->assign_to = $order->assign_to;
+        if (getUserMarketers()->first()) {
+            $assign_to = getUserMarketers()->first()->id;
+        }
+        $this->assign_to = $order->assign_to ?? $assign_to;
         $this->notes = $order->notes;
     }
 
@@ -153,6 +158,14 @@ class EditOrder extends Component
     {
         $validatedData = $this->validate();
         $orderService->update($this->order, $validatedData);
-        return redirect()->route('panel.orders')->with('message', '👍 تم تحديث العميل بنجاح');
+        $this->alert('success', '', [
+            'toast' => true,
+            'position' => 'center',
+            'timer' => 3000,
+            'text' => '👍 تم تحديث الطلبات بنجاح',
+            'timerProgressBar' => true,
+        ]);
+        $this->emit('updateOrders');
+        $this->emit('updateOrderMarketer');
     }
 }

@@ -32,7 +32,7 @@
                                 <div class="dataTables_wrapper dt-bootstrap5 no-footer">
 
                                     {{-- Export Section --}}
-                                    <div class="card-header border-bottom p-1">
+                                    {{-- <div class="card-header border-bottom p-1">
                                         <div class="head-label"></div>
                                         <div class="dt-action-buttons text-end">
                                             <div class="dt-buttons">
@@ -44,7 +44,7 @@
                                                 </button>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     {{-- Export Section --}}
 
                                     <div class="d-flex justify-content-between align-items-center mx-0 row">
@@ -414,7 +414,7 @@
                                             @foreach ($assign_market_orders as $market_order)
                                                 <tr class="odd">
 
-                                                    <td class="sorting_1">{{ $market_order->id }}</td>
+                                                    <td class="sorting_1">{{ $market_order->order_code }}</td>
                                                     <td> {{ $market_order->created_at }} </td>
 
                                                     <td>

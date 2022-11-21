@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Branch;
 use App\Models\City;
+use App\Models\WebsiteSettings;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             PermissionSeeder::class,
+            UserSettingsSeeder::class,
             CitySeeder::class,
             NeighborhoodSeeder::class,
             PropertyTypeSeeder::class,
@@ -41,10 +43,10 @@ class DatabaseSeeder extends Seeder
             MediatorSeeder::class,
             DesireToBuySeeder::class,
             PurchaseMethodSeeder::class,
-            CustomerSeeder::class,
+            // CustomerSeeder::class,
             OrderStatusSeeder::class,
-            OrderSeeder::class,
-            OrderNoteSeeder::class,
+            // OrderSeeder::class,
+            // OrderNoteSeeder::class,
             OrderNoteStatuseSeeder::class
 
         ]);

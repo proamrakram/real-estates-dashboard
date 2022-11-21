@@ -42,9 +42,9 @@ class NeighborhoodSeeder extends Seeder
             25 =>  'المرجان',
         ];
 
-        foreach ($nehoods as $nehood) {
+        foreach ($nehoods as $city_id => $nehood) {
             DB::table('neighborhoods')->insert([
-                'city_id' => 2,
+                'city_id' => random_int(1, 6),
                 'name' => $nehood,
                 'status' => 1,
                 'created_at' => now(),

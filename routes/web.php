@@ -51,6 +51,23 @@ Route::controller(AdminPanelHomeController::class)->prefix('panel')->middleware(
         Route::get('/cities', 'cities')->name('cities');
         Route::get('/neighborhoods', 'neighborhoods')->name('neighborhoods');
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         #Creating User Page
         Route::get('/create-user-info', 'createUserInfo')->name('create.user.info');
         Route::get('/create-user-permissions/{email}', 'createUserPermissions')->name('create.user.permissions');

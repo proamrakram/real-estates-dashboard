@@ -1,9 +1,8 @@
  @livewireScripts()
- {{--
-@livewire('real-estates-helper-box') --}}
+@livewire('real-estates-helper-box')
  <div class="sidenav-overlay"></div>
  <div class="drag-target"></div>
- <x-modals.real-estates-details></x-modals.real-estates-details>
+ {{-- <x-modals.real-estates-details></x-modals.real-estates-details> --}}
 
  <!-- BEGIN: Footer-->
  <footer class="footer footer-static footer-light">

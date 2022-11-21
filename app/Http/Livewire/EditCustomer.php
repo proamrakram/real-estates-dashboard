@@ -4,10 +4,12 @@ namespace App\Http\Livewire;
 
 use App\Http\Controllers\Services\CustomerService;
 use App\Models\Customer;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
 class EditCustomer extends Component
 {
+    use LivewireAlert;
     public $listeners = ["customerModal"];
     public $customer;
     public $name = '';
@@ -25,6 +27,10 @@ class EditCustomer extends Component
     public $additional_number = '';
     public $unit_number = '';
     public $status = 1;
+
+    public $basic_active = 'active';
+    public $work_active = '';
+    public $eskan_active = '';
 
     protected function rules()
     {
@@ -45,6 +51,25 @@ class EditCustomer extends Component
             'unit_number' => ['nullable'],
             'status' => ['in:1,2']
         ];
+    }
+
+    public function step($step)
+    {
+        $this->basic_active = '';
+        $this->work_active = '';
+        $this->eskan_active = '';
+
+        if ($step == 'basic_active') {
+            $this->basic_active = 'active';
+        }
+
+        if ($step == 'work_active') {
+            $this->work_active = 'active';
+        }
+
+        if ($step == 'eskan_active') {
+            $this->eskan_active = 'active';
+        }
     }
 
     public function updated($propertyName)
@@ -77,7 +102,6 @@ class EditCustomer extends Component
         $this->additional_number = $customer->addtional_number;
         $this->unit_number = $customer->unit_number;
         $this->status = $customer->status;
-
     }
 
 
@@ -122,6 +146,14 @@ class EditCustomer extends Component
     {
         $validatedData = $this->validate();
         $customerService->update($this->customer, $validatedData);
-        return redirect()->route('panel.customers')->with('message', '👍 تم تحديث الطلب بنجاح');
+        $this->alert('success', '', [
+            'toast' => true,
+            'position' => 'center',
+            'timer' => 3000,
+            'text' => '👍 تم تحديث العميل بنجاح',
+            'timerProgressBar' => true,
+        ]);
+
+        $this->emit('updateCustomers');
     }
 }

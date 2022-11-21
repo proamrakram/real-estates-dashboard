@@ -5,9 +5,12 @@ namespace App\Http\Livewire;
 use App\Http\Controllers\Services\OrderService;
 use App\Models\Customer;
 use Livewire\Component;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class CreateOrder extends Component
 {
+    use LivewireAlert;
+
     #Form One
     public $customer_name = '';
     public $customer_phone = '';
@@ -146,7 +149,16 @@ class CreateOrder extends Component
     {
         $validatedData = $this->validate();
         $orderService->store($validatedData);
-        return redirect()->route('panel.orders')->with('message',  '👍 تم تحديث الطلبات بنجاح',);
+        $this->alert('success', '', [
+            'toast' => true,
+            'position' => 'center',
+            'timer' => 3000,
+            'text' => '👍 تم تحديث الطلبات بنجاح',
+            'timerProgressBar' => true,
+        ]);
+        $this->reset();
+        $this->emit('updateOrders');
+        $this->emit('updateOrderMarketer');
     }
 
     public function updateField($customer_id)

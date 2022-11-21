@@ -7,7 +7,8 @@
             <ul class="nav navbar-nav align-items-center ms-auto">
 
                 @auth
-                    @if (auth()->user()->user_type == 'superadmin' || auth()->user()->user_type == 'admin')
+                    @if ((auth()->user()->user_type == 'superadmin' || auth()->user()->user_type == 'admin') &&
+                        auth()->user()->user_status == 'active')
                         <li class="nav-item d-none d-lg-block">
                             <a type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#box">
                                 <i class="ficon" data-feather="box"></i>
@@ -16,11 +17,7 @@
                     @endif
                 @endauth
 
-                <li class="nav-item d-none d-lg-block">
-                    <a class="nav-link nav-link-style">
-                        <i class="ficon" data-feather="moon"></i>
-                    </a>
-                </li>
+                @livewire('website-mode')
 
                 {{-- <li class="nav-item dropdown dropdown-notification me-25">
                     <a class="nav-link" href="#" data-bs-toggle="dropdown">
@@ -123,8 +120,30 @@
                             <span
                                 class="user-name fw-bolder">{{ auth()->user() ? auth()->user()->name : 'سجل الدخول ' }}</span>
 
-                                <span
-                                class="user-status">{{ auth()->user() ? auth()->user()->user_type : 'اهلا بك' }}</span>
+                            <span class="user-status">
+
+                                @auth
+                                    @if (auth()->user()->user_type == 'admin')
+                                        ادمن فرعي
+                                    @endif
+
+                                    @if (auth()->user()->user_type == 'superadmin')
+                                        ادمن فرعي
+                                    @endif
+
+                                    @if (auth()->user()->user_type == 'office')
+                                        مكتب
+                                    @endif
+
+                                    @if (auth()->user()->user_type == 'marketer')
+                                        مسوق
+                                    @endif
+                                @endauth
+
+                                @guest
+                                    اهلا بك
+                                @endguest
+                            </span>
                         </div>
                         <span class="avatar">
                             <img class="round" src="{{ asset('app-assets/images/portrait/small/avatar-s-11.jpg') }}"
@@ -134,18 +153,21 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
+
                         <a class="dropdown-item" href="page-profile.html">
                             <i class="me-50" data-feather="user"></i>
                             الملف الشخصي
                         </a>
+
                         <a class="dropdown-item" href="change-password.html">
                             <i class="me-50" data-feather="lock"></i>
                             تحديث كلمة المرور
                         </a>
-                        <a class="dropdown-item" href="page-account-settings-account.html">
+
+                        {{-- <a class="dropdown-item" href="page-account-settings-account.html">
                             <i class="me-50" data-feather="settings"></i>
                             الاعدادات
-                        </a>
+                        </a> --}}
 
                         <div class="dropdown-divider"></div>
 
@@ -197,8 +219,8 @@
                     <div class="me-75"><img src="{{ asset('app-assets/images/icons/xls.png') }}" alt="png"
                             height="32"></div>
                     <div class="search-data">
-                        <p class="search-data-title mb-0">Two new item submitted</p><small
-                            class="text-muted">Marketing Manager</small>
+                        <p class="search-data-title mb-0">Two new item submitted</p><small class="text-muted">Marketing
+                            Manager</small>
                     </div>
                 </div><small class="search-data-size me-50 text-muted">&apos;17kb</small>
             </a>

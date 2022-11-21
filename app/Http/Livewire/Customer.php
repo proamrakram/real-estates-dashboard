@@ -3,12 +3,15 @@
 namespace App\Http\Livewire;
 
 use App\Models\Customer as ModelsCustomer;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class Customer extends Component
 {
+    use LivewireAlert;
     use WithPagination;
+    protected $listeners = ['updateCustomers'];
     protected $paginationTheme = 'bootstrap';
 
     public $rows_number = 10;
@@ -19,23 +22,10 @@ class Customer extends Component
     public $filters = [];
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public function updateCustomers()
+    {
+        $this->reset();
+    }
 
     public function getCustomers()
     {
@@ -61,6 +51,14 @@ class Customer extends Component
                 $customer->update(['status' => 1]);
             }
         }
+
+        $this->alert('success', '', [
+            'toast' => true,
+            'position' => 'center',
+            'timer' => 3000,
+            'text' => '👍 تم تغيير حالة العميل بنجاح',
+            'timerProgressBar' => true,
+        ]);
     }
 
     public function callCustomerModal($customer_id)

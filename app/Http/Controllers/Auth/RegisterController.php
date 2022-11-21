@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Permission;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\UserSettings;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -73,26 +75,46 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['register_name'],
             'phone' => $data['register_phone'],
             'email' => $data['register_email'],
             'password' => Hash::make($data['register_password']),
-            // 'user_type' => 'admin',
-            'is_admin' => 0,
-            'is_office' => 0,
-            'is_monitor' => 1,
+            'user_type' => 'admin',
             'user_status' => 'inactive',
-            'can_add' => 1,
-            'can_edit' => 1,
-            'can_cancel' => 1,
-            'can_show_all' => 1,
-            'can_booking' => 1,
-            'can_send_sms' => 1,
-            // 'branch_ids',
-            // 'hash_login',
-            // 'hash_expire',
-            // 'email_verified_at',
         ]);
+
+        Permission::create([
+            'user_id' => $user->id,
+            'can_add_offers' => 2,
+            'can_edit_offers' => 2,
+            'can_show_offers' => 2,
+            'can_delete_offers' => 2,
+            'can_cancel_offers' => 2,
+            'can_add_orders' => 2,
+            'can_edit_orders' => 2,
+            'can_show_orders' => 2,
+            'can_delete_orders' => 2,
+            'can_cancel_orders' => 2,
+            'can_add_vouchers' => 2,
+            'can_edit_vouchers' => 2,
+            'can_show_vouchers' => 2,
+            'can_delete_vouchers' => 2,
+            'can_cancel_vouchers' => 2,
+            'can_add_sells' => 2,
+            'can_edit_sells' => 2,
+            'can_show_sells' => 2,
+            'can_delete_sells' => 2,
+            'can_cancel_sells' => 2,
+            'can_booking' => 2,
+            'can_send_sms' => 2,
+        ]);
+
+        UserSettings::create([
+            'user_id' => $user->id,
+            'website_mode' => ''
+        ]);
+
+        return $user;
     }
 }

@@ -41,6 +41,7 @@ class Neighborhood extends Model
         $filters = array_merge([
             'search' => '',
             'status' => null,
+            'city_id' => null
         ], $filters);
 
         $builder->when($filters['search'] != '', function ($query) use ($filters) {
@@ -48,13 +49,18 @@ class Neighborhood extends Model
                 ->orWhere('name', 'like', '%' . $filters['search'] . '%');
         });
 
-        $builder->when($filters['search'] != '' && $filters['status'] != null, function ($query) use ($filters) {
+        $builder->when($filters['search'] != '' && ($filters['status'] != null ||  $filters['city_id'] != null), function ($query) use ($filters) {
             $query->where('name', 'like', '%' . $filters['search'] . '%')
-                ->where('status', $filters['status']);
+                ->where('status', $filters['status'])
+                ->where('status', $filters['city_id']);
         });
 
         $builder->when($filters['search'] == '' && $filters['status'] != null, function ($query) use ($filters) {
             $query->where('status', $filters['status']);
+        });
+
+        $builder->when($filters['search'] == '' && $filters['city_id'] != null, function ($query) use ($filters) {
+            $query->where('city_id', $filters['city_id']);
         });
     }
 }

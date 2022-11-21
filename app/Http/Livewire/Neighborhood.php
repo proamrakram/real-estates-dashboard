@@ -13,13 +13,17 @@ class Neighborhood extends Component
     public $rows_number = 10;
     public $search = '';
     public $status = null;
+    public $city_id = null;
     public $filters = [];
 
     public function render()
     {
         $this->status == 'all' ? $this->status = null : null;
+        $this->city_id == 'all' ? $this->city_id = null : null;
+
 
         $this->filters['status'] = $this->status;
+        $this->filters['city_id'] = $this->city_id;
         $this->filters['search'] = $this->search;
 
         $neighborhoods = ModelsNeighborhood::data()->filters($this->filters)->paginate($this->rows_number);

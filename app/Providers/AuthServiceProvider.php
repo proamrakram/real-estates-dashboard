@@ -30,27 +30,27 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        // if (!Schema::hasTable('permissions')) {
-        //     $columns = DB::getSchemaBuilder()->getColumnListing('permissions');
-        //     $permissions = 0;
-        //     foreach ($columns as $column) {
 
-        //         Gate::define($column, function (User $user) use ($column, $permissions) {
+        $columns = DB::getSchemaBuilder()->getColumnListing('permissions');
+        $permissions = 0;
 
-        //             if (!$permissions) {
-        //                 $permissions =  $user->permissions->getPermissions()->first()->toArray();
-        //             }
+        foreach ($columns as $column) {
 
-        //             foreach ($permissions as $name => $value) {
-        //                 if ($name == $column) {
-        //                     if ($value != 2) {
-        //                         return true;
-        //                     }
-        //                     return false;
-        //                 }
-        //             }
-        //         });
-        //     }
-        // }
+            Gate::define($column, function (User $user) use ($column, $permissions) {
+
+                if (!$permissions) {
+                    $permissions =  $user->permissions->getPermissions($user->id)->first()->toArray();
+                }
+
+                foreach ($permissions as $name => $value) {
+                    if ($name == $column) {
+                        if ($value != 2) {
+                            return true;
+                        }
+                        return false;
+                    }
+                }
+            });
+        }
     }
 }

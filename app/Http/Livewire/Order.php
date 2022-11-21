@@ -4,14 +4,16 @@ namespace App\Http\Livewire;
 
 use App\Models\Order as ModelsOrder;
 use App\Models\OrderEditor;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class Order extends Component
 {
+    use LivewireAlert;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-
+    protected $listeners = ['updateOrders'];
     public $rows_number = 10;
 
     public $search = '';
@@ -25,6 +27,11 @@ class Order extends Component
     public $branch_type_id = null;
     public $filters = [];
 
+    public function updateOrders()
+    {
+        $this->reset();
+    }
+
     public function getMainOrders()
     {
         $this->order_status_id == 'all' ? $this->order_status_id = null : null;
@@ -37,7 +44,15 @@ class Order extends Component
         $this->filters['city_id'] = $this->city_id;
         $this->filters['branch_type_id'] = $this->branch_type_id;
         $this->filters['search'] = $this->search;
-        $data = ModelsOrder::data()->filters($this->filters)->orderBy($this->sort_field, $this->sort_direction)->paginate($this->rows_number);
+        $user = auth()->user();
+
+        if ($user->user_type == 'superadmin') {
+            $data = ModelsOrder::data()->filters($this->filters)->orderBy($this->sort_field, $this->sort_direction)->paginate($this->rows_number);
+        } else {
+            $data = ModelsOrder::data()->where('user_id', $user->id)->filters($this->filters)->orderBy($this->sort_field, $this->sort_direction)->paginate($this->rows_number);
+        }
+
+
         return $data;
     }
 
@@ -83,23 +98,27 @@ class Order extends Component
         if ($order) {
             if ($order->order_status_id == 3) {
                 $order->update(['order_status_id' =>  5]);
+                OrderEditor::create([
+                    'order_id' => $order->id,
+                    'user_id' => $user->id,
+                    'action' => 'active',
+                ]);
             } else {
                 $order->update(['order_status_id' => 3]);
+                OrderEditor::create([
+                    'order_id' => $order->id,
+                    'user_id' => $user->id,
+                    'action' => 'cancel',
+                ]);
             }
         }
 
-        OrderEditor::create([
-            'order_id' => $order->id,
-            'user_id' => $user->id,
-            'action' => 'cancel',
+        $this->alert('success', '', [
+            'toast' => true,
+            'position' => 'center',
+            'timer' => 3000,
+            'text' => '👍 تم تغيير حالة الطلب بنجاح',
+            'timerProgressBar' => true,
         ]);
-
-        if ($user) {
-            if ($user->user_type == 'admin' || $user->user_type == 'superadmin') {
-                return redirect()->route('panel.orders')->with('message',  '👍 تم إغلاق الطلب بنجاح',);
-            }
-        }
-
-        return redirect()->route('panel.orders.marketer')->with('message',  '👍 تم إغلاق الطلب بنجاح',);
     }
 }

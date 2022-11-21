@@ -26,7 +26,7 @@
                             </button>
                         </div>
 
-                        {{-- <div class="step" data-target="#create-property-statuses-types" role="tab"
+                        <div class="step" data-target="#create-property-statuses-types" role="tab"
                             id="create-property-statuses-types-trigger">
                             <button type="button" class="step-trigger py-75">
                                 <span class="bs-stepper-box">
@@ -37,7 +37,7 @@
                                     <span class="bs-stepper-subtitle">إضافة نوع عقار او حالة عقار جديد</span>
                                 </span>
                             </button>
-                        </div> --}}
+                        </div>
 
                         {{-- <div class="step" data-target="#create-offer-price-types" role="tab"
                             id="create-offer-price-types-trigger">
@@ -111,7 +111,7 @@
                     <div class="bs-stepper-content shadow-none">
 
                         {{-- city neighborhood --}}
-                        <div id="create-city-neighborhood" class="content" role="tabpanel"
+                        <div id="create-city-neighborhood" role="tabpanel"
                             aria-labelledby="create-city-neighborhood-trigger">
 
                             <h5>إضافة مناطق</h5>
@@ -171,7 +171,7 @@
                         </div>
 
                         {{-- Property Statues Types --}}
-                        {{-- <div id="create-property-statuses-types" class="content" role="tabpanel"
+                        <div id="create-property-statuses-types" class="content" role="tabpanel"
                             aria-labelledby="create-property-statuses-types-trigger">
 
                             <h5>إضافة نوع عقار جديد</h5>
@@ -231,7 +231,7 @@
                                 </button>
 
                             </div>
-                        </div> --}}
+                        </div>
 
                         {{-- Offer Price Types --}}
                         {{-- <div id="create-offer-price-types" class="content" role="tabpanel"

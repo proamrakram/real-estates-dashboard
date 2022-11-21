@@ -4,14 +4,9 @@
     <div class="content-wrapper container-xxl p-0" wire:ignore.self>
         <div class="content-header row" wire:ignore.self></div>
         <div class="content-body" wire:ignore.self>
-
             <section class="app-user-view-account" wire:ignore.self>
-
-
                 <div class="row" wire:ignore.self>
-
                     <div class="col-md-12" wire:ignore.self>
-
                         <div class="row match-height" wire:ignore.self>
                             <!-- Medal Card -->
                             <div class="col-xl-4 col-md-6 col-12" wire:ignore.self>
@@ -20,7 +15,7 @@
                                         <h2>رقم الطلب</h2>
                                         {{-- <p class="card-text font-small-10">TRT-2343-USR{{$order->id}}</p> --}}
                                         <h3 class="mb-75 mt-2 pt-50">
-                                            <a href="#">TRT-2343-USR{{ $order->id }}</a>
+                                            <a href="#">{{ $order->order_code }}</a>
                                         </h3>
                                         {{-- <button type="button" class="btn btn-primary waves-effect waves-float waves-light">View Sales</button> --}}
                                         <a class="btn bg-light-success waves-effect waves-float waves-light"
@@ -254,7 +249,7 @@
                                     <div class="col-lg-6" wire:ignore.self>
                                         <div class="card" wire:ignore.self>
                                             <div class="card-header" wire:ignore>
-                                                <h4 class="card-title ">التعديلات</h4>
+                                                <h4 class="card-title ">حالات التعديل والإضافة</h4>
                                             </div>
                                             <div class="card-body" wire:ignore.self>
                                                 <ul class="timeline" wire:ignore.self>
@@ -308,6 +303,24 @@
                                                                 </div>
                                                             </li>
                                                         @endif
+
+
+                                                        @if ($order_edit->action == 'active')
+                                                            <li class="timeline-item">
+                                                                <span
+                                                                    class="timeline-point timeline-point-warning timeline-point-indicator "></span>
+                                                                <div class="timeline-event ">
+                                                                    <div
+                                                                        class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1 ">
+                                                                        <h6>قام {{ getUserName($order_edit->user_id) }}
+                                                                            بتفعيل الطلب</h6>
+                                                                        <span
+                                                                            class="timeline-event-time ">{{ $this->getLastUpateOrderEditTime($order_edit->id) }}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        @endif
+
                                                     @endforeach
                                                 </ul>
                                             </div>
@@ -335,8 +348,7 @@
                         <div class="text-center mb-2" wire:ignore>
                             <h1 class="mb-1">إضافة ملاحظة</h1>
                         </div>
-                        <form action="#" class="row gy-1 pt-75" wire:ignore.self>
-
+                        <div class="row gy-1 pt-75" wire:ignore.self>
 
                             <div class="col-12 col-md-6 " wire:ignore.self>
                                 <label class="form-label" for="fp-range">التاريخ</label>
@@ -364,7 +376,7 @@
                                 <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                                     aria-label="Close">الغاء</button>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

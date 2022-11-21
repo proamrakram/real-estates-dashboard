@@ -20,6 +20,18 @@ use App\Models\Street;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
+if (!function_exists('websiteMode')) {
+    function websiteMode()
+    {
+        $user = auth()->user();
+        $user_settings = $user->userSettings;
+
+        if ($user && $user_settings) {
+            return $user_settings->website_mode;
+        }
+    }
+}
+
 if (!function_exists('getCities')) {
     function getCities()
     {
@@ -69,21 +81,40 @@ if (!function_exists('getUsersMarketersCount')) {
 if (!function_exists('getOpenOrdersCount')) {
     function getOpenOrdersCount()
     {
-        return Order::whereIn('order_status_id', [1, 4])->count();
+
+        $user = auth()->user();
+
+        if ($user->user_type == 'superadmin') {
+            return Order::whereIn('order_status_id', [1, 4])->count();
+        }
+
+        return Order::whereIn('order_status_id', [1, 4])->where('user_id', $user->id)->count();
     }
 }
 
 if (!function_exists('getClosedOrdersCount')) {
     function getClosedOrdersCount()
     {
-        return Order::whereIn('order_status_id', [3, 5])->count();
+        $user = auth()->user();
+
+        if ($user->user_type == 'superadmin') {
+            return Order::whereIn('order_status_id', [3, 5])->count();
+        }
+
+        return Order::whereIn('order_status_id', [3, 5])->where('user_id', $user->id)->count();
     }
 }
 
 if (!function_exists('getCompleteOrdersCount')) {
     function getCompleteOrdersCount()
     {
-        return Order::where('order_status_id', 2)->count();
+        $user = auth()->user();
+
+        if ($user->user_type == 'superadmin') {
+            return Order::where('order_status_id', 2)->count();
+        }
+
+        return Order::where('order_status_id', 2)->where('user_id', $user->id)->count();
     }
 }
 
@@ -114,7 +145,7 @@ if (!function_exists('getOrdersCount')) {
     {
         $user = auth()->user();
 
-        if ($user->user_type == 'superadmin' || $user->user_type == 'admin') {
+        if ($user->user_type == 'superadmin') {
             return Order::count();
         }
 

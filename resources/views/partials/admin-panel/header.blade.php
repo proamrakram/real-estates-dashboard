@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="rtl">
+<html class="loading {{ websiteMode() }}" lang="en" data-textdirection="rtl">
 <!-- BEGIN: Head-->
 
 <head>
@@ -79,6 +79,9 @@
 
 
     @livewireStyles()
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <x-livewire-alert::scripts />
+    <x-livewire-alert::flash />
 </head>
 <!-- END: Head-->
 

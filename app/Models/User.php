@@ -61,9 +61,19 @@ class User extends Authenticatable
         return $this->hasOne(Permission::class, 'user_id', 'id');
     }
 
+    public function userSettings()
+    {
+        return $this->hasOne(UserSettings::class, 'user_id', 'id');
+    }
+
     public function offers()
     {
         return $this->hasMany(Offer::class, 'user_id', 'id');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'user_id', 'id');
     }
 
     public function orderEdits()

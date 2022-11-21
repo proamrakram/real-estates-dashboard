@@ -59,7 +59,7 @@
 
 
                                     <div class="card-header">
-                                        <h4 class="card-title">معلومات العميل</h4>
+                                        <h4 class="card-title">معلومات المستخدم</h4>
                                         <div class="d-flex align-items-center">
                                             <p class="card-text font-small-2 me-25 mb-0">{{ $last_update_time }}</p>
                                         </div>
