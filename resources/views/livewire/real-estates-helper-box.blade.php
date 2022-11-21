@@ -108,7 +108,7 @@
                                     <div>
                                         <label class="form-label">اختيار المنطقة</label>
 
-                                        <select wire:model='city_id'>
+                                        <select class="select2 form-control" wire:model='city_id'>
                                             @foreach (getCities() as $city)
                                                 <option value="{{ $city->id }}">{{ $city->name }}</option>
                                             @endforeach
