@@ -502,28 +502,30 @@ class CustomerSeeder extends Seeder
             '0552083808' => 'احمد عبدالله علي ال عبيد',
         ];
 
-        DB::table('customers')->insert([
-            'user_id' => random_int(1, 100),
-            'name' => Str::random(7),
-            'phone' => '059' . random_int(1111111, 9999999),
-            // 'email' => 'customer' . $count . '@gmail.com',
-            'employer_id' => random_int(1, 6),
-            'employer_name' => Str::random(7),
-            'nationality_id' => random_int(111111111, 999999999),
-            // 'NID',
-            'city_id' =>  random_int(1, 6),
-            'building_number' =>  random_int(3000, 6000),
-            'street_name' => Str::random(7),
-            'neighborhood_name' => Str::random(7),
-            'zip_code' =>  random_int(3000, 6000),
-            'addtional_number' => random_int(3000, 6000),
-            'unit_number' =>  random_int(3000, 6000),
-            'support_eskan' => 1,
-            'employee_type' => 'public',
-            'status' => 1,
-            'who_add' => 1,
-            // 'who_edit',
-            'created_at' => now(),
-        ]);
+        foreach ($data as $phone => $name) {
+            DB::table('customers')->insert([
+                'user_id' => 1,
+                'name' => $name,
+                'phone' => $phone,
+                // 'email' => 'customer' . $count . '@gmail.com',
+                'employer_id' => null,
+                'employer_name' => null,
+                'nationality_id' => null,
+                // 'NID',
+                'city_id' =>  2,
+                'building_number' =>  null,
+                'street_name' => null,
+                'neighborhood_name' => null,
+                'zip_code' =>  null,
+                'addtional_number' => null,
+                'unit_number' =>  null,
+                'support_eskan' => 1,
+                'employee_type' => 'public',
+                'status' => 1,
+                'who_add' => 1,
+                // 'who_edit',
+                'created_at' => now(),
+            ]);
+        }
     }
 }
