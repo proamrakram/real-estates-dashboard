@@ -301,7 +301,7 @@
 
                                 <div class="dataTables_wrapper dt-bootstrap5 no-footer">
 
-                                    <div class="card-header border-bottom p-1">
+                                    {{-- <div class="card-header border-bottom p-1">
                                         <div class="head-label"></div>
                                         <div class="dt-action-buttons text-end">
                                             <div class="dt-buttons">
@@ -312,7 +312,7 @@
                                                 </button>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
 
                                     <div class="d-flex justify-content-between align-items-center mx-0 row">
