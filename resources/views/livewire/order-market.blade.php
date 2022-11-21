@@ -503,23 +503,34 @@
                                                     <td>
                                                         <div class="d-inline-flex">
 
-                                                            <a href="{{ route('panel.order', $market_order->id) }}"
-                                                                class="item-view">
-                                                                <i class="fas fa-eye"></i>
-                                                            </a>
 
-                                                            <a href="javascript:;" class="item-edit"
-                                                                data-bs-target="#createAppModal"
-                                                                data-bs-toggle="modal"
-                                                                wire:click='callOrderModal({{ $market_order->id }})'>
-                                                                <i class="fas fa-edit"></i>
-                                                            </a>
+                                                            @if (auth()->user()->permissions->can_show_orders == 1)
+                                                                <a href="{{ route('panel.order', $market_order->id) }}"
+                                                                    class="item-view">
+                                                                    <i class="fas fa-eye"></i>
+                                                                </a>
+                                                            @endif
 
-                                                            {{-- <button
+                                                            @if (auth()->user()->permissions->can_edit_orders == 1)
+                                                                <a class="item-edit"
+                                                                    data-bs-target="#createAppModal"
+                                                                    data-bs-toggle="modal"
+                                                                    wire:click='callOrderModal({{ $market_order->id }})'>
+                                                                    <i class="fas fa-edit"></i>
+                                                                </a>
+                                                            @endif
+
+                                                            {{--   @if (auth()->user()->permissions->can_cancel_orders == 1)
+                                                                <button
                                                                 class="btn item-edit waves-effect waves-float waves-light"
                                                                 style="padding:0;color:#EA5455 ">
                                                                 <i class="fas fa-trash-alt"></i>
-                                                            </button> --}}
+                                                            </button>
+                                                            @endif --}}
+
+
+
+
 
                                                         </div>
                                                     </td>

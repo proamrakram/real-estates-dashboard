@@ -34,7 +34,13 @@
                     </div>
                 </div>
 
-                @livewire('create-order')
+                @auth
+                    @if (auth()->user()->permissions->can_add_orders == 1)
+                        @livewire('create-order')
+                    @endif
+                @endauth
+
+
             </div>
 
             <div class="content-body">

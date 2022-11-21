@@ -33,6 +33,7 @@ class UserController extends Controller
 
     public function storeUserPermissions(Request $request)
     {
+        dd($request->all());
         $request->validate([
             'email' => ['required', 'email',],
             // 'is_admin' => ['string', 'in:on,off',],
@@ -203,20 +204,13 @@ class UserController extends Controller
 
         if ($user) {
             $user->update([
-                // 'is_admin' => $request->is_admin ? 1 : 2,
-                // 'is_office' => $request->is_office ? 1 : 2,
-                // 'is_finance' => $request->is_finance  ? 1 : 2,
-                // 'is_monitor' => $request->is_monitor  ? 1 : 2,
-                // 'is_employee' => $request->is_employee  ? 1 : 2,
                 'user_status' => $request->user_status  ? 'active' : 'inactive',
                 'branches_ids' => $request->branches_ids ?? [],
                 'user_type' => $request->user_type,
                 'advertiser_number' => $request->advertiser_number,
-
             ]);
 
             $permissions = $user->permissions;
-
 
             foreach ($request->branches_ids ?? [] as $branch_id) {
                 if (!$user->branches->contains($branch_id)) {
