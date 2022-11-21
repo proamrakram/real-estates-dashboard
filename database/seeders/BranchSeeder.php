@@ -41,7 +41,7 @@ class BranchSeeder extends Seeder
         $users = User::all();
 
         foreach ($users as $user) {
-            $user->branches()->sync([1, 2, 3]);
+            $user->branches()->sync([1]);
         }
     }
 }
