@@ -80,7 +80,7 @@ class RegisterController extends Controller
             'phone' => $data['register_phone'],
             'email' => $data['register_email'],
             'password' => Hash::make($data['register_password']),
-            'user_type' => 'admin',
+            'user_type' => 'marketer',
             'user_status' => 'inactive',
         ]);
 
