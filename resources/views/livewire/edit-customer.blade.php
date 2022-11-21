@@ -13,7 +13,7 @@
                     <div class="bs-stepper-header" role="tablist" wire:ignore.self>
 
                         <div class="step {{ $basic_active }}" wire:click="step('basic_active')"
-                            data-target="#create-app-details-main" role="tab" id="create-app-details-trigger-main">
+                            data-target="#create-app-details-main" role="tab" id="edit-customers">
                             <button type="button" class="step-trigger py-75">
                                 <span
                                     class="bs-stepper-box
@@ -106,8 +106,8 @@
 
                     <div class="bs-stepper-content shadow-none" wire:ignore.self>
 
-                        <div id="create-app-details-main" role="tabpanel"
-                            aria-labelledby="create-app-details-trigger-main" wire:ignore.self>
+                        <div id="create-app-details-main" role="tabpanel" aria-labelledby="edit-customers"
+                            wire:ignore.self>
 
                             @if ($basic_active)
                                 <div class="col-12 col-md-6">

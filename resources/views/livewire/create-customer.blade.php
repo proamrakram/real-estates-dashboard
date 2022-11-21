@@ -28,10 +28,6 @@
 
                         <div class="bs-stepper-header" role="tablist">
 
-
-
-
-
                             <div class="step" data-target="#create-app-details-main" role="tab"
                                 id="create-app-details-trigger-main">
                                 <button type="button" class="step-trigger py-75">
@@ -226,7 +222,7 @@
                                         <label class="form-label">هل أنت موظف قطاع عام أم خاص ؟</label>
 
                                         <select class="form-control" wire:model='employee_type'>
-                                            <option value="public">عام</option>
+                                            <option value="public" selected>عام</option>
                                             <option value="private">خاص</option>
                                         </select>
 

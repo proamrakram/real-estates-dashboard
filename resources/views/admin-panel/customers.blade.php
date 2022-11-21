@@ -3,9 +3,6 @@
 
 @section('content')
 
-    @push('livewire-styles')
-        @livewireStyles()
-    @endpush
     <!-- BEGIN: Content-->
     <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -52,10 +49,5 @@
         </div>
     </div>
     <!-- END: Content-->
-
-
-    @push('customers-scripts')
-        @livewireScripts()
-    @endpush
 
 @endsection
