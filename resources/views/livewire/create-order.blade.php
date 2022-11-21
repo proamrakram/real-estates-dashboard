@@ -214,7 +214,7 @@
 
                                     <div class="col-12">
                                         <select class="form-control" wire:model='employee_type'>
-                                            <option value="public">عام</option>
+                                            <option value="public" selected>عام</option>
                                             <option value="private">خاص</option>
                                         </select>
                                         @error('employee_type')

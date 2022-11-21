@@ -167,7 +167,7 @@ class CreateOrder extends Component
         $this->customer_phone = $customer->phone;
         $this->customer_name = $customer->name;
         $this->employer_name = $customer->employer_name;
-        $this->employee_type = $customer->employee_type;
+        $this->employee_type = $customer->employee_type ?? 'public';
         $this->support_eskan = $customer->support_eskan;
         $this->city_id = $customer->city_id;
 
