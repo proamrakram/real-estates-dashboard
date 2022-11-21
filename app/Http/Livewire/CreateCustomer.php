@@ -102,7 +102,7 @@ class CreateCustomer extends Component
             'toast' => true,
             'position' => 'center',
             'timer' => 3000,
-            'text' => '👍 تم تحديث العميل بنجاح',
+            'text' => '👍 تم إضافة العميل بنجاح',
             'timerProgressBar' => true,
         ]);
 
