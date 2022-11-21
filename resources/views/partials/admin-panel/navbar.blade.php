@@ -128,7 +128,7 @@
                                     @endif
 
                                     @if (auth()->user()->user_type == 'superadmin')
-                                        ادمن فرعي
+                                        ادمن سوبر
                                     @endif
 
                                     @if (auth()->user()->user_type == 'office')
