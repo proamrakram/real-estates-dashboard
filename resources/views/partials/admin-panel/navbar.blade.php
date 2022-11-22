@@ -159,7 +159,7 @@
                             الملف الشخصي
                         </a>
 
-                        <a class="dropdown-item" href="change-password.html">
+                        <a class="dropdown-item" href="{{ route('panel.change.password') }}">
                             <i class="me-50" data-feather="lock"></i>
                             تحديث كلمة المرور
                         </a>
@@ -267,8 +267,7 @@
             </a>
         </li>
         <li class="auto-suggestion">
-            <a class="d-flex align-items-center justify-content-between py-50 w-100"
-                href="app-user-view-account.html">
+            <a class="d-flex align-items-center justify-content-between py-50 w-100" href="app-user-view-account.html">
                 <div class="d-flex align-items-center">
                     <div class="avatar me-75"><img
                             src="{{ asset('app-assets/images/portrait/small/avatar-s-8.jpg') }}" alt="png"

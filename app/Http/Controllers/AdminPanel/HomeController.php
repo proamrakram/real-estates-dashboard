@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Services\UserService;
 use App\Models\Branch;
 use App\Models\City;
 use App\Models\Customer;
@@ -15,6 +16,7 @@ use App\Models\Order;
 use App\Models\PropertyType;
 use App\Models\Street;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller
@@ -74,8 +76,7 @@ class HomeController extends Controller
 
         if ($user->user_type != 'superadmin') {
             $check = $user->orders->where('id', $order->id)->first();
-            if(!($order->assign_to == $user->id))
-            {
+            if (!($order->assign_to == $user->id)) {
                 if (!Gate::allows('can_show_orders') || !$check) {
                     return abort(403);
                 }
@@ -176,6 +177,15 @@ class HomeController extends Controller
         return view('admin-panel.neighborhoods');
     }
 
+    public function changePassword()
+    {
+        return view('admin-panel.change-password');
+    }
+
+    public function updatePassword(UserService $userService)
+    {
+        return $userService->changePassword();
+    }
 
 
 
