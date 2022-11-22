@@ -42,7 +42,6 @@ class OrderMarket extends Component
     public function updateOrderMarketer()
     {
         $this->reset();
-        dd(333);
     }
 
     public function getMarketOrders()
