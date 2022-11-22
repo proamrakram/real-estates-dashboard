@@ -154,29 +154,6 @@ if (!function_exists('whoType')) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 if (!function_exists('getOrderStatuses')) {
     function getOrderStatuses()
     {
