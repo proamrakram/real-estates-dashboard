@@ -25,6 +25,14 @@ Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::get('/forget-password', [AdminPanelHomeController::class, 'forgetPassword'])->name('forget.password');
+Route::post('/check-forget-password', [AdminPanelHomeController::class, 'checkForgetPassword'])->name('check.forget.password');
+Route::post('/reset-password', [AdminPanelHomeController::class, 'resetPassword'])->name('reset.password');
+Route::get('/page-reset-password/{user_id}', [AdminPanelHomeController::class, 'pageResetPassword'])->name('page.reset.password');
+
+
+
+
 Route::controller(AdminPanelHomeController::class)->prefix('panel')->middleware(['auth', 'new'])->group(function () {
 
     Route::get('/home', 'home')->name('panel.home');
@@ -50,6 +58,8 @@ Route::controller(AdminPanelHomeController::class)->prefix('panel')->middleware(
 
         Route::get('/change-password', 'changePassword')->name('change.password');
         Route::post('/update-password', 'updatePassword')->name('update.password');
+
+
         Route::get('/cities', 'cities')->name('cities');
         Route::get('/neighborhoods', 'neighborhoods')->name('neighborhoods');
 

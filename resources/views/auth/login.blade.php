@@ -98,7 +98,7 @@
 
                                         <div class="d-flex justify-content-between">
                                             <label class="form-label" for="login-password">كلمة المرور</label>
-                                            <a href="auth-forgot-password-cover.html"><small>نسيت كلمة المرور ؟</small></a>
+                                            <a href="{{route('forget.password')}}"><small>نسيت كلمة المرور ؟</small></a>
                                         </div>
 
                                         <div class="input-group input-group-merge form-password-toggle">

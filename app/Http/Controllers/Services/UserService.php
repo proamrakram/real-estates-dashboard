@@ -45,4 +45,29 @@ class UserService extends Controller
 
         return redirect()->back()->with('message', 'تم تغيير كلمة المرور بنجاح');
     }
+
+    public function resetPassword()
+    {
+        $user = User::find($this->request->user_id);
+
+        if ($user) {
+            $check = Hash::check($this->request->reset_password_new, $user->password);
+
+            if (!$check) {
+                if ($this->request->reset_password_new != $this->request->reset_password_confirm) {
+                    return redirect()->route('page.reset.password', $user->id)
+                        ->with('reset_password_new', 'كلمة المرور غير متطابقة')
+                        ->with('reset_password_confirm', 'كلمة المرور غير متطابقة');
+                }
+
+                $user->update([
+                    'password' => Hash::make($this->request->reset_password_new)
+                ]);
+
+                return redirect()->route('login')->with('message', 'تم تحديث كلمة المرور بنجاح');
+            }
+
+            return redirect()->route('page.reset.password', $user->id)->with('reset_password_new', 'كلمة المرور مستخدمة سابقا!!');
+        }
+    }
 }

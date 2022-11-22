@@ -21,6 +21,11 @@ use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller
 {
+    protected $userService;
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
     public function home()
     {
         return view('admin-panel.statistics');
@@ -187,7 +192,37 @@ class HomeController extends Controller
         return $userService->changePassword();
     }
 
+    public function forgetPassword()
+    {
+        return view('auth.passwords.forget-password');
+    }
 
+    public function checkForgetPassword()
+    {
+        $request = request();
+        $user_email = User::where('email', $request->email_or_phone_number)->first();
+        $user_phone = User::where('phone', $request->email_or_phone_number)->first();
+
+        if ($user_email) {
+            return view('auth.passwords.reset-password', ['user_id' => $user_email->id]);
+        }
+
+        if ($user_phone) {
+            return view('auth.passwords.reset-password', ['user_id' => $user_phone->id]);
+        }
+
+        return redirect()->back()->with('email_or_phone_number', 'يرجى التحقق من صحة البيانات');
+    }
+
+    public function pageResetPassword($user_id)
+    {
+        return view('auth.passwords.reset-password', ['user_id' => $user_id]);
+    }
+
+    public function resetPassword()
+    {
+        return $this->userService->resetPassword();
+    }
 
 
 

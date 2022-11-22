@@ -23,6 +23,7 @@
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/vendors-rtl.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/extensions/toastr.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css-rtl/plugins/extensions/ext-component-toastr.css') }}">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/forms/select/select2.min.css') }}">
     <link rel="stylesheet" type="text/css"
@@ -52,8 +53,6 @@
     <link rel="stylesheet" type="text/css"
         href="{{ asset('app-assets/css-rtl/core/menu/menu-types/vertical-menu.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css-rtl/plugins/forms/form-validation.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('app-assets/css-rtl/plugins/extensions/ext-component-toastr.css') }}">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->

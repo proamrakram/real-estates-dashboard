@@ -42,6 +42,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style-rtl.css') }}">
     <!-- END: Custom CSS-->
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/extensions/toastr.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('app-assets/css-rtl/plugins/extensions/ext-component-toastr.css') }}">
+
 </head>
 <!-- END: Head-->
 
@@ -49,19 +53,3 @@
 
 <body class="vertical-layout vertical-menu-modern blank-page navbar-floating footer-static  " data-open="click"
     data-menu="vertical-menu-modern" data-col="blank-page">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
