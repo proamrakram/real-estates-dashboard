@@ -1,9 +1,9 @@
 <div class="app-content content ">
+
     <div class="content-overlay"></div>
     <div class="header-navbar-shadow"></div>
     <div class="content-wrapper container-xxl p-0">
-        <div class="content-header row">
-        </div>
+        <div class="content-header row"></div>
         <div class="content-body">
 
             <section class="app-user-view-account">
@@ -312,24 +312,87 @@
 
 
 
-            <div class="modal fade" id="addNote" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user">
-                    <div class="modal-content">
-                        <div class="modal-header bg-transparent">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body pb-5 px-sm-5 pt-50">
-                            <div class="text-center mb-2">
-                                <a class="btn bg-light-danger waves-effect waves-float waves-light">
-                                    <span>
-                                        <h1 class="mb-1">قريبا...</h1>
-                                    </span>
-                                </a>
+            <!-- Line Chart - Profit -->
+            <div class="col-lg-2 col-6">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <div class="avatar bg-light-info p-50 mb-1">
+                            <div class="avatar-content">
+                                <i data-feather='shopping-bag' class="font-medium-5"></i>
                             </div>
+                        </div>
+                        <h2 class="fw-bolder">{{ $user->orders->count() }}</h2>
+                        <p class="card-text">عدد الطلبات</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Line Chart - Profit -->
+            <div class="col-lg-2 col-6">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <div class="avatar bg-light-warning p-50 mb-1">
+                            <div class="avatar-content">
+                                <i data-feather='shopping-bag' class="font-medium-5"></i>
+                            </div>
+                        </div>
+                        <h2 class="fw-bolder">{{ getUserOpenOrdersCount($user->id) }}</h2>
+                        <p class="card-text">عدد الطلبات المفتوحة</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Line Chart - Profit -->
+            <div class="col-lg-2 col-6">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <div class="avatar bg-light-danger p-50 mb-1">
+                            <div class="avatar-content">
+                                <i data-feather='shopping-bag' class="font-medium-5"></i>
+                            </div>
+                        </div>
+                        <h2 class="fw-bolder">{{ getUserClosedOrdersCount($user->id) }}</h2>
+                        <p class="card-text">عدد الطلبات المغلقة</p>
+                    </div>
+                </div>
+            </div>
 
 
-                            {{-- <form id="editUserForm" class="row gy-1 pt-75" onsubmit="return false">
+            <!-- Line Chart - Profit -->
+            <div class="col-lg-2 col-6">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <div class="avatar bg-light-success p-50 mb-1">
+                            <div class="avatar-content">
+                                <i data-feather='shopping-bag' class="font-medium-5"></i>
+                            </div>
+                        </div>
+                        <h2 class="fw-bolder">{{ getUserCompleteOrdersCount($user->id) }}</h2>
+                        <p class="card-text">عدد الطلبات المكتملة</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row match-height">
+                <div class="modal fade" id="addNote" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body pb-5 px-sm-5 pt-50">
+                                <div class="text-center mb-2">
+                                    <a class="btn bg-light-danger waves-effect waves-float waves-light">
+                                        <span>
+                                            <h1 class="mb-1">قريبا...</h1>
+                                        </span>
+                                    </a>
+                                </div>
+
+
+                                {{-- <form id="editUserForm" class="row gy-1 pt-75" onsubmit="return false">
 
 
                                 <div class="col-12 col-md-6 ">
@@ -362,11 +425,12 @@
                                     </button>
                                 </div>
                             </form> --}}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
 </div>

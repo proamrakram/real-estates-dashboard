@@ -51,13 +51,38 @@ class EditOrder extends Component
     public $search_customer_value = '';
     public $selected_customer_value = '';
 
+    public $customer_info = 'active';
+    public $real_info = '';
+    public $notes_info = '';
+
+    public $is_assignable = false;
+
     public function render()
     {
         return view('livewire.edit-order');
     }
 
+    public function step($form)
+    {
+        $this->customer_info = '';
+        $this->real_info = '';
+        $this->notes_info = '';
+
+        if ($form == 'customer_info') {
+            $this->customer_info = 'active';
+        }
+
+        if ($form == 'real_info') {
+            $this->real_info = 'active';
+        }
+
+        if ($form == 'notes_info') {
+            $this->notes_info = 'active';
+        }
+    }
     public function openOrderModal($order_id)
     {
+
         $order = Order::find($order_id);
 
         $this->order = $order;

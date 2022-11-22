@@ -59,7 +59,7 @@ class OrderSeeder extends Seeder
                 // 'assign_to' =>
                 'branch_id'  => $branch_id,
                 'notes' => Str::random(16),
-                'who_create' => 1,
+                'who_add' => 1,
                 'created_at' => now(),
                 // 'closed_date',
                 // 'assign_to_date'

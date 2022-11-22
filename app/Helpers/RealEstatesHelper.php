@@ -118,6 +118,64 @@ if (!function_exists('getCompleteOrdersCount')) {
     }
 }
 
+if (!function_exists('getUserOpenOrdersCount')) {
+    function getUserOpenOrdersCount($user_id)
+    {
+        return Order::openOrders($user_id)->count();
+    }
+}
+
+
+if (!function_exists('getUserClosedOrdersCount')) {
+    function getUserClosedOrdersCount($user_id)
+    {
+        return Order::closedOrders($user_id)->count();
+    }
+}
+
+if (!function_exists('getUserCompleteOrdersCount')) {
+    function getUserCompleteOrdersCount($user_id)
+    {
+        return Order::completeOrders($user_id)->count();
+    }
+}
+
+
+if (!function_exists('whoType')) {
+    function whoType($user_id)
+    {
+        $user = User::find($user_id);
+        if ($user) {
+            return $user->user_type;
+        }
+
+        return false;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 if (!function_exists('getOrderStatuses')) {
     function getOrderStatuses()

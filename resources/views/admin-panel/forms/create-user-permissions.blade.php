@@ -169,7 +169,7 @@
 
                                                                     <div class="form-input form-input-primary form-input col-md-6 mt-1"
                                                                         id="adv-div">
-                                                                        <input type="number" class="form-control"
+                                                                        <input type="text" class="form-control"
                                                                             placeholder="رقم المعلن" id="advertiserNumber"
                                                                             name="advertiser_number">
                                                                         @error('advertiser_number')
@@ -182,6 +182,73 @@
                                                                 </tr>
 
                                                                 <tr>
+                                                                    <td class="text-nowrap fw-bolder">الطلبات</td>
+                                                                    <td>
+                                                                        <div class="d-flex">
+                                                                            <div class="form-check me-3 me-lg-5">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="can_show_orders"
+                                                                                    name="can_show_orders">
+                                                                                <label class="form-check-label"
+                                                                                    for="canShow"> رؤية </label>
+                                                                            </div>
+
+                                                                            <div class="form-check me-3 me-lg-5">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="can_add_orders"
+                                                                                    name="can_add_orders">
+                                                                                <label class="form-check-label"
+                                                                                    for="canAdd"> اضافة </label>
+                                                                            </div>
+
+                                                                            <div class="form-check me-3 me-lg-5">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="can_edit_orders"
+                                                                                    name="can_edit_orders">
+                                                                                <label class="form-check-label"
+                                                                                    for="canEdit"> تعديل
+                                                                                </label>
+                                                                            </div>
+
+                                                                            <div class="form-check me-3 me-lg-5">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="can_cancel_orders"
+                                                                                    name="can_cancel_orders">
+                                                                                <label class="form-check-label"
+                                                                                    for="canCancel">إلغاء</label>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                {{-- <tr>
                                                                     <td class="text-nowrap fw-bolder">الطلبات</td>
                                                                     <td>
                                                                         <div class="d-flex">
@@ -220,7 +287,7 @@
 
                                                                         </div>
                                                                     </td>
-                                                                </tr>
+                                                                </tr> --}}
 
                                                                 {{--
                                                                 <tr>
@@ -265,46 +332,6 @@
                                                                 </tr>
 
 
-                                                                <tr>
-                                                                    <td class="text-nowrap fw-bolder">الطلبات</td>
-                                                                    <td>
-                                                                        <div class="d-flex">
-                                                                            <div class="form-check me-3 me-lg-5">
-                                                                                <input class="form-check-input"
-                                                                                    type="checkbox" id="can_show_orders"
-                                                                                    name="can_show_orders">
-                                                                                <label class="form-check-label"
-                                                                                    for="canShow"> رؤية </label>
-                                                                            </div>
-
-                                                                            <div class="form-check me-3 me-lg-5">
-                                                                                <input class="form-check-input"
-                                                                                    type="checkbox" id="can_add_orders"
-                                                                                    name="can_add_orders">
-                                                                                <label class="form-check-label"
-                                                                                    for="canAdd"> اضافة </label>
-                                                                            </div>
-
-                                                                            <div class="form-check me-3 me-lg-5">
-                                                                                <input class="form-check-input"
-                                                                                    type="checkbox" id="can_edit_orders"
-                                                                                    name="can_edit_orders">
-                                                                                <label class="form-check-label"
-                                                                                    for="canEdit"> تعديل
-                                                                                </label>
-                                                                            </div>
-
-                                                                            <div class="form-check me-3 me-lg-5">
-                                                                                <input class="form-check-input"
-                                                                                    type="checkbox" id="can_cancel_orders"
-                                                                                    name="can_cancel_orders">
-                                                                                <label class="form-check-label"
-                                                                                    for="canCancel">إلغاء</label>
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
 
 
                                                                 <tr>

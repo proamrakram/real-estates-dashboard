@@ -35,7 +35,7 @@ class Order extends Model
         'closed_date',
         'who_edit',
         'who_cancel',
-        'who_create',
+        'who_add',
         'assign_to_date'
     ];
 
@@ -65,10 +65,10 @@ class Order extends Model
             'branch_id',
             'notes',
             'closed_date',
-            'who_edit',
             'created_at',
+            'who_edit',
             'who_cancel',
-            'who_create',
+            'who_add',
             'assign_to_date'
         ]);
     }
@@ -106,6 +106,21 @@ class Order extends Model
     public function branch()
     {
         return $this->belongsTo(Branch::class, 'branch_id', 'id');
+    }
+
+    public function scopeOpenOrders($query, $user_id)
+    {
+        return $query->where('user_id', $user_id)->whereIn('order_status_id', [1, 4])->get();
+    }
+
+    public function scopeClosedOrders($query, $user_id)
+    {
+        return $query->where('user_id', $user_id)->whereIn('order_status_id', [3, 5])->get();
+    }
+
+    public function scopeCompleteOrders($query, $user_id)
+    {
+        return $query->where('user_id', $user_id)->where('order_status_id', 2)->get();
     }
 
     public function scopeFilters(Builder $builder, array $filters = [])

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdminPanel;
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
 use App\Models\User;
+use App\Models\UserSettings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -26,6 +27,11 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        UserSettings::create([
+            'user_id' => $user->id,
+            'website_mode' => ''
+        ]);
+
         return redirect()->route('panel.create.user.permissions', [
             'email' => $user->email
         ]);
@@ -33,7 +39,6 @@ class UserController extends Controller
 
     public function storeUserPermissions(Request $request)
     {
-
         $request->validate([
             'email' => ['required', 'email',],
             // 'is_admin' => ['string', 'in:on,off',],
@@ -265,5 +270,4 @@ class UserController extends Controller
 
         return redirect()->route('panel.users')->with('message',  '👍 تم تحديث حالة المستخدم بنجاح',);
     }
-
 }

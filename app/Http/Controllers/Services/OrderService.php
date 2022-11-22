@@ -69,13 +69,13 @@ class OrderService extends Controller
             'desire_to_buy_id' => $data['desire_to_buy_id'],
             'purch_method_id' => $data['purch_method_id'],
             'avaliable_amount' => $data['avaliable_amount'],
-            'assign_to' => $user->user_type == 'marketer' ?  $user->id : $data['assign_to'],
+            'assign_to' => $user->user_type == 'marketer' ?  null : $data['assign_to'],
             'support_eskan' => $data['support_eskan'],
             'notes' => $data['notes'],
 
             'customer_id' => $customer->id,
             'user_id' => auth()->id(),
-            'who_create' => auth()->id(),
+            'who_add' => auth()->id(),
             'assign_to_date' => $data['assign_to'] ? now() : null,
 
             // 'offer_id' => $data['offer_id'],
@@ -126,6 +126,18 @@ class OrderService extends Controller
             // 'closed_date' => $data['closed_date'],
             'who_edit' => auth()->id(),
             // 'who_cancel' => $data['who_cancel'],
+        ]);
+
+        $customer = Customer::find($order->customer_id);
+
+        $customer->update([
+            'name' => $order->customer_name,
+            'phone' => $order->customer_phone,
+            'employer_name' => $data['employer_name'],
+            'city_id' => $data['city_id'],
+            'support_eskan' => $data['support_eskan'],
+            'employee_type' => $data['employee_type'],
+            'who_edit' => auth()->id(),
         ]);
 
         if ($data['assign_to'] && $order->assign_to != $data['assign_to']) {

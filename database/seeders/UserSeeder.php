@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
 
         #Super Admin
         DB::table('users')->insert([
-            'name' => 'proamrakram',
+            'name' => 'superadmin',
             'phone' =>  '0599916672',
             'email' => 'superadmin@gmail.com',
             'password' => Hash::make('123456789'),
@@ -29,6 +29,20 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
             'user_type' => 'superadmin',
+            'created_at' => now(),
+        ]);
+
+        #Admin
+        DB::table('users')->insert([
+            'name' => 'admin',
+            'phone' =>  '0599916638',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('123456789'),
+            'user_status' => 'active',
+            // 'branches_ids' => json_encode([1, 2, 3]),
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+            'user_type' => 'admin',
             'created_at' => now(),
         ]);
 

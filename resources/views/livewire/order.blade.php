@@ -244,16 +244,22 @@
                                                         @endif
                                                     </td>
 
-                                                    @if (getUserName($order->assign_to))
+                                                    @if (whoType($order->who_add) == 'marketer')
                                                         <td>
-                                                            USR{{ $order->assign_to }}
+                                                            <strong class="fs-4">--</strong>
                                                         </td>
                                                     @else
-                                                        <td>
-                                                            <span class="badge bg-danger">
-                                                                غير مسند
-                                                            </span>
-                                                        </td>
+                                                        @if (getUserName($order->assign_to))
+                                                            <td>
+                                                                USR{{ $order->assign_to }}
+                                                            </td>
+                                                        @else
+                                                            <td>
+                                                                <span class="badge bg-danger">
+                                                                    غير مسند
+                                                                </span>
+                                                            </td>
+                                                        @endif
                                                     @endif
 
                                                     <td>
@@ -275,7 +281,7 @@
                                                                 @endif
 
                                                                 @if (auth()->user()->permissions->can_edit_orders == 1)
-                                                                    <a class="item-edit" data-bs-target="#createAppModal"
+                                                                    <a class="item-edit" data-bs-target="#editOrderForms"
                                                                         data-bs-toggle="modal"
                                                                         wire:click='callOrderModal({{ $order->id }})'>
                                                                         <i class="fas fa-edit"></i>

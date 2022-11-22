@@ -177,8 +177,9 @@
 
                                                                     <div class="form-input form-input-primary form-input col-md-6 mt-1"
                                                                         id="adv-div">
-                                                                        <input type="number" class="form-control"
+                                                                        <input type="text" class="form-control"
                                                                             placeholder="رقم المعلن" id="advertiserNumber"
+                                                                            value="{{ $user->advertiser_number }}"
                                                                             name="advertiser_number">
                                                                         @error('advertiser_number')
                                                                             <small
@@ -278,25 +279,6 @@
                                                                         </div>
                                                                     </td>
                                                                 </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

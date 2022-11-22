@@ -45,7 +45,7 @@ return new class extends Migration
 
             $table->date('assign_to_date')->nullable(); # time of assign
             $table->date('closed_date')->nullable(); # time of close
-            $table->integer('who_create')->nullable(); # id of creator
+            $table->integer('who_add')->nullable(); # id of creator
             $table->integer('who_edit')->nullable(); # id of editor
             $table->integer('who_cancel')->nullable(); # id of deleter
             $table->timestamps();
