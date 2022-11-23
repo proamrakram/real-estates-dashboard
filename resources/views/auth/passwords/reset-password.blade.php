@@ -53,7 +53,7 @@
                                             </g>
                                         </g>
                                     </svg>
-                                    <h2 class="brand-text text-primary ms-1">المدار الواعد</h2>
+                                    <h2 class="brand-text text-primary ms-1">منصة المدار العقارية</h2>
                                 </a>
 
                                 <h4 class="card-title mb-1">إعادة تعيين كلمة المرور 🔒</h4>
