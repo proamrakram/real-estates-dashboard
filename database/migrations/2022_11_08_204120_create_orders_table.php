@@ -31,11 +31,11 @@ return new class extends Migration
             $table->integer('property_type_id');
             $table->integer('city_id');
 
-            $table->integer('area');
+            $table->double('area');
             $table->double('price_from');
-            $table->float('price_to');
-            $table->float('avaliable_amount');
-            $table->float('purch_method_id');
+            $table->double('price_to');
+            $table->double('avaliable_amount');
+            $table->integer('purch_method_id');
             $table->integer('desire_to_buy_id');
 
             $table->integer('assign_to')->nullable();
