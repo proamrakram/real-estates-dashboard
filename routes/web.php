@@ -32,11 +32,12 @@ Route::get('/page-reset-password/{user_id}', [AdminPanelHomeController::class, '
 
 
 
-
 Route::controller(AdminPanelHomeController::class)->prefix('panel')->middleware(['auth', 'new'])->group(function () {
 
     Route::get('/home', 'home')->name('panel.home');
     Route::get('/order/{order}', 'order')->name('panel.order');
+    Route::get('/new-user', 'newUser')->name('panel.new.user');
+    Route::get('/profile', 'profile')->name('panel.profile');
 
     Route::as('panel.')->middleware('marketer')->group(function () {
         Route::get('/orders-marketer', 'ordersMarketer')->name('orders.marketer');
@@ -53,7 +54,6 @@ Route::controller(AdminPanelHomeController::class)->prefix('panel')->middleware(
         Route::get('/mediators', 'mediators')->name('mediators');
         Route::get('/sendSMS', 'sendSMS')->name('sendSMS');
         Route::get('/reservations', 'reservations')->name('reservations');
-        Route::get('/new-user', 'newUser')->withoutMiddleware('new')->name('new.user');
         Route::get('/real-estates-details', 'realEstatesDetails')->name('real.estates.details');
 
         Route::get('/change-password', 'changePassword')->name('change.password');
@@ -62,23 +62,6 @@ Route::controller(AdminPanelHomeController::class)->prefix('panel')->middleware(
 
         Route::get('/cities', 'cities')->name('cities');
         Route::get('/neighborhoods', 'neighborhoods')->name('neighborhoods');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         #Creating User Page
         Route::get('/create-user-info', 'createUserInfo')->name('create.user.info');
@@ -92,16 +75,6 @@ Route::controller(AdminPanelHomeController::class)->prefix('panel')->middleware(
         #Branch
         Route::get('/edit-branch/{branch}', 'editBranch')->name('edit.branch');
     });
-
-
-
-
-
-
-
-
-
-
 
     Route::as('admin.')->prefix('admin')->group(function () {
 
@@ -141,9 +114,4 @@ Route::controller(AdminPanelHomeController::class)->prefix('panel')->middleware(
         });
     });
 
-    Route::as('marketer.')->group(function () {
-    });
-
-    Route::as('office.')->group(function () {
-    });
 });

@@ -57,7 +57,7 @@
                         <div class="col-lg-3 d-none d-lg-flex align-items-center p-0">
                             <div class="w-100 d-lg-flex align-items-center justify-content-center">
                                 <img class="img-fluid w-100"
-                                    src="http://127.0.0.1:8000/app-assets/images/illustration/create-account.svg"
+                                    src="{{ asset('app-assets/images/illustration/create-account.svg') }}"
                                     alt="multi-steps" />
                             </div>
                         </div>
@@ -137,8 +137,8 @@
                                                     <div class="col-md-6 mb-1">
                                                         <label class="form-label" for="phone">رقم الجوال</label>
                                                         <input type="text" class="form-control"
-                                                            placeholder="رقم الجوال" maxlength="10" id="phone" name="phone"
-                                                            required />
+                                                            placeholder="رقم الجوال" maxlength="10" id="phone"
+                                                            name="phone" required />
                                                         @error('phone')
                                                             <small class="text-danger">{{ $message }}</small>
                                                         @enderror
@@ -162,11 +162,13 @@
                                                 </div>
 
                                                 <div class="d-flex justify-content-between mt-2">
-                                                    <button class="btn btn-outline-secondary btn-prev" disabled>
+                                                    <a href="{{ route('panel.users') }}"
+                                                        class="btn btn-outline-primary btn-prev">
                                                         <i data-feather="chevron-left"
                                                             class="align-middle me-sm-25 me-0"></i>
-                                                        <span class="align-middle d-sm-inline-block d-none">السابق</span>
-                                                    </button>
+                                                        <span class="align-middle d-sm-inline-block d-none">الرجوع لصفحة
+                                                            المستخدمين</span>
+                                                    </a>
                                                     <button class="btn btn-primary btn-next">
                                                         <span class="align-middle d-sm-inline-block d-none">التالى</span>
                                                         <i data-feather="chevron-right"

@@ -97,7 +97,7 @@
                                                     </select>
                                                 </label>
 
-                                                <label>المنطقة:
+                                                <label>المدينة:
                                                     <select wire:model='city_id'>
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getCities() as $city)
@@ -129,7 +129,7 @@
                                                     rowspan="1" colspan="1">نوع العقار</th>
                                                 <th class="sorting {{ $style_sort_direction }}"
                                                     wire:click="sortBy('city_id')" tabindex="0" rowspan="1"
-                                                    colspan="1">المنطقة </th>
+                                                    colspan="1">المدينة </th>
                                                 <th class="sorting {{ $style_sort_direction }}"
                                                     wire:click="sortBy('customer_id')" tabindex="0" rowspan="1"
                                                     colspan="1">اسم العميل</th>
@@ -207,7 +207,8 @@
                                                     </td>
 
                                                     <td>{{ getCustomerName($order->customer_id) }}</td>
-                                                    <td>{{ $order->price_from }} - {{ $order->price_to }}
+                                                    <td>{{ number_format($order->price_from) }} -
+                                                        {{ number_format($order->price_to) }}
                                                     </td>
 
 

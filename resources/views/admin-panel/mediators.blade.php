@@ -297,10 +297,10 @@
                                                     aria-labelledby="create-app-database-trigger">
                                                     <div class="col-12">
                                                         <label class="form-label"
-                                                            for="modalAddressCountry">المنطقة</label>
+                                                            for="modalAddressCountry">المدينة</label>
                                                         <select id="modalAddressCountry" name="modalAddressCountry"
                                                             class="select2 form-select">
-                                                            <option value="">اختيار المنطقة</option>
+                                                            <option value="">اختيار المدينة</option>
                                                             <option value="1">جزيرة تاروت</option>
                                                             <option value="2">القطيف</option>
                                                             <option value="3">سيهات</option>

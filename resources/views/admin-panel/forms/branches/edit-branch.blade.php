@@ -132,7 +132,7 @@
                                                 <div class="row">
 
                                                     <div class="col-md-6 mb-1">
-                                                        <label class="form-label" for="city_id">المنطقة</label>
+                                                        <label class="form-label" for="city_id">المدينة</label>
                                                         <select id="city-id" name='city_id' class="select2 form-select"
                                                             required>
                                                             @foreach ($cities as $city)

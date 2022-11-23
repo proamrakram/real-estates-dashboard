@@ -247,7 +247,7 @@
                                 </div>
 
                                 <div class="col-12 mb-1">
-                                    <label class="form-label">المنطقة</label>
+                                    <label class="form-label">المدينة</label>
                                     <select wire:model='city_id' class="select2 form-select">
                                         @foreach (getCities() as $city)
                                             <option value="{{ $city->id }}">{{ $city->name }}</option>
@@ -274,7 +274,7 @@
 
                                 <div class="col-12 mb-1">
                                     <label class="form-label">المساحة</label>
-                                    <input type="number" class="form-control" wire:model='area'
+                                    <input type="text" class="form-control" wire:model='area'
                                         placeholder="المساحة" />
                                     @error('area')
                                         <small class="text-danger">{{ $message }}</small>
@@ -284,7 +284,7 @@
                                 <div class="row mb-1">
                                     <div class="col-12 col-md-6">
                                         <label class="form-label">السعر من</label>
-                                        <input type="number" class="form-control" wire:model='price_from'
+                                        <input type="text" class="form-control" wire:model='price_from'
                                             placeholder="السعر من" />
                                         @error('price_from')
                                             <small class="text-danger">{{ $message }}</small>
@@ -293,7 +293,7 @@
 
                                     <div class="col-12 col-md-6">
                                         <label class="form-label">السعر الى</label>
-                                        <input type="number" class="form-control" wire:model='price_to'
+                                        <input type="text" class="form-control" wire:model='price_to'
                                             placeholder="السعر إلى" />
                                         @error('price_to')
                                             <small class="text-danger">{{ $message }}</small>
@@ -333,7 +333,7 @@
 
                                 <div class="col-12 mb-1">
                                     <label class="form-label">المبلغ المتوفر</label>
-                                    <input type="number" class="form-control" wire:model='avaliable_amount'
+                                    <input type="text" class="form-control" wire:model='avaliable_amount'
                                         placeholder="المبلغ المتوفر" />
                                     @error('avaliable_amount')
                                         <small class="text-danger">{{ $message }}</small>

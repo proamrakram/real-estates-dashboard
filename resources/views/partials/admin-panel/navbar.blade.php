@@ -154,7 +154,7 @@
 
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
 
-                        <a class="dropdown-item" href="{{ route('panel.home') }}">
+                        <a class="dropdown-item" href="{{ route('panel.profile') }}">
                             <i class="me-50" data-feather="user"></i>
                             الملف الشخصي
                         </a>

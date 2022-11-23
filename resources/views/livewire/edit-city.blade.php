@@ -15,7 +15,7 @@
                 <form class="row gy-1 gx-2 form form-horizontal" id="addNewAddressForm" wire:ignore.self>
 
                     <div class="col-12 col-md-6">
-                        <label class="form-label">اسم المنطقة</label>
+                        <label class="form-label">اسم المدينة</label>
                         <input type="text" wire:model='city_name' class="form-control" placeholder="اسم الفرع" />
                         @error('city_name')
                             <small class="text-danger">{{ $message }}</small>
@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="col-12 col-md-6">
-                        <label class="form-label">كود المنطقة</label>
+                        <label class="form-label">كود المدينة</label>
                         <input type="text" wire:model='city_code' class="form-control" placeholder="مثال : QTF " />
                         @error('city_code')
                             <small class="text-danger">{{ $message }}</small>

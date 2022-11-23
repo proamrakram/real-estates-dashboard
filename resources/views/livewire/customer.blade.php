@@ -45,7 +45,7 @@
 
 
 
-                            <label>المناطق:
+                            <label>المدن:
                                 <select wire:model='customer_city_id'>
                                     <option value="all" selected>الكل</option>
                                     @foreach (getCities() as $city)
@@ -88,7 +88,7 @@
                                 الجوال
                             </th>
                             <th class="sorting" tabindex="0" rowspan="1" colspan="1">نوع
-                                المنطقة
+                                المدينة
                             </th>
                             <th class="sorting" tabindex="0" rowspan="1" colspan="1">
                                 القطاع

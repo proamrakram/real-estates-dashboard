@@ -27,7 +27,7 @@
                                     </svg>
                                 </span>
                                 <span class="bs-stepper-label">
-                                    <span class="bs-stepper-title">المناطق والأحياء</span>
+                                    <span class="bs-stepper-title">المدن والأحياء</span>
                                     <span class="bs-stepper-subtitle">إضافة منطقة او حي جديد</span>
                                 </span>
                             </button>
@@ -74,9 +74,9 @@
 
 
                                     <div>
-                                        <label class="form-label" for="city-name">اسم المنطقة</label>
+                                        <label class="form-label" for="city-name">اسم المدينة</label>
                                         <input type="text" wire:model='city_name' class="form-control city"
-                                            placeholder="ادخل اسم المنطقة" aria-label="اسم المنطقة"
+                                            placeholder="ادخل اسم المدينة" aria-label="اسم المدينة"
                                             aria-describedby="city-name">
                                         @error('city_name')
                                             <small class="text-danger">{{ $message }}</small>
@@ -84,9 +84,9 @@
                                     </div>
 
                                     <div>
-                                        <label class="col-form-label" for="city-code">كود المنطقة</label>
+                                        <label class="col-form-label" for="city-code">كود المدينة</label>
                                         <input type="text" class="form-control city" wire:model='city_code'
-                                            placeholder="كود المنطقة مثل QTF" aria-label="كود المنطقة"
+                                            placeholder="كود المدينة مثل QTF" aria-label="كود المدينة"
                                             aria-describedby="city-code">
 
                                         @error('city_code')
@@ -106,7 +106,7 @@
 
 
                                     <div>
-                                        <label class="form-label">اختيار المنطقة</label>
+                                        <label class="form-label">اختيار المدينة</label>
 
                                         <select class="select2 form-control" wire:model='city_id'>
                                             @foreach (getCities() as $city)

@@ -73,7 +73,7 @@ if (!function_exists('getUsersAdminsCount')) {
 if (!function_exists('getUsersMarketersCount')) {
     function getUsersMarketersCount()
     {
-        return User::where('user_type', 'marketer')->count();
+        return User::where('user_type', 'marketer')->where('user_status', 'active')->count();
     }
 }
 

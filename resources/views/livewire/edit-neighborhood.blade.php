@@ -15,7 +15,7 @@
                 <form class="row gy-1 gx-2 form form-horizontal" id="addNewAddressForm" wire:ignore.self>
 
                     <div class="col-12 col-md-6">
-                        <label class="form-label">اختيار المنطقة</label>
+                        <label class="form-label">اختيار المدينة</label>
 
                         <select class="select2 form-select" wire:model='city_id'>
                             @foreach (getCities() as $city)
@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="col-12 col-md-6">
-                        <label class="form-label">اسم المنطقة</label>
+                        <label class="form-label">اسم المدينة</label>
                         <input type="text" wire:model='neighborhood_name' class="form-control"
                             placeholder="مثال : QTF " />
                         @error('neighborhood_name')

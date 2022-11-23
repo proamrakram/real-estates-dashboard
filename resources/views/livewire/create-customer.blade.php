@@ -268,9 +268,9 @@
                                 aria-labelledby="create-app-database-trigger-main" wire:ignore.self>
 
                                 <div class="col-12">
-                                    <label class="form-label" for="city-id">المنطقة</label>
+                                    <label class="form-label" for="city-id">المدينة</label>
                                     <select wire:model='city_id' class="select2 form-select">
-                                        <option value="">اختيار المنطقة</option>
+                                        <option value="">اختيار المدينة</option>
                                         @foreach (getCities() as $city)
                                             <option value="{{ $city->id }}">{{ $city->name }}
                                             </option>

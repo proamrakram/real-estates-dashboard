@@ -97,7 +97,7 @@
                                                     </select>
                                                 </label>
 
-                                                <label>المنطقة:
+                                                <label>المدينة:
                                                     <select wire:model='oo_city_id'>
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getCities() as $city)
@@ -129,7 +129,7 @@
                                                     rowspan="1" colspan="1">نوع العقار</th>
                                                 <th class="sorting {{ $oo_style_sort_direction }}"
                                                     wire:click="oo_sortBy('city_id')" tabindex="0" rowspan="1"
-                                                    colspan="1">المنطقة </th>
+                                                    colspan="1">المدينة </th>
                                                 <th class="sorting {{ $oo_style_sort_direction }}"
                                                     wire:click="oo_sortBy('customer_id')" tabindex="0" rowspan="1"
                                                     colspan="1">اسم العميل</th>
@@ -196,7 +196,8 @@
                                                     </td>
 
                                                     <td>{{ getCustomerName($main_order->customer_id) }}</td>
-                                                    <td>{{ $main_order->price_from }} - {{ $main_order->price_to }}
+                                                    <td>{{ number_format($main_order->price_from) }} -
+                                                        {{ number_format($main_order->price_to) }}
                                                     </td>
 
 
@@ -249,9 +250,9 @@
                                                                 </a>
                                                             @endif
 
+
                                                             @if (auth()->user()->permissions->can_edit_orders == 1)
-                                                                <a href="javascript:;" class="item-edit"
-                                                                    data-bs-target="#createAppModal"
+                                                                <a class="item-edit" data-bs-target="#editOrderForms"
                                                                     data-bs-toggle="modal"
                                                                     wire:click='callOrderModal({{ $main_order->id }})'>
                                                                     <i class="fas fa-edit"></i>
@@ -365,7 +366,7 @@
                                                     </select>
                                                 </label>
 
-                                                <label>المنطقة:
+                                                <label>المدينة:
                                                     <select wire:model='os_city_id'>
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getCities() as $city)
@@ -398,7 +399,7 @@
                                                     rowspan="1" colspan="1">نوع العقار</th>
                                                 <th class="sorting {{ $os_style_sort_direction }}"
                                                     wire:click="os_sortBy('city_id')" tabindex="0" rowspan="1"
-                                                    colspan="1">المنطقة </th>
+                                                    colspan="1">المدينة </th>
                                                 <th class="sorting {{ $os_style_sort_direction }}"
                                                     wire:click="os_sortBy('customer_id')" tabindex="0"
                                                     rowspan="1" colspan="1">اسم العميل</th>
@@ -467,8 +468,8 @@
                                                     </td>
 
                                                     <td>{{ getCustomerName($market_order->customer_id) }}</td>
-                                                    <td>{{ $market_order->price_from }} -
-                                                        {{ $market_order->price_to }}</td>
+                                                    <td>{{ number_format($market_order->price_from) }} -
+                                                        {{ number_format($market_order->price_to) }}</td>
 
 
                                                     <td>
@@ -521,13 +522,13 @@
                                                                 </a>
                                                             @endif
 
-                                                            @if (auth()->user()->permissions->can_edit_orders == 1)
-                                                                <a class="item-edit" data-bs-target="#createAppModal"
+                                                            {{-- @if (auth()->user()->permissions->can_edit_orders == 1)
+                                                                <a class="item-edit" data-bs-target="#editOrderForms"
                                                                     data-bs-toggle="modal"
                                                                     wire:click='callOrderModal({{ $market_order->id }})'>
                                                                     <i class="fas fa-edit"></i>
                                                                 </a>
-                                                            @endif
+                                                            @endif --}}
 
                                                             {{--   @if (auth()->user()->permissions->can_cancel_orders == 1)
                                                                 <button

@@ -224,6 +224,11 @@ class HomeController extends Controller
         return $this->userService->resetPassword();
     }
 
+    public function profile()
+    {
+        $user = auth()->user();
+        return view('admin-panel.profile', ['user' => $user]);
+    }
 
 
 

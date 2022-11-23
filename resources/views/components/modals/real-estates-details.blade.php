@@ -20,7 +20,7 @@
                                     <i data-feather="book" class="font-medium-3"></i>
                                 </span>
                                 <span class="bs-stepper-label">
-                                    <span class="bs-stepper-title">المناطق والأحياء</span>
+                                    <span class="bs-stepper-title">المدن والأحياء</span>
                                     <span class="bs-stepper-subtitle">إضافة منطقة او حي جديد</span>
                                 </span>
                             </button>
@@ -118,16 +118,16 @@
 
                             <form class="needs-validation  form-horizontal mb-1" novalidate>
 
-                                <label class="form-label" for="city-name">اسم المنطقة</label>
+                                <label class="form-label" for="city-name">اسم المدينة</label>
 
                                 <input type="text" id="city-name" class="form-control city"
-                                    placeholder="ادخل اسم المنطقة" aria-label="اسم المنطقة"
+                                    placeholder="ادخل اسم المدينة" aria-label="اسم المدينة"
                                     aria-describedby="city-name">
 
-                                <label class="col-form-label" for="city-code">كود المنطقة</label>
+                                <label class="col-form-label" for="city-code">كود المدينة</label>
 
                                 <input type="text" id="city-code" class="form-control city" name="city_code"
-                                    placeholder="كود المنطقة مثل QTF" aria-label="كود المنطقة"
+                                    placeholder="كود المدينة مثل QTF" aria-label="كود المدينة"
                                     aria-describedby="city-code">
 
                                 <div class="d-flex justify-content-between mt-2">
@@ -139,7 +139,7 @@
                             <h5>إضافة احياء</h5>
                             <form class="needs-validation  form-horizontal mb-1" novalidate>
 
-                                <label class="form-label" for="city-id">اختيار المنطقة</label>
+                                <label class="form-label" for="city-id">اختيار المدينة</label>
                                 <select class="select2 form-select select2-hidden-accessible" id="city-id"
                                     data-select2-id="city-id" name="city_id" tabindex="-1" aria-hidden="true">
                                     @foreach (getCities() as $city)

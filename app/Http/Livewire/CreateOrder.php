@@ -51,6 +51,10 @@ class CreateOrder extends Component
     public $selected_customer_value = '';
 
 
+    public $info_active = 'active';
+    public $home_active = '';
+    public $note_active = '';
+
     public function render()
     {
         if ($this->search_customer_value) {
@@ -69,7 +73,6 @@ class CreateOrder extends Component
                     $this->customer_phone = $this->search_customer_value;
                     $this->selected_customer_value = $this->search_customer_value;
                     $this->customer_name = '';
-                    $this->customer_name = '';
                 }
             }
         } else {
@@ -77,6 +80,25 @@ class CreateOrder extends Component
         }
 
         return view('livewire.create-order');
+    }
+
+    public function step($form)
+    {
+        $this->info_active = '';
+        $this->home_active = '';
+        $this->note_active = '';
+
+        if ($form == 'info_active') {
+            $this->info_active = 'active';
+        }
+
+        if ($form == 'home_active') {
+            $this->home_active = 'active';
+        }
+
+        if ($form == 'note_active') {
+            $this->note_active = 'active';
+        }
     }
 
     protected function rules()
@@ -141,12 +163,40 @@ class CreateOrder extends Component
 
     public function updated($propertyName)
     {
+        if ($propertyName == 'is_assignable') {
+            $marketers = getUserMarketers();
+            if ($marketers->count()) {
+                $this->assign_to = $marketers->first()->id;
+            }
+        }
+
+        if ($propertyName == 'price_from') {
+            $this->price_from = number_format((int)str_replace(',', '', $this->price_from));
+        }
+
+        if ($propertyName == 'price_to') {
+            $this->price_to = number_format((int)str_replace(',', '', $this->price_to));
+        }
+
+        if ($propertyName == 'area') {
+            $this->area = number_format((int)str_replace(',', '', $this->area));
+        }
+
+        if ($propertyName == 'avaliable_amount') {
+            $this->avaliable_amount = number_format((int)str_replace(',', '', $this->avaliable_amount));
+        }
+
         $this->validateOnly($propertyName);
         // $this->resetPage();
     }
 
     public function store(OrderService $orderService)
     {
+        $this->avaliable_amount = (int)str_replace(',', '', $this->avaliable_amount);
+        $this->price_from = (int)str_replace(',', '', $this->price_from);
+        $this->price_to = (int)str_replace(',', '', $this->price_to);
+        $this->area = (int)str_replace(',', '', $this->area);
+
         $validatedData = $this->validate();
         $orderService->store($validatedData);
         $this->alert('success', '', [

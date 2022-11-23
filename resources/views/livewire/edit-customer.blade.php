@@ -236,9 +236,9 @@
                             @if ($eskan_active)
 
                                 <div class="col-12 mb-2">
-                                    <label class="form-label" for="city-id">المنطقة</label>
+                                    <label class="form-label" for="city-id">المدينة</label>
                                     <select wire:model='city_id' class="select2 form-select">
-                                        <option value="">اختيار المنطقة</option>
+                                        <option value="">اختيار المدينة</option>
                                         @foreach (getCities() as $city)
                                             <option value="{{ $city->id }}">{{ $city->name }}
                                             </option>

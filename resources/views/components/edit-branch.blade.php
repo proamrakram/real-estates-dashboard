@@ -31,7 +31,7 @@
                     </div>
 
                     <div class="col-12">
-                        <label class="form-label" for="city_id">المنطقة</label>
+                        <label class="form-label" for="city_id">المدينة</label>
                         <select id="city_id" wire:model='city_id' class="select2 form-select">
                             @foreach ($cities as $city)
                                 <option value="{{ $city->id }}" @if ($branch->city_id == $city->id) selected @endif>

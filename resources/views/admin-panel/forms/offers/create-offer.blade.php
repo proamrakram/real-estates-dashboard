@@ -129,7 +129,7 @@
                                             <form>
                                                 <div class="row">
                                                     <div class="col-md-6 mb-1">
-                                                        <label class="form-label" for="location">المنطقة</label>
+                                                        <label class="form-label" for="location">المدينة</label>
                                                         <select class="form-select" name="city_id" id="city_id">
                                                             @foreach ($cities as $city)
                                                                 <option value="{{ $city->id }}">{{ $city->name }}

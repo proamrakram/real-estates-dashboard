@@ -99,14 +99,15 @@ class EditOrder extends Component
         $this->property_type_id = $order->property_type_id;
         $this->city_id = $order->city_id;
         $this->branch_id = $order->branch_id;
-        $this->area = $order->area;
-        $this->price_from = $order->price_from;
-        $this->price_to = $order->price_to;
+        $this->area = number_format((int)$order->area);
+        $this->price_from = number_format((int)$order->price_from);
+        $this->price_to = number_format((int)$order->price_to);
         $this->desire_to_buy_id = $order->desire_to_buy_id;
         $this->purch_method_id = $order->purch_method_id;
-        $this->avaliable_amount = $order->avaliable_amount;
+        $this->avaliable_amount = number_format((int)$order->avaliable_amount);
 
         #Form Three
+        $assign_to = null;
         if (getUserMarketers()->first()) {
             $assign_to = getUserMarketers()->first()->id;
         }
@@ -176,11 +177,33 @@ class EditOrder extends Component
 
     public function updated($propertyName)
     {
+
+        if ($propertyName == 'price_from') {
+            $this->price_from = number_format((int)str_replace(',', '', $this->price_from));
+        }
+
+        if ($propertyName == 'price_to') {
+            $this->price_to = number_format((int)str_replace(',', '', $this->price_to));
+        }
+
+        if ($propertyName == 'area') {
+            $this->area = number_format((int)str_replace(',', '', $this->area));
+        }
+
+        if ($propertyName == 'avaliable_amount') {
+            $this->avaliable_amount = number_format((int)str_replace(',', '', $this->avaliable_amount));
+        }
+
         $this->validateOnly($propertyName);
     }
 
     public function update(OrderService $orderService)
     {
+        $this->avaliable_amount = (int)str_replace(',', '', $this->avaliable_amount);
+        $this->price_from = (int)str_replace(',', '', $this->price_from);
+        $this->price_to = (int)str_replace(',', '', $this->price_to);
+        $this->area = (int)str_replace(',', '', $this->area);
+
         $validatedData = $this->validate();
         $orderService->update($this->order, $validatedData);
         $this->alert('success', '', [

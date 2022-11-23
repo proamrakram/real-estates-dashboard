@@ -52,7 +52,7 @@ class RealEstatesHelperBox extends Component
         return [
             'city_name.required' => 'هذا الحقل مطلوب',
             'city_code.required' => 'هذا الحقل مطلوب',
-            'city_name.unique' => 'المنطقة موجودة مسبقا',
+            'city_name.unique' => 'المدينة موجودة مسبقا',
             'city_code.unique' => 'رمز الكود مستخدم لمنطقة اخرى، يرجى إدخال رمز مختلف',
             'city_id.required' => 'هذا الحقل مطلوب',
             'city_id.exists' => 'رقم المدينة غير موجود',

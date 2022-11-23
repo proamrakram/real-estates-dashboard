@@ -62,9 +62,9 @@
                             <th class="sorting sorting_asc" tabindex="0" rowspan="1" colspan="1"
                                 aria-sort="ascending">اسم الفرع</th>
                             <th class="sorting" tabindex="0" rowspan="1" colspan="1">كود الفرع</th>
-                            <th class="sorting" tabindex="0" rowspan="1" colspan="1">المنطقة</th>
+                            <th class="sorting" tabindex="0" rowspan="1" colspan="1">المدينة</th>
                             <th class="sorting" tabindex="0" rowspan="1" colspan="1">الحالة</th>
-                            <th class="sorting" tabindex="0" rowspan="1" colspan="1">عدد المسوقين</th>
+                            <th class="sorting" tabindex="0" rowspan="1" colspan="1">عدد المستخدمين</th>
                             <th class="sorting" tabindex="0" rowspan="1" colspan="1">تحكم</th>
                         </tr>
                     </thead>

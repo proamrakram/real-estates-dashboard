@@ -17,7 +17,70 @@
                                         <h3 class="mb-75 mt-2 pt-50">
                                             <a href="#">{{ $order->order_code }}</a>
                                         </h3>
-                                        {{-- <button type="button" class="btn btn-primary waves-effect waves-float waves-light">View Sales</button> --}}
+                                        {{-- <button type="button"
+                                            class="btn btn-primary waves-effect waves-float waves-light">View
+                                            Sales</button> --}}
+
+                                        @if ($order->order_status_id == 3)
+                                            <div class="mb-2">
+                                                <a class="btn bg-light-danger waves-effect waves-float waves-light"
+                                                    wire:ignore.self>
+                                                    <span wire:ignore>
+                                                        الطلب مغلق
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        @endif
+
+
+
+                                        @if ($order->order_status_id == 1)
+                                            <div class="mb-2">
+                                                <a class="btn bg-light-warning waves-effect waves-float waves-light"
+                                                    wire:ignore.self>
+                                                    <span wire:ignore>
+                                                        الطلب جديد
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        @endif
+
+
+
+                                        @if ($order->order_status_id == 2)
+                                            <div class="mb-2">
+                                                <a class="btn bg-light-success waves-effect waves-float waves-light"
+                                                    wire:ignore.self>
+                                                    <span wire:ignore>
+                                                        تم ربط الطلب بالعرض
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        @endif
+
+                                        @if ($order->order_status_id == 4 || $order->order_status_id == 5)
+                                            <div class="mb-2">
+                                                <a class="btn bg-light-success waves-effect waves-float waves-light"
+                                                    wire:ignore.self>
+                                                    <span wire:ignore>
+                                                        جاري متابعة الطلب
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        @endif
+
+                                        {{--
+                                        @if ($order->order_status_id == 5)
+                                            <div class="mb-2">
+                                                <a class="btn bg-light-danger waves-effect waves-float waves-light" wire:ignore.self>
+                                                    <span wire:ignore>
+                                                        لم يتم التعامل مع الطلب
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        @endif --}}
+
+
 
                                         @if (!($order->order_status_id == 3))
                                             <a class="btn bg-light-success waves-effect waves-float waves-light"
@@ -148,7 +211,7 @@
                                 <div class="row" wire:ignore.self>
 
                                     <div class="col-md-3 mb-1 ms-4" wire:ignore.self>
-                                        <label class="form-label fw-bold fs-5 text-primary">المنطقة:</label>
+                                        <label class="form-label fw-bold fs-5 text-primary">المدينة:</label>
                                         <label class="form-label fs-6">{{ getCityName($order->city_id) }}</label>
                                     </div>
 

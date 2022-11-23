@@ -35,7 +35,7 @@ class RealEstatesService extends Controller
         // ], [
         //     'city_name.required' => 'هذا الحقل مطلوب',
         //     'city_code.required' => 'هذا الحقل مطلوب',
-        //     'city_name.unique' => 'المنطقة موجودة مسبقا',
+        //     'city_name.unique' => 'المدينة موجودة مسبقا',
         //     'city_code.unique' => 'رمز الكود مستخدم لمنطقة اخرى، يرجى إدخال رمز مختلف'
         // ]);
 
@@ -48,7 +48,7 @@ class RealEstatesService extends Controller
 
         return response()->json([
             'status' => true,
-            'message' => '👍 تم تحديث المناطق بنجاح',
+            'message' => '👍 تم تحديث المدن بنجاح',
             'cities' => $cities
         ]);
     }

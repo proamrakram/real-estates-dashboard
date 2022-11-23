@@ -15,7 +15,6 @@ class CitySeeder extends Seeder
     public function run()
     {
         $cities = [
-            'RYD' => 'الرياض',
             'QTF' =>  'القطيف',
             'TRT' =>  'جزيرة تاروت',
             'SYHT' => 'سيهات',

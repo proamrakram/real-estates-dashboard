@@ -39,8 +39,6 @@
                         @livewire('create-order')
                     @endif
                 @endauth
-
-
             </div>
 
             <div class="content-body">

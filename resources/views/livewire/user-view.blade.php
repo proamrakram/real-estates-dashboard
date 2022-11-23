@@ -155,7 +155,7 @@
                                 <div class="row">
 
                                     <div class="col-md-3 mb-1 ms-4">
-                                        <label class="form-label fw-bold fs-5 text-primary">المنطقة:</label>
+                                        <label class="form-label fw-bold fs-5 text-primary">المدينة:</label>
                                         <label class="form-label fs-6">{{ getCityName($order->city_id) }}</label>
                                     </div>
 
@@ -431,6 +431,8 @@
                 </div>
 
             </div>
+
+
         </div>
     </div>
 </div>
