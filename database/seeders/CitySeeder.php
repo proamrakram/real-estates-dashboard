@@ -23,6 +23,7 @@ class CitySeeder extends Seeder
             'BMM' => 'الدمام',
             'KHBR' => 'الخبر',
             'DHRN' => 'الظهران',
+            'RYD' => 'الرياض',
         ];
 
         foreach ($cities as $code => $city) {
