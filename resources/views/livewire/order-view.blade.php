@@ -199,12 +199,13 @@
                                     <div class="col-md-3 mb-1 ms-4" wire:ignore.self>
                                         <label class="form-label fw-bold fs-5 text-primary"> المساحة
                                             :</label>
-                                        <label class="form-label fs-6">{{ $order->area }}</label>
+                                        <label class="form-label fs-6">{{ number_format($order->area) }}</label>
                                     </div>
 
                                     <div class="col-md-3 mb-1 ms-4" wire:ignore.self>
                                         <label class="form-label fw-bold fs-5 text-primary">الميزانية:</label>
-                                        {{ $order->price_from }} - {{ $order->price_to }}
+                                        {{ number_format($order->price_from) }} -
+                                        {{ number_format($order->price_to) }}
                                     </div>
                                 </div>
 
@@ -218,7 +219,8 @@
                                     <div class="col-md-3 mb-1 ms-4" wire:ignore.self>
                                         <label class="form-label fw-bold fs-5 text-primary">المبلغ المتوفر:
                                         </label>
-                                        <label class="form-label fs-6">{{ $order->avaliable_amount }}</label>
+                                        <label
+                                            class="form-label fs-6">{{ number_format($order->avaliable_amount) }}</label>
                                     </div>
 
                                     <div class="col-md-3 mb-1 ms-4" wire:ignore.self>

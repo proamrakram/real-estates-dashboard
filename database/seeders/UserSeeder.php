@@ -20,10 +20,10 @@ class UserSeeder extends Seeder
 
         #Super Admin
         DB::table('users')->insert([
-            'name' => 'superadmin',
+            'name' => 'عمرو اكرم',
             'phone' =>  '0599916672',
-            'email' => 'superadmin@gmail.com',
-            'password' => Hash::make('123456789'),
+            'email' => 'proamrakram@gmail.com',
+            'password' => Hash::make('0599916672'),
             'user_status' => 'active',
             // 'branches_ids' => json_encode([1, 2, 3]),
             'email_verified_at' => now(),
@@ -31,6 +31,52 @@ class UserSeeder extends Seeder
             'user_type' => 'superadmin',
             'created_at' => now(),
         ]);
+
+        #Super Admin
+        DB::table('users')->insert([
+            'name' => 'زكي الجعفري',
+            'phone' =>  '0557453000',
+            'email' => 'jafaryza@gmail.com',
+            'password' => Hash::make('0557453000'),
+            'user_status' => 'active',
+            // 'branches_ids' => json_encode([1, 2, 3]),
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+            'user_type' => 'superadmin',
+            'created_at' => now(),
+        ]);
+
+
+        #Super Admin
+        DB::table('users')->insert([
+            'name' => 'خالد الشكر',
+            'phone' =>  '0568860970',
+            'email' => 'alshakar.khalid@gmail.com',
+            'password' => Hash::make('0568860970'),
+            'user_status' => 'active',
+            // 'branches_ids' => json_encode([1, 2, 3]),
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+            'user_type' => 'superadmin',
+            'created_at' => now(),
+        ]);
+
+
+        #Super Admin
+        DB::table('users')->insert([
+            'name' => 'زهير السكيري',
+            'phone' =>  '0505859599',
+            'email' => 'zuhair.alsukairi@almadaralwaad.sa',
+            'password' => Hash::make('0505859599'),
+            'user_status' => 'active',
+            // 'branches_ids' => json_encode([1, 2, 3]),
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+            'user_type' => 'superadmin',
+            'created_at' => now(),
+        ]);
+
+
 
         #Admin
         DB::table('users')->insert([
@@ -45,47 +91,6 @@ class UserSeeder extends Seeder
             'user_type' => 'admin',
             'created_at' => now(),
         ]);
-
-        // #Admin
-        // DB::table('users')->insert([
-        //     'name' => 'proamrakram',
-        //     'phone' =>  '0569062255',
-        //     'email' => 'admin@gmail.com',
-        //     'password' => Hash::make('123456789'),
-        //     'user_status' => 'active',
-        //     // 'branches_ids' => json_encode([1, 2, 3]),
-        //     'email_verified_at' => now(),
-        //     'remember_token' => Str::random(10),
-        //     'user_type' => 'admin',
-        //     'created_at' => now(),
-        // ]);
-
-        // DB::table('users')->insert([
-        //     'name' => 'proamrakram',
-        //     'phone' =>  '0569916672',
-        //     'email' => 'office@gmail.com',
-        //     'password' => Hash::make('123456789'),
-        //     'user_status' => 'active',
-        //     // 'branches_ids' => json_encode([1, 2, 3]),
-        //     'email_verified_at' => now(),
-        //     'remember_token' => Str::random(10),
-        //     'user_type' => 'office',
-        //     'created_at' => now(),
-        // ]);
-
-
-        // DB::table('users')->insert([
-        //     'name' => 'proamrakram',
-        //     'phone' =>  '0599916638',
-        //     'email' => 'marketer@gmail.com',
-        //     'password' => Hash::make('123456789'),
-        //     'user_status' => 'active',
-        //     // 'branches_ids' => json_encode([1, 2, 3]),
-        //     'email_verified_at' => now(),
-        //     'remember_token' => Str::random(10),
-        //     'user_type' => 'marketer',
-        //     'created_at' => now(),
-        // ]);
 
 
         // $users_types = [
