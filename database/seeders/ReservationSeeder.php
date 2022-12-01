@@ -5,8 +5,9 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
-class MediatorSeeder extends Seeder
+class ReservationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,19 +16,16 @@ class MediatorSeeder extends Seeder
      */
     public function run()
     {
-        $types = [
-            1 => 'office',
-            2 => 'individual'
-        ];
-
         foreach (range(1, 100) as $i) {
-            DB::table('mediators')->insert([
+            DB::table('reservations')->insert([
                 'user_id' => 1,
-                'name' => 'proamrakram',
-                'phone_number' => '059' . random_int(1111111, 9999999),
-                'type' => $types[random_int(1, 2)],
+                'customer_name' => 'proamrakram',
+                'customer_id' => 1,
+                'price' => 9.9,
                 'status' => random_int(1, 2),
-                'created_at' => now(),
+                'date_from' => now(),
+                'date_to' => now()->addDays(10),
+                'note' => Str::random(16)
             ]);
         }
     }

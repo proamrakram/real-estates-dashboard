@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mediators', function (Blueprint $table) {
+        Schema::create('reservations', function (Blueprint $table) {
             $table->id()->startingValue(100);
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->string('name');
-            $table->string('phone_number');
-            $table->enum('type', ['office', 'individual']);
+            $table->string('customer_id')->constrained('customers')->cascadeOnDelete();
+            $table->string('customer_name');
+            $table->double('price')->default(0.0);
             $table->enum('status', [1, 2]);
+            $table->date('date_from');
+            $table->date('date_to');
+            $table->text('note');
             $table->timestamps();
         });
     }
@@ -31,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mediators');
+        Schema::dropIfExists('reservations');
     }
 };

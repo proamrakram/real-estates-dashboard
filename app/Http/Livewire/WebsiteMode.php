@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Livewire;
+
 use Livewire\Component;
 
 class WebsiteMode extends Component
@@ -26,5 +27,7 @@ class WebsiteMode extends Component
                 $this->mood = 'dark';
             }
         }
+
+        $this->emit('changeWebsiteMode');
     }
 }

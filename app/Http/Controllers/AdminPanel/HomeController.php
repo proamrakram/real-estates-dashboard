@@ -112,6 +112,13 @@ class HomeController extends Controller
 
     public function mediators()
     {
+        $user = auth()->user();
+
+        if ($user) {
+            if (!Gate::allows('manage_mediators')) {
+                return redirect()->route('panel.home');
+            }
+        }
         return view('admin-panel.mediators');
     }
 

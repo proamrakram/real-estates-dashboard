@@ -181,6 +181,22 @@
 
                                                                 </tr>
 
+
+                                                                <tr>
+                                                                    <td class="text-nowrap fw-bolder">الوسطاء</td>
+                                                                    <td>
+                                                                        <div class="d-flex">
+                                                                            <div class="form-check me-3 me-lg-5">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="can_show_orders"
+                                                                                    name="manage_mediators">
+                                                                                <label class="form-check-label"
+                                                                                    for="manageMediators"> تحكم </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+
                                                                 <tr>
                                                                     <td class="text-nowrap fw-bolder">الطلبات</td>
                                                                     <td>
@@ -221,30 +237,6 @@
                                                                         </div>
                                                                     </td>
                                                                 </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

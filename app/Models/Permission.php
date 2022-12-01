@@ -11,6 +11,7 @@ class Permission extends Model
 
     protected $fillable = [
         'user_id',
+        'manage_mediators',
         'can_add_offers',
         'can_edit_offers',
         'can_show_offers',
@@ -43,6 +44,7 @@ class Permission extends Model
     public function scopeGetPermissions($query, $user_id)
     {
         $query->where('user_id', $user_id)->select([
+            'manage_mediators',
             'can_add_offers',
             'can_edit_offers',
             'can_show_offers',

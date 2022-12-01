@@ -87,6 +87,7 @@
                             </span>
                         </a>
                     </li>
+
                     <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('panel.orders') }}">
                             <i data-feather="shopping-cart"></i>
                             <span class="menu-title text-truncate" data-i18n="Calendar">الطلبات
@@ -94,29 +95,53 @@
                         </a>
                     </li>
 
-
                     <li class=" nav-item">
+                        <a class="d-flex align-items-center" href="{{ route('panel.reservations') }}">
+                            <i data-feather="phone"></i>
+                            <span class="menu-title text-truncate" data-i18n="Todo">الحجوزات</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="d-flex align-items-center" href="{{ route('panel.customers') }}">
                             <i data-feather="users"></i>
                             <span class="menu-title text-truncate" data-i18n="Kanban">العملاء
                             </span>
                         </a>
                     </li>
-                    <li class=" nav-item">
+
+                    <li class="nav-item">
                         <a class="d-flex align-items-center" href="{{ route('panel.branchs') }}">
                             <i data-feather="globe"></i>
                             <span class="menu-title text-truncate" data-i18n="branchs">الفروع
                             </span>
                         </a>
                     </li>
+
+                    @if (auth()->user()->permissions->manage_mediators == 1)
+                        <li class="nav-item">
+                            <a class="d-flex align-items-center" href="{{ route('panel.mediators') }}">
+                                <i data-feather="briefcase"></i>
+                                <span class="menu-title text-truncate" data-i18n="mediators">الوسطاء</span>
+                            </a>
+                        </li>
+                    @endif
+
+                    <li class=" nav-item">
+                        <a class="d-flex align-items-center" href="{{ route('panel.sendSMS') }}">
+                            <i data-feather="message-square"></i>
+                            <span class="menu-title text-truncate" data-i18n="sendSMS">إرسال رسالة</span>
+                        </a>
+                    </li>
+
                 @endif
             @endauth
 
 
-
             @auth
                 @if (auth()->user()->user_type == 'marketer')
-                    <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('panel.orders.marketer') }}">
+                    <li class=" nav-item"><a class="d-flex align-items-center"
+                            href="{{ route('panel.orders.marketer') }}">
                             <i data-feather="shopping-cart"></i>
                             <span class="menu-title text-truncate" data-i18n="Calendar">الطلبات
                             </span>
@@ -131,10 +156,7 @@
                         data-feather="star"></i><span class="menu-title text-truncate"
                         data-i18n="Chat">العروض</span></a>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('panel.reservations') }}"><i
-                        data-feather="phone"></i><span class="menu-title text-truncate"
-                        data-i18n="Todo">الحجوزات</span></a>
-            </li> --}}
+          --}}
 
 
             {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('panel.selles') }}"><i
@@ -142,17 +164,10 @@
                         data-i18n="Kanban">المبيعات</span></a>
             </li> --}}
 
-            {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('panel.mediators') }}">
-                    <i data-feather="briefcase"></i>
-                    <span class="menu-title text-truncate" data-i18n="mediators">الوسطاء</span>
-                </a>
-            </li>
+            {{--
 
 
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('panel.sendSMS') }}"><i
-                        data-feather="message-square"></i><span class="menu-title text-truncate"
-                        data-i18n="sendSMS">إرسال رسالة</span></a>
-            </li> --}}
+         --}}
         </ul>
     </div>
 

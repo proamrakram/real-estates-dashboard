@@ -21,6 +21,7 @@ class PermissionSeeder extends Seeder
         foreach ($users as $user) {
             DB::table('permissions')->insert([
                 'user_id' => $user->id,
+                'manage_mediators' => 1,
                 'can_add_offers' => 1,
                 'can_edit_offers' => 1,
                 'can_show_offers' => 1,

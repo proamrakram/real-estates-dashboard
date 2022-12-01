@@ -207,8 +207,7 @@
                                                     </td>
 
                                                     <td>{{ getCustomerName($order->customer_id) }}</td>
-                                                    <td>{{ number_format($order->price_from) }} -
-                                                        {{ number_format($order->price_to) }}
+                                                    <td>{{ number_format($order->price_from) }} - {{ number_format($order->price_to) }}
                                                     </td>
 
 

@@ -48,6 +48,7 @@ class UserController extends Controller
             // 'is_employee' => ['string', 'in:on,off'],
             'user_type' => ['required', 'in:admin,office,marketer'],
 
+            'manage_mediators' => ['string', 'in:on,off'],
             'can_add_offers' => ['string', 'in:on,off'],
             'can_edit_offers' => ['string', 'in:on,off'],
             'can_show_offers' => ['string', 'in:on,off'],
@@ -105,6 +106,7 @@ class UserController extends Controller
 
             Permission::create([
                 'user_id' => $user->id, #user id
+                'manage_mediators' => $request->manage_mediators ? 1 : 2,
                 #Offers
                 'can_add_offers' => $request->can_add_offers ? 1 : 2,
                 'can_edit_offers' => $request->can_edit_offers ? 1 : 2,
@@ -163,7 +165,6 @@ class UserController extends Controller
 
     public function updateUserPermissions(Request $request, User $user)
     {
-
         $request->validate([
             // 'is_admin' => ['string', 'in:on,off',],
             // 'is_office' => ['string', 'in:on,off'],
@@ -172,6 +173,7 @@ class UserController extends Controller
             // 'is_employee' => ['string', 'in:on,off'],
             'user_type' => ['required', 'in:admin,office,marketer'],
 
+            'manage_mediators' => ['string', 'in:on,off'],
             'can_add_offers' => ['string', 'in:on,off'],
             'can_edit_offers' => ['string', 'in:on,off'],
             'can_show_offers' => ['string', 'in:on,off'],
@@ -224,6 +226,9 @@ class UserController extends Controller
             }
 
             $permissions->update([
+                #Manage Mediators
+                'manage_mediators' => $request->manage_mediators ? 1 : 2,
+
                 #Offers
                 'can_add_offers' => $request->can_add_offers ? 1 : 2,
                 'can_edit_offers' => $request->can_edit_offers ? 1 : 2,

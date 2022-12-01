@@ -1,4 +1,5 @@
 <div class="content-header-right  col-md-3 col-12 d-md-block d-none">
+
     <div class="mb-1 text-md-end breadcrumb-right">
         <a href="javascript:;" data-bs-target="#createAppModal" data-bs-toggle="modal" class="btn btn-primary">
             <span>
@@ -142,11 +143,10 @@
                                         @enderror
                                     </div>
 
-
                                     <div class="col-md-6 mb-1">
                                         <label class="form-label">رقم الجوال</label>
-                                        <input type="tel" wire:model='phone' class="form-control"
-                                            placeholder="رقم الجوال" />
+                                        <input type="tel" wire:model='phone' maxlength="10"
+                                            class="form-control" placeholder="رقم الجوال" />
                                         @error('phone')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror

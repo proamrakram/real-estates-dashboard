@@ -27,8 +27,6 @@
 
                 @livewire('create-customer')
 
-
-
             </div>
             <div class="content-body">
                 <!-- users list start -->

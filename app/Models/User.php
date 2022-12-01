@@ -101,6 +101,11 @@ class User extends Authenticatable
         return $this->hasMany(Customer::class, 'user_id', 'id');
     }
 
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'user_id', 'id');
+    }
+
     public function scopeFilters(Builder $builder, array $filters = [])
     {
         $filters = array_merge([
@@ -112,8 +117,7 @@ class User extends Authenticatable
 
 
         $builder->when($filters['search'] != '', function ($query) use ($filters) {
-            $query
-                ->where('name', 'like', '%' . $filters['search'] . '%')
+            $query->where('name', 'like', '%' . $filters['search'] . '%')
                 ->orWhere('phone', 'like', '%' . $filters['search'] . '%');
         });
 

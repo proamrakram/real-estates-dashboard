@@ -22,6 +22,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
 
             #permissions offers
+            $table->enum('manage_mediators', [1, 2]);
+
+            #permissions offers
             $table->enum('can_add_offers', [1, 2]);
             $table->enum('can_edit_offers', [1, 2]);
             $table->enum('can_show_offers', [1, 2]);

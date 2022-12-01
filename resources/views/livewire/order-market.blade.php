@@ -25,28 +25,8 @@
                         {{-- Navbar Sections --}}
 
                         <div class="tab-content pt-1">
-
-
-                            <div class="tab-pane active" id="home-fill" role="tabpanel" aria-labelledby="home-tab-fill"
-                                wire:ignore.self>
+                            <div class="tab-pane active" id="home-fill" role="tabpanel" aria-labelledby="home-tab-fill" wire:ignore.self>
                                 <div class="dataTables_wrapper dt-bootstrap5 no-footer">
-
-                                    {{-- Export Section --}}
-                                    {{-- <div class="card-header border-bottom p-1">
-                                        <div class="head-label"></div>
-                                        <div class="dt-action-buttons text-end">
-                                            <div class="dt-buttons">
-                                                <button
-                                                    class="dt-button buttons-collection btn btn-outline-secondary dropdown-toggle me-2"
-                                                    tabindex="0" aria-controls="DataTables_Table_0" type="button"
-                                                    aria-haspopup="true" aria-expanded="false">
-                                                    <span><i data-feather='share'></i>تصدير </span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div> --}}
-                                    {{-- Export Section --}}
-
                                     <div class="d-flex justify-content-between align-items-center mx-0 row">
 
                                         {{-- Number of Rows Sections --}}
@@ -297,26 +277,12 @@
 
 
 
-                            <div class="tab-pane " id="home2-fill" role="tabpanel" aria-labelledby="home2-tab-fill"
-                                wire:ignore.self>
-
+                            <div class="tab-pane " id="home2-fill" role="tabpanel" aria-labelledby="home2-tab-fill" wire:ignore.self>
                                 <div class="dataTables_wrapper dt-bootstrap5 no-footer">
-
-                                    {{-- <div class="card-header border-bottom p-1">
-                                        <div class="head-label"></div>
-                                        <div class="dt-action-buttons text-end">
-                                            <div class="dt-buttons">
-                                                <button
-                                                    class="dt-button buttons-collection btn btn-outline-secondary dropdown-toggle me-2"
-                                                    tabindex="0" type="button" aria-haspopup="true">
-                                                    <span><i data-feather='share'></i>تصدير </span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div> --}}
 
 
                                     <div class="d-flex justify-content-between align-items-center mx-0 row">
+
 
                                         <div class="col-sm-12 col-md-3">
                                             <div class="col-sm-12 col-md-6">
@@ -568,10 +534,13 @@
                                         </div>
                                     </div>
 
+
+
+
+
+
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>

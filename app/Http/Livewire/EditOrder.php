@@ -80,6 +80,7 @@ class EditOrder extends Component
             $this->notes_info = 'active';
         }
     }
+
     public function openOrderModal($order_id)
     {
 
@@ -216,4 +217,5 @@ class EditOrder extends Component
         $this->emit('updateOrders');
         $this->emit('updateOrderMarketer');
     }
+    
 }
