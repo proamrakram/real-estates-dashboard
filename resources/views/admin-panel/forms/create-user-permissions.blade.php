@@ -198,6 +198,40 @@
                                                                 </tr>
 
                                                                 <tr>
+                                                                    <td class="text-nowrap fw-bolder">الرسائل الجماعية</td>
+                                                                    <td>
+                                                                        <div class="d-flex">
+                                                                            <div class="form-check me-3 me-lg-5">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox"
+                                                                                    id="can_send_sms_collection"
+                                                                                    name="can_send_sms_collection">
+                                                                                <label class="form-check-label"
+                                                                                    for="can_send_sms_collection"> تحكم
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="text-nowrap fw-bolder">الرسائل الفردية</td>
+                                                                    <td>
+                                                                        <div class="d-flex">
+                                                                            <div class="form-check me-3 me-lg-5">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox"
+                                                                                    id="can_send_sms_individually"
+                                                                                    name="can_send_sms_individually">
+                                                                                <label class="form-check-label"
+                                                                                    for="can_send_sms_individually"> تحكم
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr>
                                                                     <td class="text-nowrap fw-bolder">الطلبات</td>
                                                                     <td>
                                                                         <div class="d-flex">

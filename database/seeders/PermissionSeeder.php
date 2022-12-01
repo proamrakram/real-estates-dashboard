@@ -43,7 +43,9 @@ class PermissionSeeder extends Seeder
                 'can_delete_sells' => 1,
                 'can_cancel_sells' => 1,
                 'can_booking' => 1,
-                'can_send_sms' => 1,
+                // 'can_send_sms' => 1,
+                'can_send_sms_collection',
+                'can_send_sms_individually',
                 'created_at' => now()
             ]);
         }

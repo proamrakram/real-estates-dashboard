@@ -53,7 +53,11 @@ return new class extends Migration
             $table->enum('can_cancel_sells', [1, 2]);
 
             $table->enum('can_booking', [1, 2]);
-            $table->enum('can_send_sms', [1, 2]);
+            // $table->enum('can_send_sms', [1, 2]);
+
+            $table->enum('can_send_sms_collection', [1, 2]);
+            $table->enum('can_send_sms_individually', [1, 2]);
+
             $table->timestamps();
         });
     }

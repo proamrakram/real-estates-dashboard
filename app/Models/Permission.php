@@ -33,7 +33,9 @@ class Permission extends Model
         'can_delete_sells',
         'can_cancel_sells',
         'can_booking',
-        'can_send_sms',
+        // 'can_send_sms',
+        'can_send_sms_collection',
+        'can_send_sms_individually',
     ];
 
     public function user()
@@ -66,7 +68,9 @@ class Permission extends Model
             'can_delete_sells',
             'can_cancel_sells',
             'can_booking',
-            'can_send_sms',
+            // 'can_send_sms',
+            'can_send_sms_collection',
+            'can_send_sms_individually',
         ]);
     }
 }

@@ -74,7 +74,9 @@ class UserController extends Controller
             'can_cancel_sells' => ['string', 'in:on,off'],
 
             'can_booking' => ['string', 'in:on,off'],
-            'can_send_sms' => ['string', 'in:on,off'],
+            // 'can_send_sms' => ['string', 'in:on,off'],
+            'can_send_sms_collection' => ['string', 'in:on,off'],
+            'can_send_sms_individually' => ['string', 'in:on,off'],
 
             'user_status' => ['string', 'in:on,off'],
 
@@ -136,7 +138,9 @@ class UserController extends Controller
                 'can_cancel_sells' => $request->can_cancel_sells ? 1 : 2,
 
                 'can_booking' => $request->can_booking ? 1 : 2,
-                'can_send_sms' => $request->can_send_sms ? 1 : 2,
+                // 'can_send_sms' => $request->can_send_sms ? 1 : 2,
+                'can_send_sms_collection' => $request->can_send_sms_collection ? 1 : 2,
+                'can_send_sms_individually' => $request->can_send_sms_individually ? 1 : 2,
             ]);
         }
 
@@ -199,7 +203,10 @@ class UserController extends Controller
             'can_cancel_sells' => ['string', 'in:on,off'],
 
             'can_booking' => ['string', 'in:on,off'],
-            'can_send_sms' => ['string', 'in:on,off'],
+            // 'can_send_sms' => ['string', 'in:on,off'],
+
+            'can_send_sms_collection' => ['string', 'in:on,off'],
+            'can_send_sms_individually' => ['string', 'in:on,off'],
 
             'user_status' => ['string', 'in:on,off'],
 
@@ -258,7 +265,10 @@ class UserController extends Controller
                 'can_cancel_sells' => $request->can_cancel_sells ? 1 : 2,
 
                 'can_booking' => $request->can_booking ? 1 : 2,
-                'can_send_sms' => $request->can_send_sms ? 1 : 2,
+                // 'can_send_sms' => $request->can_send_sms ? 1 : 2,
+
+                'can_send_sms_collection' => $request->can_send_sms_collection ? 1 : 2,
+                'can_send_sms_individually' => $request->can_send_sms_individually ? 1 : 2,
             ]);
         }
 
