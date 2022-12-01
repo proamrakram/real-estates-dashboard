@@ -25,7 +25,8 @@
                         {{-- Navbar Sections --}}
 
                         <div class="tab-content pt-1">
-                            <div class="tab-pane active" id="home-fill" role="tabpanel" aria-labelledby="home-tab-fill" wire:ignore.self>
+                            <div class="tab-pane active" id="home-fill" role="tabpanel" aria-labelledby="home-tab-fill"
+                                wire:ignore.self>
                                 <div class="dataTables_wrapper dt-bootstrap5 no-footer">
                                     <div class="d-flex justify-content-between align-items-center mx-0 row">
 
@@ -49,7 +50,7 @@
                                         <div class="col-sm-12 col-md-9">
                                             <div class="dataTables_filter">
                                                 <label>حالة الطلب:
-                                                    <select wire:model='oo_order_status_id'>
+                                                    <select wire:model='oo_order_status_id' class="form-select">
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getOrderStatuses() as $order_status)
                                                             <option value="{{ $order_status->id }}">
@@ -59,7 +60,7 @@
                                                 </label>
 
                                                 <label>نوع العقار:
-                                                    <select wire:model='oo_property_type_id'>
+                                                    <select wire:model='oo_property_type_id' class="form-select">
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getPropertyTypes() as $property_type)
                                                             <option value="{{ $property_type->id }}">
@@ -68,7 +69,7 @@
                                                     </select>
                                                 </label>
                                                 <label>الفرع:
-                                                    <select wire:model='oo_branch_type_id'>
+                                                    <select wire:model='oo_branch_type_id' class="form-select">
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getBranches() as $branch)
                                                             <option value="{{ $branch->id }}">{{ $branch->name }}
@@ -78,7 +79,7 @@
                                                 </label>
 
                                                 <label>المدينة:
-                                                    <select wire:model='oo_city_id'>
+                                                    <select wire:model='oo_city_id' class="form-select">
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getCities() as $city)
                                                             <option value="{{ $city->id }}">{{ $city->name }}
@@ -122,7 +123,8 @@
                                                     wire:click="oo_sortBy('branch_id')" tabindex="0" rowspan="1"
                                                     colspan="1">الفرع</th>
                                                 @if (auth()->user()->permissions->can_show_orders == 1 || auth()->user()->permissions->can_edit_orders == 1)
-                                                    <th class="sorting" tabindex="0" rowspan="1" colspan="1">
+                                                    <th class="sorting" tabindex="0" rowspan="1"
+                                                        colspan="1">
                                                         تحكم
                                                     </th>
                                                 @endif
@@ -277,7 +279,8 @@
 
 
 
-                            <div class="tab-pane " id="home2-fill" role="tabpanel" aria-labelledby="home2-tab-fill" wire:ignore.self>
+                            <div class="tab-pane " id="home2-fill" role="tabpanel" aria-labelledby="home2-tab-fill"
+                                wire:ignore.self>
                                 <div class="dataTables_wrapper dt-bootstrap5 no-footer">
 
 
@@ -304,7 +307,8 @@
                                         <div class="col-sm-12 col-md-9">
                                             <div class="dataTables_filter">
                                                 <label>حالة الطلب:
-                                                    <select wire:model='os_order_status_id'>
+                                                    <select wire:model='os_order_status_id' class="form-select"
+                                                        style="margin-left: .5em; display: inline-block; width: auto;">
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getOrderStatuses() as $order_status)
                                                             <option value="{{ $order_status->id }}">
@@ -314,7 +318,8 @@
                                                 </label>
 
                                                 <label>نوع العقار:
-                                                    <select wire:model='os_property_type_id'>
+                                                    <select wire:model='os_property_type_id' class="form-select"
+                                                        style="margin-left: .5em; display: inline-block; width: auto;">
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getPropertyTypes() as $property_type)
                                                             <option value="{{ $property_type->id }}">
@@ -323,7 +328,8 @@
                                                     </select>
                                                 </label>
                                                 <label>الفرع:
-                                                    <select wire:model='os_branch_type_id'>
+                                                    <select wire:model='os_branch_type_id' class="form-select"
+                                                        style="margin-left: .5em; display: inline-block; width: auto;">
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getBranches() as $branch)
                                                             <option value="{{ $branch->id }}">{{ $branch->name }}
@@ -333,7 +339,8 @@
                                                 </label>
 
                                                 <label>المدينة:
-                                                    <select wire:model='os_city_id'>
+                                                    <select wire:model='os_city_id' class="form-select"
+                                                        style="margin-left: .5em; display: inline-block; width: auto;">
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getCities() as $city)
                                                             <option value="{{ $city->id }}">{{ $city->name }}
@@ -343,6 +350,7 @@
                                                 </label>
 
                                                 <label>ابحث:<input type="search" wire:model='os_search'
+                                                        class="form-control"
                                                         placeholder="رقم الجوال/ رقم الطلب"></label>
                                             </div>
 

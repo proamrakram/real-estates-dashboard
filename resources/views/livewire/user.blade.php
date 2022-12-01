@@ -44,7 +44,8 @@
                         <div id="DataTables_Table_0_filter" class="dataTables_filter">
 
                             <label> الفرع:
-                                <select wire:model='branch_id'>
+                                <select wire:model='branch_id' class="form-select"
+                                    style="margin-left: .5em; display: inline-block; width: auto;">
                                     <option value="all" selected>الكل</option>
 
                                     @foreach (getBranches() as $branch)
@@ -54,7 +55,8 @@
                             </label>
 
                             <label>حالة المستخدم:
-                                <select wire:model='user_status'>
+                                <select wire:model='user_status' class="form-select"
+                                    style="margin-left: .5em; display: inline-block; width: auto;">
                                     <option value="all" selected>الكل</option>
                                     <option value="active" selected>نشط</option>
                                     <option value="inactive" selected>غير نشط</option>
@@ -62,7 +64,8 @@
                             </label>
 
                             <label> نوع المستخدم:
-                                <select wire:model='user_type'>
+                                <select wire:model='user_type' class="form-select"
+                                    style="margin-left: .5em; display: inline-block; width: auto;">
                                     <option value="all" selected>الكل</option>
                                     {{-- <option value="superadmin" selected>ادمن رئيسي</option> --}}
                                     <option value="admin" selected>أدمن</option>

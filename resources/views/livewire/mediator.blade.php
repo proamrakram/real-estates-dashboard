@@ -44,7 +44,8 @@
                         <div id="DataTables_Table_0_filter" class="dataTables_filter">
 
                             <label>حالة الوسيط:
-                                <select wire:model='mediator_status'>
+                                <select wire:model='mediator_status' class="form-select"
+                                    style="margin-left: .5em; display: inline-block; width: auto;">
                                     <option value="all" selected>الكل</option>
                                     <option value="1" selected>نشط</option>
                                     <option value="2" selected>غير نشط</option>
@@ -52,7 +53,7 @@
                             </label>
 
                             <label> نوع الوسيط:
-                                <select wire:model='mediator_type'>
+                                <select wire:model='mediator_type' class="form-select" style="margin-left: .5em; display: inline-block; width: auto;">
                                     <option value="all" selected>الكل</option>
                                     <option value="individual">فرد</option>
                                     <option value="office">مكتب</option>

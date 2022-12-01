@@ -46,7 +46,8 @@
 
 
                             <label>المدن:
-                                <select wire:model='customer_city_id'>
+                                <select wire:model='customer_city_id' class="form-select"
+                                    style="margin-left: .5em; display: inline-block; width: auto;">
                                     <option value="all" selected>الكل</option>
                                     @foreach (getCities() as $city)
                                         <option value="{{ $city->id }}">{{ $city->name }}</option>
@@ -55,7 +56,8 @@
                             </label>
 
                             <label>القطاع:
-                                <select wire:model='customer_sector'>
+                                <select wire:model='customer_sector' class="form-select"
+                                    style="margin-left: .5em; display: inline-block; width: auto;">
                                     <option value="all" selected>الكل</option>
                                     <option value="public" selected>عام</option>
                                     <option value="private" selected>خاص</option>
@@ -63,7 +65,8 @@
                             </label>
 
                             <label>حالة العميل:
-                                <select wire:model='customer_status'>
+                                <select wire:model='customer_status' class="form-select"
+                                    style="margin-left: .5em; display: inline-block; width: auto;">
                                     <option value="all" selected>الكل</option>
                                     <option value="1" selected>نشط</option>
                                     <option value="2" selected>غير نشط</option>
@@ -132,8 +135,7 @@
                                     <div class="d-inline-flex">
 
                                         <a class="item-edit" data-bs-target="#editCustomerForms"
-                                            wire:click='callCustomerModal({{ $customer->id }})'
-                                            data-bs-toggle="modal">
+                                            wire:click='callCustomerModal({{ $customer->id }})' data-bs-toggle="modal">
                                             <i class="fas fa-edit"></i>
                                         </a>
 

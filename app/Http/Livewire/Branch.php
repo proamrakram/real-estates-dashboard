@@ -53,4 +53,6 @@ class Branch extends Component
             $branch->update(['status' => 1]);
         }
     }
+
+
 }

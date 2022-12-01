@@ -53,12 +53,7 @@
                             </label>
 
                             <label>حالة الحجز:
-                                <select wire:model='reservation_status'
-                                    style="margin-left: .5em; display: inline-block; width: auto;
-
-                                    @if ($website_mode) background-color: #283046; @endif
-                                    color: inherit; border-color: #404656;"
-                                    class="form-control" wire:ignore.self>
+                                <select wire:model='reservation_status' class="form-select" style="margin-left: .5em; display: inline-block; width: auto;" wire:ignore.self>
                                     <option value="all" selected>الكل</option>
                                     <option value="1" selected>نشط</option>
                                     <option value="2" selected>غير نشط</option>

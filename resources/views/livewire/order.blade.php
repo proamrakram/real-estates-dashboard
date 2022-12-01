@@ -69,7 +69,7 @@
                                         <div class="col-sm-12 col-md-9">
                                             <div class="dataTables_filter">
                                                 <label>حالة الطلب:
-                                                    <select wire:model='order_status_id'>
+                                                    <select wire:model='order_status_id' class="form-select" style="margin-left: .5em; display: inline-block; width: auto; ">
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getOrderStatuses() as $order_status)
                                                             <option value="{{ $order_status->id }}">
@@ -79,7 +79,8 @@
                                                 </label>
 
                                                 <label>نوع العقار:
-                                                    <select wire:model='property_type_id'>
+                                                    <select wire:model='property_type_id' class="form-select"
+                                                        style="margin-left: .5em; display: inline-block; width: auto; ">
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getPropertyTypes() as $property_type)
                                                             <option value="{{ $property_type->id }}">
@@ -88,7 +89,8 @@
                                                     </select>
                                                 </label>
                                                 <label>الفرع:
-                                                    <select wire:model='branch_type_id'>
+                                                    <select wire:model='branch_type_id' class="form-select"
+                                                        style="margin-left: .5em; display: inline-block; width: auto; ">
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getBranches() as $branch)
                                                             <option value="{{ $branch->id }}">{{ $branch->name }}
@@ -98,7 +100,8 @@
                                                 </label>
 
                                                 <label>المدينة:
-                                                    <select wire:model='city_id'>
+                                                    <select wire:model='city_id' class="form-select"
+                                                        style="margin-left: .5em; display: inline-block; width: auto; ">
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getCities() as $city)
                                                             <option value="{{ $city->id }}">{{ $city->name }}
@@ -108,6 +111,7 @@
                                                 </label>
 
                                                 <label>ابحث:<input type="search" wire:model='search'
+                                                        class="form-control"
                                                         placeholder="رقم الجوال/ رقم الطلب"></label>
                                             </div>
 
@@ -151,7 +155,8 @@
                                                     @if (auth()->user()->permissions->can_show_orders == 1 ||
                                                         auth()->user()->permissions->can_edit_orders == 1 ||
                                                         auth()->user()->permissions->can_cancel_orders == 1)
-                                                        <th class="sorting" tabindex="0" rowspan="1" colspan="1">
+                                                        <th class="sorting" tabindex="0" rowspan="1"
+                                                            colspan="1">
                                                             تحكم
                                                         </th>
                                                     @endif
@@ -207,7 +212,8 @@
                                                     </td>
 
                                                     <td>{{ getCustomerName($order->customer_id) }}</td>
-                                                    <td>{{ number_format($order->price_from) }} - {{ number_format($order->price_to) }}
+                                                    <td>{{ number_format($order->price_from) }} -
+                                                        {{ number_format($order->price_to) }}
                                                     </td>
 
 
