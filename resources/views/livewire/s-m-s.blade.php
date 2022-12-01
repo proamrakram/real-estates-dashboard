@@ -5,15 +5,18 @@
             {{-- Navbar Sections --}}
             <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist" wire:ignore>
 
-                <li class="nav-item">
-                    <a class="nav-link active" id="home-tab-fill" data-bs-toggle="tab" href="#home-fill" role="tab"
-                        aria-controls="home-fill" aria-selected="true">إرسالة رسالة جماعية</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" id="home2-tab-fill" data-bs-toggle="tab" href="#home2-fill" role="tab"
-                        aria-controls="home2-fill" aria-selected="false">إرسال رسالة فردية</a>
-                </li>
+                @if (auth()->user()->permissions->can_send_sms_collection == 1)
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab-fill" data-bs-toggle="tab" href="#home-fill" role="tab"
+                            aria-controls="home-fill" aria-selected="true">إرسالة رسالة جماعية</a>
+                    </li>
+                @endif
+                @if (auth()->user()->permissions->can_send_sms_individually == 1)
+                    <li class="nav-item">
+                        <a class="nav-link" id="home2-tab-fill" data-bs-toggle="tab" href="#home2-fill" role="tab"
+                            aria-controls="home2-fill" aria-selected="false">إرسال رسالة فردية</a>
+                    </li>
+                @endif
 
             </ul>
             {{-- Navbar Sections --}}
@@ -23,7 +26,7 @@
 
 
                 {{-- Collection SMS Messages --}}
-                @if (auth()->user()->permissions->can_send_sms_collection)
+                @if (auth()->user()->permissions->can_send_sms_collection == 1)
                     <div class="tab-pane active" id="home-fill" role="tabpanel" aria-labelledby="home-tab-fill"
                         wire:ignore.self>
                         <div class="dataTables_wrapper dt-bootstrap5 no-footer">
@@ -97,7 +100,7 @@
 
                 {{-- Indivdually SMS Messages --}}
 
-                @if (auth()->user()->permissions->can_send_sms_individually)
+                @if (auth()->user()->permissions->can_send_sms_individually == 1)
 
                     <div class="tab-pane " id="home2-fill" role="tabpanel" aria-labelledby="home2-tab-fill"
                         wire:ignore.self>
