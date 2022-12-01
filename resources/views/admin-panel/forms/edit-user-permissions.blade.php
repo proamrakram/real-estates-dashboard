@@ -244,7 +244,9 @@
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox"
                                                                                     id="can_send_sms_collection"
-                                                                                    name="can_send_sms_collection">
+                                                                                    name="can_send_sms_collection"
+                                                                                    @if ($user->permissions->can_send_sms_collection == 1) checked @endif
+                                                                                    >
                                                                                 <label class="form-check-label"
                                                                                     for="can_send_sms_collection"> تحكم
                                                                                 </label>
@@ -261,7 +263,10 @@
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox"
                                                                                     id="can_send_sms_individually"
-                                                                                    name="can_send_sms_individually">
+                                                                                    name="can_send_sms_individually"
+
+                                                                                    @if ($user->permissions->can_send_sms_individually == 1) checked @endif
+                                                                                    >
                                                                                 <label class="form-check-label"
                                                                                     for="can_send_sms_individually"> تحكم
                                                                                 </label>
