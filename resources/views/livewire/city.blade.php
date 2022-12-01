@@ -49,7 +49,7 @@
                                     <option value="2" selected>غير نشط</option>
                                 </select>
                             </label>
-                            <label>ابحث:<input type="search" wire:model='search' placeholder="الاسم/ الكود"></label>
+                            <label>ابحث:<input type="search" wire:model='search' class="form-control" placeholder="الاسم/ الكود"></label>
                         </div>
                     </div>
                 </div>

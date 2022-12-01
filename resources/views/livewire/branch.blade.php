@@ -47,8 +47,7 @@
                                     <option value="2" selected>غير نشط</option>
                                 </select>
                             </label>
-                            <label>ابحث:<input type="search" wire:model='search' class="form-control"
-                                    placeholder="اسم الفرع/ كود الفرع"></label>
+                            <label>ابحث:<input type="search" wire:model='search' class="form-control" placeholder="اسم الفرع/ كود الفرع"></label>
                         </div>
                     </div>
                 </div>
