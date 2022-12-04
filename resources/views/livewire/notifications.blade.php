@@ -78,6 +78,7 @@
 
         channel.bind('new-order', function(data) {
             window.livewire.emit('updateNotifications');
+            window.livewire.emit('updateOrderMarketer');
         });
     </script>
 
