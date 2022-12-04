@@ -22,7 +22,7 @@ class MarketerMiddleware
             if ($user->user_type == 'marketer') {
                 return $next($request);
             }
-            return abort(403);
+            return redirect()->route('login');
         }
 
         return redirect()->route('login');

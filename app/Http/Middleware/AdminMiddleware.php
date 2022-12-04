@@ -21,7 +21,7 @@ class AdminMiddleware
             if ($user->user_type == 'admin' || $user->user_type == 'superadmin') {
                 return $next($request);
             }
-            return abort(403);
+            return redirect()->route('login');
         }
 
         return redirect()->route('login');
