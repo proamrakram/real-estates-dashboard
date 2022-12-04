@@ -22,8 +22,8 @@ class OrderMarket extends Component
     public $os_property_type_id = null;
     public $os_city_id = null;
     public $os_branch_type_id = null;
+    public $os_date = null;
     public $os_filters = [];
-
 
     public $oo_rows_number = 10;
 
@@ -36,6 +36,8 @@ class OrderMarket extends Component
     public $oo_property_type_id = null;
     public $oo_city_id = null;
     public $oo_branch_type_id = null;
+    public $oo_date = null;
+
     public $oo_filters = [];
 
 
@@ -56,7 +58,11 @@ class OrderMarket extends Component
         $this->oo_filters['city_id'] = $this->oo_city_id;
         $this->oo_filters['branch_type_id'] = $this->oo_branch_type_id;
         $this->oo_filters['search'] = $this->oo_search;
-        $data = Order::data()->where('user_id', auth()->id())->filters($this->oo_filters)->orderBy($this->oo_sort_field, $this->oo_sort_direction)->paginate($this->oo_rows_number);
+
+        ### Date ###
+        $this->oo_filters['date'] = $this->oo_date;
+
+        $data = Order::data()->filters($this->oo_filters)->orderBy($this->oo_sort_field, $this->oo_sort_direction)->where('user_id', auth()->id())->paginate($this->oo_rows_number);
         return $data;
     }
 
@@ -72,7 +78,11 @@ class OrderMarket extends Component
         $this->os_filters['city_id'] = $this->os_city_id;
         $this->os_filters['branch_type_id'] = $this->os_branch_type_id;
         $this->os_filters['search'] = $this->os_search;
-        $data = Order::data()->where('assign_to', auth()->id())->filters($this->os_filters)->orderBy($this->os_sort_field, $this->os_sort_direction)->paginate($this->os_rows_number);
+
+        ### Date ###
+        $this->os_filters['date'] = $this->os_date;
+
+        $data = Order::data()->filters($this->os_filters)->orderBy($this->os_sort_field, $this->os_sort_direction)->where('assign_to', auth()->id())->paginate($this->os_rows_number);
         return $data;
     }
 
@@ -120,6 +130,16 @@ class OrderMarket extends Component
             'assign_market_orders' => $assign_market_orders,
             'market_orders' => $market_orders
         ]);
+    }
+
+    public function ooDate()
+    {
+        $this->oo_filters['date'] = $this->oo_date;
+    }
+
+    public function osDate()
+    {
+        $this->os_filters['date'] = $this->os_date;
     }
 
     public function callOrderModal($order_id)

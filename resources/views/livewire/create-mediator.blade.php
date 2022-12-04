@@ -37,7 +37,7 @@
                             @enderror
                         </div>
 
-
+                        {{--
                         <div class="col-12 col-md-6" wire:ignore.self>
                             <label class="form-label">كود الوسيط</label>
                             <input type="text" wire:model='code' disabled class="form-control"
@@ -45,7 +45,7 @@
                             @error('code')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
-                        </div>
+                        </div> --}}
 
 
                         <div class="col-12 col-md-6" wire:ignore.self>

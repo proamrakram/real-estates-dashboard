@@ -49,8 +49,10 @@
                                         {{-- Search Sections --}}
                                         <div class="col-sm-12 col-md-9">
                                             <div class="dataTables_filter">
+
                                                 <label>حالة الطلب:
-                                                    <select wire:model='oo_order_status_id' class="form-select">
+                                                    <select wire:model='oo_order_status_id' class="form-select"
+                                                        style="margin-left: .5em; display: inline-block; width: auto;">
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getOrderStatuses() as $order_status)
                                                             <option value="{{ $order_status->id }}">
@@ -60,7 +62,8 @@
                                                 </label>
 
                                                 <label>نوع العقار:
-                                                    <select wire:model='oo_property_type_id' class="form-select">
+                                                    <select wire:model='oo_property_type_id' class="form-select"
+                                                        style="margin-left: .5em; display: inline-block; width: auto;">
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getPropertyTypes() as $property_type)
                                                             <option value="{{ $property_type->id }}">
@@ -69,7 +72,8 @@
                                                     </select>
                                                 </label>
                                                 <label>الفرع:
-                                                    <select wire:model='oo_branch_type_id' class="form-select">
+                                                    <select wire:model='oo_branch_type_id' class="form-select"
+                                                        style="margin-left: .5em; display: inline-block; width: auto;">
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getBranches() as $branch)
                                                             <option value="{{ $branch->id }}">{{ $branch->name }}
@@ -79,7 +83,8 @@
                                                 </label>
 
                                                 <label>المدينة:
-                                                    <select wire:model='oo_city_id' class="form-select">
+                                                    <select wire:model='oo_city_id' class="form-select"
+                                                        style="margin-left: .5em; display: inline-block; width: auto;">
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getCities() as $city)
                                                             <option value="{{ $city->id }}">{{ $city->name }}
@@ -89,11 +94,16 @@
                                                 </label>
 
                                                 <label>ابحث:<input type="search" wire:model='oo_search'
-                                                        placeholder="رقم الجوال/ رقم الطلب"></label>
+                                                        class="form-control" placeholder="رقم الجوال/ رقم الطلب">
+                                                </label>
+
+                                                <label>التاريخ من:
+                                                    <input type="date" wire:change='ooDate' wire:model='oo_date'
+                                                        class="form-control">
+                                                </label>
+
                                             </div>
-
                                         </div>
-
                                     </div>
 
                                     <table class="table dataTable no-footer text-center" role="grid">
@@ -136,7 +146,7 @@
                                                 <tr class="odd">
 
                                                     <td class="sorting_1">{{ $main_order->order_code }}</td>
-                                                    <td> {{ $main_order->created_at }} </td>
+                                                    <td> {{ $main_order->created_at->format('Y-m-d') }} </td>
 
                                                     <td>
                                                         @if ($main_order->property_type_id == 1)
@@ -252,8 +262,17 @@
                                                 </tr>
                                             @endforeach
                                         </tbody>
+
+
                                     </table>
 
+                                    @if (!$market_orders->count())
+                                        <div class="d-flex justify-content-center">
+                                            <h4 class="btn btn-danger w-75">
+                                                لا يوجد طلبات حاليا
+                                            </h4>
+                                        </div>
+                                    @endif
                                     {{-- Pagination Pages --}}
                                     <div class="d-flex justify-content-between mx-0 row">
                                         <div class="col-sm-12 col-md-6">
@@ -352,6 +371,13 @@
                                                 <label>ابحث:<input type="search" wire:model='os_search'
                                                         class="form-control"
                                                         placeholder="رقم الجوال/ رقم الطلب"></label>
+
+
+                                                <label>التاريخ من:
+                                                    <input type="date" wire:change='osDate' wire:model='os_date'
+                                                        class="form-control">
+                                                </label>
+
                                             </div>
 
                                         </div>
@@ -396,11 +422,13 @@
                                         </thead>
 
                                         <tbody>
+
+
                                             @foreach ($assign_market_orders as $market_order)
                                                 <tr class="odd">
 
                                                     <td class="sorting_1">{{ $market_order->order_code }}</td>
-                                                    <td> {{ $market_order->created_at }} </td>
+                                                    <td> {{ $market_order->created_at->format('Y-m-d') }} </td>
 
                                                     <td>
                                                         @if ($market_order->property_type_id == 1)
@@ -524,6 +552,14 @@
 
                                         </tbody>
                                     </table>
+
+                                    @if (!$assign_market_orders->count())
+                                        <div class="d-flex justify-content-center">
+                                            <h4 class="btn btn-danger w-75">
+                                                لا يوجد طلبات مسندة
+                                            </h4>
+                                        </div>
+                                    @endif
 
                                     <div class="d-flex justify-content-between mx-0 row">
                                         <div class="col-sm-12 col-md-6">

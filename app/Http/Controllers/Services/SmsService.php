@@ -3,79 +3,97 @@
 namespace App\Http\Controllers\Services;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class SmsService extends Controller
 {
-    protected $url = 'https://mobile.net.sa/sms/gw/';
-    protected $userName = 'MyUser';
-    protected $userPassword = 'MyPass';
-    protected $numbers = ['966555521658'];
-    protected $userSender = 'Mobile.Sa';
-    protected $msg = 'تجريب الإرسال';
+    protected $url = "https://mobile.net.sa/sms/gw/";
+    protected $userName = '966553255011';
+    protected $userPassword = '258076';
+    protected $numbers = '966597555447, 966597000855';
+    protected $userSender = 'Al_madar';
+    protected $msg = 'اختبار نظام الرسائل الفورية';
     protected $by = 'standard';
     protected $infos = 'YES';
     protected $YesRepeat = 1;
     protected $dateTimeSendLater = '2014-12-30--23:59:00';
     protected $xml = '';
 
-    public function getCredits()
+    public function collection($customers, $marketers, $officers, $message, $option = null)
     {
-        $url = $this->url . 'Credits.php';
-        $data = ['userName' => $this->userName, 'userPassword' => $this->userPassword, 'By' => "standard"];
-        $response = $this->send($url, $data);
+        $this->setNumbers($customers, $marketers, $officers);
 
-        if ($response == "0") {
-            return "معلومات ناقصة .... اسم المستخدم او كلمة المرور";
-        } elseif ($response == "00") {
-            return "اسم المستخدم او كلمة المرور فارغة";
-        } elseif ($response == "000") {
-            return "بيانات الدخول خاطئة";
-        } elseif ($response == "0000") {
-            return "رصيدك 0";
-        }
-    }
-
-    public function send($url, $data)
-    {
-        return  Http::post($url, $data);
-    }
-
-    public function collection($customers, $marketers, $officers, $message)
-    {
-        dd($customers, $marketers, $officers, $message);
-        $data = [
+        $dataPOST =  array(
             'userName' => $this->userName,
             'userPassword' => $this->userPassword,
             'userSender' => $this->userSender,
             'numbers' => $this->numbers,
-            'msg' => $this->msg,
-            'By' => "standard" . $this->infos . $this->xml
-        ];
+            'msg' => $message,
+            'By' => $this->by
+        );
 
-        return $this->send($this->url, $data);
+        if ($option == 'repeat') {
+            $dataPOST['YesRepeat'] = $this->YesRepeat;
+        }
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $this->url);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataPOST);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_VERBOSE, 0);
+        // curl_setopt($ch, CURLE_HTTP_NOT_FOUND, 1);
+        $FainalResult = curl_exec($ch);
+        curl_close($ch);
+
+        return $FainalResult;
     }
 
-    public function getSenderNames()
+    public function sendInd($numbers, $message, $option = null)
     {
-        $url = $this->url . 'Sender.php';
-        $data = [
+        $customers_phones = Customer::findMany($numbers)->pluck('phone')->toArray();
+
+        $numbers_json_string = json_encode($customers_phones);
+
+        $search = ['[', ']', '"0', '"'];
+
+        $replace = ['', '', '966', ''];
+
+        $this->numbers = str_replace($search, $replace, $numbers_json_string);
+
+        $dataPOST =  array(
             'userName' => $this->userName,
             'userPassword' => $this->userPassword,
-            'By' => $this->by,
+            'userSender' => $this->userSender,
+            'numbers' => $this->numbers,
+            'msg' => $message,
+            'By' => $this->by
+        );
 
-        ];
-        $response = $this->send($url, $data);
+        if ($option == 'repeat') {
+            $dataPOST['YesRepeat'] = $this->YesRepeat;
+        }
 
-        if ($response == "1010") {
-            return "معلومات ناقصة .... اسم المستخدم او كلمة المرور";
-        } elseif ($response == "1020") {
-            return "بيانات الدخول خاطئة";
-        } elseif ($response == "1030") {
-            return "قائمة أسماء المرسل لديك فارغة";
-        };
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $this->url);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataPOST);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_VERBOSE, 0);
+        // curl_setopt($ch, CURLE_HTTP_NOT_FOUND, 1);
+        $FainalResult = curl_exec($ch);
+        curl_close($ch);
+
+        return $FainalResult;
     }
+
 
     public function errors($SendingResult)
     {
@@ -116,5 +134,32 @@ class SmsService extends Controller
         } else {
             return $SendingResult;
         }
+    }
+
+    public function setNumbers($customers, $marketers, $officers,)
+    {
+        $customers_phones = [];
+        $marketers_phones = [];
+        $officers_phones = [];
+
+        if ($customers) {
+            $customers_phones = Customer::all()->pluck('phone')->toArray();
+        }
+
+        if ($marketers) {
+            $marketers_phones = User::where('user_type', 'marketer')->get()->pluck('phone')->toArray();
+        }
+
+        if ($officers) {
+            $officers_phones = User::where('user_type', 'office')->get()->pluck('phone')->toArray();
+        }
+
+        $numbers =  array_merge($customers_phones, $marketers_phones, $officers_phones);
+
+        $numbers_json_string = json_encode($numbers);
+
+        $search = ['[', ']', '"0', '"'];
+        $replace = ['', '', '966', ''];
+        $this->numbers = str_replace($search, $replace, $numbers_json_string);
     }
 }

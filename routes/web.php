@@ -31,12 +31,11 @@ Route::post('/reset-password', [AdminPanelHomeController::class, 'resetPassword'
 Route::get('/page-reset-password/{user_id}', [AdminPanelHomeController::class, 'pageResetPassword'])->name('page.reset.password');
 
 
-
-Route::controller(AdminPanelHomeController::class)->prefix('panel')->middleware(['auth', 'new'])->group(function () {
+Route::controller(AdminPanelHomeController::class)->prefix('panel')->middleware(['auth', 'active'])->group(function () {
 
     Route::get('/home', 'home')->name('panel.home');
     Route::get('/order/{order}', 'order')->name('panel.order');
-    Route::get('/new-user', 'newUser')->name('panel.new.user');
+    Route::get('/new-user', 'newUser')->name('panel.new.user')->withoutMiddleware('active');
     Route::get('/profile', 'profile')->name('panel.profile');
 
     Route::as('panel.')->middleware('marketer')->group(function () {
@@ -113,5 +112,4 @@ Route::controller(AdminPanelHomeController::class)->prefix('panel')->middleware(
             Route::post('/store-land', 'storeLand')->name('store.land');
         });
     });
-
 });

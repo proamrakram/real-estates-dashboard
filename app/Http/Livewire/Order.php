@@ -25,6 +25,7 @@ class Order extends Component
     public $property_type_id = null;
     public $city_id = null;
     public $branch_type_id = null;
+    public $date = null;
     public $filters = [];
 
     public function updateOrders()
@@ -77,6 +78,7 @@ class Order extends Component
     public function render()
     {
         $orders = $this->getMainOrders();
+
         if ($orders->count() < 9) {
             $this->resetPage();
         }
@@ -120,5 +122,10 @@ class Order extends Component
             'text' => '👍 تم تغيير حالة الطلب بنجاح',
             'timerProgressBar' => true,
         ]);
+    }
+
+    public function date()
+    {
+        $this->filters['date'] = $this->date;
     }
 }

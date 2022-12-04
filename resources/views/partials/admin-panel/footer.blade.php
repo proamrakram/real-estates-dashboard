@@ -13,7 +13,8 @@
 <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
 <!-- END: Footer-->
 
-@livewireScripts()
+
+
 <!-- BEGIN: Vendor JS-->
 <script src="{{ asset('app-assets/vendors/js/vendors.min.js') }}"></script>
 <!-- BEGIN Vendor JS-->
@@ -86,69 +87,6 @@
 <script src="{{ asset('app-assets/js/scripts/extensions/ext-component-sweet-alerts.js') }}"></script>
 
 
-
-<!-- END: Page Vendor JS-->
-
-<!-- BEGIN: Theme JS-->
-<script src="app-assets/js/core/app-menu.js"></script>
-<script src="app-assets/js/core/app.js"></script>
-<!-- END: Theme JS-->
-
-<!-- BEGIN: Page JS-->
-<script src="app-assets/js/scripts/pages/app-user-list.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{{-- @stack('users-scripts') --}}
-@stack('orders-scripts')
-@stack('customers-scripts')
-@stack('cities-scripts')
-@stack('neighborhoods-scripts')
-@stack('user-scripts')
 
 
 
@@ -238,10 +176,19 @@
 </script>
 
 
-
+{{-- @stack('users-scripts') --}}
+@stack('orders-scripts')
+@stack('customers-scripts')
+@stack('cities-scripts')
+@stack('neighborhoods-scripts')
+@stack('user-scripts')
 @stack('real-estates-scripts')
 @stack('branch-scripts')
 @stack('livewire-alert-scripts')
+
+
+
+@livewireScripts()
 
 </body>
 

@@ -25,14 +25,7 @@ class User extends Authenticatable
         'email',
         'password',
         'user_status',
-        // 'email_verified_at',
         'user_type',
-        // 'is_admin',
-        // 'is_office',
-        // 'is_finance',
-        // 'is_employee',
-        // 'is_monitor',
-        // 'branches_ids',
         'advertiser_number'
     ];
 

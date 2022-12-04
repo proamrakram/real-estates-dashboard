@@ -47,7 +47,7 @@ class EditMediator extends Component
     {
         $mediator = Mediator::find($mediator_id);
         $this->name = $mediator->name;
-        $this->code = $mediator->code;
+        $this->code = $mediator->id;
         $this->phone_number = $mediator->phone_number;
         $this->type = $mediator->type;
 

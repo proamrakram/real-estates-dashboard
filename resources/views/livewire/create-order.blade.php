@@ -133,8 +133,8 @@
                         <!-- content -->
                         <div class="bs-stepper-content shadow-none" wire:ignore.self>
 
-                            <div id="create-app-details"  role="tabpanel"
-                                aria-labelledby="create-app-details-trigger" wire:ignore.self>
+                            <div id="create-app-details" role="tabpanel" aria-labelledby="create-app-details-trigger"
+                                wire:ignore.self>
 
 
                                 @if ($info_active)

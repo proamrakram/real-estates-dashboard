@@ -2,8 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use App\Events\NewOrder as EventsNewOrder;
 use App\Http\Controllers\Services\OrderService;
 use App\Models\Order;
+use App\Models\User;
+use App\Notifications\NewOrder;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
@@ -206,7 +209,13 @@ class EditOrder extends Component
         $this->area = (int)str_replace(',', '', $this->area);
 
         $validatedData = $this->validate();
-        $orderService->update($this->order, $validatedData);
+        $old_assign_to = $this->order->assign_to;
+        $updated_order = $orderService->update($this->order, $validatedData);
+
+        if ($updated_order->assign_to != $old_assign_to) {
+            $this->sendNotification($updated_order);
+        }
+
         $this->alert('success', '', [
             'toast' => true,
             'position' => 'center',
@@ -217,5 +226,11 @@ class EditOrder extends Component
         $this->emit('updateOrders');
         $this->emit('updateOrderMarketer');
     }
-    
+
+    public function sendNotification($order)
+    {
+        $user = User::find($order->assign_to);
+        $user->notify(new NewOrder($order));
+        event(new EventsNewOrder($user));
+    }
 }

@@ -131,36 +131,36 @@ class Order extends Model
             'property_type_id' => null,
             'order_status_id' => null,
             'city_id' => null,
+            'date' => null,
         ], $filters);
 
+
         $builder->when($filters['search'] != '', function ($query) use ($filters) {
-            $query->where('customer_name', 'like', '%' . $filters['search'] . '%')
+            $query
                 ->orWhere('customer_phone', 'like', '%' . $filters['search'] . '%')
-                ->orWhere('order_code', 'like', '%' . $filters['search'] . '%');
+                ->orWhere('order_code', 'like', '%' . $filters['search'] . '%')
+                ->orWhere('customer_name', 'like', '%' . $filters['search'] . '%');
         });
 
-        $builder->when($filters['search'] == '' && $filters['branch_type_id'], function ($query) use ($filters) {
-            $query->whereHas('branch', function ($query) use ($filters) {
-                $query->where('id', 'like', '%' . $filters['branch_type_id'] . '%');
-            });
-        });
-
-        $builder->when($filters['search'] == '' && $filters['property_type_id'], function ($query) use ($filters) {
-            $query->whereHas('propertyType', function ($query) use ($filters) {
-                $query->where('id', 'like', '%' . $filters['property_type_id'] . '%');
-            });
+        $builder->when($filters['search'] == '' && $filters['date'], function ($query) use ($filters) {
+            $query->whereDate('created_at', '=', $filters['date']);
         });
 
         $builder->when($filters['search'] == '' && $filters['order_status_id'], function ($query) use ($filters) {
-            $query->whereHas('orderStatus', function ($query) use ($filters) {
-                $query->where('id', 'like', '%' . $filters['order_status_id'] . '%');
-            });
+            $query->where('order_status_id',  $filters['order_status_id']);
         });
 
+        $builder->when($filters['search'] == '' && $filters['property_type_id'], function ($query) use ($filters) {
+            $query->where('property_type_id',  $filters['property_type_id']);
+        });
+
+
         $builder->when($filters['search'] == '' && $filters['city_id'], function ($query) use ($filters) {
-            $query->whereHas('city', function ($query) use ($filters) {
-                $query->where('id', 'like', '%' . $filters['city_id'] . '%');
-            });
+            $query->where('city_id',  $filters['city_id']);
+        });
+
+        $builder->when($filters['search'] == '' && $filters['branch_type_id'], function ($query) use ($filters) {
+            $query->where('branch_id',  $filters['branch_type_id']);
         });
     }
 }

@@ -46,8 +46,8 @@ class DatabaseSeeder extends Seeder
             PurchaseMethodSeeder::class,
             CustomerSeeder::class,
             OrderStatusSeeder::class,
-            // OrderSeeder::class,
-            // OrderNoteSeeder::class,
+            OrderSeeder::class,
+            OrderNoteSeeder::class,
             OrderNoteStatuseSeeder::class
 
         ]);

@@ -105,11 +105,7 @@
                     <div class="tab-pane " id="home2-fill" role="tabpanel" aria-labelledby="home2-tab-fill"
                         wire:ignore.self>
                         <div class="dataTables_wrapper dt-bootstrap5 no-footer">
-
-
-
                             <div class="d-flex justify-content-between align-items-center mx-0 row">
-
 
                                 <div class="col-sm-12 col-md-3">
                                     <div class="col-sm-12 col-md-6">
@@ -126,13 +122,11 @@
                                     </div>
                                 </div>
 
-
                                 {{-- Search Sections --}}
                                 <div class="col-sm-12 col-md-9">
                                     <div class="dataTables_filter">
                                         <label>ابحث:<input type="search" class="form-control" wire:model='search'
                                                 placeholder="الاسم / رقم الجوال"></label>
-
                                         <a class="btn btn-sm btn-success" wire:click='send'>
                                             <span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -147,14 +141,24 @@
                                                 </svg>ارسال الرسالة للاشخاص المحددين
                                             </span>
                                         </a>
-
                                     </div>
                                 </div>
+                            </div>
 
+
+                            <div class="col-12">
+                                <div class="d-flex justify-content-center pt-2 clear">
+                                    <h4 class="btn btn-success">محتوى الرسالة</h4>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mb-3">
+                                <div class="d-flex justify-content-center pt-2 clear">
+                                    <textarea id="txtarea" class="form-control" wire:model='indv_message' rows="3" placeholder="محتوى الرسالة"></textarea>
+                                </div>
                             </div>
 
                             <table class="table dataTable no-footer text-center" role="grid">
-
                                 <thead>
                                     <tr role="row">
                                         <th>
@@ -172,7 +176,8 @@
                                             <td wire:ignore.self>
                                                 <span class="form-check-success" wire:ignore.self>
                                                     <input type="checkbox" class="form-check-input"
-                                                        wire:model='customers_ids.{{ $customer->id }}'>
+                                                        wire:model='customers_ids.{{ $customer->id }}'
+                                                        wire:click='addRemove({{ $customer->id }})'>
                                                 </span>
                                             </td>
 
@@ -180,8 +185,6 @@
                                             <td> {{ $customer->phone }} </td>
                                         </tr>
                                     @endforeach
-
-
                                 </tbody>
                             </table>
 
@@ -201,87 +204,9 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-
-                            {{-- <div class="d-flex justify-content-between align-items-center mx-0 row">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-12 text-center">
-                                        <h2>إرسال الرسالة</h2>
-                                    </div>
-                                </div>
-
-                                <div class="d-flex justify-content-center pt-2 clear">
-
-
-                                    <div class="col-md-4">
-                                        <input class="form-check-input" type="checkbox" wire:model='customers' />
-                                        <label class="form-check-label" for="inlineCheckbox1">العملاء</label>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <input class="form-check-input" type="checkbox" value="checked" />
-                                        <label class="form-check-label" for="inlineCheckbox1">المكاتب</label>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <input class="form-check-input" type="checkbox" value="checked" />
-                                        <label class="form-check-label" for="inlineCheckbox1">المسوقين</label>
-                                    </div>
-
-                                </div>
-
-                                <div class="col-12">
-
-
-                                    <div class="d-flex justify-content-center pt-2 clear">
-                                        <textarea id="txtarea" class="form-control" id="notes" rows="3" placeholder="محتوى الرسالة"></textarea>
-                                    </div>
-
-                                </div>
-
-                                <div class="row">
-
-                                    <div class="col-2">
-                                        <h5 id="count">0/255</h5>
-                                    </div>
-
-                                    <div class="col-2">
-                                        <h5 id="countSMS">عدد الرسائل : 0</h5>
-                                    </div>
-
-                                </div>
-
-
-                                <div class="info-container">
-
-                                    <div class="d-flex justify-content-center pt-2 clear">
-                                        <a href="javascript:;" class="btn btn-success me-1"
-                                            data-bs-target="#editUser" data-bs-toggle="modal">
-                                            إرسال الرسالة
-                                        </a>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div> --}}
-
-
-
-
-
-
-
                         </div>
                     </div>
-
                 @endif
-
             </div>
         </div>
     </div>

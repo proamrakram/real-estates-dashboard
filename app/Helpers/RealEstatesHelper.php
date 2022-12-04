@@ -415,3 +415,16 @@ if (!function_exists('getBranchesUser')) {
         }
     }
 }
+
+
+if (!function_exists('isMarketer')) {
+    function isMarketer($user_id)
+    {
+        $user = User::find($user_id);
+        if ($user->user_type == 'marketer') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}

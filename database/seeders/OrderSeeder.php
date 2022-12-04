@@ -29,8 +29,8 @@ class OrderSeeder extends Seeder
             $count = $count + 1;
             $customer = Customer::find(random_int(1, 100));
             $user = User::find(random_int(1, 10));
-            $branch_id = random_int(1, 10);
-            $branch = Branch::find($branch_id);
+            $branch_id = 1;
+            $branch = Branch::find(1);
 
             if ($user && $branch) {
                 $order_code = ucwords($branch->code) . '-' . $count . '-' . 'USR' . $user->id;
@@ -60,7 +60,7 @@ class OrderSeeder extends Seeder
                 'branch_id'  => $branch_id,
                 'notes' => Str::random(16),
                 'who_add' => 1,
-                'created_at' => now(),
+                'created_at' => now()->addDays(random_int(1, 30)),
                 // 'closed_date',
                 // 'assign_to_date'
                 // 'who_edit',

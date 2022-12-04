@@ -96,6 +96,8 @@ class OrderService extends Controller
             'user_id' =>  $user->id,
             'action' => 'add',
         ]);
+
+        return $order;
     }
 
     public function update($order, $data)
@@ -155,5 +157,7 @@ class OrderService extends Controller
             'user_id' =>  $user->id,
             'action' => 'edit',
         ]);
+
+        return Order::find($order->id);
     }
 }

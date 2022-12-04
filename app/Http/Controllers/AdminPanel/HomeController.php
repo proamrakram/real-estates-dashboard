@@ -22,10 +22,12 @@ use Illuminate\Support\Facades\Gate;
 class HomeController extends Controller
 {
     protected $userService;
+
     public function __construct(UserService $userService)
     {
         $this->userService = $userService;
     }
+
     public function home()
     {
         return view('admin-panel.statistics');
@@ -34,6 +36,7 @@ class HomeController extends Controller
     public function newUser()
     {
         $user = auth()->user();
+
         if ($user) {
             if ($user->user_status == 'active') {
                 return redirect()->route('panel.home');

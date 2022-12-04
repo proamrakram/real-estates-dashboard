@@ -69,7 +69,8 @@
                                         <div class="col-sm-12 col-md-9">
                                             <div class="dataTables_filter">
                                                 <label>حالة الطلب:
-                                                    <select wire:model='order_status_id' class="form-select" style="margin-left: .5em; display: inline-block; width: auto; ">
+                                                    <select wire:model='order_status_id' class="form-select"
+                                                        style="margin-left: .5em; display: inline-block; width: auto; ">
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getOrderStatuses() as $order_status)
                                                             <option value="{{ $order_status->id }}">
@@ -113,6 +114,11 @@
                                                 <label>ابحث:<input type="search" wire:model='search'
                                                         class="form-control"
                                                         placeholder="رقم الجوال/ رقم الطلب"></label>
+
+                                                <label>التاريخ من:
+                                                    <input type="date" wire:change='date' wire:model='date'
+                                                        class="form-control">
+                                                </label>
                                             </div>
 
                                         </div>
@@ -143,7 +149,8 @@
                                                     الحالة
                                                 </th>
 
-                                                <th class="sorting" tabindex="0" rowspan="1" colspan="1">الطلب
+                                                <th class="sorting" tabindex="0" rowspan="1" colspan="1">
+                                                    الطلب
                                                     مسند ل
                                                 </th>
 

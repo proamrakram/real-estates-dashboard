@@ -24,7 +24,5 @@ class ActiveUsersMiddleware
                 return redirect()->route('panel.new.user');
             }
         }
-
-        return $next($request);
     }
 }

@@ -22,8 +22,11 @@
 
                     <div class="col-12 col-md-6" wire:ignore.self>
                         <label class="form-label">كود الوسيط</label>
-                        <input type="text" wire:model='code' disabled class="form-control"
-                            placeholder="مثال : Almadar" />
+                        <div>
+                            <label class="form-label">{{ $code }}</label>
+                        </div>
+                        {{-- <input type="text" wire:model='code' disabled class="form-control"
+                            placeholder="{{ $code }} : Almadar" /> --}}
                         @error('code')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
