@@ -26,7 +26,7 @@ class SmsService extends Controller
     {
         $this->setNumbers($customers, $marketers, $officers);
 
-        $this->userSender = "Al_madar_AD";
+        $this->userSender = "Al_madar-AD";
 
         $dataPOST =  array(
             'userName' => $this->userName,
