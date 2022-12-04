@@ -14,7 +14,7 @@ class SmsService extends Controller
     protected $userName = '966553255011';
     protected $userPassword = '258076';
     protected $numbers = '966597555447, 966597000855';
-    protected $userSender = 'Al_madar';
+    protected $userSender = 'Al_madar'; #Indvidual Al_madar #Collection Al_madar_AD
     protected $msg = 'اختبار نظام الرسائل الفورية';
     protected $by = 'standard';
     protected $infos = 'YES';
@@ -25,6 +25,8 @@ class SmsService extends Controller
     public function collection($customers, $marketers, $officers, $message, $option = null)
     {
         $this->setNumbers($customers, $marketers, $officers);
+
+        $this->userSender = "Al_madar_AD";
 
         $dataPOST =  array(
             'userName' => $this->userName,
@@ -57,6 +59,8 @@ class SmsService extends Controller
     public function sendInd($numbers, $message, $option = null)
     {
         $customers_phones = Customer::findMany($numbers)->pluck('phone')->toArray();
+
+        $this->userSender = "Al_madar";
 
         $numbers_json_string = json_encode($customers_phones);
 
@@ -143,15 +147,15 @@ class SmsService extends Controller
         $officers_phones = [];
 
         if ($customers) {
-            $customers_phones = Customer::all()->pluck('phone')->toArray();
+            $customers_phones = Customer::where('status', 1)->get()->pluck('phone')->toArray();
         }
 
         if ($marketers) {
-            $marketers_phones = User::where('user_type', 'marketer')->get()->pluck('phone')->toArray();
+            $marketers_phones = User::where('user_type', 'marketer')->where('status', 1)->get()->pluck('phone')->toArray();
         }
 
         if ($officers) {
-            $officers_phones = User::where('user_type', 'office')->get()->pluck('phone')->toArray();
+            $officers_phones = User::where('user_type', 'office')->where('status', 1)->get()->pluck('phone')->toArray();
         }
 
         $numbers =  array_merge($customers_phones, $marketers_phones, $officers_phones);
