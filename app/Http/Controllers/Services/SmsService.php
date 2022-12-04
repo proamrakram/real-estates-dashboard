@@ -151,11 +151,11 @@ class SmsService extends Controller
         }
 
         if ($marketers) {
-            $marketers_phones = User::where('user_type', 'marketer')->where('status', 1)->get()->pluck('phone')->toArray();
+            $marketers_phones = User::where('user_type', 'marketer')->where('user_status', 'active')->get()->pluck('phone')->toArray();
         }
 
         if ($officers) {
-            $officers_phones = User::where('user_type', 'office')->where('status', 1)->get()->pluck('phone')->toArray();
+            $officers_phones = User::where('user_type', 'office')->where('user_status', 'active')->get()->pluck('phone')->toArray();
         }
 
         $numbers =  array_merge($customers_phones, $marketers_phones, $officers_phones);
