@@ -39,8 +39,9 @@
                                     <span class="fw-bolder">
                                         {{ $notification->data['body'] }}
                                 </p>
+                                {{--
                                 <small class="notification-text"> اسم العميل :
-                                    {{ getCustomerName($notification->data['customer_id']) }}</small>
+                                    {{ getCustomerName($notification->data['customer_id']) }}</small> --}}
                             </div>
                         </div>
                     </a>

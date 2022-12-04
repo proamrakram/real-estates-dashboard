@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\NewUser as EventsNewUser;
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\UserSettings;
+use App\Notifications\NewUser;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -114,6 +117,10 @@ class RegisterController extends Controller
             'user_id' => $user->id,
             'website_mode' => ''
         ]);
+
+        $admins = User::whereIn('user_type', ['superadmin', 'admin'])->get();
+        Notification::send($admins, new NewUser($user));
+        event(new EventsNewUser($user));
 
         return $user;
     }
