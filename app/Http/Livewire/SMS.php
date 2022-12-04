@@ -33,14 +33,14 @@ class SMS extends Component
     {
         $this->filters['search'] = $this->search;
 
-        return Customer::data()->filters($this->filters)->paginate($this->rows_number);
+        return Customer::data()->filters($this->filters)->where('status', 1)->paginate($this->rows_number);
     }
 
     public function updated($propertyName)
     {
         if ($propertyName == 'select_all') {
             if ($this->select_all) {
-                $this->customers_ids = Customer::all()->pluck('id')->toArray();
+                $this->customers_ids = Customer::where('status', 1)->pluck('id')->toArray();
                 $this->customer_ids = $this->customers_ids;
                 $this->select_all = true;
             } else {
@@ -54,9 +54,9 @@ class SMS extends Component
     public function render()
     {
         $customers = $this->getCustomers();
-        if ($customers->count() < 9) {
-            $this->resetPage();
-        }
+        // if ($customers->count() < 9) {
+        //     $this->resetPage();
+        // }
         return view('livewire.s-m-s', [
             'customers' => $customers,
             'select_all' => $this->select_all
