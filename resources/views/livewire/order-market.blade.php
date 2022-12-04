@@ -98,7 +98,12 @@
                                                 </label>
 
                                                 <label>التاريخ من:
-                                                    <input type="date" wire:change='ooDate' wire:model='oo_date'
+                                                    <input type="date" wire:change='ooDateFrom'
+                                                        wire:model='oo_date_from' class="form-control">
+                                                </label>
+
+                                                <label>التاريخ الى:
+                                                    <input type="date" wire:change='ooDateTo' wire:model='oo_date_to'
                                                         class="form-control">
                                                 </label>
 
@@ -251,6 +256,14 @@
                                                                 </a>
                                                             @endif
 
+                                                            @if (auth()->user()->permissions->can_cancel_orders == 1)
+                                                                <a class="btn item-edit"
+                                                                    wire:click='closeOrder({{ $main_order->id }})'
+                                                                    style="padding:0;color:#EA5455 ">
+                                                                    <i class="fas fa-trash-alt"></i>
+                                                                </a>
+                                                            @endif
+
                                                             {{-- <button
                                                                 class="btn item-edit waves-effect waves-float waves-light"
                                                                 style="padding:0;color:#EA5455 ">
@@ -374,8 +387,13 @@
 
 
                                                 <label>التاريخ من:
-                                                    <input type="date" wire:change='osDate' wire:model='os_date'
-                                                        class="form-control">
+                                                    <input type="date" wire:change='osDateFrom'
+                                                        wire:model='os_date_from' class="form-control">
+                                                </label>
+
+                                                <label>التاريخ الى:
+                                                    <input type="date" wire:change='osDateTo'
+                                                        wire:model='os_date_to' class="form-control">
                                                 </label>
 
                                             </div>

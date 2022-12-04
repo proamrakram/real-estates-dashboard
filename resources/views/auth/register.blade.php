@@ -62,75 +62,11 @@
 
 
                         <!-- Register-->
-
-                        <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
-                            <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
-
-                                <h2 class="card-title fw-bold mb-1">مرحباً بالواعد الجديد 🚀</h2>
-
-                                <p class="card-text mb-2">إنضم معنا الآن </p>
-
-                                <form class="auth-register-form mt-2" action="{{ route('register') }}" method="POST">
-
-                                    @csrf
-
-                                    <div class="mb-1">
-                                        <label class="form-label" for="register-username">الإسم</label>
-
-                                        <input class="form-control" id="register-name" type="text" name="register_name"
-                                            placeholder="علي التاروتي" aria-describedby="register-name" autofocus=""
-                                            tabindex="1" />
-                                        @error('register_name')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-
-
-                                    <div class="mb-1">
-                                        <label class="form-label" for="register-phone">رقم الجوال</label>
-                                        <input class="form-control" dir="ltr" id="register-phone" type="text"
-                                            name="register_phone" placeholder="0591234567" maxlength="10"
-                                            aria-describedby="register-phone" tabindex="2" />
-                                        @error('register_phone')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-
-                                    <div class="mb-1">
-                                        <label class="form-label" for="register-email">الإيميل</label>
-                                        <input class="form-control" dir="ltr" id="register-email" type="text"
-                                            name="register_email" placeholder="example@gmail.com"
-                                            aria-describedby="register-email" tabindex="3" />
-                                        @error('register_email')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-
-                                    <div class="mb-1">
-                                        <label class="form-label" for="register-password">كلمة المرور</label>
-
-                                        <div class="input-group input-group-merge form-password-toggle">
-
-                                            <input class="form-control form-control-merge" id="register-password"
-                                                type="password" name="register_password" placeholder="············"
-                                                aria-describedby="register-password" tabindex="4" />
-
-                                            <span class="input-group-text cursor-pointer">
-                                                <i data-feather="eye"></i>
-                                            </span>
-                                        </div>
-                                        @error('register_password')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-
-                                    <button class="btn btn-primary w-100" tabindex="5">التسجيل</button>
-                                </form>
-                                <p class="text-center mt-2"><span>يوجد لديك حساب بالفعل؟</span><a
-                                        href="{{ route('login') }}"><span>&nbsp;سجل الدخول</span></a></p>
-                            </div>
-                        </div>
+                        @livewire('sms-verification')
                         <!-- /Register-->
+
+
+
                     </div>
                 </div>
             </div>

@@ -131,7 +131,8 @@ class Order extends Model
             'property_type_id' => null,
             'order_status_id' => null,
             'city_id' => null,
-            'date' => null,
+            'date_from' => null,
+            'date_to' => null,
         ], $filters);
 
 
@@ -142,9 +143,14 @@ class Order extends Model
                 ->orWhere('customer_name', 'like', '%' . $filters['search'] . '%');
         });
 
-        $builder->when($filters['search'] == '' && $filters['date'], function ($query) use ($filters) {
-            $query->whereDate('created_at', '=', $filters['date']);
+        $builder->when($filters['search'] == '' && $filters['date_from'] && $filters['date_to'], function ($query) use ($filters) {
+            $query->where('created_at', '>=', $filters['date_from'])
+                ->where('created_at', '<=', $filters['date_to']);
         });
+
+        // $builder->when($filters['search'] == '' && $filters['date'], function ($query) use ($filters) {
+        //     $query->whereDate('created_at', '=', $filters['date']);
+        // });
 
         $builder->when($filters['search'] == '' && $filters['order_status_id'], function ($query) use ($filters) {
             $query->where('order_status_id',  $filters['order_status_id']);

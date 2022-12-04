@@ -38,6 +38,8 @@ class Reservation extends Component
 
         $this->date_from = ModelsReservation::min('date_from');
         $this->date_to = ModelsReservation::max('date_to');
+        $this->filters['date_from'] = $this->date_from;
+        $this->filters['date_to'] = $this->date_to;
 
         if ($user) {
             if ($user->userSettings->website_mode == 'light-layout dark-layout') {
@@ -46,9 +48,6 @@ class Reservation extends Component
                 $this->website_mode = false;
             }
         }
-
-        $this->filters['date_from'] = $this->date_from;
-        $this->filters['date_to'] = $this->date_to;
     }
     public function changeWebsiteMode()
     {

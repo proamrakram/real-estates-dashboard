@@ -29,6 +29,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
             'user_type' => 'superadmin',
+            'verification_code' => null,
             'created_at' => now(),
         ]);
 
@@ -43,6 +44,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
             'user_type' => 'superadmin',
+            'verification_code' => null,
             'created_at' => now(),
         ]);
 
@@ -58,6 +60,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
             'user_type' => 'superadmin',
+            'verification_code' => null,
             'created_at' => now(),
         ]);
 
@@ -73,6 +76,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
             'user_type' => 'superadmin',
+            'verification_code' => null,
             'created_at' => now(),
         ]);
 
@@ -89,6 +93,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
             'user_type' => 'admin',
+            'verification_code' => null,
             'created_at' => now(),
         ]);
 
@@ -116,6 +121,7 @@ class UserSeeder extends Seeder
                 'email_verified_at' => now(),
                 'remember_token' => Str::random(10),
                 'user_type' => $user_type,
+                'verification_code' => null,
                 'created_at' => now(),
             ]);
         }

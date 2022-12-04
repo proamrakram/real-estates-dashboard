@@ -317,7 +317,7 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <div class="avatar bg-light-info p-50 mb-1">
-                            <div class="avatar-content">
+                            <div class="avatar-content" wire:ignore>
                                 <i data-feather='shopping-bag' class="font-medium-5"></i>
                             </div>
                         </div>
@@ -332,7 +332,7 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <div class="avatar bg-light-warning p-50 mb-1">
-                            <div class="avatar-content">
+                            <div class="avatar-content" wire:ignore>
                                 <i data-feather='shopping-bag' class="font-medium-5"></i>
                             </div>
                         </div>
@@ -347,7 +347,7 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <div class="avatar bg-light-danger p-50 mb-1">
-                            <div class="avatar-content">
+                            <div class="avatar-content" wire:ignore>
                                 <i data-feather='shopping-bag' class="font-medium-5"></i>
                             </div>
                         </div>
@@ -363,7 +363,7 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <div class="avatar bg-light-success p-50 mb-1">
-                            <div class="avatar-content">
+                            <div class="avatar-content" wire:ignore>
                                 <i data-feather='shopping-bag' class="font-medium-5"></i>
                             </div>
                         </div>
@@ -379,8 +379,8 @@
                     <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user">
                         <div class="modal-content">
                             <div class="modal-header bg-transparent">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                </button>
                             </div>
                             <div class="modal-body pb-5 px-sm-5 pt-50">
                                 <div class="text-center mb-2">

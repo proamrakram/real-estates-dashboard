@@ -116,9 +116,15 @@
                                                         placeholder="رقم الجوال/ رقم الطلب"></label>
 
                                                 <label>التاريخ من:
-                                                    <input type="date" wire:change='date' wire:model='date'
+                                                    <input type="date" wire:change='dateFrom' wire:model='date_from'
                                                         class="form-control">
                                                 </label>
+
+                                                <label>التاريخ الى:
+                                                    <input type="date" wire:change='dateTo' wire:model='date_to'
+                                                        class="form-control">
+                                                </label>
+
                                             </div>
 
                                         </div>
@@ -315,6 +321,7 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
+
                                         </tbody>
                                     </table>
 

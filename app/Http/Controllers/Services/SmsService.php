@@ -22,6 +22,22 @@ class SmsService extends Controller
     protected $dateTimeSendLater = '2014-12-30--23:59:00';
     protected $xml = '';
 
+
+
+    public function send($user)
+    {
+        $data =  array(
+            'userName' => $this->userName,
+            'userPassword' => $this->userPassword,
+            'userSender' => $this->userSender,
+            'numbers' => $this->numbers,
+            'msg' => "مرحبا بك في منصة المدار العقارية، كود التحقق الخاص بك هو $user->verification_code",
+            'By' => $this->by
+        );
+
+        return Http::get($this->url, $data)->json();
+    }
+
     public function collection($customers, $marketers, $officers, $message, $option = null)
     {
         $this->setNumbers($customers, $marketers, $officers);

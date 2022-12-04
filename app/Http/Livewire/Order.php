@@ -25,12 +25,26 @@ class Order extends Component
     public $property_type_id = null;
     public $city_id = null;
     public $branch_type_id = null;
-    public $date = null;
+    public $date_from = null;
+    public $date_to = null;
     public $filters = [];
 
     public function updateOrders()
     {
         $this->reset();
+        $this->date_from = ModelsOrder::min('created_at');
+        $this->date_to = ModelsOrder::max('created_at');
+
+        $this->filters['date_from'] = $this->date_from;
+        $this->filters['date_to'] = $this->date_to;
+    }
+
+    public function mount()
+    {
+        $this->date_from = ModelsOrder::min('created_at');
+        $this->date_to = ModelsOrder::max('created_at');
+        $this->filters['date_from'] = $this->date_from;
+        $this->filters['date_to'] = $this->date_to;
     }
 
     public function getMainOrders()
@@ -45,6 +59,7 @@ class Order extends Component
         $this->filters['city_id'] = $this->city_id;
         $this->filters['branch_type_id'] = $this->branch_type_id;
         $this->filters['search'] = $this->search;
+
         $user = auth()->user();
 
         if ($user->user_type == 'superadmin') {
@@ -52,7 +67,6 @@ class Order extends Component
         } else {
             $data = ModelsOrder::data()->where('user_id', $user->id)->filters($this->filters)->orderBy($this->sort_field, $this->sort_direction)->paginate($this->rows_number);
         }
-
 
         return $data;
     }
@@ -75,13 +89,20 @@ class Order extends Component
         $this->sort_field = $field;
     }
 
+    public function dateFrom()
+    {
+        $this->filters['date_from'] = $this->date_from;
+    }
+
+    public function dateTo()
+    {
+        $this->filters['date_to'] = $this->date_to;
+    }
+
     public function render()
     {
         $orders = $this->getMainOrders();
 
-        if ($orders->count() < 9) {
-            $this->resetPage();
-        }
         return view('livewire.order', [
             'orders' => $orders,
         ]);
@@ -122,10 +143,5 @@ class Order extends Component
             'text' => '👍 تم تغيير حالة الطلب بنجاح',
             'timerProgressBar' => true,
         ]);
-    }
-
-    public function date()
-    {
-        $this->filters['date'] = $this->date;
     }
 }

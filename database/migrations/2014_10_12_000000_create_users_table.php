@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->enum('user_status', ['active', 'inactive', 'blocked']);
             $table->enum('user_type', ['superadmin', 'admin', 'office', 'marketer']);
+            $table->integer('verification_code')->nullable();
             $table->timestamp('email_verified_at')->nullable();
 
             #branches ids

@@ -3,6 +3,7 @@
     <div class="header-navbar-shadow" wire:ignore.self></div>
     <div class="content-wrapper container-xxl p-0" wire:ignore.self>
         <div class="content-header row" wire:ignore.self></div>
+
         <div class="content-body" wire:ignore.self>
             <section class="app-user-view-account" wire:ignore.self>
                 <div class="row" wire:ignore.self>
@@ -58,7 +59,7 @@
                                             </div>
                                         @endif
 
-                                        @if ($order->order_status_id == 4 || $order->order_status_id == 5)
+                                        @if ($order->order_status_id == 4)
                                             <div class="mb-2">
                                                 <a class="btn bg-light-success waves-effect waves-float waves-light"
                                                     wire:ignore.self>
@@ -69,16 +70,17 @@
                                             </div>
                                         @endif
 
-                                        {{--
+
                                         @if ($order->order_status_id == 5)
                                             <div class="mb-2">
-                                                <a class="btn bg-light-danger waves-effect waves-float waves-light" wire:ignore.self>
+                                                <a class="btn bg-light-danger waves-effect waves-float waves-light"
+                                                    wire:ignore.self>
                                                     <span wire:ignore>
-                                                        لم يتم التعامل مع الطلب
+                                                        لم يتم متابعة الطلب
                                                     </span>
                                                 </a>
                                             </div>
-                                        @endif --}}
+                                        @endif
 
 
 
@@ -400,123 +402,77 @@
                         </div>
                     </div>
                 </div>
-
+            </section>
         </div>
-        </section>
-
-
-
-        <div class="modal fade" id="addNote" tabindex="-1" aria-hidden="true" wire:ignore.self>
-            <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user" wire:ignore.self>
-                <div class="modal-content" wire:ignore.self>
-                    <div class="modal-header bg-transparent" wire:ignore>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body pb-5 px-sm-5 pt-50" wire:ignore.self>
-                        <div class="text-center mb-2" wire:ignore>
-                            <h1 class="mb-1">إضافة ملاحظة</h1>
-                        </div>
-                        <div class="row gy-1 pt-75" wire:ignore.self>
-
-                            <div class="col-12 col-md-6 " wire:ignore.self>
-                                <label class="form-label" for="fp-range">التاريخ</label>
-                                <input type="text" id="fp-range" class="form-control flatpickr-basic"
-                                    placeholder="{{ now() }}" disabled />
-                            </div>
-                            <div class="col-12 col-md-6" wire:ignore.self>
-                                <label class="form-label"> الحالة :</label>
-                                <select class="form-select" wire:model='status_note'>
-                                    @foreach (getOrderNoteStatuse() as $order_status)
-                                        <option value="{{ $order_status->id }}">{{ $order_status->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-
-                            <div class="col-12" wire:ignore.self>
-                                <label class="form-label" for="modalEditUserEmail">ملاحظات:</label>
-                                <textarea class="form-control" id="notes" wire:model='text' rows="3" placeholder="ملاحظات"></textarea>
-                            </div>
-
-                            <div class="col-12 text-center mt-2 pt-50" wire:ignore.self>
-                                <button class="btn btn-primary btn-submit me-1" wire:click='addNote'>حفظ</button>
-                                <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                                    aria-label="Close">الغاء</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="connectToOffer" tabindex="-1" aria-hidden="true" wire:ignore.self>
-            <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user" wire:ignore.self>
-                <div class="modal-content" wire:ignore.self>
-                    <div class="modal-header bg-transparent" wire:ignore.self>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body pb-5 px-sm-5 pt-50" wire:ignore.self>
-                        <div class="text-center mb-2" wire:ignore.self>
-                            <h1 class="mb-1 ">قريبا...</h1>
-                        </div>
-
-
-                        {{-- <form id="editUserForm" class="row gy-1 pt-75" onsubmit="return false">
-
-
-                                <div class="col-12">
-                                    <label class="form-label" for="fp-range">التاريخ</label>
-                                    <input type="text" id="fp-range" class="form-control flatpickr-basic"
-                                        placeholder="2022-09-15" disabled />
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-1">
-                                        <label class="form-label" for="search">كود العرض </label>
-                                        <input type="text" id="search" class="form-control" name="search"
-                                            placeholder="الرجاء ادخال رقم أو كود العرض">
-                                    </div>
-                                    <div class="col-md-6 mb-1">
-                                        <button class="btn btn-primary " style="margin-top: 20px">
-                                            <i data-feather="search" class="align-middle me-sm-25 me-0"></i>
-                                            <span class="align-middle d-sm-inline-block d-none">بحث</span>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-1">
-                                        <label class="form-label">رقم الارض</label>
-                                        <input type="text" class="form-control " placeholder="رقم الارض"
-                                            value="1991" disabled />
-                                    </div>
-                                    <div class="col-md-6 mb-1">
-                                        <label class="form-label">مساحة الارض</label>
-                                        <div class="input-group input-group-merge">
-                                            <input type="text" class="form-control " placeholder="سعر الارض"
-                                                value="402" disabled />
-                                            <span class="input-group-text">متر</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-12 text-center mt-2 pt-50">
-                                    <button type="submit" class="btn btn-primary btn-submit me-1"
-                                        id="type-success">حفظ</button>
-                                    <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                                        aria-label="Close">
-                                        الغاء
-                                    </button>
-                                </div>
-                            </form> --}}
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>
+
+
+
+<div class="modal fade" id="addNote" tabindex="-1" aria-hidden="true" wire:ignore.self>
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user" wire:ignore.self>
+        <div class="modal-content" wire:ignore.self>
+            <div class="modal-header bg-transparent" wire:ignore>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body pb-5 px-sm-5 pt-50" wire:ignore.self>
+
+
+
+                <div class="text-center mb-2" wire:ignore>
+                    <h1 class="mb-1">إضافة ملاحظة</h1>
+                </div>
+
+
+
+                <div class="row gy-1 pt-75" wire:ignore.self>
+
+                    <div class="col-12 col-md-6 " wire:ignore.self>
+                        <label class="form-label" for="fp-range">التاريخ</label>
+                        <input type="text" id="fp-range" class="form-control" placeholder="{{ now() }}"
+                            disabled />
+                    </div>
+
+                    <div class="col-12 col-md-6" wire:ignore.self>
+                        <label class="form-label"> الحالة :</label>
+                        <select class="form-select" wire:model='status_note'>
+                            @foreach (getOrderNoteStatuse() as $order_status)
+                                <option value="{{ $order_status->id }}">{{ $order_status->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="col-12" wire:ignore.self>
+                        <label class="form-label" for="modalEditUserEmail">ملاحظات:</label>
+                        <textarea class="form-control" id="notes" wire:model='text' rows="3" placeholder="ملاحظات"></textarea>
+                    </div>
+
+                    <div class="col-12 text-center mt-2 pt-50" wire:ignore.self>
+                        <button class="btn btn-primary btn-submit me-1" wire:click='addNote'>حفظ</button>
+                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                            aria-label="Close">الغاء</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="connectToOffer" tabindex="-1" aria-hidden="true" wire:ignore.self>
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user" wire:ignore.self>
+        <div class="modal-content" wire:ignore.self>
+            <div class="modal-header bg-transparent" wire:ignore.self>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body pb-5 px-sm-5 pt-50" wire:ignore.self>
+                <div class="text-center mb-2" wire:ignore.self>
+                    <h1 class="mb-1 ">قريبا...</h1>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

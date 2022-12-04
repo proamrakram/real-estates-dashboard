@@ -49,6 +49,10 @@ class SMS extends Component
                 $this->select_all = false;
             }
         }
+
+        if ($propertyName == 'search') {
+            $this->resetPage();
+        }
     }
 
     public function render()

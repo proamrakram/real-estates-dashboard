@@ -27,6 +27,7 @@ class User extends Authenticatable
         'password',
         'user_status',
         'user_type',
+        'verification_code',
         'advertiser_number'
     ];
 
@@ -141,12 +142,7 @@ class User extends Authenticatable
             'email',
             'user_status',
             'user_type',
-            // 'is_admin',
-            // 'is_office',
-            // 'is_finance',
-            // 'is_employee',
-            // 'is_monitor',
-            // 'branches_ids',
+            'verification_code',
             'advertiser_number',
             'updated_at',
             'created_at',

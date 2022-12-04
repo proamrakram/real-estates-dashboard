@@ -53,7 +53,8 @@
                             </label>
 
                             <label> نوع الوسيط:
-                                <select wire:model='mediator_type' class="form-select" style="margin-left: .5em; display: inline-block; width: auto;">
+                                <select wire:model='mediator_type' class="form-select"
+                                    style="margin-left: .5em; display: inline-block; width: auto;">
                                     <option value="all" selected>الكل</option>
                                     <option value="individual">فرد</option>
                                     <option value="office">مكتب</option>
@@ -88,7 +89,14 @@
                                 <td>{{ $mediator->id }}</td>
                                 <td>{{ $mediator->name }}</td>
                                 <td>{{ $mediator->phone_number }}</td>
-                                <td>{{ $mediator->type }}</td>
+
+                                <td>
+                                    @if ($mediator->type == 'individual')
+                                        فرد
+                                    @else
+                                        مكتب
+                                    @endif
+                                </td>
 
                                 <td>
                                     @if ($mediator->status == 1)

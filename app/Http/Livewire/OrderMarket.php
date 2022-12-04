@@ -3,12 +3,16 @@
 namespace App\Http\Livewire;
 
 use App\Models\Order;
+use App\Models\OrderEditor;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class OrderMarket extends Component
 {
     use WithPagination;
+    use LivewireAlert;
+
     protected $paginationTheme = 'bootstrap';
     public $os_rows_number = 10;
     protected $listeners = ['updateOrderMarketer'];
@@ -22,7 +26,8 @@ class OrderMarket extends Component
     public $os_property_type_id = null;
     public $os_city_id = null;
     public $os_branch_type_id = null;
-    public $os_date = null;
+    public $os_date_from = null;
+    public $os_date_to = null;
     public $os_filters = [];
 
     public $oo_rows_number = 10;
@@ -36,7 +41,11 @@ class OrderMarket extends Component
     public $oo_property_type_id = null;
     public $oo_city_id = null;
     public $oo_branch_type_id = null;
-    public $oo_date = null;
+    public $oo_date_from = null;
+    public $oo_date_to = null;
+
+
+
 
     public $oo_filters = [];
 
@@ -44,6 +53,22 @@ class OrderMarket extends Component
     public function updateOrderMarketer()
     {
         $this->reset();
+        $this->oo_date_from = Order::min('created_at');
+        $this->oo_date_to = Order::max('created_at');
+        $this->oo_filters['date_from'] = $this->oo_date_from;
+        $this->oo_filters['date_to'] = $this->oo_date_to;
+        $this->os_filters['date_from'] = $this->oo_date_from;
+        $this->os_filters['date_to'] = $this->oo_date_to;
+    }
+
+    public function mount()
+    {
+        $this->oo_date_from = Order::min('created_at');
+        $this->oo_date_to = Order::max('created_at');
+        $this->oo_filters['date_from'] = $this->oo_date_from;
+        $this->oo_filters['date_to'] = $this->oo_date_to;
+        $this->os_filters['date_from'] = $this->oo_date_from;
+        $this->os_filters['date_to'] = $this->oo_date_to;
     }
 
     public function getMarketOrders()
@@ -58,9 +83,6 @@ class OrderMarket extends Component
         $this->oo_filters['city_id'] = $this->oo_city_id;
         $this->oo_filters['branch_type_id'] = $this->oo_branch_type_id;
         $this->oo_filters['search'] = $this->oo_search;
-
-        ### Date ###
-        $this->oo_filters['date'] = $this->oo_date;
 
         $data = Order::data()->filters($this->oo_filters)->orderBy($this->oo_sort_field, $this->oo_sort_direction)->where('user_id', auth()->id())->paginate($this->oo_rows_number);
         return $data;
@@ -78,9 +100,6 @@ class OrderMarket extends Component
         $this->os_filters['city_id'] = $this->os_city_id;
         $this->os_filters['branch_type_id'] = $this->os_branch_type_id;
         $this->os_filters['search'] = $this->os_search;
-
-        ### Date ###
-        $this->os_filters['date'] = $this->os_date;
 
         $data = Order::data()->filters($this->os_filters)->orderBy($this->os_sort_field, $this->os_sort_direction)->where('assign_to', auth()->id())->paginate($this->os_rows_number);
         return $data;
@@ -132,18 +151,60 @@ class OrderMarket extends Component
         ]);
     }
 
-    public function ooDate()
+    public function ooDateFrom()
     {
-        $this->oo_filters['date'] = $this->oo_date;
+        $this->oo_filters['date_from'] = $this->oo_date_from;
     }
 
-    public function osDate()
+    public function ooDateTo()
     {
-        $this->os_filters['date'] = $this->os_date;
+        $this->oo_filters['date_to'] = $this->oo_date_to;
+    }
+
+    public function osDateFrom()
+    {
+        $this->os_filters['date_from'] = $this->os_date_from;
+    }
+
+    public function osDateTo()
+    {
+        $this->os_filters['date_to'] = $this->os_date_to;
     }
 
     public function callOrderModal($order_id)
     {
         $this->emit('openOrderModal', $order_id);
+    }
+
+    public function closeOrder($order_id)
+    {
+        $order = Order::find($order_id);
+        $user = auth()->user();
+
+        if ($order) {
+            if ($order->order_status_id == 3) {
+                $order->update(['order_status_id' =>  5]);
+                OrderEditor::create([
+                    'order_id' => $order->id,
+                    'user_id' => $user->id,
+                    'action' => 'active',
+                ]);
+            } else {
+                $order->update(['order_status_id' => 3]);
+                OrderEditor::create([
+                    'order_id' => $order->id,
+                    'user_id' => $user->id,
+                    'action' => 'cancel',
+                ]);
+            }
+        }
+
+        $this->alert('success', '', [
+            'toast' => true,
+            'position' => 'center',
+            'timer' => 3000,
+            'text' => '👍 تم تغيير حالة الطلب بنجاح',
+            'timerProgressBar' => true,
+        ]);
     }
 }

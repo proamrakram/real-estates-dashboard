@@ -4,10 +4,12 @@ namespace App\Http\Livewire;
 
 use App\Models\Order;
 use App\Models\User;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
 class UserView extends Component
 {
+    use LivewireAlert;
     public $user;
     public $last_update_time;
 
@@ -26,6 +28,19 @@ class UserView extends Component
 
     public function changeUserStatus()
     {
+        $branches = $this->user->branches->count();
+
+        if (!$branches) {
+            $this->alert('success', '😰😰😰', [
+                'toast' => true,
+                'position' => 'center',
+                'timer' => 6000,
+                'text' => ' لا يمكن تنشيط المستخدم، لانه ليس لديه صلاحيات او فروع',
+                'timerProgressBar' => true,
+            ]);
+            return false;
+        }
+
         if ($this->user->user_status == 'active') {
             $this->user->update(['user_status' => 'inactive']);
         } else {
