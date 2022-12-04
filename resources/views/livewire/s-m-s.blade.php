@@ -68,7 +68,7 @@
 
                                     </div>
 
-                                    <div class="row">
+                                    {{-- <div class="row">
 
                                         <div class="col-2">
                                             <h5 id="count">0/255</h5>
@@ -78,7 +78,7 @@
                                             <h5 id="countSMS">عدد الرسائل : 0</h5>
                                         </div>
 
-                                    </div>
+                                    </div> --}}
 
 
                                     <div class="info-container">
