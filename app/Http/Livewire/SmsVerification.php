@@ -33,7 +33,6 @@ class SmsVerification extends Component
     {
         $this->timer = ($this->timer - 1);
 
-        dd(date('i:s', mktime(0, 0, 300)));
         if ($this->timer == 0) {
             dd('end time');
         }
