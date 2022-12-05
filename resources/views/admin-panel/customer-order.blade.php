@@ -88,11 +88,11 @@
       background-position: center; background-repeat: no-repeat; background-size: cover; "
     data-open="click" data-menu="vertical-menu-modern" data-col="">
 
-    @livewire('customer-order')
-
+    <div class="container">
+        @livewire('customer-order')
+    </div>
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
-    {{-- <x-modals.real-estates-details></x-modals.real-estates-details> --}}
 
     <!-- BEGIN: Footer-->
     <footer class="footer footer-static footer-light">
