@@ -50,11 +50,16 @@
                 <input type="text" dir="ltr" maxlength="6" wire:model='verification_code' class="form-control"
                     aria-describedby="name" autofocus="" tabindex="1" />
 
-                @if ($user->verification_code == $verification_code)
-                    <small class="text-success">كود التحقق صحيح</small>
-                @else
-                    <small class="text-danger">كود التحقق غير صحيح</small>
+                @if ($user->verification_code)
+                    @if ($user->verification_code == $verification_code)
+                        <small class="text-success">كود التحقق صحيح</small>
+                    @endif
+
+                    @if (!($user->verification_code == $verification_code))
+                        <small class="text-danger">كود التحقق غير صحيح</small>
+                    @endif
                 @endif
+
             </div>
 
             <button class="btn btn-primary w-100 mb-2" tabindex="5" wire:click='sendSms'
