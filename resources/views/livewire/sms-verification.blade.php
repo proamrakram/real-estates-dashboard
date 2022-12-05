@@ -57,7 +57,10 @@
                 </div>
 
                 <button class="btn btn-primary w-100" tabindex="5">التسجيل</button>
-                <span class="text-primary" wire:poll.1000ms='timer'>{{ $time }}</span>
+
+                @if (!$user->email_verified_at)
+                    <span class="text-primary" wire:poll.1000ms='timer'>{{ $time }}</span>
+                @endif
 
             </form>
         @endif
