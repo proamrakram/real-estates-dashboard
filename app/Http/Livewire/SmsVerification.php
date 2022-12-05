@@ -38,6 +38,7 @@ class SmsVerification extends Component
                     $this->user->update(['can_recieve_sms' => 1]);
                     $this->timer = 10;
                     $this->time = '03:00';
+                    $this->user = User::find($this->user->id);
                 }
                 $this->time = date('i:s', mktime(0, 0, $this->timer));
             }
