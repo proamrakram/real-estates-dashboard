@@ -51,8 +51,8 @@
             <div id="account-details-vertical" role="tabpanel" aria-labelledby="account-details-vertical-trigger">
 
                 <div class="content-header">
-                    <h5 class="mb-0">Account Details</h5>
-                    <small class="text-muted">Enter Your Account Details.</small>
+                    <h5 class="mb-0">بيانات العميل</h5>
+                    <small class="text-muted">ادخل البيانات المطلوبة في هذا القسم</small>
                 </div>
 
 
@@ -108,27 +108,49 @@
                     </div>
                 </div>
 
-                <div class="row"><div class="mb-1 col-md-6"></div></div>
-                <div class="row"><div class="mb-1 col-md-6"></div></div>
-                <div class="row"><div class="mb-1 col-md-6"></div></div>
-                <div class="row"><div class="mb-1 col-md-6"></div></div>
-                <div class="row"><div class="mb-1 col-md-6"></div></div>
-                <div class="row"><div class="mb-1 col-md-6"></div></div>
-                <div class="row"><div class="mb-1 col-md-6"></div></div>
-                <div class="row"><div class="mb-1 col-md-6"></div></div>
-                <div class="row"><div class="mb-1 col-md-6"></div></div>
-                <div class="row"><div class="mb-1 col-md-6"></div></div>
-                <div class="row"><div class="mb-1 col-md-6"></div></div>
-                <div class="row"><div class="mb-1 col-md-6"></div></div>
-                <div class="row"><div class="mb-1 col-md-6"></div></div>
+                <div class="row">
+                    <div class="mb-1 col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="mb-1 col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="mb-1 col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="mb-1 col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="mb-1 col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="mb-1 col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="mb-1 col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="mb-1 col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="mb-1 col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="mb-1 col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="mb-1 col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="mb-1 col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="mb-1 col-md-6"></div>
+                </div>
 
                 <div class="d-flex justify-content-between">
-                    <button class="btn btn-outline-secondary btn-prev" disabled>
-                        <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                    </button>
                     <button class="btn btn-primary btn-next">
-                        <span class="align-middle d-sm-inline-block d-none">Next</span>
+                        <span class="align-middle d-sm-inline-block d-none">التالي</span>
                         <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                     </button>
                 </div>
