@@ -162,7 +162,7 @@ class SmsVerification extends Component
                 'toast' => true,
                 'position' => 'center',
                 'timer' => 9000,
-                'text' => 'شكرا لك، لقد تم التحقق من حالة الحساب الخاص بك بنجاح، انتظر الان تفعيل الإدارة لحسابك.',
+                'text' => 'شكرا لك، لقد تم التحقق من حالة الحساب الخاص بك بنجاح، يمكنك الان تسجيل الدخول',
                 'timerProgressBar' => true,
             ]);
 

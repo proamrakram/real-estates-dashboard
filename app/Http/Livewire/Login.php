@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Controllers\Services\SmsService;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -21,7 +22,7 @@ class Login extends Component
     public $time = '03:00';
     public $timer = 180;
 
-    public $verification_code = null;
+    public $verification_code;
 
     public function timer()
     {
@@ -176,5 +177,53 @@ class Login extends Component
 
         $this->method = 'email';
         return 'email';
+    }
+
+
+    public function sendSms()
+    {
+        if ($this->user->verification_code == $this->verification_code) {
+            $this->user->update([
+                'verification_code' => null,
+                'email_verified_at' => now()
+            ]);
+
+            $this->alert('success', '', [
+                'toast' => true,
+                'position' => 'center',
+                'timer' => 9000,
+                'text' => 'شكرا لك، لقد تم التحقق من حالة الحساب الخاص بك بنجاح، يمكنك الان تسجيل الدخول',
+                'timerProgressBar' => true,
+            ]);
+
+            $this->user = null;
+        }
+    }
+
+    public function resendSms(SmsService $smsService)
+    {
+        $code = random_int(111111, 999999);
+
+        if ($this->user) {
+
+            $this->user->update([
+                'verification_code' => $code,
+                'can_recieve_sms' => 0
+            ]);
+
+            // $result = $smsService->send($this->user);
+
+            $this->alert('warning', '', [
+                'toast' => true,
+                'position' => 'center',
+                'timer' => 9000,
+                'text' => 'لقد قمنا بإرسال كود تحقق جديد، تفقد الهاتف الخاص بك',
+                'timerProgressBar' => true,
+            ]);
+
+            $this->user = User::find($this->user->id);
+            $this->timer = 180;
+            $this->time = '03:00';
+        }
     }
 }
