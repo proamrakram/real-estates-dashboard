@@ -80,6 +80,18 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <x-livewire-alert::scripts />
     @livewireStyles()
+
+    <style>
+        .center-div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
+        }
+    </style>
+
 </head>
 
 
@@ -88,7 +100,7 @@
       background-position: center; background-repeat: no-repeat; background-size: cover; "
     data-open="click" data-menu="vertical-menu-modern" data-col="">
 
-    <div class="container justify-content-center">
+    <div class="container .center-div">
         @livewire('customer-order')
     </div>
     <div class="sidenav-overlay"></div>
