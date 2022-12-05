@@ -90,10 +90,15 @@
 
         channel.bind('new-order', function(data) {
             console.log(data);
+            console.log(data.id);
 
             window.livewire.emit('updateNotifications');
             window.livewire.emit('updateOrderMarketer');
-            new Audio("{{ asset('assets/sound.wav') }}").play();
+            let id = "{{ auth()->user()->id }}";
+
+            if (id == data.id) {
+                new Audio("{{ asset('assets/sound.wav') }}").play();
+            }
         });
     </script>
 
