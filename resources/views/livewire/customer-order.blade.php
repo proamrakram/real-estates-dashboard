@@ -13,7 +13,7 @@
                 </button>
             </div>
 
-            <div class="step" data-target="#personal-info-vertical" role="tab"
+            {{-- <div class="step" data-target="#personal-info-vertical" role="tab"
                 id="personal-info-vertical-trigger">
                 <button type="button" class="step-trigger">
                     <span class="bs-stepper-box">2</span>
@@ -42,43 +42,88 @@
                         <span class="bs-stepper-subtitle">Add Social Links</span>
                     </span>
                 </button>
-            </div>
+            </div> --}}
         </div>
 
 
         <div class="bs-stepper-content">
 
-            <div id="account-details-vertical"  role="tabpanel"
-                aria-labelledby="account-details-vertical-trigger">
+            <div id="account-details-vertical" role="tabpanel" aria-labelledby="account-details-vertical-trigger">
 
                 <div class="content-header">
                     <h5 class="mb-0">Account Details</h5>
                     <small class="text-muted">Enter Your Account Details.</small>
                 </div>
+
+
                 <div class="row">
                     <div class="mb-1 col-md-6">
-                        <label class="form-label" for="vertical-username">Username</label>
-                        <input type="text" id="vertical-username" class="form-control" placeholder="johndoe" />
+                        <label class="form-label">الاسم</label>
+                        <input type="text" class="form-control" wire:model='customer_name' placeholder="الاسم" />
+                        @error('customer_name')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="mb-1 col-md-6">
-                        <label class="form-label" for="vertical-email">Email</label>
-                        <input type="email" id="vertical-email" class="form-control" placeholder="john.doe@email.com"
-                            aria-label="john.doe" />
+                        <label class="form-label">رقم الجوال</label>
+                        <input type="tel" class="form-control" maxlength="10" wire:model='customer_phone'
+                            placeholder="رقم الجوال" />
+                        @error('customer_phone')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
+
                 <div class="row">
-                    <div class="mb-1 form-password-toggle col-md-6">
-                        <label class="form-label" for="vertical-password">Password</label>
-                        <input type="password" id="vertical-password" class="form-control"
-                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
+
+                    <div class="col-md-6">
+                        <label class="form-label">جهة العمل</label>
                     </div>
-                    <div class="mb-1 form-password-toggle col-md-6">
-                        <label class="form-label" for="vertical-confirm-password">Confirm
-                            Password</label>
-                        <input type="password" id="vertical-confirm-password" class="form-control"
-                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
+
+                    <div class="mb-1 col-md-6">
+                        <input type="text" class="form-control" wire:model='employer_name' placeholder="جهة العمل" />
+                        @error('employer_name')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
+
+
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <label class="form-label">هل أنت موظف قطاع عام أم قطاع خاص ؟</label>
+                    </div>
+
+                    <div class="mb-1 col-md-6">
+                        <select class="form-control" wire:model='employee_type'>
+                            <option value="public" selected>عام</option>
+                            <option value="private">خاص</option>
+                        </select>
+                        @error('employee_type')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-md-9">
+                        <label class="form-label">هل أنت مؤهل للحصول على دعم وزارة الاسكان
+                            ؟</label>
+                    </div>
+
+                    <div class="mb-1 col-md-6">
+                        <select class="form-control" wire:model='support_eskan'>
+                            <option value="1">نعم</option>
+                            <option value="0">لا</option>
+                        </select>
+                        @error('support_eskan')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+
                 <div class="d-flex justify-content-between">
                     <button class="btn btn-outline-secondary btn-prev" disabled>
                         <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
@@ -92,8 +137,7 @@
             </div>
 
 
-            <div id="personal-info-vertical"  role="tabpanel"
-                aria-labelledby="personal-info-vertical-trigger">
+            {{-- <div id="personal-info-vertical" role="tabpanel" aria-labelledby="personal-info-vertical-trigger">
                 <div class="content-header">
                     <h5 class="mb-0">Personal Info</h5>
                     <small>Enter Your Personal Info.</small>
@@ -143,8 +187,7 @@
             </div>
 
 
-            <div id="address-step-vertical"  role="tabpanel"
-                aria-labelledby="address-step-vertical-trigger">
+            <div id="address-step-vertical" role="tabpanel" aria-labelledby="address-step-vertical-trigger">
                 <div class="content-header">
                     <h5 class="mb-0">Address</h5>
                     <small>Enter Your Address.</small>
@@ -181,9 +224,9 @@
                         <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                     </button>
                 </div>
-            </div>
+            </div> --}}
 
-{{--
+            {{--
             <div id="social-links-vertical"  role="tabpanel"
                 aria-labelledby="social-links-vertical-trigger">
                 <div class="content-header">
