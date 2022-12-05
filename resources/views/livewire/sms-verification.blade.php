@@ -57,7 +57,7 @@
                 </div>
 
                 <button class="btn btn-primary w-100" tabindex="5">التسجيل</button>
-                <span class="text-primary" wire:poll.keep-alive='timer'>{{ $time }}</span>
+                <span class="text-primary" wire:poll.1000ms='timer'>{{ $time }}</span>
 
             </form>
         @endif
