@@ -103,8 +103,9 @@
 
             if (data.user) {
                 if (id == data.user.id) {
-                    document.querySelector("audio").play();
-
+                    let audio = document.querySelector("audio");
+                    audio.muted = true;
+                    audio.play();
                     // let audio = new Audio("{{ asset('assets/sound.wav') }}");
                     // audio.play();
                 }
