@@ -48,7 +48,7 @@
 
         <div class="bs-stepper-content">
 
-            <div id="account-details-vertical" class="content" role="tabpanel"
+            <div id="account-details-vertical"  role="tabpanel"
                 aria-labelledby="account-details-vertical-trigger">
 
                 <div class="content-header">
@@ -90,7 +90,9 @@
                     </button>
                 </div>
             </div>
-            <div id="personal-info-vertical" class="content" role="tabpanel"
+
+
+            <div id="personal-info-vertical"  role="tabpanel"
                 aria-labelledby="personal-info-vertical-trigger">
                 <div class="content-header">
                     <h5 class="mb-0">Personal Info</h5>
@@ -139,7 +141,9 @@
                     </button>
                 </div>
             </div>
-            <div id="address-step-vertical" class="content" role="tabpanel"
+
+
+            <div id="address-step-vertical"  role="tabpanel"
                 aria-labelledby="address-step-vertical-trigger">
                 <div class="content-header">
                     <h5 class="mb-0">Address</h5>
@@ -178,7 +182,9 @@
                     </button>
                 </div>
             </div>
-            <div id="social-links-vertical" class="content" role="tabpanel"
+
+
+            <div id="social-links-vertical"  role="tabpanel"
                 aria-labelledby="social-links-vertical-trigger">
                 <div class="content-header">
                     <h5 class="mb-0">Social Links</h5>
@@ -216,6 +222,8 @@
                     <button class="btn btn-success btn-submit">Submit</button>
                 </div>
             </div>
+
+
         </div>
     </div>
 </div>

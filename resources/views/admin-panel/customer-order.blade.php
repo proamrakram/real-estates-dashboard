@@ -101,6 +101,7 @@
     <div class="container center-div">
         @livewire('customer-order')
     </div>
+
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
 
