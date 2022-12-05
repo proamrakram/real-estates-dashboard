@@ -76,6 +76,8 @@
         </ul>
     </li>
 
+    <audio class="sound" src="{{ asset('assets/sound.wav') }}" autoplay></audio>
+
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
     <script>
         // Enable pusher logging - don't include this in production
@@ -99,6 +101,7 @@
             console.log(data.user.id);
             console.log(id);
 
+            document.querySelector("audio").play();
             if (data.user) {
                 if (id == data.user.id) {
                     let audio = new Audio("{{ asset('assets/sound.wav') }}");
