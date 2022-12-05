@@ -24,7 +24,7 @@ class Login extends Component
         $validatedData = $this->validate();
 
         $this->username();
-        dd($validatedData);
+
         if ($this->method == 'phone') {
             $user = User::where('phone', $this->login_phone_email)->first();
 
