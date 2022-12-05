@@ -91,7 +91,7 @@
         channel.bind('new-order', function(data) {
             window.livewire.emit('updateNotifications');
             window.livewire.emit('updateOrderMarketer');
-            new Audio("{{ asset('assets/sound.mp3') }}").play();
+            new Audio("{{ asset('assets/sound.wav') }}").play();
         });
     </script>
 
