@@ -108,17 +108,19 @@
                     </div>
                 </div>
 
-                <div class="row"></div>
-                <div class="row"></div>
-                <div class="row"></div>
-                <div class="row"></div>
-                <div class="row"></div>
-                <div class="row"></div>
-                <div class="row"></div>
-                <div class="row"></div>
-                <div class="row"></div>
-                <div class="row"></div>
-                <div class="row"></div>
+                <div class="row"><div class="mb-1 col-md-6"></div></div>
+                <div class="row"><div class="mb-1 col-md-6"></div></div>
+                <div class="row"><div class="mb-1 col-md-6"></div></div>
+                <div class="row"><div class="mb-1 col-md-6"></div></div>
+                <div class="row"><div class="mb-1 col-md-6"></div></div>
+                <div class="row"><div class="mb-1 col-md-6"></div></div>
+                <div class="row"><div class="mb-1 col-md-6"></div></div>
+                <div class="row"><div class="mb-1 col-md-6"></div></div>
+                <div class="row"><div class="mb-1 col-md-6"></div></div>
+                <div class="row"><div class="mb-1 col-md-6"></div></div>
+                <div class="row"><div class="mb-1 col-md-6"></div></div>
+                <div class="row"><div class="mb-1 col-md-6"></div></div>
+                <div class="row"><div class="mb-1 col-md-6"></div></div>
 
                 <div class="d-flex justify-content-between">
                     <button class="btn btn-outline-secondary btn-prev" disabled>
