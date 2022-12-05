@@ -89,6 +89,8 @@
         // window.Livewire.emit('notifyNewOrder', data);
 
         channel.bind('new-order', function(data) {
+            console.log(data);
+
             window.livewire.emit('updateNotifications');
             window.livewire.emit('updateOrderMarketer');
             new Audio("{{ asset('assets/sound.wav') }}").play();
