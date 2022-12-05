@@ -16,7 +16,6 @@ use App\Models\Order;
 use App\Models\PropertyType;
 use App\Models\Street;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller

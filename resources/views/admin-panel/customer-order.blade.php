@@ -84,8 +84,9 @@
 
 
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static"
-    style="background-image: url('{{ asset('assets/background.jpg') }}');" data-open="click"
-    data-menu="vertical-menu-modern" data-col="">
+    style="background-image: url('{{ asset('assets/background.jpg') }}'); height: 100%;
+      background-position: center; background-repeat: no-repeat; background-size: cover; "
+    data-open="click" data-menu="vertical-menu-modern" data-col="">
 
     @livewire('customer-order')
 
