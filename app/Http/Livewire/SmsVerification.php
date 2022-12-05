@@ -27,20 +27,21 @@ class SmsVerification extends Component
 
     public $time = '00:00';
 
+    public $counter = 0;
+    public $total = 0;
+    public $one_second = 0;
 
     public function timer()
     {
+        if ($this->counter == 0) {
+            $this->total = mktime(0, 3, 0);
+            $this->one_second = mktime(0, 0, 1);
+            $this->counter = 1;
+        }
 
-        //A: RECORDS TODAY'S Date And Time
-        $today = time();
+        $difference = ($this->total - $this->one_second);
 
-        //B: RECORDS Date And Time OF YOUR EVENT
-        $event = mktime(0, 0, 0, 3, 0);
-
-        //C: COMPUTES THE DAYS UNTIL THE EVENT.
-        $countdown = round(($event - $today) / 86400);
-
-        $this->time = $event;
+        $this->time = date('i-s', $difference);;
     }
 
     public function render()
