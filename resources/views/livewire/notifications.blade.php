@@ -90,7 +90,8 @@
 
         channel.bind('new-order', function(data) {
             console.log(data);
-            console.log(data.id);
+            console.log(data.user);
+            console.log(data.user).id;
 
             window.livewire.emit('updateNotifications');
             window.livewire.emit('updateOrderMarketer');
