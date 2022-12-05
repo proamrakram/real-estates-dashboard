@@ -83,9 +83,6 @@
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
-                </div>
-
-                <div class="row">
                     <div class="mb-1 col-md-6">
                         <label class="form-label">هل أنت موظف قطاع عام أم قطاع خاص ؟</label>
                         <select class="form-control" wire:model='employee_type'>
