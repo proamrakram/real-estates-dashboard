@@ -8,10 +8,8 @@ use App\Models\Permission;
 use App\Models\User;
 use App\Models\UserSettings;
 use App\Notifications\NewUser;
-use DateTime;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\RateLimiter;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
@@ -27,7 +25,7 @@ class SmsVerification extends Component
     public $user = null;
 
     public $time = '03:00';
-    public $timer = 10;
+    public $timer = 180;
 
     public function timer()
     {
@@ -36,7 +34,7 @@ class SmsVerification extends Component
                 $this->timer = ($this->timer - 1);
                 if ($this->timer == 0) {
                     $this->user->update(['can_recieve_sms' => 1]);
-                    $this->timer = 10;
+                    $this->timer = 180;
                     $this->time = '03:00';
                     $this->user = User::find($this->user->id);
                 }
@@ -193,7 +191,7 @@ class SmsVerification extends Component
             ]);
 
             $this->user = User::find($this->user->id);
-            $this->timer = 10;
+            $this->timer = 180;
             $this->time = '03:00';
         }
     }
