@@ -86,7 +86,7 @@ class HomeController extends Controller
             $check = $user->orders->where('id', $order->id)->first();
             if (!($order->assign_to == $user->id)) {
                 if (!Gate::allows('can_show_orders') || !$check) {
-                    return abort(403);
+                    return redirect()->route('panel.home');
                 }
             }
         }

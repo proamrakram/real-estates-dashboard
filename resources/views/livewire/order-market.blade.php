@@ -229,6 +229,12 @@
                                                                 {{ getOrderStatusName($main_order->order_status_id) }}
                                                             </span>
                                                         @endif
+
+                                                        @if ($main_order->order_status_id == 6)
+                                                            <span class="badge bg-warning">
+                                                                {{ getOrderStatusName($main_order->order_status_id) }}
+                                                            </span>
+                                                        @endif
                                                     </td>
 
                                                     <td>
@@ -519,6 +525,12 @@
                                                         @endif
 
                                                         @if ($market_order->order_status_id == 5)
+                                                            <span class="badge bg-warning">
+                                                                {{ getOrderStatusName($market_order->order_status_id) }}
+                                                            </span>
+                                                        @endif
+
+                                                        @if ($market_order->order_status_id == 6)
                                                             <span class="badge bg-warning">
                                                                 {{ getOrderStatusName($market_order->order_status_id) }}
                                                             </span>

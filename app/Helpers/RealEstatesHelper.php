@@ -397,6 +397,18 @@ if (!function_exists('getUserName')) {
     }
 }
 
+if (!function_exists('getUserId')) {
+    function getUserId($user_id)
+    {
+        $user = User::find($user_id);
+        if ($user) {
+            return $user->id;
+        } else {
+            return null;
+        }
+    }
+}
+
 if (!function_exists('getUsersMarketersBranch')) {
     function getUsersMarketersBranch($branch_id)
     {

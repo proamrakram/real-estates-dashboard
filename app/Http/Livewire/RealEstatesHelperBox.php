@@ -11,8 +11,12 @@ class RealEstatesHelperBox extends Component
     use LivewireAlert;
     public $active_neighborhood = 'active';
     public $selected_neighborhood = true;
-    public $active_property_types = '';
-    public $selected_property_types = false;
+
+    public $active_order_note = '';
+    public $selected_order_note = false;
+
+    public $order_note_status_name = '';
+
 
     public $city_name;
     public $city_code;
@@ -22,6 +26,7 @@ class RealEstatesHelperBox extends Component
 
     public $city = true;
     public $neighborhood = true;
+    public $order_note_status = true;
 
 
     public function render()
@@ -45,6 +50,13 @@ class RealEstatesHelperBox extends Component
                 'neighborhood_name' => ['required', 'string']
             ];
         }
+
+        if ($this->selected_order_note && $this->order_note_status) {
+
+            return [
+                'order_note_status_name' => ['required', 'unique:order_note_statuses,name'],
+            ];
+        }
     }
 
     protected function messages()
@@ -57,6 +69,11 @@ class RealEstatesHelperBox extends Component
             'city_id.required' => 'هذا الحقل مطلوب',
             'city_id.exists' => 'رقم المدينة غير موجود',
             'neighborhood_name.required' => 'هذا الحقل مطلوب',
+
+
+            'order_note_status_name.required' => 'هذا الحقل مطلوب',
+            'order_note_status_name.unique' => 'هذه الحالة موجودة بالفعل',
+
         ];
     }
 
@@ -70,26 +87,28 @@ class RealEstatesHelperBox extends Component
             $this->neighborhood = true;
         }
 
+        if ($propertyName == 'order_note_status_name') {
+            $this->order_note_status = true;
+        }
+
         $this->validateOnly($propertyName);
     }
 
     public function changeTheme($form)
     {
-        $this->active_neighborhood = 'active';
-        $this->selected_neighborhood = true;
+        $this->active_neighborhood = '';
+        $this->active_order_note = '';
+        $this->selected_order_note = false;
+        $this->selected_neighborhood = false;
 
         if ($form ==  'neighborhood') {
             $this->active_neighborhood = 'active';
             $this->selected_neighborhood = true;
-            $this->active_property_types = '';
-            $this->selected_property_types = false;
         }
 
-        if ($form == 'property_types') {
-            $this->active_neighborhood = '';
-            $this->selected_neighborhood = false;
-            $this->active_property_types = 'active';
-            $this->selected_property_types = true;
+        if ($form == 'order_notes') {
+            $this->active_order_note = 'active';
+            $this->selected_order_note = true;
         }
     }
 
@@ -123,6 +142,27 @@ class RealEstatesHelperBox extends Component
             'position' => 'top-start',
             'timer' => 3000,
             'text' => '👍 تم تحديث الأحياء بنجاح',
+            'timerProgressBar' => true,
+        ]);
+    }
+
+    public function saveOrderNoteStatus(RealEstatesService $realEstatesService)
+    {
+        $this->order_note_status = true;
+        $this->neighborhood = false;
+        $this->city = false;
+
+        $validatedData = $this->validate();
+
+        $realEstatesService->storeOrderNoteStatus($validatedData);
+        $this->order_note_status = false;
+        $this->order_note_status_name = '';
+
+        $this->alert('success', '', [
+            'toast' => true,
+            'position' => 'center',
+            'timer' => 3000,
+            'text' => '👍 تم تحديث ملاحظات الطلبات بنجاح',
             'timerProgressBar' => true,
         ]);
     }

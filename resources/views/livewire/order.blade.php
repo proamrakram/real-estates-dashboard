@@ -261,6 +261,13 @@
                                                                 {{ getOrderStatusName($order->order_status_id) }}
                                                             </span>
                                                         @endif
+
+
+                                                        @if ($order->order_status_id == 6)
+                                                            <span class="badge bg-warning">
+                                                                {{ getOrderStatusName($order->order_status_id) }}
+                                                            </span>
+                                                        @endif
                                                     </td>
 
                                                     @if (whoType($order->who_add) == 'marketer')

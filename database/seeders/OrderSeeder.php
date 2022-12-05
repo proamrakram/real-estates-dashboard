@@ -23,7 +23,6 @@ class OrderSeeder extends Seeder
         $count = 0;
         $employer_types = [1 => 'public', 2 => 'private'];
 
-
         while ($count < 10) {
 
             $count = $count + 1;
@@ -39,7 +38,7 @@ class OrderSeeder extends Seeder
 
             DB::table('orders')->insert([
                 'order_code' => $order_code,
-                'order_status_id' => random_int(1, 5),
+                'order_status_id' => random_int(1, 6),
                 'customer_id' => $customer->id,
                 'user_id' => $user->id,
                 // 'offer_id' => ,

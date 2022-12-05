@@ -21,7 +21,7 @@ class ReservationSeeder extends Seeder
                 'user_id' => 1,
                 'customer_name' => 'proamrakram',
                 'customer_id' => 1,
-                'price' => 9.9,
+                'price' => 1000,
                 'status' => random_int(1, 2),
                 'date_from' => now(),
                 'date_to' => now()->addDays(10),

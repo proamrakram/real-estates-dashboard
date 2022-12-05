@@ -100,6 +100,9 @@
                                 الحالة
                             </th>
                             <th class="sorting" tabindex="0" rowspan="1" colspan="1">
+                                هل اشترى
+                            </th>
+                            <th class="sorting" tabindex="0" rowspan="1" colspan="1">
                                 تحكم
                             </th>
                         </tr>
@@ -128,6 +131,14 @@
                                         <span class="badge bg-success">نشط</span>
                                     @else
                                         <span class="badge bg-danger"> غير نشط</span>
+                                    @endif
+                                </td>
+
+                                <td>
+                                    @if ($customer->is_buy)
+                                        <span class="badge bg-success">نعم</span>
+                                    @else
+                                        <span class="badge bg-danger">ليس بعد</span>
                                     @endif
                                 </td>
 

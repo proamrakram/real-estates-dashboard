@@ -45,11 +45,21 @@ class EditReservation extends Component
         ];
     }
 
+
+    public function updated($propertyName)
+    {
+        if ($propertyName == 'price') {
+            $this->price = number_format((int)str_replace(',', '', $this->price));
+        }
+
+        $this->validateOnly($propertyName);
+    }
+
     public function reservationModal($reservation_id)
     {
         $reservation = Reservation::find($reservation_id);
         $this->customer_name = $reservation->customer_name;
-        $this->price = $reservation->price;
+        $this->price =  number_format($reservation->price);
         $this->date_from = $reservation->date_from;
         $this->date_to = $reservation->date_to;
         $this->note = $reservation->note;
@@ -59,8 +69,11 @@ class EditReservation extends Component
 
     public function update(ReservationService $reservationService)
     {
+        $this->price = (int)str_replace(',', '', $this->price);
+
         $validatedData = $this->validate();
         $reservationService->update($this->reservation, $validatedData);
+
         $this->alert('success', '', [
             'toast' => true,
             'position' => 'center',

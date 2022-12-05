@@ -10,6 +10,7 @@ use App\Models\LandType;
 use App\Models\Licensed;
 use App\Models\Neighborhood;
 use App\Models\OfferType;
+use App\Models\OrderNoteStatuse;
 use App\Models\PriceType;
 use App\Models\PropertyStatus;
 use App\Models\PropertyType;
@@ -23,6 +24,15 @@ class RealEstatesService extends Controller
     public function __construct(Request $request)
     {
         $this->request = $request;
+    }
+
+    public function storeOrderNoteStatus($data)
+    {
+        $this->request->name = $data['order_note_status_name'];
+
+        $order_status = OrderNoteStatuse::create([
+            'name' => $this->request->name
+        ]);
     }
 
     public function storeCity($data)

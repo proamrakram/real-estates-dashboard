@@ -14,13 +14,10 @@
                                 <div class="card card-congratulation-medal" wire:ignore.self>
                                     <div class="card-body" wire:ignore.self>
                                         <h2>رقم الطلب</h2>
-                                        {{-- <p class="card-text font-small-10">TRT-2343-USR{{$order->id}}</p> --}}
+
                                         <h3 class="mb-75 mt-2 pt-50">
                                             <a href="#">{{ $order->order_code }}</a>
                                         </h3>
-                                        {{-- <button type="button"
-                                            class="btn btn-primary waves-effect waves-float waves-light">View
-                                            Sales</button> --}}
 
                                         @if ($order->order_status_id == 3)
                                             <div class="mb-2">
@@ -82,9 +79,19 @@
                                             </div>
                                         @endif
 
+                                        @if ($order->order_status_id == 6)
+                                            <div class="mb-2">
+                                                <a class="btn bg-light-warning waves-effect waves-float waves-light"
+                                                    wire:ignore.self>
+                                                    <span wire:ignore>
+                                                        الطلب معلق
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        @endif
 
 
-                                        @if (!($order->order_status_id == 3))
+                                        @if (!($order->order_status_id == 3) && !($order->order_status_id == 6))
                                             <a class="btn bg-light-success waves-effect waves-float waves-light"
                                                 data-bs-target="#connectToOffer" data-bs-toggle="modal"
                                                 wire:ignore.self>
@@ -158,7 +165,7 @@
                                         </div>
 
                                     </div>
-                                    @if (!($order->order_status_id == 3))
+                                    @if (!($order->order_status_id == 3) && !($order->order_status_id == 6))
                                         <div class="col-md-12" wire:ignore.self>
                                             <div class="mb-1 text-center" wire:ignore.self>
                                                 <a href="javascript:;" class="btn bg-light-warning"
@@ -334,8 +341,12 @@
                                                                 <div class="timeline-event ">
                                                                     <div
                                                                         class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1 ">
-                                                                        <h6>قام {{ getUserName($order_edit->user_id) }}
-                                                                            بالتعديل</h6>
+                                                                        <h6>قام
+                                                                            <a
+                                                                                href="{{ route('panel.user', $order_edit->user_id) }}">
+                                                                                {{ getUserName($order_edit->user_id) }}</a>
+                                                                            بالتعديل
+                                                                        </h6>
                                                                         <span
                                                                             class="timeline-event-time ">{{ $this->getLastUpateOrderEditTime($order_edit->id) }}</span>
                                                                     </div>
@@ -405,74 +416,80 @@
             </section>
         </div>
     </div>
-</div>
 
-
-
-<div class="modal fade" id="addNote" tabindex="-1" aria-hidden="true" wire:ignore.self>
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user" wire:ignore.self>
-        <div class="modal-content" wire:ignore.self>
-            <div class="modal-header bg-transparent" wire:ignore>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                </button>
-            </div>
-            <div class="modal-body pb-5 px-sm-5 pt-50" wire:ignore.self>
-
-
-
-                <div class="text-center mb-2" wire:ignore>
-                    <h1 class="mb-1">إضافة ملاحظة</h1>
+    <div class="modal fade" id="addNote" tabindex="-1" aria-hidden="true" wire:ignore.self>
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user" wire:ignore.self>
+            <div class="modal-content" wire:ignore.self>
+                <div class="modal-header bg-transparent" wire:ignore>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
                 </div>
+                <div class="modal-body pb-5 px-sm-5 pt-50" wire:ignore.self>
 
 
-
-                <div class="row gy-1 pt-75" wire:ignore.self>
-
-                    <div class="col-12 col-md-6 " wire:ignore.self>
-                        <label class="form-label" for="fp-range">التاريخ</label>
-                        <input type="text" id="fp-range" class="form-control" placeholder="{{ now() }}"
-                            disabled />
+                    <div class="text-center mb-2" wire:ignore>
+                        <h1 class="mb-1">إضافة ملاحظة</h1>
                     </div>
 
-                    <div class="col-12 col-md-6" wire:ignore.self>
-                        <label class="form-label"> الحالة :</label>
-                        <select class="form-select" wire:model='status_note'>
-                            @foreach (getOrderNoteStatuse() as $order_status)
-                                <option value="{{ $order_status->id }}">{{ $order_status->name }}
-                                </option>
-                            @endforeach
-                        </select>
+
+                    <div class="row gy-1 pt-75" wire:ignore.self>
+
+                        <div class="col-12 col-md-6 " wire:ignore.self>
+                            <label class="form-label" for="fp-range">التاريخ</label>
+                            <input type="text" id="fp-range" class="form-control"
+                                placeholder="{{ now()->format('Y-m-d') }}" disabled />
+                        </div>
+
+                        <div class="col-12 col-md-6" wire:ignore.self>
+                            <label class="form-label"> الحالة :</label>
+                            <select class="form-select" wire:model='status_note'>
+                                @foreach (getOrderNoteStatuse() as $order_status)
+                                    @if (auth()->user()->user_type == 'marketer')
+                                        @if ($order_status->id != 3)
+                                            <option value="{{ $order_status->id }}">{{ $order_status->name }}
+                                            </option>
+                                        @endif
+                                    @else
+                                        <option value="{{ $order_status->id }}">{{ $order_status->name }}
+                                        </option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-12" wire:ignore.self>
+                            <label class="form-label" for="modalEditUserEmail">ملاحظات:</label>
+                            <textarea class="form-control" id="notes" wire:model='text' rows="3" placeholder="ملاحظات"></textarea>
+                        </div>
+
+                        <div class="col-12 text-center mt-2 pt-50" wire:ignore.self>
+                            <button class="btn btn-primary btn-submit me-1" wire:click='addNote'>حفظ</button>
+                            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                                aria-label="Close">الغاء</button>
+                        </div>
+
                     </div>
 
-                    <div class="col-12" wire:ignore.self>
-                        <label class="form-label" for="modalEditUserEmail">ملاحظات:</label>
-                        <textarea class="form-control" id="notes" wire:model='text' rows="3" placeholder="ملاحظات"></textarea>
-                    </div>
-
-                    <div class="col-12 text-center mt-2 pt-50" wire:ignore.self>
-                        <button class="btn btn-primary btn-submit me-1" wire:click='addNote'>حفظ</button>
-                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                            aria-label="Close">الغاء</button>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="connectToOffer" tabindex="-1" aria-hidden="true" wire:ignore.self>
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user" wire:ignore.self>
-        <div class="modal-content" wire:ignore.self>
-            <div class="modal-header bg-transparent" wire:ignore.self>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body pb-5 px-sm-5 pt-50" wire:ignore.self>
-                <div class="text-center mb-2" wire:ignore.self>
-                    <h1 class="mb-1 ">قريبا...</h1>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <div class="modal fade" id="connectToOffer" tabindex="-1" aria-hidden="true" wire:ignore.self>
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user" wire:ignore.self>
+            <div class="modal-content" wire:ignore.self>
+                <div class="modal-header bg-transparent" wire:ignore.self>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body pb-5 px-sm-5 pt-50" wire:ignore.self>
+                    <div class="text-center mb-2" wire:ignore.self>
+                        <h1 class="mb-1 ">قريبا...</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>

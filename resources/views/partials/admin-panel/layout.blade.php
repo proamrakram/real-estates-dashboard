@@ -7,4 +7,5 @@
 @endauth
 
 @yield('content')
+@livewireScripts()
 @include('partials.admin-panel.footer')

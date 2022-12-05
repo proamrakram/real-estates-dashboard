@@ -2,15 +2,20 @@
 
 namespace App\Http\Livewire;
 
+use App\Events\SuspendedOrder as EventsSuspendedOrder;
 use App\Models\Order;
 use App\Models\OrderEditor;
 use App\Models\OrderNote;
+use App\Models\User;
+use App\Notifications\SuspendedOrder;
+use Illuminate\Support\Facades\Notification;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
 class OrderView extends Component
 {
     use LivewireAlert;
+    protected $listeners = ['updateOrderNotesStatuses'];
     public $order;
     public $last_update_time = 'لم يتم التعديل على هذا الطلب بعد';
     public $last_update_note_time = 'لم يتم التعديل على هذا الطلب بعد';
@@ -18,15 +23,28 @@ class OrderView extends Component
     public $status_note = 1;
     public $order_id;
 
+    public $order_note_statuses;
+
+    public function updateOrderNotesStatuses()
+    {
+        $this->order_note_statuses = getOrderNoteStatuse();
+    }
+
     public function mount($order_id)
     {
         $this->order_id = $order_id;
+        $this->refresh();
+    }
+
+    public function refresh()
+    {
+        $this->order = Order::find($this->order_id);
+        $this->order_note_statuses = getOrderNoteStatuse();
+        $this->getLastUpateTime();
     }
 
     public function render()
     {
-        $this->order = Order::find($this->order_id);
-        $this->getLastUpateTime();
         return view('livewire.order-view', [
             'order' => $this->order,
         ]);
@@ -50,6 +68,7 @@ class OrderView extends Component
         ]);
 
         if ($this->status_note == 3) {
+
             $this->order->update([
                 'closed_date' => now(),
                 'who_cancel' => auth()->id(),
@@ -70,43 +89,75 @@ class OrderView extends Component
                 'timerProgressBar' => true,
             ]);
         }
+
+
+        if ($this->status_note == 4) {
+
+            $this->order->update([
+                'who_edit' => auth()->id(),
+                'order_status_id' => 6
+            ]);
+
+            OrderEditor::create([
+                'order_id' => $this->order->id,
+                'user_id' => auth()->id(),
+                'action' => 'suspended',
+            ]);
+
+            $this->alert('success', '', [
+                'toast' => true,
+                'position' => 'center',
+                'timer' => 6000,
+                'text' => '👍 تم إرسال إشعار بتعليق الطلب للإدارة بنجاح',
+                'timerProgressBar' => true,
+            ]);
+
+            $order = Order::find($this->order_id);
+
+            $admins = User::whereIn('user_type', ['superadmin', 'admin'])->get();
+            Notification::send($admins, new SuspendedOrder($order));
+            event(new EventsSuspendedOrder($order));
+
+            $this->refresh();
+        }
     }
 
     public function getLastUpateTime()
     {
-        if ($this->order->updated_at) {
-            $last_update = $this->order->updated_at->toDateTimeString();
-            $time_now = now();
+        if ($this->order) {
+            if ($this->order->updated_at) {
+                $last_update = $this->order->updated_at->toDateTimeString();
+                $time_now = now();
 
-            $datetime1 = strtotime($last_update);
-            $datetime2 = strtotime($time_now);
+                $datetime1 = strtotime($last_update);
+                $datetime2 = strtotime($time_now);
 
-            $secs = $datetime2 - $datetime1; // == <seconds between the two times>
-            $min = $secs / 60;
-            $hour = $secs / 3600;
-            $days = $secs / 86400;
+                $secs = $datetime2 - $datetime1; // == <seconds between the two times>
+                $min = $secs / 60;
+                $hour = $secs / 3600;
+                $days = $secs / 86400;
 
 
-            if ($days > 0.99) {
-                $this->last_update_time = 'اخر تحديث منذ ' . round($days, 0) . ' يوم';
+                if ($days > 0.99) {
+                    $this->last_update_time = 'اخر تحديث منذ ' . round($days, 0) . ' يوم';
+                    return true;
+                }
+
+                if ($hour > 0.99) {
+                    $this->last_update_time = 'اخر تحديث منذ ' . round($hour, 0) . ' ساعة';
+                    return true;
+                }
+
+                if ($min > 0.99) {
+                    $this->last_update_time = 'اخر تحديث منذ ' . round($min, 0)  . ' دقيقة';
+                    return true;
+                }
+
+                $this->last_update_time = 'اخر تحديث منذ ' . $secs . ' ثواني';
                 return true;
             }
-
-            if ($hour > 0.99) {
-                $this->last_update_time = 'اخر تحديث منذ ' . round($hour, 0) . ' ساعة';
-                return true;
-            }
-
-            if ($min > 0.99) {
-                $this->last_update_time = 'اخر تحديث منذ ' . round($min, 0)  . ' دقيقة';
-                return true;
-            }
-
-            $this->last_update_time = 'اخر تحديث منذ ' . $secs . ' ثواني';
-            return true;
         }
     }
-
 
     public function getLastUpateOrderEditTime($order_edit_id)
     {

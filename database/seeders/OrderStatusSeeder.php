@@ -21,6 +21,7 @@ class OrderStatusSeeder extends Seeder
             'مغلق',
             'جاري متابعة الطلب',
             'لم يتم متابعة الطلب',
+            'معلق',
         ];
 
         foreach ($order_statues as $order_statue) {

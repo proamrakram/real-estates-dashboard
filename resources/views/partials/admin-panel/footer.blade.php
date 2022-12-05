@@ -5,15 +5,19 @@
 
 <!-- BEGIN: Footer-->
 <footer class="footer footer-static footer-light">
-    <p class="clearfix mb-0"><span class="float-md-start d-block d-md-inline-block mt-25">حقوق الملكية &copy; 2022<a
-                class="ms-25" href="#" target="_blank"></a><span class="d-none d-sm-inline-block">, جميع الحقوق
-                محفوظة</span></span><span class="float-md-end d-none d-md-block">صُنع بحب<i
-                data-feather="heart"></i></span></p>
+    <p class="clearfix mb-0">
+        <span class="float-md-start d-block d-md-inline-block mt-25">حقوق الملكية &copy; 2022
+            <a class="ms-25" href="#" target="_blank"></a>
+            <span class="d-none d-sm-inline-block">, جميع الحقوق محفوظة</span>
+        </span>
+        <span class="float-md-end d-none d-md-block">صُنع بحب
+            <i data-feather="heart"></i>
+        </span>
+    </p>
 </footer>
+
 <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
 <!-- END: Footer-->
-
-
 
 <!-- BEGIN: Vendor JS-->
 <script src="{{ asset('app-assets/vendors/js/vendors.min.js') }}"></script>
@@ -54,8 +58,6 @@
 <!-- END: Page JS-->
 
 {{-- Custom Pages --}}
-
-
 <script src="{{ asset('app-assets/js/scripts/pages/modal-add-new-cc.js') }}"></script>
 <script src="{{ asset('app-assets/js/scripts/pages/page-pricing.js') }}"></script>
 <script src="{{ asset('app-assets/js/scripts/pages/modal-add-new-address.js') }}"></script>
@@ -67,9 +69,6 @@
 <!-- BEGIN: Page Vendor JS-->
 <script src="{{ asset('app-assets/vendors/js/forms/wizard/bs-stepper.min.js') }}"></script>
 <!-- END: Page Vendor JS-->
-
-
-
 
 <!-- BEGIN: Vendor JS-->
 <script src="app-assets/vendors/js/vendors.min.js"></script>
@@ -176,7 +175,6 @@
 </script>
 
 
-{{-- @stack('users-scripts') --}}
 @stack('orders-scripts')
 @stack('customers-scripts')
 @stack('cities-scripts')
@@ -186,10 +184,5 @@
 @stack('branch-scripts')
 @stack('livewire-alert-scripts')
 
-
-
-@livewireScripts()
-
 </body>
-
 </html>

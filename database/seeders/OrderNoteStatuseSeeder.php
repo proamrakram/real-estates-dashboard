@@ -15,11 +15,11 @@ class OrderNoteStatuseSeeder extends Seeder
      */
     public function run()
     {
-
         $order_note_statuses = [
             'تم التواصل مع العميل',
             'لم يتم التواصل مع العميل',
             'العميل لا يرغب',
+            'تعليق الطلب',
         ];
 
         foreach ($order_note_statuses as $order_note_statuse) {

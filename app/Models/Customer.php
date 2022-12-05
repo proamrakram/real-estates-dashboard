@@ -29,6 +29,7 @@ class Customer extends Model
         'support_eskan',
         'employee_type',
         'status',
+        'is_buy',
         'who_add',
         'who_edit',
     ];
@@ -98,6 +99,7 @@ class Customer extends Model
             'support_eskan',
             'employee_type',
             'status',
+            'is_buy',
             'who_add',
             'who_edit',
         ]);
