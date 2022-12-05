@@ -30,7 +30,7 @@ class SmsVerification extends Component
 
     public function timer()
     {
-        $this->time = now()->format('H:i:s');
+        $this->time = now()->setMinutes(3);
     }
 
     public function render()
