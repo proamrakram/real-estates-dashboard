@@ -28,6 +28,11 @@ class HomeController extends Controller
         $this->userService = $userService;
     }
 
+    public function customerOrder()
+    {
+        return view('admin-panel.customer-order');
+    }
+
     public function home()
     {
         return view('admin-panel.statistics');
