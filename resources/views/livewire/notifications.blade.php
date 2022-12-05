@@ -101,7 +101,7 @@
 
             if (data.user) {
                 if (id == data.user.id) {
-                    new Audio("{{ asset('assets/sound.wav') }}").play();
+                    new Audio("{{ asset('assets/sound.wav') }}").autoplay();
                 }
             }
 
