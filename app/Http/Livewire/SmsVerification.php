@@ -8,6 +8,7 @@ use App\Models\Permission;
 use App\Models\User;
 use App\Models\UserSettings;
 use App\Notifications\NewUser;
+use DateTime;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\RateLimiter;
@@ -32,7 +33,8 @@ class SmsVerification extends Component
     {
         $this->timer = ($this->timer - mktime(0, 0, 1));
 
-        dd(mktime(0, 0, 0, 0, 0, 0), mktime(0, 0, 0), time());
+        $time = new DateTime("00:00:10");
+        dd(mktime(0, 0, 0, 0, 0, 0), mktime(0, 0, 0), time(), $time);
 
         if ($this->timer == mktime(0, 0, 0)) {
             dd('end time');
