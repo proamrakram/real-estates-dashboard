@@ -26,17 +26,22 @@ class SmsVerification extends Component
 
     public $user = null;
 
-    public $time = 0;
-    public $timer = 10;
+    public $time = '03:00';
+    public $timer = 180;
 
     public function timer()
     {
-        $this->timer = ($this->timer - 1);
-
-        if ($this->timer == 0) {
-            dd('end time');
+        if ($this->user) {
+            if (!$this->user->can_recieve_sms) {
+                $this->timer = ($this->timer - 1);
+                if ($this->timer == 0) {
+                    $this->user->update(['can_recieve_sms' => 1]);
+                    $this->timer = 180;
+                    $this->time = '03:00';
+                }
+                $this->time = date('i:s', mktime(0, 0, $this->timer));
+            }
         }
-        $this->time = date('i:s', mktime(0, 0, $this->timer));
     }
 
     public function render()
@@ -111,6 +116,7 @@ class SmsVerification extends Component
             'can_cancel_sells' => 2,
             'can_booking' => 2,
             'can_send_sms' => 2,
+            'can_recieve_sms' => 0,
         ]);
 
         UserSettings::create([

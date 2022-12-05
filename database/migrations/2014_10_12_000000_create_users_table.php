@@ -23,6 +23,7 @@ return new class extends Migration
             $table->enum('user_type', ['superadmin', 'admin', 'office', 'marketer']);
             $table->integer('verification_code')->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->boolean('can_recieve_sms')->nullable();
 
             #branches ids
             // $table->json('branches_ids')->nullable();
