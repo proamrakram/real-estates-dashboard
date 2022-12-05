@@ -25,15 +25,11 @@ class SmsVerification extends Component
 
     public $user = null;
 
-    public $time = 0;
+    public $time = 1670198580;
     public $one_second = 0;
 
     public function timer()
     {
-        $this->time = mktime(0, 3, 0);
-        dd($this->time);
-        $this->one_second = mktime(0, 0, 1);
-
         $difference = ($this->time - mktime(0, 0, 1));
 
         $this->time = date('i-s', $difference);
