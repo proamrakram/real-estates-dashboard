@@ -101,8 +101,7 @@
                                                 </label>
 
                                                 <label>المدينة:
-                                                    <select wire:model='city_id' class="form-select"
-                                                        style="margin-left: .5em; display: inline-block; width: auto; ">
+                                                    <select wire:model='city_id' class="form-select" style="margin-left: .5em; display: inline-block; width: auto;">
                                                         <option value="all" selected>الكل</option>
                                                         @foreach (getCities() as $city)
                                                             <option value="{{ $city->id }}">{{ $city->name }}

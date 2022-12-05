@@ -85,7 +85,7 @@
                     </div>
                     <div class="mb-1 col-md-6">
                         <label class="form-label">هل أنت موظف قطاع عام أم قطاع خاص ؟</label>
-                        <select class="form-control" wire:model='employee_type'>
+                        <select class="form-select" wire:model='employee_type'>
                             <option value="public" selected>عام</option>
                             <option value="private">خاص</option>
                         </select>
@@ -98,7 +98,7 @@
                 <div class="row">
                     <div class="mb-1 col-md-6">
                         <label class="form-label">هل أنت مؤهل للحصول على دعم وزارة الاسكان ؟</label>
-                        <select class="form-control" wire:model='support_eskan'>
+                        <select class="form-select" wire:model='support_eskan'>
                             <option value="1">نعم</option>
                             <option value="0">لا</option>
                         </select>

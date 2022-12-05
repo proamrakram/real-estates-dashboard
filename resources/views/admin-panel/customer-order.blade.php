@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="loading " lang="en" data-textdirection="rtl">
+<html class="loading {{ websiteMode() }}" lang="en" data-textdirection="rtl">
 <!-- BEGIN: Head-->
 
 <head>
