@@ -10,6 +10,7 @@ use App\Models\UserSettings;
 use App\Notifications\NewUser;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\RateLimiter;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
@@ -23,6 +24,14 @@ class SmsVerification extends Component
     public $verification_code;
 
     public $user = null;
+
+    public $time = '00:00';
+
+
+    public function timer()
+    {
+        $this->time = now();
+    }
 
     public function render()
     {
@@ -147,6 +156,21 @@ class SmsVerification extends Component
             ]);
 
             return redirect()->route('login');
+        }
+    }
+
+    public function resendSms()
+    {
+        $executed = RateLimiter::attempt(
+            'send-sms-message-user-:' . $this->user->id,
+            $perMinute = 5,
+            function () {
+                // Send message...
+            }
+        );
+
+        if (!$executed) {
+            return 'Too many messages sent!';
         }
     }
 }

@@ -57,6 +57,8 @@
                 </div>
 
                 <button class="btn btn-primary w-100" tabindex="5">التسجيل</button>
+                <small class="text-primary" wire:poll='timer'>{{ $time }}</small>
+
             </form>
         @endif
 
@@ -81,6 +83,7 @@
 
                     <button class="btn btn-primary w-100" tabindex="5" wire:click='sendSms'
                         @if ($user->verification_code != $verification_code) disabled @endif>تفعيل</button>
+
                 </div>
             @endif
         @endif
