@@ -22,8 +22,6 @@ class SmsService extends Controller
     protected $dateTimeSendLater = '2014-12-30--23:59:00';
     protected $xml = '';
 
-
-
     public function send($user)
     {
         $data =  array(
@@ -31,7 +29,7 @@ class SmsService extends Controller
             'userPassword' => $this->userPassword,
             'userSender' => $this->userSender,
             'numbers' => $this->numbers,
-            'msg' => "مرحبا بك في منصة المدار العقارية، كود التحقق الخاص بك هو $user->verification_code",
+            'msg' => "كود التحقق: $user->verification_code",
             'By' => $this->by
         );
 

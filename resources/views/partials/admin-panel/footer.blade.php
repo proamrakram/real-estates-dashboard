@@ -86,11 +86,7 @@
 <script src="{{ asset('app-assets/js/scripts/extensions/ext-component-sweet-alerts.js') }}"></script>
 
 
-
-
-
 <script>
-
     @if (Session::has('message'))
         toastr.success("{{ Session::get('message') }}", 'تمت المهمة!', {
             closeButton: true,

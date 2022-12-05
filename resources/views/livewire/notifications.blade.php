@@ -113,9 +113,6 @@
                             once: true
                         })
                     });
-
-                    // audio.muted = true;
-                    // audio.play();
                 }
             }
 
