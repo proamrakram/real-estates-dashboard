@@ -84,7 +84,8 @@
                         @if ($user->verification_code != $verification_code) disabled @endif>تفعيل</button>
 
                     @if ($user->can_recieve_sms)
-                        <button class="btn btn-danger w-100" tabindex="5" wire:click='resendSms'>إعادة إرسال كود جديد</button>
+                        <button class="btn btn-danger w-100" tabindex="5" wire:click='resendSms'>إعادة إرسال كود
+                            جديد</button>
                     @endif
 
                     @if (!$user->email_verified_at && !$user->can_recieve_sms)

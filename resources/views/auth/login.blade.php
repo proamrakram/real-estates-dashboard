@@ -76,60 +76,13 @@
 
                                 <p class="card-text mb-2">يرجى تسجيل الدخول</p>
 
-                                <form class="auth-login-form" action="{{ route('login') }}" method="POST">
+                                @livewire('login')
 
-                                    @csrf
+                                <p class="text-center mt-2"><span>واعد جديد ؟</span>
+                                    <a href="{{ route('register') }}"><span>&nbsp;إنشاء حساب</span>
+                                    </a>
+                                </p>
 
-                                    <div class="mb-1">
-                                        <label class="form-label" for="login-phone">رقم الجوال او الايميل</label>
-                                        <input class="form-control" dir="ltr" id="login-phone" type="text"
-                                            name="login_phone_email" placeholder="example@gmail.com or 0599916672"
-                                            autofocus="" tabindex="1" />
-                                        @error('login_phone_email')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                        @if (session()->has('password'))
-                                            <small class="text-danger">{{ session()->get('password') }}</small>
-                                        @endif
-
-                                    </div>
-
-                                    <div class="mb-1">
-
-                                        <div class="d-flex justify-content-between">
-                                            <label class="form-label" for="login-password">كلمة المرور</label>
-                                            <a href="{{route('forget.password')}}"><small>نسيت كلمة المرور ؟</small></a>
-                                        </div>
-
-                                        <div class="input-group input-group-merge form-password-toggle">
-                                            <input class="form-control form-control-merge" id="login-password"
-                                                type="password" name="login_password" placeholder="password"
-                                                tabindex="2" />
-                                            <span class="input-group-text cursor-pointer">
-                                                <i data-feather="eye"></i>
-                                            </span>
-                                        </div>
-                                        @error('login_password')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                        @if (session()->has('password'))
-                                            <small class="text-danger">{{ session()->get('password') }}</small>
-                                        @endif
-                                    </div>
-
-                                    <div class="mb-1">
-                                        <div class="form-check">
-                                            <input class="form-check-input" id="remember-me" name="remember_me"
-                                                type="checkbox" tabindex="3" />
-                                            <label class="form-check-label" for="remember-me"> تذكرني</label>
-                                        </div>
-                                    </div>
-
-                                    <button class="btn btn-primary w-100" tabindex="4">تسجيل الدخول</button>
-                                </form>
-
-                                <p class="text-center mt-2"><span>واعد جديد ؟</span><a
-                                        href="{{ route('register') }}"><span>&nbsp;إنشاء حساب</span></a></p>
                             </div>
                         </div>
                         <!-- /Login-->
