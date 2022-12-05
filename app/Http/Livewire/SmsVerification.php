@@ -31,7 +31,7 @@ class SmsVerification extends Component
     public function timer()
     {
         $this->timer = ($this->timer - mktime(0, 0, 1));
-
+        dd(mktime(0, 0, 0));
         if ($this->timer == 0) {
             dd('end time');
         }
