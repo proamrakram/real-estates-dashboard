@@ -101,11 +101,12 @@
             console.log(data.user.id);
             console.log(id);
 
-            document.querySelector("audio").play();
             if (data.user) {
                 if (id == data.user.id) {
-                    let audio = new Audio("{{ asset('assets/sound.wav') }}");
-                    audio.play();
+                    document.querySelector("audio").play();
+
+                    // let audio = new Audio("{{ asset('assets/sound.wav') }}");
+                    // audio.play();
                 }
             }
 
