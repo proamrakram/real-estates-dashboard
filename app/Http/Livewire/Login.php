@@ -5,13 +5,39 @@ namespace App\Http\Livewire;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
 class Login extends Component
 {
+    use LivewireAlert;
+
     public $login_phone_email;
     public $login_password;
     public $method;
+
+    public $user;
+
+    public $time = '03:00';
+    public $timer = 180;
+
+    public $verification_code = null;
+
+    public function timer()
+    {
+        if ($this->user) {
+            if (!$this->user->can_recieve_sms) {
+                $this->timer = ($this->timer - 1);
+                if ($this->timer == 0) {
+                    $this->user->update(['can_recieve_sms' => 1]);
+                    $this->timer = 180;
+                    $this->time = '03:00';
+                    $this->user = User::find($this->user->id);
+                }
+                $this->time = date('i:s', mktime(0, 0, $this->timer));
+            }
+        }
+    }
 
     public function render()
     {
@@ -28,16 +54,50 @@ class Login extends Component
         if ($this->method == 'phone') {
             $user = User::where('phone', $this->login_phone_email)->first();
 
-            if ($user && Hash::check($this->login_password, $user->password)) {
-                Auth::login($user);
+            if ($user) {
+                if (!$user->email_verified_at) {
+                    $user->update(['can_recieve_sms' => 1]);
+                    $this->user = User::where('phone', $this->login_phone_email)->first();
+                    $this->alert('warning', '', [
+                        'toast' => true,
+                        'position' => 'center',
+                        'timer' => 6000,
+                        'text' => '👍 يرجى التحقق من رقم الهاتف قبل تسجيل الدخول',
+                        'timerProgressBar' => true,
+                    ]);
+                    return false;
+                }
+            }
+
+            $this->user = $user;
+
+            if ($this->user && Hash::check($this->login_password, $this->user->password)) {
+                Auth::login($this->user);
                 return redirect()->intended('panel/home');
             }
         } elseif ($this->method == 'email') {
 
             $user = User::where('email', $this->login_phone_email)->first();
 
-            if ($user && Hash::check($this->login_password, $user->password)) {
-                Auth::login($user);
+            if ($user) {
+                if (!$user->email_verified_at) {
+                    $user->update(['can_recieve_sms' => 1]);
+                    $this->user = User::where('phone', $this->login_phone_email)->first();
+                    $this->alert('warning', '', [
+                        'toast' => true,
+                        'position' => 'center',
+                        'timer' => 6000,
+                        'text' => '👍 يرجى التحقق من رقم الهاتف قبل تسجيل الدخول',
+                        'timerProgressBar' => true,
+                    ]);
+                    return false;
+                }
+            }
+
+            $this->user = $user;
+
+            if ($this->user && Hash::check($this->login_password, $this->user->password)) {
+                Auth::login($this->user);
                 return redirect()->intended('panel/home');
             }
         } else {
