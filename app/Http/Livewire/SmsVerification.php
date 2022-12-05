@@ -25,23 +25,18 @@ class SmsVerification extends Component
 
     public $user = null;
 
-    public $time = '00:00';
-
-    public $counter = 0;
-    public $total = 0;
+    public $time = 0;
     public $one_second = 0;
 
     public function timer()
     {
-        if ($this->counter == 0) {
-            $this->total = mktime(0, 3, 0);
-            $this->one_second = mktime(0, 0, 1);
-            $this->counter = 1;
-        }
+        $this->time = mktime(0, 3, 0);
+        dd($this->time);
+        $this->one_second = mktime(0, 0, 1);
 
-        $difference = ($this->total - $this->one_second);
+        $difference = ($this->time - mktime(0, 0, 1));
 
-        $this->time = date('i-s', $difference);;
+        $this->time = date('i-s', $difference);
     }
 
     public function render()
