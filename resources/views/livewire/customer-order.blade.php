@@ -7,8 +7,8 @@
                 <button type="button" class="step-trigger">
                     <span class="bs-stepper-box">1</span>
                     <span class="bs-stepper-label">
-                        <span class="bs-stepper-title">Account Details</span>
-                        <span class="bs-stepper-subtitle">Setup Account Details</span>
+                        <span class="bs-stepper-title">بيانات العميل</span>
+                        <span class="bs-stepper-subtitle">ادخل الحقول في القسم</span>
                     </span>
                 </button>
             </div>
