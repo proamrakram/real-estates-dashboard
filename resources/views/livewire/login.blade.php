@@ -40,8 +40,6 @@
         <button class="btn btn-primary w-100" tabindex="4" wire:click='login'>تسجيل الدخول</button>
     @endif
 
-
-
     @if ($user)
         <div class="auth-register-form mt-2">
 

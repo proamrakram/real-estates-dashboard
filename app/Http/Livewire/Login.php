@@ -20,7 +20,7 @@ class Login extends Component
     public $user;
 
     public $time = '03:00';
-    public $timer = 10;
+    public $timer = 180;
 
     public $verification_code;
 
@@ -31,7 +31,7 @@ class Login extends Component
                 $this->timer = ($this->timer - 1);
                 if ($this->timer == 0) {
                     $this->user->update(['can_recieve_sms' => 1]);
-                    $this->timer = 10;
+                    $this->timer = 180;
                     $this->time = '03:00';
                     $this->user = User::find($this->user->id);
                 }
@@ -222,10 +222,8 @@ class Login extends Component
             ]);
 
             $this->user = User::find($this->user->id);
-            $this->timer = 10;
+            $this->timer = 180;
             $this->time = '03:00';
-
-            dd($code);
         }
     }
 }
