@@ -30,6 +30,7 @@ class SmsVerification extends Component
 
     public function timer()
     {
+
         //A: RECORDS TODAY'S Date And Time
         $today = time();
 
@@ -39,7 +40,7 @@ class SmsVerification extends Component
         //C: COMPUTES THE DAYS UNTIL THE EVENT.
         $countdown = round(($event - $today) / 86400);
 
-        $this->time = $countdown;
+        $this->time = $event;
     }
 
     public function render()
