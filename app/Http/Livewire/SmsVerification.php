@@ -30,9 +30,9 @@ class SmsVerification extends Component
 
     public function timer()
     {
-        $difference = ($this->three_min - mktime(0, 0, 1));
+        $this->three_min = ($this->three_min - mktime(0, 0, 1));
 
-        $this->time = date('i:s', $difference);
+        $this->time = date('i:s', $this->three_min);
     }
 
     public function render()
