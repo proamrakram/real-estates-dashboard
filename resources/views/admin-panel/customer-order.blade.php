@@ -71,11 +71,6 @@
         href="{{ asset('app-assets/vendors/css/forms/wizard/bs-stepper.min.css') }}">
     <!-- END: Vendor CSS-->
 
-
-    @stack('livewire-styles')
-    @stack('cities-styles')
-    @stack('neighborhoods-styles')
-    @stack('user-styles')
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <x-livewire-alert::scripts />
@@ -120,6 +115,8 @@
 
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
     <!-- END: Footer-->
+
+    @livewireScripts()
 
     <!-- BEGIN: Vendor JS-->
     <script src="{{ asset('app-assets/vendors/js/vendors.min.js') }}"></script>
