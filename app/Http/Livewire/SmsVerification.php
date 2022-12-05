@@ -25,14 +25,14 @@ class SmsVerification extends Component
 
     public $user = null;
 
-    public $time = 1670198580;
-    public $one_second = 0;
+    public $time = '00:00';
+    public $three_min = 1670198580;
 
     public function timer()
     {
-        $difference = ($this->time - mktime(0, 0, 1));
+        $difference = ($this->three_min - mktime(0, 0, 1));
 
-        $this->time = date('i-s', $difference);
+        $this->time = date('i:s', $difference);
     }
 
     public function render()
