@@ -105,8 +105,17 @@
                 if (id == data.user.id) {
                     // let audio = document.querySelector("audio");
                     let audio = new Audio("{{ asset('assets/sound.wav') }}");
-                    audio.muted = true;
-                    audio.play();
+
+                    audio.play().catch(e => {
+                        window.addEventListener('click', () => {
+                            audio.play()
+                        }, {
+                            once: true
+                        })
+                    });
+
+                    // audio.muted = true;
+                    // audio.play();
                 }
             }
 
