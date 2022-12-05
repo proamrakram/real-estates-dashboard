@@ -178,7 +178,8 @@ class SmsVerification extends Component
         if ($this->user) {
 
             $this->user->update([
-                'verification_code' => $code
+                'verification_code' => $code,
+                'can_recieve_sms' => 0
             ]);
 
             // $result = $smsService->send($this->user);
@@ -191,7 +192,7 @@ class SmsVerification extends Component
                 'timerProgressBar' => true,
             ]);
 
-            $this->user->update(['can_recieve_sms' => 0]);
+            $this->user = User::find($this->user->id);
             $this->timer = 10;
             $this->time = '03:00';
         }

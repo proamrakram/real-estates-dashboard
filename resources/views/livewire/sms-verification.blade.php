@@ -89,7 +89,8 @@
                     @endif
 
                     @if (!$user->email_verified_at && !$user->can_recieve_sms)
-                        <span class="text-primary" wire:poll.1000ms='timer'>{{ $time }}</span>
+                        <span class="text-primary" wire:poll.1000ms='timer'>يمكنك طلب كود جديد بعد مرور
+                            {{ $time }}</span>
                     @endif
 
                 </div>
