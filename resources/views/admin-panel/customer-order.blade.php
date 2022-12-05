@@ -88,7 +88,7 @@
       background-position: center; background-repeat: no-repeat; background-size: cover; "
     data-open="click" data-menu="vertical-menu-modern" data-col="">
 
-    <div class="container">
+    <div class="container d-flex center">
         @livewire('customer-order')
     </div>
     <div class="sidenav-overlay"></div>
