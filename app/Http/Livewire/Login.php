@@ -54,7 +54,7 @@ class Login extends Component
 
         if ($this->method == 'phone') {
             $user = User::where('phone', $this->login_phone_email)->first();
-
+            dd($user);
             if ($user) {
                 if (!$user->email_verified_at) {
                     $user->update(['can_recieve_sms' => 1]);
