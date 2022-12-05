@@ -83,6 +83,8 @@
                     <button class="btn btn-primary w-100" tabindex="5" wire:click='sendSms'
                         @if ($user->verification_code != $verification_code) disabled @endif>تفعيل</button>
 
+                    <button class="btn btn-danger w-100" tabindex="5" wire:click='sendSms'>إعادة إرسال كود جديد</button>
+
                     @if (!$user->email_verified_at)
                         <span class="text-primary" wire:poll.1000ms='timer'>{{ $time }}</span>
                     @endif

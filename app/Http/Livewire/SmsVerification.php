@@ -27,7 +27,7 @@ class SmsVerification extends Component
     public $user = null;
 
     public $time = '03:00';
-    public $timer = 180;
+    public $timer = 10;
 
     public function timer()
     {
@@ -36,7 +36,7 @@ class SmsVerification extends Component
                 $this->timer = ($this->timer - 1);
                 if ($this->timer == 0) {
                     $this->user->update(['can_recieve_sms' => 1]);
-                    $this->timer = 180;
+                    $this->timer = 10;
                     $this->time = '03:00';
                 }
                 $this->time = date('i:s', mktime(0, 0, $this->timer));
@@ -171,18 +171,28 @@ class SmsVerification extends Component
         }
     }
 
-    public function resendSms()
+    public function resendSms(SmsService $smsService)
     {
-        $executed = RateLimiter::attempt(
-            'send-sms-message-user-:' . $this->user->id,
-            $perMinute = 5,
-            function () {
-                // Send message...
-            }
-        );
+        $code = random_int(111111, 999999);
+        if ($this->user) {
 
-        if (!$executed) {
-            return 'Too many messages sent!';
+            $this->user->update([
+                'verification_code' => $code
+            ]);
+
+            // $result = $smsService->send($this->user);
+
+            $this->alert('warning', '', [
+                'toast' => true,
+                'position' => 'center',
+                'timer' => 9000,
+                'text' => 'لقد قمنا بإرسال كود تحقق جديد، تفقد الهاتف الخاص بك',
+                'timerProgressBar' => true,
+            ]);
+
+            $this->user->update(['can_recieve_sms' => 0]);
+            $this->timer = 10;
+            $this->time = '03:00';
         }
     }
 }
