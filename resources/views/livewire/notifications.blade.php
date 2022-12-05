@@ -89,17 +89,22 @@
         // window.Livewire.emit('notifyNewOrder', data);
 
         channel.bind('new-order', function(data) {
-            console.log(data);
-            console.log(data.user);
-            console.log(data.user).id;
+
 
             window.livewire.emit('updateNotifications');
             window.livewire.emit('updateOrderMarketer');
             let id = "{{ auth()->user()->id }}";
+            console.log(data);
+            console.log(data.user);
+            console.log(data.user.id);
+            console.log(id);
 
-            if (id == data.id) {
-                new Audio("{{ asset('assets/sound.wav') }}").play();
+            if (data.user) {
+                if (id == data.user.id) {
+                    new Audio("{{ asset('assets/sound.wav') }}").play();
+                }
             }
+
         });
     </script>
 
