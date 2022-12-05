@@ -76,7 +76,7 @@
         </ul>
     </li>
 
-    <audio class="sound" src="{{ asset('assets/sound.wav') }}" autoplay></audio>
+    <audio class="sound" src="{{ asset('assets/sound.wav') }}" allow="autoplay 'src'"></audio>
 
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
     <script>
