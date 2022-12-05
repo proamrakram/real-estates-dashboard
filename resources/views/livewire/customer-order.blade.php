@@ -183,7 +183,7 @@
                 </div>
             </div>
 
-
+{{--
             <div id="social-links-vertical"  role="tabpanel"
                 aria-labelledby="social-links-vertical-trigger">
                 <div class="content-header">
@@ -221,7 +221,7 @@
                     </button>
                     <button class="btn btn-success btn-submit">Submit</button>
                 </div>
-            </div>
+            </div> --}}
 
 
         </div>
