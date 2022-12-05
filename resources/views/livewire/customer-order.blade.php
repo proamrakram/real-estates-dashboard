@@ -64,6 +64,7 @@
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
+
                     <div class="mb-1 col-md-6">
                         <label class="form-label">رقم الجوال</label>
                         <input type="tel" class="form-control" maxlength="10" wire:model='customer_phone'
@@ -84,15 +85,9 @@
                     </div>
                 </div>
 
-
-
                 <div class="row">
-
-                    <div class="col-md-6">
-                        <label class="form-label">هل أنت موظف قطاع عام أم قطاع خاص ؟</label>
-                    </div>
-
                     <div class="mb-1 col-md-6">
+                        <label class="form-label">هل أنت موظف قطاع عام أم قطاع خاص ؟</label>
                         <select class="form-control" wire:model='employee_type'>
                             <option value="public" selected>عام</option>
                             <option value="private">خاص</option>
@@ -104,12 +99,8 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-12 col-md-9">
-                        <label class="form-label">هل أنت مؤهل للحصول على دعم وزارة الاسكان
-                            ؟</label>
-                    </div>
-
                     <div class="mb-1 col-md-6">
+                        <label class="form-label">هل أنت مؤهل للحصول على دعم وزارة الاسكان ؟</label>
                         <select class="form-control" wire:model='support_eskan'>
                             <option value="1">نعم</option>
                             <option value="0">لا</option>
