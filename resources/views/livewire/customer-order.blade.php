@@ -75,12 +75,8 @@
                 </div>
 
                 <div class="row">
-
-                    <div class="col-md-6">
-                        <label class="form-label">جهة العمل</label>
-                    </div>
-
                     <div class="mb-1 col-md-6">
+                        <label class="form-label">جهة العمل</label>
                         <input type="text" class="form-control" wire:model='employer_name' placeholder="جهة العمل" />
                         @error('employer_name')
                             <small class="text-danger">{{ $message }}</small>
