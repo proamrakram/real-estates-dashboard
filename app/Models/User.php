@@ -28,6 +28,7 @@ class User extends Authenticatable
         'user_status',
         'user_type',
         'verification_code',
+        'email_verified_at',
         'can_recieve_sms',
         'advertiser_number'
     ];
@@ -145,6 +146,7 @@ class User extends Authenticatable
             'user_type',
             'verification_code',
             'advertiser_number',
+            'email_verified_at',
             'can_recieve_sms',
             'updated_at',
             'created_at',
