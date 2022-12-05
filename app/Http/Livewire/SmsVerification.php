@@ -30,7 +30,16 @@ class SmsVerification extends Component
 
     public function timer()
     {
-        $this->time = now()->setMinutes(3);
+        //A: RECORDS TODAY'S Date And Time
+        $today = time();
+
+        //B: RECORDS Date And Time OF YOUR EVENT
+        $event = mktime(0, 0, 0, 3, 0);
+
+        //C: COMPUTES THE DAYS UNTIL THE EVENT.
+        $countdown = round(($event - $today) / 86400);
+
+        $this->time = $countdown;
     }
 
     public function render()
