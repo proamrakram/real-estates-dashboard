@@ -196,7 +196,7 @@ class Login extends Component
                 'timerProgressBar' => true,
             ]);
 
-            $this->user = null;
+            return redirect()->route('login');
         }
     }
 
