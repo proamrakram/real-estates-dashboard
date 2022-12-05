@@ -2,7 +2,7 @@
     <div class="bs-stepper vertical vertical-wizard-example">
         <div class="bs-stepper-header">
 
-            <div class="step" data-target="#account-details-vertical" role="tab"
+            <div class="step {{ $first }}" data-target="#account-details-vertical" role="tab"
                 id="account-details-vertical-trigger">
                 <button type="button" class="step-trigger">
                     <span class="bs-stepper-box">1</span>
@@ -13,27 +13,28 @@
                 </button>
             </div>
 
-            {{-- <div class="step" data-target="#personal-info-vertical" role="tab"
+            <div class="step {{ $second }}" data-target="#personal-info-vertical" role="tab"
                 id="personal-info-vertical-trigger">
                 <button type="button" class="step-trigger">
                     <span class="bs-stepper-box">2</span>
                     <span class="bs-stepper-label">
-                        <span class="bs-stepper-title">Personal Info</span>
-                        <span class="bs-stepper-subtitle">Add Personal Info</span>
+                        <span class="bs-stepper-title">معلومات العقار</span>
+                        <span class="bs-stepper-subtitle">ادخل معلومات العقار الخاصة بك</span>
                     </span>
                 </button>
             </div>
 
-            <div class="step" data-target="#address-step-vertical" role="tab" id="address-step-vertical-trigger">
+            <div class="step {{ $third }}" data-target="#address-step-vertical" role="tab"
+                id="address-step-vertical-trigger">
                 <button type="button" class="step-trigger">
                     <span class="bs-stepper-box">3</span>
                     <span class="bs-stepper-label">
-                        <span class="bs-stepper-title">Address</span>
-                        <span class="bs-stepper-subtitle">Add Address</span>
+                        <span class="bs-stepper-title">الملاحظات</span>
+                        <span class="bs-stepper-subtitle">ادخل ملاحظاتك ان وجد</span>
                     </span>
                 </button>
             </div>
-
+            {{--
             <div class="step" data-target="#social-links-vertical" role="tab" id="social-links-vertical-trigger">
                 <button type="button" class="step-trigger">
                     <span class="bs-stepper-box">4</span>
