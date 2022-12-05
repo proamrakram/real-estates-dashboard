@@ -90,6 +90,7 @@
 
 
 <script>
+
     @if (Session::has('message'))
         toastr.success("{{ Session::get('message') }}", 'تمت المهمة!', {
             closeButton: true,
@@ -185,4 +186,5 @@
 @stack('livewire-alert-scripts')
 
 </body>
+
 </html>
