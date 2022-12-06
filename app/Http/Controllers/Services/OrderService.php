@@ -240,10 +240,22 @@ class OrderService extends Controller
 
         $user = auth()->user();
 
+        $marketer_name = getUserName($data['assign_to']);
+
+        $assign_to_id = $data['assign_to'];
+
+        $link_ma = route('panel.user', $assign_to_id);
+        $link_admin =  route('panel.user', $user->id);
+
+        $marketer = "<a href='$link_ma'> $marketer_name</a>";
+        $admin = "<a href='$link_admin'>$user->name</a>";
+
+        $note = "تم إسناد الطلب للمسوق $marketer من المدير $admin";
 
         OrderEditor::create([
             'order_id' => $order->id,
             'user_id' =>  $user->id,
+            'note' => $note,
             'action' => 'edit',
         ]);
 
