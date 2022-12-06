@@ -36,9 +36,32 @@
             <div class="step {{ $second }}" data-target="#personal-info-vertical" role="tab"
                 id="personal-info-vertical-trigger">
                 <button type="button" class="step-trigger" wire:click="sequencing('second')">
-                    <span class="bs-stepper-box">2</span>
+                    <span
+                        class="bs-stepper-box
+                        @if ($errors->has('property_type_id') ||
+                            $errors->has('city_id') ||
+                            $errors->has('branch_id') ||
+                            $errors->has('area') ||
+                            $errors->has('price_from') ||
+                            $errors->has('price_to') ||
+                            $errors->has('desire_to_buy_id') ||
+                            $errors->has('purch_method_id') ||
+                            $errors->has('avaliable_amount')) bg-danger @endif">2</span>
+
                     <span class="bs-stepper-label">
-                        <span class="bs-stepper-title">معلومات العقار</span>
+                        <span class="bs-stepper-title
+
+                            @if ($errors->has('property_type_id') ||
+                                $errors->has('city_id') ||
+                                $errors->has('branch_id') ||
+                                $errors->has('area') ||
+                                $errors->has('price_from') ||
+                                $errors->has('price_to') ||
+                                $errors->has('desire_to_buy_id') ||
+                                $errors->has('purch_method_id') ||
+                                $errors->has('avaliable_amount')) text-danger @endif ">معلومات
+                            العقار</span>
+
                         <span class="bs-stepper-subtitle">ادخل معلومات العقار الخاصة بك</span>
                     </span>
                 </button>
