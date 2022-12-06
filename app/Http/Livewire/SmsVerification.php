@@ -127,7 +127,8 @@ class SmsVerification extends Component
         Notification::send($admins, new NewUser($user));
         event(new EventsNewUser($user));
 
-        // $result = $smsService->send($user);
+        $result = $smsService->send($user);
+
         $result = 1;
         if ($result == '1') {
             $this->user = $user;
@@ -180,7 +181,7 @@ class SmsVerification extends Component
                 'can_recieve_sms' => 0
             ]);
 
-            // $result = $smsService->send($this->user);
+            $result = $smsService->send($this->user);
 
             $this->alert('warning', '', [
                 'toast' => true,
