@@ -143,10 +143,17 @@
                     </div>
 
                     <div class="d-flex justify-content-between">
+
+                        <button class="btn btn-primary btn-next" disabled>
+                            <span class="align-middle d-sm-inline-block d-none">السابق</span>
+                            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                        </button>
+
                         <button class="btn btn-primary btn-next" wire:click="sequencing('second')">
                             <span class="align-middle d-sm-inline-block d-none">التالي</span>
                             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                         </button>
+
                     </div>
                 @endif
 
