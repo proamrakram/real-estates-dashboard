@@ -91,9 +91,18 @@ class OrderService extends Controller
             $order->update(['order_code' => $order_code]);
         }
 
+        $marketer_name = getUserName($data['assign_to']);
+
+        $note = "تم إسناد الطلب للمسوق $marketer_name من المدير $user->name ";
+
+        if ($user->user_type == 'marketer') {
+            $note = "قام المسوق $user->name بإضافة الطلب";
+        }
+
         OrderEditor::create([
             'order_id' => $order->id,
-            'user_id' =>  $user->id,
+            'user_id' => $user->id,
+            'note' => $note,
             'action' => 'add',
         ]);
 
@@ -152,9 +161,14 @@ class OrderService extends Controller
             $order->update(['order_code' => $order_code]);
         }
 
+        $marketer_name = getUserName($data['assign_to']);
+
+        $note = "تم إسناد الطلب للمسوق $marketer_name من العميل $customer->name باستخدام رابط الدعوة";
+
         OrderEditor::create([
             'order_id' => $order->id,
             'user_id' =>  $data['assign_to'],
+            'note' => $note,
             'action' => 'add',
         ]);
 

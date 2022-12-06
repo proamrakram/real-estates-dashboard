@@ -52,6 +52,8 @@ class OrderView extends Component
 
     public function addNote()
     {
+        $user = auth()->user();
+
         OrderNote::create([
             'note' => $this->text,
             'status' => $this->status_note,
@@ -69,6 +71,14 @@ class OrderView extends Component
 
         if ($this->status_note == 3) {
 
+            if ($user->user_type == 'marketer') {
+                $note = "قام المسوق $user->name بإغلاق الطلب";
+            }
+
+            if ($user->user_type == 'admin' || $user->user_type == 'superadmin') {
+                $note = "قام المدير $user->name بإغلاق الطلب";
+            }
+
             $this->order->update([
                 'closed_date' => now(),
                 'who_cancel' => auth()->id(),
@@ -78,6 +88,7 @@ class OrderView extends Component
             OrderEditor::create([
                 'order_id' => $this->order->id,
                 'user_id' => auth()->id(),
+                'note' => $note,
                 'action' => 'cancel',
             ]);
 
@@ -98,9 +109,18 @@ class OrderView extends Component
                 'order_status_id' => 6
             ]);
 
+            if ($user->user_type == 'marketer') {
+                $note = "قام المسوق $user->name بتعليق الطلب";
+            }
+
+            if ($user->user_type == 'admin' || $user->user_type == 'superadmin') {
+                $note = "قام المدير $user->name بتعليق الطلب";
+            }
+
             OrderEditor::create([
                 'order_id' => $this->order->id,
                 'user_id' => auth()->id(),
+                'note' => $note,
                 'action' => 'suspended',
             ]);
 

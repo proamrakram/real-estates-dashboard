@@ -11,6 +11,7 @@ class OrderEditor extends Model
     protected $fillable = [
         'order_id',
         'user_id',
+        'note',
         'action',
     ];
 
@@ -30,6 +31,7 @@ class OrderEditor extends Model
             'id',
             'order_id',
             'user_id',
+            'note',
             'action',
             'created_at',
         ]);

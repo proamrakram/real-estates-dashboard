@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('order_id')->constrained('orders')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->text('note');
             $table->enum('action', ['edit', 'cancel', 'add', 'active', 'suspended']);
             $table->timestamps();
         });

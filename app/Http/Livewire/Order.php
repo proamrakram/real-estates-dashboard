@@ -121,16 +121,28 @@ class Order extends Component
         if ($order) {
             if ($order->order_status_id == 3) {
                 $order->update(['order_status_id' =>  5]);
+
+                if ($user->user_type == 'admin' || $user->user_type == 'superadmin') {
+                    $note = "قام المدير $user->name بتغير حالة الطلب";
+                }
+
                 OrderEditor::create([
                     'order_id' => $order->id,
                     'user_id' => $user->id,
+                    'note' => $note,
                     'action' => 'active',
                 ]);
             } else {
                 $order->update(['order_status_id' => 3]);
+
+                if ($user->user_type == 'admin' || $user->user_type == 'superadmin') {
+                    $note = "قام المدير $user->name بإغلاق الطلب";
+                }
+
                 OrderEditor::create([
                     'order_id' => $order->id,
                     'user_id' => $user->id,
+                    'note' => $note,
                     'action' => 'cancel',
                 ]);
             }
