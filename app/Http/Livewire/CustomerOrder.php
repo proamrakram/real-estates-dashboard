@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use App\Events\NewOrder as EventsNewOrder;
 use App\Http\Controllers\Services\OrderService;
 use App\Models\User;
+use App\Notifications\NewOrder;
 use Livewire\Component;
 
 class CustomerOrder extends Component
@@ -67,6 +69,7 @@ class CustomerOrder extends Component
             $this->third = 'active';
         }
     }
+
     protected function rules()
     {
         return [
@@ -129,13 +132,6 @@ class CustomerOrder extends Component
 
     public function updated($propertyName)
     {
-        if ($propertyName == 'is_assignable') {
-            $marketers = getUserMarketers();
-            if ($marketers->count()) {
-                $this->assign_to = $marketers->first()->id;
-            }
-        }
-
         if ($propertyName == 'price_from') {
             $this->price_from = number_format((int)str_replace(',', '', $this->price_from));
         }
@@ -163,13 +159,13 @@ class CustomerOrder extends Component
         $this->area = (int)str_replace(',', '', $this->area);
 
         $validatedData = $this->validate();
-        $order = $orderService->store($validatedData);
+        $order = $orderService->orderCustomer($validatedData);
 
         $this->alert('success', '', [
             'toast' => true,
             'position' => 'center',
-            'timer' => 3000,
-            'text' => '👍 تم تحديث الطلبات بنجاح',
+            'timer' => 6000,
+            'text' => '👍 تم إضافة طلبك بنجاح',
             'timerProgressBar' => true,
         ]);
 
@@ -184,9 +180,9 @@ class CustomerOrder extends Component
 
     public function sendNotification($order)
     {
-        // $user = User::find($order->assign_to);
-        // $user->notify(new NewOrder($order));
-        // event(new EventsNewOrder($user));
+        $user = User::find($order->assign_to);
+        $user->notify(new NewOrder($order));
+        event(new EventsNewOrder($user));
     }
 
     public function render()

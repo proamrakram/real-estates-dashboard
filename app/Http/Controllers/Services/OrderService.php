@@ -26,7 +26,7 @@ class OrderService extends Controller
     public function createCustomer($data)
     {
         return Customer::create([
-            'user_id' => auth()->id(),
+            'user_id' => auth()->id() ?? $data['assign_to'],
             'name' => $data['customer_name'],
             'phone' => $data['customer_phone'],
             'employer_name' => $data['employer_name'],
@@ -34,7 +34,7 @@ class OrderService extends Controller
             'support_eskan' => $data['support_eskan'],
             'employee_type' => $data['employee_type'],
             'status' => '1',
-            'who_add' => auth()->id(),
+            'who_add' => auth()->id() ?? $data['assign_to'],
         ]);
     }
 
@@ -94,6 +94,67 @@ class OrderService extends Controller
         OrderEditor::create([
             'order_id' => $order->id,
             'user_id' =>  $user->id,
+            'action' => 'add',
+        ]);
+
+        return $order;
+    }
+
+    public function orderCustomer($data)
+    {
+        $customer = $this->getCustomer($data);
+
+        $customer->update([
+            'name' => $data['customer_name'],
+            'phone' => $data['customer_phone'],
+            'employer_name' => $data['employer_name'],
+            // 'city_id' => $data['city_id'],
+            'support_eskan' => $data['support_eskan'],
+            'employee_type' => $data['employee_type'],
+            'who_edit' => null,
+        ]);
+
+        $order = Order::create([
+            'order_code' => '',
+            'customer_name' => $customer->name,
+            'customer_phone' => $customer->phone,
+            'employer_name' => $data['employer_name'],
+            'employee_type' => $data['employee_type'],
+            'order_status_id' => 1,
+            'property_type_id' => $data['property_type_id'],
+            'city_id' => $customer->city_id,
+            'branch_id' => $data['branch_id'],
+            'area' => $data['area'],
+            'price_from' => $data['price_from'],
+            'price_to' => $data['price_to'],
+            'desire_to_buy_id' => $data['desire_to_buy_id'],
+            'purch_method_id' => $data['purch_method_id'],
+            'avaliable_amount' => $data['avaliable_amount'],
+            'assign_to' => $data['assign_to'],
+            'support_eskan' => $data['support_eskan'],
+            'notes' => $data['notes'],
+
+            'customer_id' => $customer->id,
+            'user_id' => $data['assign_to'],
+            'who_add' => $customer->id,
+            'assign_to_date' => $data['assign_to'] ? now() : null,
+
+            // 'offer_id' => $data['offer_id'],
+            // 'closed_date' => $data['closed_date'],
+            // 'who_edit' => $data['who_edit'],
+            // 'who_cancel' => $data['who_cancel'],
+        ]);
+
+        $branch = Branch::find($data['branch_id']);
+
+        if ($branch && $order) {
+            $order_code = ucwords($branch->code) . '-' . $order->id . '-' . 'USR' . $data['assign_to'];
+            $order->update(['order_code' => $order_code]);
+        }
+
+        OrderEditor::create([
+            'order_id' => $order->id,
+            'user_id' =>  $data['assign_to'],
             'action' => 'add',
         ]);
 
