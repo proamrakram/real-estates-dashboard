@@ -27,9 +27,15 @@ class HomeController extends Controller
         $this->userService = $userService;
     }
 
-    public function customerOrder()
+    public function customerOrder($user_id)
     {
-        return view('admin-panel.customer-order');
+        $user = User::find($user_id);
+
+        if (!$user) {
+            abort(404, 'This user is not found.');
+        }
+
+        return view('admin-panel.customer-order', ['user_id' => $user_id]);
     }
 
     public function home()

@@ -30,7 +30,7 @@ Route::post('/check-forget-password', [AdminPanelHomeController::class, 'checkFo
 Route::post('/reset-password', [AdminPanelHomeController::class, 'resetPassword'])->name('reset.password');
 Route::get('/page-reset-password/{user_id}', [AdminPanelHomeController::class, 'pageResetPassword'])->name('page.reset.password');
 
-Route::get('/customer-order', [AdminPanelHomeController::class, 'customerOrder'])->name('customer.order');
+Route::get('/customer-order/usr-{user_id}', [AdminPanelHomeController::class, 'customerOrder'])->name('customer.order');
 
 
 
