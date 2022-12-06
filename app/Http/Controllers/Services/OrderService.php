@@ -93,10 +93,16 @@ class OrderService extends Controller
 
         $marketer_name = getUserName($data['assign_to']);
 
-        $note = "تم إسناد الطلب للمسوق $marketer_name من المدير $user->name ";
+        $assign_to_id = $data['assign_to'];
+
+        $marketer = "<a" . "href='" . route('panel.user', $assign_to_id) . "'>" .  $marketer_name . "</a>";
+
+        $admin = "<a" . "href='" . route('panel.user', $user->id) . "'>" .  $user->name . "</a>";
+
+        $note = "تم إسناد الطلب للمسوق $marketer من المدير $admin";
 
         if ($user->user_type == 'marketer') {
-            $note = "قام المسوق $user->name بإضافة الطلب";
+            $note = "قام المسوق $marketer بإضافة الطلب";
         }
 
         OrderEditor::create([
@@ -163,7 +169,11 @@ class OrderService extends Controller
 
         $marketer_name = getUserName($data['assign_to']);
 
-        $note = "تم إسناد الطلب للمسوق $marketer_name من العميل $customer->name باستخدام رابط الدعوة";
+        $assign_to_id = $data['assign_to'];
+
+        $marketer = "<a" . "href='" . route('panel.user', $assign_to_id) . "'>" .  $marketer_name . "</a>";
+
+        $note = "تم إسناد الطلب للمسوق $marketer من العميل $customer->name باستخدام رابط الدعوة";
 
         OrderEditor::create([
             'order_id' => $order->id,
