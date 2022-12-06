@@ -341,19 +341,13 @@
                                                                 <div class="timeline-event ">
                                                                     <div
                                                                         class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1 ">
-                                                                        <h6>قام
-                                                                            <a
-                                                                                href="{{ route('panel.user', $order_edit->user_id) }}">
-                                                                                {{ getUserName($order_edit->user_id) }}</a>
-                                                                            بالتعديل
-                                                                        </h6>
+                                                                        <h6> {{ $order_edit->note }}</h6>
                                                                         <span
                                                                             class="timeline-event-time ">{{ $this->getLastUpateOrderEditTime($order_edit->id) }}</span>
                                                                     </div>
                                                                 </div>
                                                             </li>
                                                         @endif
-
 
                                                         @if ($order_edit->action == 'add')
                                                             <li class="timeline-item">
@@ -362,8 +356,7 @@
                                                                 <div class="timeline-event ">
                                                                     <div
                                                                         class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1 ">
-                                                                        <h6>قام {{ getUserName($order_edit->user_id) }}
-                                                                            بإضافة الطلب</h6>
+                                                                        <h6>{{ $order_edit->note }}</h6>
                                                                         <span
                                                                             class="timeline-event-time ">{{ $this->getLastUpateOrderEditTime($order_edit->id) }}</span>
                                                                     </div>
@@ -378,15 +371,13 @@
                                                                 <div class="timeline-event ">
                                                                     <div
                                                                         class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1 ">
-                                                                        <h6>قام {{ getUserName($order_edit->user_id) }}
-                                                                            بإلغاء الطلب</h6>
+                                                                        <h6>{{ $order_edit->note }}</h6>
                                                                         <span
                                                                             class="timeline-event-time ">{{ $this->getLastUpateOrderEditTime($order_edit->id) }}</span>
                                                                     </div>
                                                                 </div>
                                                             </li>
                                                         @endif
-
 
                                                         @if ($order_edit->action == 'active')
                                                             <li class="timeline-item">
@@ -395,8 +386,7 @@
                                                                 <div class="timeline-event ">
                                                                     <div
                                                                         class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1 ">
-                                                                        <h6>قام {{ getUserName($order_edit->user_id) }}
-                                                                            بتفعيل الطلب</h6>
+                                                                        <h6>{{ $order_edit->note }}</h6>
                                                                         <span
                                                                             class="timeline-event-time ">{{ $this->getLastUpateOrderEditTime($order_edit->id) }}</span>
                                                                     </div>
