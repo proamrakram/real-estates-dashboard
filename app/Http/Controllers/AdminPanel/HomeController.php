@@ -31,7 +31,7 @@ class HomeController extends Controller
     {
         $user = User::find($user_id);
 
-        if (!$user) {
+        if (!$user || $user->user_status == 'inactive') {
             abort(404, 'This user is not found.');
         } else {
             if ($user->user_type != 'marketer') {
