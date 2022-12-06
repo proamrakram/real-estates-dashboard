@@ -56,7 +56,7 @@ class NewOrder extends Notification
      */
     public function toArray($notifiable)
     {
-        $body = "تم إسناد طلب جديد لك من الإدارة";
+        $body = "تم إسناد طلب جديد لك";
 
         return [
             'title' => 'طلب جديد',
