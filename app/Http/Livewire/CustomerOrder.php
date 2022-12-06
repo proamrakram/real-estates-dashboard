@@ -6,10 +6,12 @@ use App\Events\NewOrder as EventsNewOrder;
 use App\Http\Controllers\Services\OrderService;
 use App\Models\User;
 use App\Notifications\NewOrder;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
 class CustomerOrder extends Component
 {
+    use LivewireAlert;
     public $first = 'active';
     public $second = '';
     public $third = '';
