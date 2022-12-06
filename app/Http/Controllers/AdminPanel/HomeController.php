@@ -33,6 +33,10 @@ class HomeController extends Controller
 
         if (!$user) {
             abort(404, 'This user is not found.');
+        } else {
+            if ($user->user_type != 'marketer') {
+                abort(404);
+            }
         }
 
         return view('admin-panel.customer-order', ['user_id' => $user_id]);
