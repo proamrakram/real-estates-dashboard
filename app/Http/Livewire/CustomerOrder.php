@@ -159,6 +159,7 @@ class CustomerOrder extends Component
         $this->area = (int)str_replace(',', '', $this->area);
 
         $validatedData = $this->validate();
+        $validatedData['assign_to'] = $this->user_id;
         $order = $orderService->orderCustomer($validatedData);
 
         $this->alert('success', '', [
