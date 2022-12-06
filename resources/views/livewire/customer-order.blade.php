@@ -185,7 +185,7 @@
                     <div class="col-12 mb-1">
                         <label class="form-label">الفرع</label>
                         <select wire:model='branch_id' class="select2 form-select">
-                            @foreach (getBranchesUser() as $branch)
+                            @foreach (getBranches() as $branch)
                                 <option value="{{ $branch->id }}">{{ $branch->name }}</option>
                             @endforeach
                         </select>
