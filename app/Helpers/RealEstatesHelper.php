@@ -24,11 +24,13 @@ if (!function_exists('websiteMode')) {
     function websiteMode()
     {
         $user = auth()->user();
-        $user_settings = $user->userSettings;
-
-        if ($user && $user_settings) {
-            return $user_settings->website_mode;
+        if ($user) {
+            $user_settings = $user->userSettings;
+            if ($user && $user_settings) {
+                return $user_settings->website_mode;
+            }
         }
+        return 'light-layout dark-layout';
     }
 }
 
