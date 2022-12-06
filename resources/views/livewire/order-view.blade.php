@@ -341,7 +341,7 @@
                                                                 <div class="timeline-event ">
                                                                     <div
                                                                         class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1 ">
-                                                                        <h6> {{ $order_edit->note }}</h6>
+                                                                        <h6> {!! $order_edit->note !!}</h6>
                                                                         <span
                                                                             class="timeline-event-time ">{{ $this->getLastUpateOrderEditTime($order_edit->id) }}</span>
                                                                     </div>
@@ -356,7 +356,7 @@
                                                                 <div class="timeline-event ">
                                                                     <div
                                                                         class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1 ">
-                                                                        <h6>{{ $order_edit->note }}</h6>
+                                                                        <h6>{!! $order_edit->note !!}</h6>
                                                                         <span
                                                                             class="timeline-event-time ">{{ $this->getLastUpateOrderEditTime($order_edit->id) }}</span>
                                                                     </div>
@@ -371,7 +371,7 @@
                                                                 <div class="timeline-event ">
                                                                     <div
                                                                         class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1 ">
-                                                                        <h6>{{ $order_edit->note }}</h6>
+                                                                        <h6>{!! $order_edit->note !!}</h6>
                                                                         <span
                                                                             class="timeline-event-time ">{{ $this->getLastUpateOrderEditTime($order_edit->id) }}</span>
                                                                     </div>
@@ -386,7 +386,7 @@
                                                                 <div class="timeline-event ">
                                                                     <div
                                                                         class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1 ">
-                                                                        <h6>{{ $order_edit->note }}</h6>
+                                                                        <h6>{!! $order_edit->note !!}</h6>
                                                                         <span
                                                                             class="timeline-event-time ">{{ $this->getLastUpateOrderEditTime($order_edit->id) }}</span>
                                                                     </div>
