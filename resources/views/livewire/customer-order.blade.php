@@ -5,10 +5,30 @@
             <div class="step {{ $first }}" data-target="#account-details-vertical" role="tab"
                 id="account-details-vertical-trigger">
                 <button type="button" class="step-trigger" wire:click="sequencing('first')">
-                    <span class="bs-stepper-box">1</span>
+                    <span
+                        class="bs-stepper-box
+                    @if ($errors->has('customer_name') ||
+                        $errors->has('customer_phone') ||
+                        $errors->has('street_name') ||
+                        $errors->has('employer_name') ||
+                        $errors->has('employee_type') ||
+                        $errors->has('additional_number') ||
+                        $errors->has('order_status_id') ||
+                        $errors->has('support_eskan')) bg-danger @endif
+                    ">1</span>
                     <span class="bs-stepper-label">
-                        <span class="bs-stepper-title">بيانات العميل</span>
+
+                        <span class="bs-stepper-title @if ($errors->has('customer_name') ||
+                            $errors->has('customer_phone') ||
+                            $errors->has('street_name') ||
+                            $errors->has('employer_name') ||
+                            $errors->has('employee_type') ||
+                            $errors->has('additional_number') ||
+                            $errors->has('order_status_id') ||
+                            $errors->has('support_eskan')) text-danger @endif ">بيانات
+                            العميل</span>
                         <span class="bs-stepper-subtitle">ادخل الحقول في القسم</span>
+
                     </span>
                 </button>
             </div>
