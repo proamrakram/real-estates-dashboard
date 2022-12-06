@@ -95,9 +95,9 @@ class OrderService extends Controller
 
         $assign_to_id = $data['assign_to'];
 
-        $marketer = "<a" . "href='" . route('panel.user', $assign_to_id) . "'>" .  $marketer_name . "</a>";
+        $marketer = "<a href='" . route('panel.user', $assign_to_id) . "'>" .  $marketer_name . "</a>";
 
-        $admin = "<a" . "href='" . route('panel.user', $user->id) . "'>" .  $user->name . "</a>";
+        $admin = "<a href='" . route('panel.user', $user->id) . "'>" .  $user->name . "</a>";
 
         $note = "تم إسناد الطلب للمسوق $marketer من المدير $admin";
 
@@ -171,7 +171,7 @@ class OrderService extends Controller
 
         $assign_to_id = $data['assign_to'];
 
-        $marketer = "<a" . "href='" . route('panel.user', $assign_to_id) . "'>" .  $marketer_name . "</a>";
+        $marketer = "<a href='" . route('panel.user', $assign_to_id) . "'>" .  $marketer_name . "</a>";
 
         $note = "تم إسناد الطلب للمسوق $marketer من العميل $customer->name باستخدام رابط الدعوة";
 
