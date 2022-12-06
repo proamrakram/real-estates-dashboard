@@ -91,19 +91,22 @@ class OrderService extends Controller
             $order->update(['order_code' => $order_code]);
         }
 
-        $marketer_name = getUserName($data['assign_to']);
-
-        $assign_to_id = $data['assign_to'];
-
-        $link_ma = route('panel.user', $assign_to_id);
-        $link_admin =  route('panel.user', $user->id);
-
-        $marketer = "<a href='$link_ma'> $marketer_name</a>";
-        $admin = "<a href='$link_admin'>$user->name</a>";
-
-        $note = "تم إسناد الطلب للمسوق $marketer من المدير $admin";
+        if ($user->user_type == 'admin' || $user->user_type == 'superadmin') {
+            $assign_to_id = $data['assign_to'];
+            if ($assign_to_id) {
+                $marketer_name = getUserName($assign_to_id);
+                $link_ma = route('panel.user', $assign_to_id);
+                $link_admin =  route('panel.user', $user->id);
+                $marketer = "<a href='$link_ma'> $marketer_name</a>";
+                $admin = "<a href='$link_admin'>$user->name</a>";
+                $note = "تم إسناد الطلب للمسوق $marketer من المدير $admin";
+            }
+        }
 
         if ($user->user_type == 'marketer') {
+            $marketer_name = getUserName($user->id);
+            $link_ma = route('panel.user', $user->id);
+            $marketer = "<a href='$link_ma'> $marketer_name</a>";
             $note = "قام المسوق $marketer بإضافة الطلب";
         }
 
@@ -231,26 +234,34 @@ class OrderService extends Controller
             'who_edit' => auth()->id(),
         ]);
 
+        $user = auth()->user();
+
         if ($data['assign_to'] && $order->assign_to != $data['assign_to']) {
+            $assign_to_id = $data['assign_to'];
+
             $order->update([
                 'assign_to_date' => now(),
                 'order_status_id' => 1,
             ]);
+
+            $marketer_name = getUserName($assign_to_id);
+            $link_ma = route('panel.user', $assign_to_id);
+            $link_admin =  route('panel.user', $user->id);
+            $marketer = "<a href='$link_ma'> $marketer_name</a>";
+            $admin = "<a href='$link_admin'>$user->name</a>";
+            $note = "تم إسناد الطلب للمسوق $marketer من المدير $admin";
+        } elseif ($user->user_type == 'admin' || $user->user_type == 'superadmin') {
+            $link_admin =  route('panel.user', $user->id);
+            $admin = "<a href='$link_admin'>$user->name</a>";
+            $note = "قام المدير $admin بتعديل الطلب";
         }
 
-        $user = auth()->user();
-
-        $marketer_name = getUserName($data['assign_to']);
-
-        $assign_to_id = $data['assign_to'];
-
-        $link_ma = route('panel.user', $assign_to_id);
-        $link_admin =  route('panel.user', $user->id);
-
-        $marketer = "<a href='$link_ma'> $marketer_name</a>";
-        $admin = "<a href='$link_admin'>$user->name</a>";
-
-        $note = "تم إسناد الطلب للمسوق $marketer من المدير $admin";
+        if ($user->user_type == 'marketer') {
+            $marketer_name = getUserName($user->id);
+            $link_ma = route('panel.user', $user->id);
+            $marketer = "<a href='$link_ma'> $marketer_name</a>";
+            $note = "قام المسوق $marketer بتعديل الطلب";
+        }
 
         OrderEditor::create([
             'order_id' => $order->id,
